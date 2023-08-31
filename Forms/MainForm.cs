@@ -273,7 +273,7 @@ public partial class MainForm : Form
         PopulateModList();
     }
 
-    private void refreshModListToolStripMenuItem_Click(object sender, EventArgs e)
+    private void buttonRefreshModList_Click(object sender, EventArgs e)
     {
         ModManager.RefreshModList();
         PopulateModList();
@@ -316,5 +316,13 @@ public partial class MainForm : Form
         {
             labelDolphin.Text += "\nOne or more active mods use codes. Remember to activate \"Enable Cheats\" on Dolphin settings.";
         }
+    }
+
+    private AboutBox AboutBox;
+
+    private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        AboutBox ??= new AboutBox();
+        AboutBox.ShowDialog();
     }
 }
