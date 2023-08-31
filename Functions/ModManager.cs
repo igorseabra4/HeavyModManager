@@ -124,6 +124,7 @@ public static class ModManager
     public static string GameGameSysPath => Path.Combine(GameGamePath, "sys");
     public static string GameDolPath => Path.Combine(GameGamePath, "sys", "main.dol");
 
+    public static bool CheckForUpdatesOnStartup { get; set; }
     public static string DolphinPath { get; private set; }
     public static Game CurrentGame { get; private set; } = Game.Null;
     public static GameSettings? CurrentGameSettings { get; private set; } = null;
@@ -133,7 +134,8 @@ public static class ModManager
         File.WriteAllText(ModManagerSettingsPath, JsonSerializer.Serialize(new ModManagerSettings()
         {
             currentGame = CurrentGame,
-            dolphinPath = DolphinPath
+            dolphinPath = DolphinPath,
+            checkForUpdatesOnStartup = CheckForUpdatesOnStartup,
         }));
     }
 
@@ -146,6 +148,7 @@ public static class ModManager
             var settings = JsonSerializer.Deserialize<ModManagerSettings>(File.ReadAllText(ModManagerSettingsPath));
             CurrentGame = settings.currentGame;
             DolphinPath = settings.dolphinPath;
+            CheckForUpdatesOnStartup = settings.checkForUpdatesOnStartup;
         }
     }
 

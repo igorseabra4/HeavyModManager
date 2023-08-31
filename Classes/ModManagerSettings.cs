@@ -11,6 +11,8 @@ public class ModManagerSettings
     public Game currentGame;
     [JsonInclude]
     public string dolphinPath;
+    [JsonInclude]
+    public bool checkForUpdatesOnStartup;
 
     [JsonConstructor]
     public ModManagerSettings()
@@ -18,5 +20,6 @@ public class ModManagerSettings
         version = 1;
         currentGame = Game.Null;
         dolphinPath = "";
+        checkForUpdatesOnStartup = true;
     }
 }

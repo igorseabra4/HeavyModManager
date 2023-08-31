@@ -17,6 +17,13 @@ public partial class MainForm : Form
 
         ModManager.LoadSettings();
 
+        checkForUpdatesOnStartupToolStripMenuItem.Checked = ModManager.CheckForUpdatesOnStartup;
+
+        if (ModManager.CheckForUpdatesOnStartup)
+        {
+            TryUpdate();
+        }
+
         if (ModManager.CurrentGame == Game.Null)
             comboBoxGame.SelectedIndex = -1;
         else
@@ -32,6 +39,16 @@ public partial class MainForm : Form
         labelModInfo.Text = "";
 
         UpdateDolphinLabel();
+    }
+
+    private async void TryUpdate()
+    {
+        var updated = await AutomaticUpdater.Update();
+        if (updated)
+        {
+            Close();
+            System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "HeavyModManager.exe"));
+        }
     }
 
     private void comboBoxGame_SelectedIndexChanged(object sender, EventArgs e)
@@ -272,6 +289,12 @@ public partial class MainForm : Form
     private void developerModeToolStripMenuItem_Click(object sender, EventArgs e)
     {
         developerModeToolStripMenuItem.Checked = !developerModeToolStripMenuItem.Checked;
+    }
+
+    private void checkForUpdatesOnStartupToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        ModManager.CheckForUpdatesOnStartup = !ModManager.CheckForUpdatesOnStartup;
+        checkForUpdatesOnStartupToolStripMenuItem.Checked = ModManager.CheckForUpdatesOnStartup;
     }
 
     private void UpdateDolphinLabel()

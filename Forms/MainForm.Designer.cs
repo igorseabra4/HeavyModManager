@@ -40,18 +40,20 @@ partial class MainForm
             this.buttonApplyMods = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chooseDolphinPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshModListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.developerModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.createModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zipModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.chooseDolphinPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.developerModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelModInfo = new System.Windows.Forms.Label();
             this.panelLabelModInfo = new System.Windows.Forms.Panel();
             this.groupBoxModInfo = new System.Windows.Forms.GroupBox();
             this.labelDolphin = new System.Windows.Forms.Label();
+            this.checkForUpdatesOnStartupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxGame.SuspendLayout();
             this.groupBoxMods.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -179,7 +181,8 @@ partial class MainForm
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem});
+            this.settingsToolStripMenuItem,
+            this.settingsToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(592, 24);
@@ -189,9 +192,7 @@ partial class MainForm
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.chooseDolphinPathToolStripMenuItem,
             this.refreshModListToolStripMenuItem,
-            this.developerModeToolStripMenuItem,
             this.toolStripSeparator1,
             this.createModToolStripMenuItem,
             this.editModToolStripMenuItem,
@@ -201,36 +202,22 @@ partial class MainForm
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.settingsToolStripMenuItem.Text = "Manage";
             // 
-            // chooseDolphinPathToolStripMenuItem
-            // 
-            this.chooseDolphinPathToolStripMenuItem.Name = "chooseDolphinPathToolStripMenuItem";
-            this.chooseDolphinPathToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.chooseDolphinPathToolStripMenuItem.Text = "Choose Dolphin Path...";
-            this.chooseDolphinPathToolStripMenuItem.Click += new System.EventHandler(this.chooseDolphinPathToolStripMenuItem_Click);
-            // 
             // refreshModListToolStripMenuItem
             // 
             this.refreshModListToolStripMenuItem.Name = "refreshModListToolStripMenuItem";
-            this.refreshModListToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.refreshModListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.refreshModListToolStripMenuItem.Text = "Refresh Mod List";
             this.refreshModListToolStripMenuItem.Click += new System.EventHandler(this.refreshModListToolStripMenuItem_Click);
-            // 
-            // developerModeToolStripMenuItem
-            // 
-            this.developerModeToolStripMenuItem.Name = "developerModeToolStripMenuItem";
-            this.developerModeToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.developerModeToolStripMenuItem.Text = "Developer Mode";
-            this.developerModeToolStripMenuItem.Click += new System.EventHandler(this.developerModeToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(192, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // createModToolStripMenuItem
             // 
             this.createModToolStripMenuItem.Name = "createModToolStripMenuItem";
-            this.createModToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.createModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createModToolStripMenuItem.Text = "Create Mod...";
             this.createModToolStripMenuItem.Click += new System.EventHandler(this.createModToolStripMenuItem_Click);
             // 
@@ -238,7 +225,7 @@ partial class MainForm
             // 
             this.editModToolStripMenuItem.Enabled = false;
             this.editModToolStripMenuItem.Name = "editModToolStripMenuItem";
-            this.editModToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.editModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editModToolStripMenuItem.Text = "Edit Mod...";
             this.editModToolStripMenuItem.Click += new System.EventHandler(this.editModToolStripMenuItem_Click);
             // 
@@ -246,7 +233,7 @@ partial class MainForm
             // 
             this.zipModToolStripMenuItem.Enabled = false;
             this.zipModToolStripMenuItem.Name = "zipModToolStripMenuItem";
-            this.zipModToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.zipModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zipModToolStripMenuItem.Text = "Zip Mod...";
             this.zipModToolStripMenuItem.Click += new System.EventHandler(this.zipModToolStripMenuItem_Click);
             // 
@@ -254,9 +241,33 @@ partial class MainForm
             // 
             this.deleteModToolStripMenuItem.Enabled = false;
             this.deleteModToolStripMenuItem.Name = "deleteModToolStripMenuItem";
-            this.deleteModToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.deleteModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteModToolStripMenuItem.Text = "Delete Mod...";
             this.deleteModToolStripMenuItem.Click += new System.EventHandler(this.deleteModToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem1
+            // 
+            this.settingsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chooseDolphinPathToolStripMenuItem,
+            this.developerModeToolStripMenuItem,
+            this.checkForUpdatesOnStartupToolStripMenuItem});
+            this.settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
+            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem1.Text = "Settings";
+            // 
+            // chooseDolphinPathToolStripMenuItem
+            // 
+            this.chooseDolphinPathToolStripMenuItem.Name = "chooseDolphinPathToolStripMenuItem";
+            this.chooseDolphinPathToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.chooseDolphinPathToolStripMenuItem.Text = "Choose Dolphin Path...";
+            this.chooseDolphinPathToolStripMenuItem.Click += new System.EventHandler(this.chooseDolphinPathToolStripMenuItem_Click);
+            // 
+            // developerModeToolStripMenuItem
+            // 
+            this.developerModeToolStripMenuItem.Name = "developerModeToolStripMenuItem";
+            this.developerModeToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.developerModeToolStripMenuItem.Text = "Developer Mode";
+            this.developerModeToolStripMenuItem.Click += new System.EventHandler(this.developerModeToolStripMenuItem_Click);
             // 
             // labelModInfo
             // 
@@ -294,6 +305,13 @@ partial class MainForm
             this.labelDolphin.Size = new System.Drawing.Size(80, 15);
             this.labelDolphin.TabIndex = 11;
             this.labelDolphin.Text = "Dolphin Label";
+            // 
+            // checkForUpdatesOnStartupToolStripMenuItem
+            // 
+            this.checkForUpdatesOnStartupToolStripMenuItem.Name = "checkForUpdatesOnStartupToolStripMenuItem";
+            this.checkForUpdatesOnStartupToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.checkForUpdatesOnStartupToolStripMenuItem.Text = "Check For Updates on Startup";
+            this.checkForUpdatesOnStartupToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesOnStartupToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -335,8 +353,6 @@ partial class MainForm
     private MenuStrip menuStrip1;
     private CheckedListBox listMods;
     private ToolStripMenuItem settingsToolStripMenuItem;
-    private ToolStripMenuItem chooseDolphinPathToolStripMenuItem;
-    private ToolStripMenuItem developerModeToolStripMenuItem;
     private Button buttonMoveDown;
     private Button buttonMoveUp;
     private Label labelModInfo;
@@ -350,4 +366,8 @@ partial class MainForm
     private ToolStripMenuItem createModToolStripMenuItem;
     private ToolStripMenuItem editModToolStripMenuItem;
     private ToolStripMenuItem zipModToolStripMenuItem;
+    private ToolStripMenuItem settingsToolStripMenuItem1;
+    private ToolStripMenuItem chooseDolphinPathToolStripMenuItem;
+    private ToolStripMenuItem developerModeToolStripMenuItem;
+    private ToolStripMenuItem checkForUpdatesOnStartupToolStripMenuItem;
 }
