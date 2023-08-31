@@ -1,4 +1,4 @@
-﻿namespace NoCheese;
+﻿namespace HeavyModManager;
 
 partial class MainForm
 {

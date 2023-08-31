@@ -1,4 +1,4 @@
-﻿namespace NoCheese.Enum;
+﻿namespace HeavyModManager.Enum;
 
 public enum Game
 {

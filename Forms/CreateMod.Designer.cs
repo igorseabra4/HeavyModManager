@@ -1,4 +1,4 @@
-﻿namespace NoCheese;
+﻿namespace HeavyModManager.Forms;
 
 partial class CreateMod
 {
@@ -260,6 +260,7 @@ partial class CreateMod
             // 
             // dateTimePickerUpdatedAt
             // 
+            this.dateTimePickerUpdatedAt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerUpdatedAt.Location = new System.Drawing.Point(6, 22);
             this.dateTimePickerUpdatedAt.Name = "dateTimePickerUpdatedAt";
             this.dateTimePickerUpdatedAt.Size = new System.Drawing.Size(316, 23);
@@ -277,10 +278,9 @@ partial class CreateMod
             // 
             // dateTimePickerCreatedAt
             // 
-            this.dateTimePickerCreatedAt.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerCreatedAt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerCreatedAt.Location = new System.Drawing.Point(6, 22);
             this.dateTimePickerCreatedAt.Name = "dateTimePickerCreatedAt";
-            this.dateTimePickerCreatedAt.ShowUpDown = true;
             this.dateTimePickerCreatedAt.Size = new System.Drawing.Size(316, 23);
             this.dateTimePickerCreatedAt.TabIndex = 7;
             // 
@@ -309,7 +309,7 @@ partial class CreateMod
             // 
             this.richTextBoxRemoveFiles.Location = new System.Drawing.Point(0, 33);
             this.richTextBoxRemoveFiles.Name = "richTextBoxRemoveFiles";
-            this.richTextBoxRemoveFiles.Size = new System.Drawing.Size(340, 307);
+            this.richTextBoxRemoveFiles.Size = new System.Drawing.Size(340, 419);
             this.richTextBoxRemoveFiles.TabIndex = 0;
             this.richTextBoxRemoveFiles.Text = "";
             // 

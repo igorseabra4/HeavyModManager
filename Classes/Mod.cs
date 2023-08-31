@@ -1,8 +1,9 @@
-﻿using NoCheese.Enum;
+﻿using HeavyModManager.Enum;
+using HeavyModManager.Functions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace NoCheese.Classes;
+namespace HeavyModManager.Classes;
 
 public class Mod
 {

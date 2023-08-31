@@ -1,6 +1,7 @@
-﻿using NoCheese.Enum;
+﻿using HeavyModManager.Enum;
+using HeavyModManager.Functions;
 
-namespace NoCheese.Classes;
+namespace HeavyModManager.Classes;
 
 public class ComboBoxGameItem
 {

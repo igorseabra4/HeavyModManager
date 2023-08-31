@@ -1,8 +1,10 @@
-﻿using NoCheese.Classes;
-using NoCheese.Enum;
+﻿using HeavyModManager.Classes;
+using HeavyModManager.Enum;
+using HeavyModManager.Forms;
+using HeavyModManager.Functions;
 using System.Text.Json;
 
-namespace NoCheese;
+namespace HeavyModManager;
 
 public partial class MainForm : Form
 {
@@ -10,7 +12,7 @@ public partial class MainForm : Form
     {
         InitializeComponent();
 
-        foreach (Game game in ModManager.EvilEngineGames)
+        foreach (Game game in ModManager.Games)
             comboBoxGame.Items.Add(new ComboBoxGameItem(game));
 
         ModManager.LoadSettings();
@@ -246,7 +248,7 @@ public partial class MainForm : Form
         Enabled = false;
         ModManager.ApplyMods(developerModeToolStripMenuItem.Checked);
         Enabled = true;
-        ModManager.RunGame();
+        ModManager.RunGame(developerModeToolStripMenuItem.Checked);
     }
 
     private void buttonAddMod_Click(object sender, EventArgs e)

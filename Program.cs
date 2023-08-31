@@ -1,4 +1,4 @@
-namespace NoCheese;
+namespace HeavyModManager;
 
 internal static class Program
 {

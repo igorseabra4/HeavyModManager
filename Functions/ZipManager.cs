@@ -1,9 +1,9 @@
-﻿using NoCheese.Classes;
+﻿using HeavyModManager.Classes;
 using System.IO.Compression;
 using System.Text;
 using System.Text.Json;
 
-namespace NoCheese;
+namespace HeavyModManager.Functions;
 
 public static class ZipManager
 {

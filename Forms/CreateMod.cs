@@ -1,7 +1,8 @@
-﻿using NoCheese.Classes;
-using NoCheese.Enum;
+﻿using HeavyModManager.Classes;
+using HeavyModManager.Enum;
+using HeavyModManager.Functions;
 
-namespace NoCheese;
+namespace HeavyModManager.Forms;
 
 public partial class CreateMod : Form
 {
@@ -10,16 +11,23 @@ public partial class CreateMod : Form
         isEditing = false;
 
         InitializeComponent();
+        SetCustomDateFormat();
 
-        foreach (Game game in ModManager.EvilEngineGames)
+        foreach (Game game in ModManager.Games)
             comboBoxGame.Items.Add(new ComboBoxGameItem(game));
 
         dateTimePickerCreatedAt.Value = DateTime.Now;
         dateTimePickerUpdatedAt.Value = DateTime.Now;
 
-        tabControl1.TabPages.RemoveAt(1);
-        tabControl1.TabPages.RemoveAt(1);
-        tabControl1.TabPages.RemoveAt(1);
+        tabControl1.TabPages.RemoveAt(2);
+        tabControl1.TabPages.RemoveAt(2);
+    }
+
+    private void SetCustomDateFormat()
+    {
+        var format = "yyyy-MM-dd HH:mm:ss";
+        dateTimePickerCreatedAt.CustomFormat = format;
+        dateTimePickerUpdatedAt.CustomFormat = format;
     }
 
     private bool isEditing;
@@ -30,6 +38,7 @@ public partial class CreateMod : Form
         isEditing = true;
 
         InitializeComponent();
+        SetCustomDateFormat();
 
         groupBoxGame.Enabled = false;
         comboBoxGame.Enabled = false;
@@ -64,9 +73,8 @@ public partial class CreateMod : Form
 
         buttonCreateMod.Text = "Save";
 
-        tabControl1.TabPages.RemoveAt(1);
-        tabControl1.TabPages.RemoveAt(1);
-        tabControl1.TabPages.RemoveAt(1);
+        tabControl1.TabPages.RemoveAt(2);
+        tabControl1.TabPages.RemoveAt(2);
     }
 
     private void buttonCancel_Click(object sender, EventArgs e)

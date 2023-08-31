@@ -1,111 +1,73 @@
-﻿using NoCheese.Classes;
-using NoCheese.Enum;
+﻿using HeavyModManager.Classes;
+using HeavyModManager.Enum;
+using System.Diagnostics;
 using System.Text.Json;
 
-namespace NoCheese;
+namespace HeavyModManager.Functions;
 
 public static class ModManager
 {
     public static string GameToString(Game game)
     {
-        switch (game)
+        return game switch
         {
-            case Game.Scooby:
-                return "scooby";
-            case Game.BFBB:
-                return "bfbb";
-            case Game.Movie:
-                return "movie";
-            case Game.Incredibles:
-                return "incredibles";
-            case Game.Underminer:
-                return "rotu";
-            case Game.RatProto:
-                return "ratproto";
-            case Game.Ratatouille:
-                return "ratatouille";
-            case Game.WallE:
-                return "walle";
-            case Game.Up:
-                return "up";
-            case Game.TruthOrSquare:
-                return "tos";
-            case Game.UFC:
-                return "ufc";
-            case Game.FamilyGuy:
-                return "familyguy";
-            case Game.HollywoodWorkout:
-                return "hollywoodworkout";
-        }
-        throw new ArgumentException("Invalid game.");
+            Game.Scooby => "scooby",
+            Game.BFBB => "bfbb",
+            Game.Movie => "movie",
+            Game.Incredibles => "incredibles",
+            Game.Underminer => "rotu",
+            Game.RatProto => "ratproto",
+            Game.Ratatouille => "ratatouille",
+            Game.WallE => "walle",
+            Game.Up => "up",
+            Game.TruthOrSquare => "tos",
+            Game.UFC => "ufc",
+            Game.FamilyGuy => "familyguy",
+            Game.HollywoodWorkout => "hollywoodworkout",
+            _ => throw new ArgumentException("Invalid game."),
+        };
     }
 
     public static string GameToStringFull(Game game)
     {
-        switch (game)
+        return game switch
         {
-            case Game.Scooby:
-                return "Scooby-Doo! Night of 100 Frights";
-            case Game.BFBB:
-                return "SpongeBob SquarePants: Battle for Bikini Bottom";
-            case Game.Movie:
-                return "The SpongeBob SquarePants Movie";
-            case Game.Incredibles:
-                return "The Incredibles";
-            case Game.Underminer:
-                return "The Incredibles: Rise of the Underminer";
-            case Game.RatProto:
-                return "Ratatouille (January 18th, 2006 Prototype)";
-            case Game.Ratatouille:
-                return "Ratatouille";
-            case Game.WallE:
-                return "WALL-E";
-            case Game.Up:
-                return "Up";
-            case Game.TruthOrSquare:
-                return "SpongeBob's Truth or Square";
-            case Game.UFC:
-                return "UFC Personal Trainer";
-            case Game.FamilyGuy:
-                return "Family Guy: Back to the Multiverse";
-            case Game.HollywoodWorkout:
-                return "Harley Pasternak's Hollywood Workout";
-        }
-        throw new ArgumentException("Invalid game.");
+            Game.Scooby => "Scooby-Doo! Night of 100 Frights",
+            Game.BFBB => "SpongeBob SquarePants: Battle for Bikini Bottom",
+            Game.Movie => "The SpongeBob SquarePants Movie",
+            Game.Incredibles => "The Incredibles",
+            Game.Underminer => "The Incredibles: Rise of the Underminer",
+            Game.RatProto => "Ratatouille (January 18th, 2006 Prototype)",
+            Game.Ratatouille => "Ratatouille",
+            Game.WallE => "WALL-E",
+            Game.Up => "Up",
+            Game.TruthOrSquare => "SpongeBob's Truth or Square",
+            Game.UFC => "UFC Personal Trainer",
+            Game.FamilyGuy => "Family Guy: Back to the Multiverse",
+            Game.HollywoodWorkout => "Harley Pasternak's Hollywood Workout",
+            _ => throw new ArgumentException("Invalid game."),
+        };
     }
 
     public static Game StringToGame(string game)
     {
-        switch (game)
+        return game switch
         {
-            case "scooby":
-                return Game.Scooby;
-            case "bfbb":
-                return Game.BFBB;
-            case "movie":
-                return Game.Movie;
-            case "incredibles":
-                return Game.Incredibles;
-            case "rotu":
-                return Game.Underminer;
-            case "ratproto":
-                return Game.RatProto;
-            case "ratatouille":
-                return Game.Ratatouille;
-            case "walle":
-                return Game.WallE;
-            case "up":
-                return Game.Up;
-            case "tos":
-                return Game.TruthOrSquare;
-            case "ufc":
-                return Game.UFC;
-            case "familyguy":
-                return Game.FamilyGuy;
-            case "hollywoodworkout":
-                return Game.HollywoodWorkout;
-        }
-        throw new ArgumentException("Invalid game.");
+            "scooby" => Game.Scooby,
+            "bfbb" => Game.BFBB,
+            "movie" => Game.Movie,
+            "incredibles" => Game.Incredibles,
+            "rotu" => Game.Underminer,
+            "ratproto" => Game.RatProto,
+            "ratatouille" => Game.Ratatouille,
+            "walle" => Game.WallE,
+            "up" => Game.Up,
+            "tos" => Game.TruthOrSquare,
+            "ufc" => Game.UFC,
+            "familyguy" => Game.FamilyGuy,
+            "hollywoodworkout" => Game.HollywoodWorkout,
+            _ => throw new ArgumentException("Invalid game."),
+        };
     }
 
     public static List<Game> Games => new() {
@@ -255,7 +217,7 @@ public static class ModManager
             }
         }
 
-        foreach (var modId in CurrentGameSettings.Mods.ToList())
+        foreach (var modId in CurrentGameSettings.Mods)
         {
             try
             {
@@ -346,17 +308,29 @@ public static class ModManager
         Directory.CreateDirectory(GameGameFilesPath);
         Directory.CreateDirectory(GameGameSysPath);
 
-        new Microsoft.VisualBasic.Devices.Computer().FileSystem.CopyDirectory(GameBackupFilesPath, GameGameFilesPath);
-        new Microsoft.VisualBasic.Devices.Computer().FileSystem.CopyDirectory(GameBackupSysPath, GameGameSysPath);
+        var fs = new Microsoft.VisualBasic.Devices.Computer().FileSystem;
+        fs.CopyDirectory(GameBackupFilesPath, GameGameFilesPath);
+        fs.CopyDirectory(GameBackupSysPath, GameGameSysPath);
 
         foreach (var modId in CurrentGameSettings.Mods)
             if (CurrentGameSettings.ActiveMods.Contains(modId))
             {
+                // Copy mod files
                 var modFilesPath = GetModFilesPath(modId);
                 if (Directory.Exists(modFilesPath))
-                    new Microsoft.VisualBasic.Devices.Computer().FileSystem.CopyDirectory(modFilesPath, GameGameFilesPath, true);
+                    fs.CopyDirectory(modFilesPath, GameGameFilesPath, true);
 
-                // now apply INI, ar/gecko codes and remove files
+                // Delete files
+                var modJsonPath = GetModJsonPath(modId);
+                var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
+                foreach (var path in mod.RemoveFiles.Split('\n'))
+                {
+                    var file = Path.Combine(GameGameFilesPath, path);
+                    if (File.Exists(file))
+                        File.Delete(file);
+                }
+
+                // now apply INI and ar/gecko codes
             }
 
         CurrentGameSettings.Invalidated = false;
@@ -366,7 +340,7 @@ public static class ModManager
     public static bool GameBackupExists => Directory.Exists(GameBackupFilesPath) && Directory.Exists(GameBackupSysPath);
     public static bool GameExists => Directory.Exists(GameGameFilesPath) && Directory.Exists(GameGameSysPath) && File.Exists(GameDolPath);
 
-    public static void RunGame()
+    public static void RunGame(bool closeDolphin)
     {
         if (string.IsNullOrEmpty(DolphinPath))
         {
@@ -386,6 +360,14 @@ public static class ModManager
             return;
         }
 
-        System.Diagnostics.Process.Start(DolphinPath, new string[] { GameDolPath });
+        if (closeDolphin)
+            foreach (var p in Process.GetProcessesByName("Dolphin"))
+                if (!p.HasExited)
+                {
+                    p.CloseMainWindow();
+                    p.WaitForExit();
+                }
+
+        Process.Start(DolphinPath, new string[] { GameDolPath });
     }
 }

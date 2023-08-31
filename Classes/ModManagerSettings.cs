@@ -1,7 +1,7 @@
-﻿using NoCheese.Enum;
+﻿using HeavyModManager.Enum;
 using System.Text.Json.Serialization;
 
-namespace NoCheese.Classes;
+namespace HeavyModManager.Classes;
 
 public class ModManagerSettings
 {
