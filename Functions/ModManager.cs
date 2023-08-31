@@ -220,7 +220,7 @@ public static class ModManager
             }
         }
 
-        foreach (var modId in CurrentGameSettings.Mods)
+        foreach (var modId in CurrentGameSettings.Mods.ToList())
         {
             try
             {
@@ -288,8 +288,10 @@ public static class ModManager
         Directory.CreateDirectory(GameBackupFilesPath);
         Directory.CreateDirectory(GameBackupSysPath);
 
-        new Microsoft.VisualBasic.Devices.Computer().FileSystem.CopyDirectory(files, GameBackupFilesPath);
-        new Microsoft.VisualBasic.Devices.Computer().FileSystem.CopyDirectory(sys, GameBackupSysPath);
+        var fs = new Microsoft.VisualBasic.Devices.Computer().FileSystem;
+
+        fs.CopyDirectory(files, GameBackupFilesPath);
+        fs.CopyDirectory(sys, GameBackupSysPath);
 
         MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.");
     }

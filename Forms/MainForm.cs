@@ -103,7 +103,7 @@ public partial class MainForm : Form
             var mod = (Mod)listMods.SelectedItem;
             try
             {
-                ZipManager.ZipMod(mod.ModId, $"{ModManager.GameToStringFull(mod.Game)} - {mod.Author} - {mod.ModName}");
+                ZipManager.ZipMod(mod.ModId, $"{ModManager.GameToStringFull(mod.Game).Replace(":", "")} - {mod.Author} - {mod.ModName}");
             }
             catch (Exception ex)
             {
