@@ -19,7 +19,7 @@ namespace HeavyModManager.Functions
 
                 if (oldVersion.Version != updatedVersion.Version)
                 {
-                    string messageText = $"There is an update available: Industrial Park ({updatedVersion.Version}).\n\n{updatedVersion.Description}\n\nDo you wish to download it?";
+                    string messageText = $"There is an update available: Heavy Mod Manager {updatedVersion.Version}.\n\n{updatedVersion.Description}\n\nDo you wish to download it?";
                     DialogResult d = MessageBox.Show(messageText, "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                     if (d == DialogResult.Yes)

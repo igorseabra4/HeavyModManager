@@ -330,7 +330,7 @@ partial class MainForm
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.ShowIcon = false;
-            this.Text = "No Cheese! Mod Manager";
+            this.Text = "Heavy Mod Manager";
             this.groupBoxGame.ResumeLayout(false);
             this.groupBoxMods.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);

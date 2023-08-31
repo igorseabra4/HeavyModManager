@@ -124,7 +124,7 @@ public static class ModManager
     public static string GameGameSysPath => Path.Combine(GameGamePath, "sys");
     public static string GameDolPath => Path.Combine(GameGamePath, "sys", "main.dol");
 
-    public static bool CheckForUpdatesOnStartup { get; set; }
+    public static bool CheckForUpdatesOnStartup { get; set; } = true;
     public static string DolphinPath { get; private set; }
     public static Game CurrentGame { get; private set; } = Game.Null;
     public static GameSettings? CurrentGameSettings { get; private set; } = null;
@@ -235,6 +235,7 @@ public static class ModManager
             }
         }
 
+        CurrentGameSettings.Invalidated = true;
         SaveGameSettings();
     }
 
@@ -293,10 +294,13 @@ public static class ModManager
         MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.");
     }
 
-    public static void ApplyMods(bool force)
+    public static void ApplyMods(bool devMode)
     {
-        if (!force && !CurrentGameSettings.Invalidated)
+        if (!devMode && !CurrentGameSettings.Invalidated)
             return;
+
+        if (devMode)
+            CloseDolphin();
 
         if (!GameBackupExists)
         {
@@ -304,16 +308,32 @@ public static class ModManager
             return;
         }
 
-        if (Directory.Exists(GameGamePath))
-            Directory.Delete(GameGamePath, true);
-
-        Directory.CreateDirectory(GameGamePath);
-        Directory.CreateDirectory(GameGameFilesPath);
-        Directory.CreateDirectory(GameGameSysPath);
-
         var fs = new Microsoft.VisualBasic.Devices.Computer().FileSystem;
-        fs.CopyDirectory(GameBackupFilesPath, GameGameFilesPath);
-        fs.CopyDirectory(GameBackupSysPath, GameGameSysPath);
+
+        if (devMode)
+        {
+            if (!Directory.Exists(GameGamePath))
+            {
+                Directory.CreateDirectory(GameGamePath);
+                Directory.CreateDirectory(GameGameFilesPath);
+                Directory.CreateDirectory(GameGameSysPath);
+
+                fs.CopyDirectory(GameBackupFilesPath, GameGameFilesPath);
+                fs.CopyDirectory(GameBackupSysPath, GameGameSysPath);
+            }
+        }
+        else
+        {
+            if (Directory.Exists(GameGamePath))
+                Directory.Delete(GameGamePath, true);
+
+            Directory.CreateDirectory(GameGamePath);
+            Directory.CreateDirectory(GameGameFilesPath);
+            Directory.CreateDirectory(GameGameSysPath);
+
+            fs.CopyDirectory(GameBackupFilesPath, GameGameFilesPath);
+            fs.CopyDirectory(GameBackupSysPath, GameGameSysPath);
+        }
 
         foreach (var modId in CurrentGameSettings.Mods)
             if (CurrentGameSettings.ActiveMods.Contains(modId))
@@ -326,12 +346,15 @@ public static class ModManager
                 // Delete files
                 var modJsonPath = GetModJsonPath(modId);
                 var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
-                foreach (var path in mod.RemoveFiles.Split('\n'))
-                {
-                    var file = Path.Combine(GameGameFilesPath, path);
-                    if (File.Exists(file))
-                        File.Delete(file);
-                }
+                if (!string.IsNullOrWhiteSpace(mod.RemoveFiles))
+                    foreach (var path in mod.RemoveFiles.Split('\n'))
+                    {
+                        var file = Path.Combine(GameGameFilesPath, path);
+                        if (Directory.Exists(file))
+                            Directory.Delete(file, true);
+                        else if (File.Exists(file))
+                            File.Delete(file);
+                    }
 
                 // now apply INI and ar/gecko codes
             }
@@ -343,7 +366,17 @@ public static class ModManager
     public static bool GameBackupExists => Directory.Exists(GameBackupFilesPath) && Directory.Exists(GameBackupSysPath);
     public static bool GameExists => Directory.Exists(GameGameFilesPath) && Directory.Exists(GameGameSysPath) && File.Exists(GameDolPath);
 
-    public static void RunGame(bool closeDolphin)
+    public static void CloseDolphin()
+    {
+        foreach (var p in Process.GetProcessesByName("Dolphin"))
+            if (!p.HasExited)
+            {
+                p.CloseMainWindow();
+                p.WaitForExit();
+            }
+    }
+
+    public static void RunGame()
     {
         if (string.IsNullOrEmpty(DolphinPath))
         {
@@ -362,14 +395,6 @@ public static class ModManager
             MessageBox.Show("Unable to launch game: game executable not found.");
             return;
         }
-
-        if (closeDolphin)
-            foreach (var p in Process.GetProcessesByName("Dolphin"))
-                if (!p.HasExited)
-                {
-                    p.CloseMainWindow();
-                    p.WaitForExit();
-                }
 
         Process.Start(DolphinPath, new string[] { GameDolPath });
     }

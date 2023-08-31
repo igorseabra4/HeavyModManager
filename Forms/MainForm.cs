@@ -43,8 +43,7 @@ public partial class MainForm : Form
 
     private async void TryUpdate()
     {
-        var updated = await AutomaticUpdater.Update();
-        if (updated)
+        if (await AutomaticUpdater.Update())
         {
             Close();
             System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "HeavyModManager.exe"));
@@ -265,7 +264,7 @@ public partial class MainForm : Form
         Enabled = false;
         ModManager.ApplyMods(developerModeToolStripMenuItem.Checked);
         Enabled = true;
-        ModManager.RunGame(developerModeToolStripMenuItem.Checked);
+        ModManager.RunGame();
     }
 
     private void buttonAddMod_Click(object sender, EventArgs e)

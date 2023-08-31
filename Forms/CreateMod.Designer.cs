@@ -300,10 +300,10 @@ partial class CreateMod
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(319, 30);
+            this.label1.Size = new System.Drawing.Size(317, 30);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Enter the files present in the original game which should be\r\nexcluded from the m" +
-    "od, one per line.";
+            this.label1.Text = "Enter the folders or files present in the original game which\r\nshould be deleted " +
+    "from the mod, one per line.";
             // 
             // richTextBoxRemoveFiles
             // 
