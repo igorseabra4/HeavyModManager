@@ -39,8 +39,8 @@ public class Mod
         ArCodes = "";
         GeckoCodes = "";
         RemoveFiles = "";
-        CreatedAt = DateTime.Now;
-        UpdatedAt = DateTime.Now;
+        CreatedAt = DateTime.Now.ToUniversalTime().Date;
+        UpdatedAt = DateTime.Now.ToUniversalTime().Date;
     }
 
     public Mod(Game game, string modName, string author, string description, string modId, string arCodes, string geckoCodes, string removeFiles, DateTime createdAt, DateTime updatedAt)
@@ -53,8 +53,8 @@ public class Mod
         ArCodes = arCodes;
         GeckoCodes = geckoCodes;
         RemoveFiles = removeFiles;
-        CreatedAt = createdAt;
-        UpdatedAt = updatedAt;
+        CreatedAt = createdAt.ToUniversalTime().Date;
+        UpdatedAt = updatedAt.ToUniversalTime().Date;
     }
 
     public override string ToString()
@@ -64,6 +64,10 @@ public class Mod
 
     public void SaveModJson(bool isEditing)
     {
+        // Temporary
+        ArCodes = "";
+        GeckoCodes = "";
+
         var modPath = ModManager.GetModPath(ModId);
 
         if (!Directory.Exists(modPath))

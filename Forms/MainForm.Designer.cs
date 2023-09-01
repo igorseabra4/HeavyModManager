@@ -216,7 +216,7 @@ partial class MainForm
             // createModToolStripMenuItem
             // 
             this.createModToolStripMenuItem.Name = "createModToolStripMenuItem";
-            this.createModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createModToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.createModToolStripMenuItem.Text = "Create Mod...";
             this.createModToolStripMenuItem.Click += new System.EventHandler(this.createModToolStripMenuItem_Click);
             // 
@@ -224,7 +224,7 @@ partial class MainForm
             // 
             this.editModToolStripMenuItem.Enabled = false;
             this.editModToolStripMenuItem.Name = "editModToolStripMenuItem";
-            this.editModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editModToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.editModToolStripMenuItem.Text = "Edit Mod...";
             this.editModToolStripMenuItem.Click += new System.EventHandler(this.editModToolStripMenuItem_Click);
             // 
@@ -232,7 +232,7 @@ partial class MainForm
             // 
             this.zipModToolStripMenuItem.Enabled = false;
             this.zipModToolStripMenuItem.Name = "zipModToolStripMenuItem";
-            this.zipModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zipModToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.zipModToolStripMenuItem.Text = "Zip Mod...";
             this.zipModToolStripMenuItem.Click += new System.EventHandler(this.zipModToolStripMenuItem_Click);
             // 
@@ -240,7 +240,7 @@ partial class MainForm
             // 
             this.deleteModToolStripMenuItem.Enabled = false;
             this.deleteModToolStripMenuItem.Name = "deleteModToolStripMenuItem";
-            this.deleteModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteModToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.deleteModToolStripMenuItem.Text = "Delete Mod...";
             this.deleteModToolStripMenuItem.Click += new System.EventHandler(this.deleteModToolStripMenuItem_Click);
             // 
@@ -344,6 +344,7 @@ partial class MainForm
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.Text = "Heavy Mod Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.groupBoxGame.ResumeLayout(false);
             this.groupBoxMods.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);

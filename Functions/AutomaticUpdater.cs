@@ -33,10 +33,17 @@ namespace HeavyModManager.Functions
 
                         string updatedZipFilePath = Path.Combine(tempDir, updatedFileName);
 
-                        using var zipFileStream = await client.GetStreamAsync(updatedURL);
+                        using (var zipFileStream = await client.GetStreamAsync(updatedURL))
+                        using (var writer = new BinaryWriter(new FileStream(updatedZipFilePath, FileMode.Create)))
+                            zipFileStream.CopyTo(writer.BaseStream);
 
-                        using var writer = new BinaryWriter(new FileStream(updatedZipFilePath, FileMode.Create));
-                        zipFileStream.CopyTo(writer.BaseStream);
+                        var oldDirPath = Path.Combine(Application.StartupPath, "HeavyModManager_old");
+                        if (!Directory.Exists(oldDirPath))
+                            Directory.CreateDirectory(oldDirPath);
+
+                        File.Move(Path.Combine(Application.StartupPath, "HeavyModManager.dll"), Path.Combine(oldDirPath, "HeavyModManager.dll"));
+                        File.Move(Path.Combine(Application.StartupPath, "HeavyModManager.exe"), Path.Combine(oldDirPath, "HeavyModManager.exe"));
+                        File.Move(Path.Combine(Application.StartupPath, "HeavyModManager.runtimeconfig.json"), Path.Combine(oldDirPath, "HeavyModManager.runtimeconfig.json"));
 
                         ZipFile.ExtractToDirectory(updatedZipFilePath, Application.StartupPath);
 

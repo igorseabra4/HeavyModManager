@@ -11,7 +11,6 @@ public partial class CreateMod : Form
         isEditing = false;
 
         InitializeComponent();
-        SetCustomDateFormat();
 
         foreach (Game game in ModManager.Games)
             comboBoxGame.Items.Add(new ComboBoxGameItem(game));
@@ -23,13 +22,6 @@ public partial class CreateMod : Form
         tabControl1.TabPages.RemoveAt(2);
     }
 
-    private void SetCustomDateFormat()
-    {
-        var format = "yyyy-MM-dd HH:mm:ss";
-        dateTimePickerCreatedAt.CustomFormat = format;
-        dateTimePickerUpdatedAt.CustomFormat = format;
-    }
-
     private bool isEditing;
     private Game prevGame;
 
@@ -38,8 +30,8 @@ public partial class CreateMod : Form
         isEditing = true;
 
         InitializeComponent();
-        SetCustomDateFormat();
 
+        labelModIdInfo.Visible = false;
         groupBoxGame.Enabled = false;
         comboBoxGame.Enabled = false;
         groupBoxModId.Enabled = false;
@@ -71,6 +63,7 @@ public partial class CreateMod : Form
             dateTimePickerUpdatedAt.Value = DateTime.Now;
         }
 
+        Text = "Edit Mod";
         buttonCreateMod.Text = "Save";
 
         tabControl1.TabPages.RemoveAt(2);
@@ -166,14 +159,4 @@ public partial class CreateMod : Form
                 result += $"{c}".ToLower();
         return result;
     }
-
-    //private void buttonSetCreatedNow_Click(object sender, EventArgs e)
-    //{
-    //    dateTimePickerCreatedAt.Value = DateTime.Now;
-    //}
-
-    //private void buttonSetUpdatedNow_Click(object sender, EventArgs e)
-    //{
-    //    dateTimePickerUpdatedAt.Value = DateTime.Now;
-    //}
 }

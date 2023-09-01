@@ -5,7 +5,7 @@ namespace HeavyModManager.Classes
     public class ModManagerVersion
     {
         [JsonInclude]
-        public string Version = "v2023.08.31";
+        public string Version = "v2023.09.01";
         [JsonInclude]
         public string Description = "";
     }

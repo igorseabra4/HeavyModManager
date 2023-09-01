@@ -20,9 +20,7 @@ public partial class MainForm : Form
         checkForUpdatesOnStartupToolStripMenuItem.Checked = ModManager.CheckForUpdatesOnStartup;
 
         if (ModManager.CheckForUpdatesOnStartup)
-        {
             TryUpdate();
-        }
 
         if (ModManager.CurrentGame == Game.Null)
             comboBoxGame.SelectedIndex = -1;
@@ -48,6 +46,19 @@ public partial class MainForm : Form
             Close();
             System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "HeavyModManager.exe"));
         }
+    }
+
+    private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        ModManager.SaveSettings();
+    }
+
+    private AboutBox AboutBox;
+
+    private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        AboutBox ??= new AboutBox();
+        AboutBox.ShowDialog();
     }
 
     private void comboBoxGame_SelectedIndexChanged(object sender, EventArgs e)
@@ -103,7 +114,13 @@ public partial class MainForm : Form
             var mod = (Mod)listMods.SelectedItem;
             try
             {
-                ZipManager.ZipMod(mod.ModId, $"{ModManager.GameToStringFull(mod.Game).Replace(":", "")} - {mod.Author} - {mod.ModName}");
+                string TreatToFilename(string s)
+                {
+                    foreach (var c in "*\"/\\<>:|?")
+                        s = s.Replace($"{c}", "");
+                    return s;
+                }
+                ZipManager.ZipMod(mod.ModId, TreatToFilename($"{ModManager.GameToStringFull(mod.Game)} - {mod.Author} - {mod.ModName}"));
             }
             catch (Exception ex)
             {
@@ -288,6 +305,7 @@ public partial class MainForm : Form
     private void developerModeToolStripMenuItem_Click(object sender, EventArgs e)
     {
         developerModeToolStripMenuItem.Checked = !developerModeToolStripMenuItem.Checked;
+        UpdateDolphinLabel();
     }
 
     private void checkForUpdatesOnStartupToolStripMenuItem_Click(object sender, EventArgs e)
@@ -312,17 +330,14 @@ public partial class MainForm : Form
 
         labelDolphin.Text = "Dolphin path: " + ModManager.DolphinPath;
 
+        if (developerModeToolStripMenuItem.Checked)
+        {
+            labelDolphin.Text += "\nDeveloper Mode";
+        }
+
         if (activeModWithCheats)
         {
             labelDolphin.Text += "\nOne or more active mods use codes. Remember to activate \"Enable Cheats\" on Dolphin settings.";
         }
-    }
-
-    private AboutBox AboutBox;
-
-    private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        AboutBox ??= new AboutBox();
-        AboutBox.ShowDialog();
     }
 }

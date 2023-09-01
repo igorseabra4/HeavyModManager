@@ -260,7 +260,6 @@ partial class CreateMod
             // 
             // dateTimePickerUpdatedAt
             // 
-            this.dateTimePickerUpdatedAt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerUpdatedAt.Location = new System.Drawing.Point(6, 22);
             this.dateTimePickerUpdatedAt.Name = "dateTimePickerUpdatedAt";
             this.dateTimePickerUpdatedAt.Size = new System.Drawing.Size(316, 23);
@@ -278,7 +277,6 @@ partial class CreateMod
             // 
             // dateTimePickerCreatedAt
             // 
-            this.dateTimePickerCreatedAt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerCreatedAt.Location = new System.Drawing.Point(6, 22);
             this.dateTimePickerCreatedAt.Name = "dateTimePickerCreatedAt";
             this.dateTimePickerCreatedAt.Size = new System.Drawing.Size(316, 23);
@@ -336,7 +334,6 @@ partial class CreateMod
             // 
             // CreateMod
             // 
-            this.AcceptButton = this.buttonCreateMod;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(368, 527);
