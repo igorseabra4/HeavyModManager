@@ -55,6 +55,7 @@ partial class MainForm
             this.panelLabelModInfo = new System.Windows.Forms.Panel();
             this.groupBoxModInfo = new System.Windows.Forms.GroupBox();
             this.labelDolphin = new System.Windows.Forms.Label();
+            this.openModFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxGame.SuspendLayout();
             this.groupBoxMods.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -207,6 +208,7 @@ partial class MainForm
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createModToolStripMenuItem,
             this.editModToolStripMenuItem,
+            this.openModFolderToolStripMenuItem,
             this.zipModToolStripMenuItem,
             this.deleteModToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
@@ -216,7 +218,7 @@ partial class MainForm
             // createModToolStripMenuItem
             // 
             this.createModToolStripMenuItem.Name = "createModToolStripMenuItem";
-            this.createModToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.createModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createModToolStripMenuItem.Text = "Create Mod...";
             this.createModToolStripMenuItem.Click += new System.EventHandler(this.createModToolStripMenuItem_Click);
             // 
@@ -224,7 +226,7 @@ partial class MainForm
             // 
             this.editModToolStripMenuItem.Enabled = false;
             this.editModToolStripMenuItem.Name = "editModToolStripMenuItem";
-            this.editModToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.editModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editModToolStripMenuItem.Text = "Edit Mod...";
             this.editModToolStripMenuItem.Click += new System.EventHandler(this.editModToolStripMenuItem_Click);
             // 
@@ -232,7 +234,7 @@ partial class MainForm
             // 
             this.zipModToolStripMenuItem.Enabled = false;
             this.zipModToolStripMenuItem.Name = "zipModToolStripMenuItem";
-            this.zipModToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.zipModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zipModToolStripMenuItem.Text = "Zip Mod...";
             this.zipModToolStripMenuItem.Click += new System.EventHandler(this.zipModToolStripMenuItem_Click);
             // 
@@ -240,7 +242,7 @@ partial class MainForm
             // 
             this.deleteModToolStripMenuItem.Enabled = false;
             this.deleteModToolStripMenuItem.Name = "deleteModToolStripMenuItem";
-            this.deleteModToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.deleteModToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteModToolStripMenuItem.Text = "Delete Mod...";
             this.deleteModToolStripMenuItem.Click += new System.EventHandler(this.deleteModToolStripMenuItem_Click);
             // 
@@ -326,6 +328,14 @@ partial class MainForm
             this.labelDolphin.TabIndex = 11;
             this.labelDolphin.Text = "Dolphin Label";
             // 
+            // openModFolderToolStripMenuItem
+            // 
+            this.openModFolderToolStripMenuItem.Enabled = false;
+            this.openModFolderToolStripMenuItem.Name = "openModFolderToolStripMenuItem";
+            this.openModFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openModFolderToolStripMenuItem.Text = "Open Mod Folder...";
+            this.openModFolderToolStripMenuItem.Click += new System.EventHandler(this.openModFolderToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -385,4 +395,5 @@ partial class MainForm
     private Button buttonRefreshModList;
     private ToolStripSeparator toolStripSeparator2;
     private ToolStripMenuItem aboutToolStripMenuItem;
+    private ToolStripMenuItem openModFolderToolStripMenuItem;
 }

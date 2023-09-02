@@ -1,5 +1,6 @@
 ﻿using HeavyModManager.Classes;
 using HeavyModManager.Enum;
+using Microsoft.VisualBasic.MyServices;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -235,8 +236,7 @@ public static class ModManager
             }
         }
 
-        CurrentGameSettings.Invalidated = true;
-        SaveGameSettings();
+        Invalidate();
     }
 
     public static void InstallMod()
@@ -263,7 +263,42 @@ public static class ModManager
             RefreshModList();
     }
 
-    public static void RestoreBackup(string rootPath)
+    public static bool RestoreBackupIso(string isoPath)
+    {
+        GameCubeImage image;
+
+        try
+        {
+            image = new GameCubeImage(isoPath);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Unable to read ISO: " + ex.Message);
+            return false;
+        }
+
+        if (Directory.Exists(GameBackupPath))
+            Directory.Delete(GameBackupPath, true);
+
+        Directory.CreateDirectory(GameBackupPath);
+        Directory.CreateDirectory(GameBackupFilesPath);
+        Directory.CreateDirectory(GameBackupSysPath);
+
+        try
+        {
+            image.Dump(GameBackupFilesPath, GameBackupSysPath);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Unable to create backup from ISO: " + ex.Message);
+            return false;
+        }
+
+        MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.");
+        return true;
+    }
+
+    public static void RestoreBackupDol(string rootPath)
     {
         var files = Path.Combine(rootPath, "files");
 
@@ -294,6 +329,12 @@ public static class ModManager
         fs.CopyDirectory(sys, GameBackupSysPath);
 
         MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.");
+    }
+
+    public static void Invalidate()
+    {
+        CurrentGameSettings.Invalidated = true;
+        SaveGameSettings();
     }
 
     public static void ApplyMods(bool devMode)
@@ -339,30 +380,33 @@ public static class ModManager
 
         foreach (var modId in CurrentGameSettings.Mods)
             if (CurrentGameSettings.ActiveMods.Contains(modId))
-            {
-                // Copy mod files
-                var modFilesPath = GetModFilesPath(modId);
-                if (Directory.Exists(modFilesPath))
-                    fs.CopyDirectory(modFilesPath, GameGameFilesPath, true);
-
-                // Delete files
-                var modJsonPath = GetModJsonPath(modId);
-                var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
-                if (!string.IsNullOrWhiteSpace(mod.RemoveFiles))
-                    foreach (var path in mod.RemoveFiles.Split('\n'))
-                    {
-                        var file = Path.Combine(GameGameFilesPath, path);
-                        if (Directory.Exists(file))
-                            Directory.Delete(file, true);
-                        else if (File.Exists(file))
-                            File.Delete(file);
-                    }
-
-                // now apply INI and ar/gecko codes
-            }
+                ApplyMod(fs, modId);
 
         CurrentGameSettings.Invalidated = false;
         SaveGameSettings();
+    }
+
+    private static void ApplyMod(FileSystemProxy fs, string modId)
+    {
+        // Copy mod files
+        var modFilesPath = GetModFilesPath(modId);
+        if (Directory.Exists(modFilesPath))
+            fs.CopyDirectory(modFilesPath, GameGameFilesPath, true);
+
+        // Delete files
+        var modJsonPath = GetModJsonPath(modId);
+        var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
+        if (!string.IsNullOrWhiteSpace(mod.RemoveFiles))
+            foreach (var path in mod.RemoveFiles.Split('\n'))
+            {
+                var file = Path.Combine(GameGameFilesPath, path);
+                if (Directory.Exists(file))
+                    Directory.Delete(file, true);
+                else if (File.Exists(file))
+                    File.Delete(file);
+            }
+
+        // now apply INI and ar/gecko codes
     }
 
     public static bool GameBackupExists => Directory.Exists(GameBackupFilesPath) && Directory.Exists(GameBackupSysPath);

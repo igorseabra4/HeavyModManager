@@ -95,6 +95,15 @@ public partial class MainForm : Form
         }
     }
 
+    private void openModFolderToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (listMods.SelectedIndices.Count == 1)
+        {
+            var mod = (Mod)listMods.SelectedItem;
+            System.Diagnostics.Process.Start("explorer.exe", ModManager.GetModPath(mod.ModId));
+        }
+    }
+
     private void deleteModToolStripMenuItem_Click(object sender, EventArgs e)
     {
         if (listMods.SelectedIndices.Count == 1)
@@ -143,6 +152,7 @@ public partial class MainForm : Form
         editModToolStripMenuItem.Enabled = false;
         deleteModToolStripMenuItem.Enabled = false;
         zipModToolStripMenuItem.Enabled = false;
+        openModFolderToolStripMenuItem.Enabled = false;
 
         activeModWithCheats = false;
 
@@ -191,6 +201,7 @@ public partial class MainForm : Form
             editModToolStripMenuItem.Enabled = false;
             deleteModToolStripMenuItem.Enabled = false;
             zipModToolStripMenuItem.Enabled = false;
+            openModFolderToolStripMenuItem.Enabled = false;
         }
         else
         {
@@ -204,6 +215,7 @@ public partial class MainForm : Form
             editModToolStripMenuItem.Enabled = true;
             deleteModToolStripMenuItem.Enabled = true;
             zipModToolStripMenuItem.Enabled = true;
+            openModFolderToolStripMenuItem.Enabled = true;
         }
     }
 
@@ -215,12 +227,8 @@ public partial class MainForm : Form
 
             if (previndex > 0)
             {
-                var previous = ModManager.CurrentGameSettings.Mods[previndex - 1];
-                ModManager.CurrentGameSettings.Mods[previndex - 1] = ModManager.CurrentGameSettings.Mods[previndex];
-                ModManager.CurrentGameSettings.Mods[previndex] = previous;
-                ModManager.CurrentGameSettings.Invalidated = true;
-
-                ModManager.SaveGameSettings();
+                (ModManager.CurrentGameSettings.Mods[previndex], ModManager.CurrentGameSettings.Mods[previndex - 1]) = (ModManager.CurrentGameSettings.Mods[previndex - 1], ModManager.CurrentGameSettings.Mods[previndex]);
+                ModManager.Invalidate();
             }
 
             PopulateModList();
@@ -236,12 +244,8 @@ public partial class MainForm : Form
 
             if (previndex < listMods.Items.Count - 1)
             {
-                var post = ModManager.CurrentGameSettings.Mods[previndex + 1];
-                ModManager.CurrentGameSettings.Mods[previndex + 1] = ModManager.CurrentGameSettings.Mods[previndex];
-                ModManager.CurrentGameSettings.Mods[previndex] = post;
-                ModManager.CurrentGameSettings.Invalidated = true;
-
-                ModManager.SaveGameSettings();
+                (ModManager.CurrentGameSettings.Mods[previndex], ModManager.CurrentGameSettings.Mods[previndex + 1]) = (ModManager.CurrentGameSettings.Mods[previndex + 1], ModManager.CurrentGameSettings.Mods[previndex]);
+                ModManager.Invalidate();
             }
 
             PopulateModList();
@@ -253,14 +257,27 @@ public partial class MainForm : Form
     {
         var openFile = new OpenFileDialog()
         {
-            Filter = "main.dol|main.dol",
-            Title = "Please select your game's main.dol from an unchanged Dolphin dump."
+            Filter = "mail.dol or ISO|main.dol;*.iso",
+            Title = "Please select your game's ISO or the main.dol from an unchanged Dolphin dump."
         };
 
         if (openFile.ShowDialog() == DialogResult.OK)
         {
             Enabled = false;
-            ModManager.RestoreBackup(Path.GetDirectoryName(Path.GetDirectoryName(openFile.FileName)));
+
+            if (Path.GetExtension(openFile.FileName).ToLower().Equals(".iso"))
+            {
+                ModManager.RestoreBackupIso(openFile.FileName);
+            }
+            else if (Path.GetExtension(openFile.FileName).ToLower().Equals(".dol"))
+            {
+                ModManager.RestoreBackupDol(Path.GetDirectoryName(Path.GetDirectoryName(openFile.FileName)));
+            }
+            else
+            {
+                MessageBox.Show("Unsupported file type.");
+            }
+
             Enabled = true;
 
             buttonApplyMods.Enabled = comboBoxGame.SelectedIndex != -1 && ModManager.GameBackupExists;
@@ -305,6 +322,7 @@ public partial class MainForm : Form
     private void developerModeToolStripMenuItem_Click(object sender, EventArgs e)
     {
         developerModeToolStripMenuItem.Checked = !developerModeToolStripMenuItem.Checked;
+        ModManager.Invalidate();
         UpdateDolphinLabel();
     }
 
