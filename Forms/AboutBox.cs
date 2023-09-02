@@ -1,4 +1,5 @@
 ﻿using HeavyModManager.Classes;
+using System.Diagnostics;
 
 namespace HeavyModManager.Forms
 {
@@ -24,20 +25,18 @@ namespace HeavyModManager.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/igorseabra4/HeavyModManager");
+            Process.Start(new ProcessStartInfo("https://github.com/igorseabra4/HeavyModManager") { UseShellExecute = true });
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://discord.gg/9eAE6UB");
+            Process.Start(new ProcessStartInfo("https://discord.gg/9eAE6UB") { UseShellExecute = true });
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(WikiLink);
+            Process.Start(new ProcessStartInfo("https://heavyironmodding.org/wiki/Heavy_Mod_Manager") { UseShellExecute = true });
         }
-
-        public static string WikiLink => "https://heavyironmodding.org/wiki/";
 
         private void button3_Click(object sender, EventArgs e)
         {

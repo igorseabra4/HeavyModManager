@@ -257,7 +257,7 @@ public partial class MainForm : Form
     {
         var openFile = new OpenFileDialog()
         {
-            Filter = "mail.dol or ISO|main.dol;*.iso",
+            Filter = "ISO or main.dol|*.iso;main.dol",
             Title = "Please select your game's ISO or the main.dol from an unchanged Dolphin dump."
         };
 
