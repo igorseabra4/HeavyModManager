@@ -43,6 +43,7 @@ partial class MainForm
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openModFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zipModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteModToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +56,6 @@ partial class MainForm
             this.panelLabelModInfo = new System.Windows.Forms.Panel();
             this.groupBoxModInfo = new System.Windows.Forms.GroupBox();
             this.labelDolphin = new System.Windows.Forms.Label();
-            this.openModFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxGame.SuspendLayout();
             this.groupBoxMods.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -230,6 +230,14 @@ partial class MainForm
             this.editModToolStripMenuItem.Text = "Edit Mod...";
             this.editModToolStripMenuItem.Click += new System.EventHandler(this.editModToolStripMenuItem_Click);
             // 
+            // openModFolderToolStripMenuItem
+            // 
+            this.openModFolderToolStripMenuItem.Enabled = false;
+            this.openModFolderToolStripMenuItem.Name = "openModFolderToolStripMenuItem";
+            this.openModFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openModFolderToolStripMenuItem.Text = "Open Mod Folder...";
+            this.openModFolderToolStripMenuItem.Click += new System.EventHandler(this.openModFolderToolStripMenuItem_Click);
+            // 
             // zipModToolStripMenuItem
             // 
             this.zipModToolStripMenuItem.Enabled = false;
@@ -328,19 +336,11 @@ partial class MainForm
             this.labelDolphin.TabIndex = 11;
             this.labelDolphin.Text = "Dolphin Label";
             // 
-            // openModFolderToolStripMenuItem
-            // 
-            this.openModFolderToolStripMenuItem.Enabled = false;
-            this.openModFolderToolStripMenuItem.Name = "openModFolderToolStripMenuItem";
-            this.openModFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openModFolderToolStripMenuItem.Text = "Open Mod Folder...";
-            this.openModFolderToolStripMenuItem.Click += new System.EventHandler(this.openModFolderToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 415);
+            this.ClientSize = new System.Drawing.Size(592, 435);
             this.Controls.Add(this.labelDolphin);
             this.Controls.Add(this.groupBoxModInfo);
             this.Controls.Add(this.buttonApplyMods);
@@ -353,8 +353,10 @@ partial class MainForm
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Heavy Mod Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.groupBoxGame.ResumeLayout(false);
             this.groupBoxMods.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);

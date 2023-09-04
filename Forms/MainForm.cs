@@ -12,6 +12,9 @@ public partial class MainForm : Form
     {
         InitializeComponent();
 
+        toolTip = new ToolTip();
+        aboutBox = new AboutBox();
+
         foreach (Game game in ModManager.Games)
             comboBoxGame.Items.Add(new ComboBoxGameItem(game));
 
@@ -48,17 +51,21 @@ public partial class MainForm : Form
         }
     }
 
+    private void MainForm_Shown(object sender, EventArgs e)
+    {
+        ShowToolTip();
+    }
+
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
     {
         ModManager.SaveSettings();
     }
 
-    private AboutBox AboutBox;
+    private AboutBox aboutBox;
 
     private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        AboutBox ??= new AboutBox();
-        AboutBox.ShowDialog();
+        aboutBox.ShowDialog();
     }
 
     private void comboBoxGame_SelectedIndexChanged(object sender, EventArgs e)
@@ -72,7 +79,28 @@ public partial class MainForm : Form
         buttonRunGame.Enabled = comboBoxGame.SelectedIndex != -1 && ModManager.GameExists;
         buttonCreateBackup.Enabled = comboBoxGame.SelectedIndex != -1;
 
+        ShowToolTip();
+
         ModManager.SaveSettings();
+    }
+
+    private readonly ToolTip toolTip;
+
+    private void ShowToolTip()
+    {
+        toolTip.Hide(comboBoxGame);
+
+        if (string.IsNullOrEmpty(ModManager.DolphinPath))
+        {
+            toolTip.Show("Dolphin executable path not set.\nPlease click on Settings -> Choose Dolphin Path and select the Dolphin executable.", comboBoxGame, 0, 24, 12 * 1000);
+        }
+        else if (comboBoxGame.SelectedIndex != -1)
+        {
+            if (!ModManager.GameBackupExists)
+                toolTip.Show("You do not have a backup for this game.\nPlease click on \"Create Backup\" and select the game's ISO file.", comboBoxGame, 0, 24, 8 * 1000);
+            else if (listMods.Items.Count == 0)
+                toolTip.Show("You do not have mods for this game.\nPlease click on \"Install Mod\" and select a mod ZIP file.", comboBoxGame, 0, 24, 8 * 1000);
+        }
     }
 
     private void createModToolStripMenuItem_Click(object sender, EventArgs e)
@@ -317,6 +345,7 @@ public partial class MainForm : Form
     {
         ModManager.SetDolphinPath();
         UpdateDolphinLabel();
+        ShowToolTip();
     }
 
     private void developerModeToolStripMenuItem_Click(object sender, EventArgs e)

@@ -399,6 +399,9 @@ public static class ModManager
         if (!string.IsNullOrWhiteSpace(mod.RemoveFiles))
             foreach (var path in mod.RemoveFiles.Split('\n'))
             {
+                if (string.IsNullOrWhiteSpace(path))
+                    continue;
+
                 var file = Path.Combine(GameGameFilesPath, path);
                 if (Directory.Exists(file))
                     Directory.Delete(file, true);

@@ -342,6 +342,7 @@ partial class CreateMod
             this.Controls.Add(this.buttonCreateMod);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CreateMod";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Mod";
             this.groupBoxGame.ResumeLayout(false);
             this.groupBoxModName.ResumeLayout(false);
