@@ -8,53 +8,39 @@ namespace HeavyModManager.Classes;
 public class Mod
 {
     [JsonInclude]
-    public Game Game { get; private set; }
+    public Game Game { get; set; } = Game.Null;
     [JsonInclude]
-    public string ModName { get; private set; }
+    public string ModName { get; set; } = "";
     [JsonInclude]
-    public string Author { get; private set; }
+    public string Author { get; set; } = "";
     [JsonInclude]
-    public string Description { get; private set; }
+    public string Description { get; set; } = "";
     [JsonInclude]
-    public string ModId { get; private set; }
+    public string ModId { get; set; } = "";
     [JsonInclude]
-    public string ArCodes { get; private set; }
+    public string GameId { get; set; } = "";
     [JsonInclude]
-    public string GeckoCodes { get; private set; }
+    public string INIReplacements { get; set; } = "";
     [JsonInclude]
-    public string RemoveFiles { get; private set; }
+    public string MergeFiles { get; set; } = "";
     [JsonInclude]
-    public DateTime CreatedAt { get; private set; }
+    public string RemoveFiles { get; set; } = "";
     [JsonInclude]
-    public DateTime UpdatedAt { get; private set; }
+    public string DOLPatches { get; set; } = "";
+    [JsonInclude]
+    public string ArCodes { get; set; } = "";
+    [JsonInclude]
+    public string GeckoCodes { get; set; } = "";
+    [JsonInclude]
+    public DateTime CreatedAt { get; set; }
+    [JsonInclude]
+    public DateTime UpdatedAt { get; set; }
 
     [JsonConstructor]
-    private Mod()
+    public Mod()
     {
-        Game = Game.Null;
-        ModName = "";
-        Author = "";
-        Description = "";
-        ModId = "";
-        ArCodes = "";
-        GeckoCodes = "";
-        RemoveFiles = "";
         CreatedAt = DateTime.Now.ToUniversalTime().Date;
         UpdatedAt = DateTime.Now.ToUniversalTime().Date;
-    }
-
-    public Mod(Game game, string modName, string author, string description, string modId, string arCodes, string geckoCodes, string removeFiles, DateTime createdAt, DateTime updatedAt)
-    {
-        Game = game;
-        ModName = modName;
-        Author = author;
-        Description = description;
-        ModId = modId;
-        ArCodes = arCodes;
-        GeckoCodes = geckoCodes;
-        RemoveFiles = removeFiles;
-        CreatedAt = createdAt.ToUniversalTime().Date;
-        UpdatedAt = updatedAt.ToUniversalTime().Date;
     }
 
     public override string ToString()

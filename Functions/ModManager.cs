@@ -71,6 +71,25 @@ public static class ModManager
         };
     }
 
+    public static string GameToGameID(Game game)
+    {
+        return game switch
+        {
+            Game.Scooby => "GIHE78",
+            Game.BFBB => "GQPE78",
+            Game.Movie => "GGVE78",
+            Game.Incredibles => "GICE78",
+            Game.Underminer => "GIQE78",
+            Game.RatProto => "RELSAB",
+            Game.WallE => "RWAU78",
+            Game.Up => "RUQP78",
+            Game.TruthOrSquare => "R8IE78",
+            Game.UFC => "SU4P78",
+            Game.HollywoodWorkout => "SAQE5G",
+            _ => "Unknown",
+        };
+    }
+
     public static List<Game> Games => new() {
         Game.Scooby,
         Game.BFBB,

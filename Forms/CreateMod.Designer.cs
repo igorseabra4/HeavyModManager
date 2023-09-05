@@ -41,19 +41,30 @@ partial class CreateMod
             this.groupBoxModId = new System.Windows.Forms.GroupBox();
             this.labelModIdInfo = new System.Windows.Forms.Label();
             this.textBoxModId = new System.Windows.Forms.TextBox();
-            this.richTextBoxArCodes = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxGeckoCodes = new System.Windows.Forms.RichTextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageModData = new System.Windows.Forms.TabPage();
             this.groupBoxUpdatedAt = new System.Windows.Forms.GroupBox();
             this.dateTimePickerUpdatedAt = new System.Windows.Forms.DateTimePicker();
             this.groupBoxCreatedAt = new System.Windows.Forms.GroupBox();
             this.dateTimePickerCreatedAt = new System.Windows.Forms.DateTimePicker();
-            this.tabPageRemoveFiles = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tabPageSettings = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBoxGameId = new System.Windows.Forms.GroupBox();
+            this.buttonGameIdInfo = new System.Windows.Forms.Button();
+            this.labelDefaultGameId = new System.Windows.Forms.Label();
+            this.textBoxGameId = new System.Windows.Forms.TextBox();
+            this.groupBoxIniValues = new System.Windows.Forms.GroupBox();
+            this.buttonIniValuesInfo = new System.Windows.Forms.Button();
+            this.richTextBoxINIValues = new System.Windows.Forms.RichTextBox();
+            this.groupBoxMergeHips = new System.Windows.Forms.GroupBox();
+            this.buttonMergeHipsInfo = new System.Windows.Forms.Button();
+            this.richTextBoxMergeHips = new System.Windows.Forms.RichTextBox();
+            this.groupBoxRemoveFiles = new System.Windows.Forms.GroupBox();
+            this.buttonRemoveFilesInfo = new System.Windows.Forms.Button();
             this.richTextBoxRemoveFiles = new System.Windows.Forms.RichTextBox();
-            this.tabPageArCodes = new System.Windows.Forms.TabPage();
-            this.tabPageGeckoCodes = new System.Windows.Forms.TabPage();
+            this.groupBoxDolPatches = new System.Windows.Forms.GroupBox();
+            this.buttonDolPatchesInfo = new System.Windows.Forms.Button();
+            this.richTextBoxDolPatches = new System.Windows.Forms.RichTextBox();
             this.groupBoxGame.SuspendLayout();
             this.groupBoxModName.SuspendLayout();
             this.groupBoxAuthor.SuspendLayout();
@@ -63,9 +74,13 @@ partial class CreateMod
             this.tabPageModData.SuspendLayout();
             this.groupBoxUpdatedAt.SuspendLayout();
             this.groupBoxCreatedAt.SuspendLayout();
-            this.tabPageRemoveFiles.SuspendLayout();
-            this.tabPageArCodes.SuspendLayout();
-            this.tabPageGeckoCodes.SuspendLayout();
+            this.tabPageSettings.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.groupBoxGameId.SuspendLayout();
+            this.groupBoxIniValues.SuspendLayout();
+            this.groupBoxMergeHips.SuspendLayout();
+            this.groupBoxRemoveFiles.SuspendLayout();
+            this.groupBoxDolPatches.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxGame
@@ -195,41 +210,20 @@ partial class CreateMod
             this.textBoxModId.TabIndex = 3;
             this.textBoxModId.TextChanged += new System.EventHandler(this.textBoxModId_TextChanged);
             // 
-            // richTextBoxArCodes
-            // 
-            this.richTextBoxArCodes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBoxArCodes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxArCodes.Location = new System.Drawing.Point(3, 3);
-            this.richTextBoxArCodes.Name = "richTextBoxArCodes";
-            this.richTextBoxArCodes.Size = new System.Drawing.Size(336, 449);
-            this.richTextBoxArCodes.TabIndex = 0;
-            this.richTextBoxArCodes.Text = "";
-            // 
-            // richTextBoxGeckoCodes
-            // 
-            this.richTextBoxGeckoCodes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBoxGeckoCodes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxGeckoCodes.Location = new System.Drawing.Point(0, 0);
-            this.richTextBoxGeckoCodes.Name = "richTextBoxGeckoCodes";
-            this.richTextBoxGeckoCodes.Size = new System.Drawing.Size(342, 455);
-            this.richTextBoxGeckoCodes.TabIndex = 1;
-            this.richTextBoxGeckoCodes.Text = "";
-            // 
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPageModData);
-            this.tabControl1.Controls.Add(this.tabPageRemoveFiles);
-            this.tabControl1.Controls.Add(this.tabPageArCodes);
-            this.tabControl1.Controls.Add(this.tabPageGeckoCodes);
+            this.tabControl1.Controls.Add(this.tabPageSettings);
             this.tabControl1.Location = new System.Drawing.Point(9, 9);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(350, 483);
             this.tabControl1.TabIndex = 8;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPageModData
             // 
@@ -282,55 +276,185 @@ partial class CreateMod
             this.dateTimePickerCreatedAt.Size = new System.Drawing.Size(316, 23);
             this.dateTimePickerCreatedAt.TabIndex = 7;
             // 
-            // tabPageRemoveFiles
+            // tabPageSettings
             // 
-            this.tabPageRemoveFiles.Controls.Add(this.label1);
-            this.tabPageRemoveFiles.Controls.Add(this.richTextBoxRemoveFiles);
-            this.tabPageRemoveFiles.Location = new System.Drawing.Point(4, 24);
-            this.tabPageRemoveFiles.Name = "tabPageRemoveFiles";
-            this.tabPageRemoveFiles.Size = new System.Drawing.Size(342, 455);
-            this.tabPageRemoveFiles.TabIndex = 3;
-            this.tabPageRemoveFiles.Text = "Remove Files";
-            this.tabPageRemoveFiles.UseVisualStyleBackColor = true;
+            this.tabPageSettings.Controls.Add(this.flowLayoutPanel1);
+            this.tabPageSettings.Location = new System.Drawing.Point(4, 24);
+            this.tabPageSettings.Name = "tabPageSettings";
+            this.tabPageSettings.Size = new System.Drawing.Size(342, 455);
+            this.tabPageSettings.TabIndex = 3;
+            this.tabPageSettings.Text = "Settings";
+            this.tabPageSettings.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // flowLayoutPanel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(317, 30);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Enter the folders or files present in the original game which\r\nshould be deleted " +
-    "from the mod, one per line.";
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.groupBoxGameId);
+            this.flowLayoutPanel1.Controls.Add(this.groupBoxIniValues);
+            this.flowLayoutPanel1.Controls.Add(this.groupBoxMergeHips);
+            this.flowLayoutPanel1.Controls.Add(this.groupBoxRemoveFiles);
+            this.flowLayoutPanel1.Controls.Add(this.groupBoxDolPatches);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(342, 455);
+            this.flowLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanel1.WrapContents = false;
+            // 
+            // groupBoxGameId
+            // 
+            this.groupBoxGameId.Controls.Add(this.buttonGameIdInfo);
+            this.groupBoxGameId.Controls.Add(this.labelDefaultGameId);
+            this.groupBoxGameId.Controls.Add(this.textBoxGameId);
+            this.groupBoxGameId.Location = new System.Drawing.Point(3, 3);
+            this.groupBoxGameId.Name = "groupBoxGameId";
+            this.groupBoxGameId.Size = new System.Drawing.Size(319, 69);
+            this.groupBoxGameId.TabIndex = 8;
+            this.groupBoxGameId.TabStop = false;
+            this.groupBoxGameId.Text = "Save File Game ID";
+            // 
+            // buttonGameIdInfo
+            // 
+            this.buttonGameIdInfo.Location = new System.Drawing.Point(268, 22);
+            this.buttonGameIdInfo.Name = "buttonGameIdInfo";
+            this.buttonGameIdInfo.Size = new System.Drawing.Size(45, 23);
+            this.buttonGameIdInfo.TabIndex = 8;
+            this.buttonGameIdInfo.Text = "Info";
+            this.buttonGameIdInfo.UseVisualStyleBackColor = true;
+            this.buttonGameIdInfo.Click += new System.EventHandler(this.buttonGameIdInfo_Click);
+            // 
+            // labelDefaultGameId
+            // 
+            this.labelDefaultGameId.AutoSize = true;
+            this.labelDefaultGameId.Location = new System.Drawing.Point(6, 48);
+            this.labelDefaultGameId.Name = "labelDefaultGameId";
+            this.labelDefaultGameId.Size = new System.Drawing.Size(95, 15);
+            this.labelDefaultGameId.TabIndex = 5;
+            this.labelDefaultGameId.Text = "Default game ID:";
+            // 
+            // textBoxGameId
+            // 
+            this.textBoxGameId.Location = new System.Drawing.Point(6, 22);
+            this.textBoxGameId.Name = "textBoxGameId";
+            this.textBoxGameId.Size = new System.Drawing.Size(256, 23);
+            this.textBoxGameId.TabIndex = 3;
+            // 
+            // groupBoxIniValues
+            // 
+            this.groupBoxIniValues.Controls.Add(this.buttonIniValuesInfo);
+            this.groupBoxIniValues.Controls.Add(this.richTextBoxINIValues);
+            this.groupBoxIniValues.Location = new System.Drawing.Point(3, 78);
+            this.groupBoxIniValues.Name = "groupBoxIniValues";
+            this.groupBoxIniValues.Size = new System.Drawing.Size(319, 172);
+            this.groupBoxIniValues.TabIndex = 9;
+            this.groupBoxIniValues.TabStop = false;
+            this.groupBoxIniValues.Text = "INI Values";
+            // 
+            // buttonIniValuesInfo
+            // 
+            this.buttonIniValuesInfo.Location = new System.Drawing.Point(268, -1);
+            this.buttonIniValuesInfo.Name = "buttonIniValuesInfo";
+            this.buttonIniValuesInfo.Size = new System.Drawing.Size(45, 23);
+            this.buttonIniValuesInfo.TabIndex = 13;
+            this.buttonIniValuesInfo.Text = "Info";
+            this.buttonIniValuesInfo.UseVisualStyleBackColor = true;
+            this.buttonIniValuesInfo.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // richTextBoxINIValues
+            // 
+            this.richTextBoxINIValues.Location = new System.Drawing.Point(6, 22);
+            this.richTextBoxINIValues.Name = "richTextBoxINIValues";
+            this.richTextBoxINIValues.Size = new System.Drawing.Size(307, 144);
+            this.richTextBoxINIValues.TabIndex = 12;
+            this.richTextBoxINIValues.Text = "";
+            // 
+            // groupBoxMergeHips
+            // 
+            this.groupBoxMergeHips.Controls.Add(this.buttonMergeHipsInfo);
+            this.groupBoxMergeHips.Controls.Add(this.richTextBoxMergeHips);
+            this.groupBoxMergeHips.Location = new System.Drawing.Point(3, 256);
+            this.groupBoxMergeHips.Name = "groupBoxMergeHips";
+            this.groupBoxMergeHips.Size = new System.Drawing.Size(319, 172);
+            this.groupBoxMergeHips.TabIndex = 10;
+            this.groupBoxMergeHips.TabStop = false;
+            this.groupBoxMergeHips.Text = "Merge HIP Files";
+            // 
+            // buttonMergeHipsInfo
+            // 
+            this.buttonMergeHipsInfo.Location = new System.Drawing.Point(268, -1);
+            this.buttonMergeHipsInfo.Name = "buttonMergeHipsInfo";
+            this.buttonMergeHipsInfo.Size = new System.Drawing.Size(45, 23);
+            this.buttonMergeHipsInfo.TabIndex = 10;
+            this.buttonMergeHipsInfo.Text = "Info";
+            this.buttonMergeHipsInfo.UseVisualStyleBackColor = true;
+            this.buttonMergeHipsInfo.Click += new System.EventHandler(this.buttonMergeHipsInfo_Click);
+            // 
+            // richTextBoxMergeHips
+            // 
+            this.richTextBoxMergeHips.Location = new System.Drawing.Point(6, 22);
+            this.richTextBoxMergeHips.Name = "richTextBoxMergeHips";
+            this.richTextBoxMergeHips.Size = new System.Drawing.Size(307, 144);
+            this.richTextBoxMergeHips.TabIndex = 7;
+            this.richTextBoxMergeHips.Text = "";
+            // 
+            // groupBoxRemoveFiles
+            // 
+            this.groupBoxRemoveFiles.Controls.Add(this.buttonRemoveFilesInfo);
+            this.groupBoxRemoveFiles.Controls.Add(this.richTextBoxRemoveFiles);
+            this.groupBoxRemoveFiles.Location = new System.Drawing.Point(3, 434);
+            this.groupBoxRemoveFiles.Name = "groupBoxRemoveFiles";
+            this.groupBoxRemoveFiles.Size = new System.Drawing.Size(319, 172);
+            this.groupBoxRemoveFiles.TabIndex = 12;
+            this.groupBoxRemoveFiles.TabStop = false;
+            this.groupBoxRemoveFiles.Text = "Remove Files";
+            // 
+            // buttonRemoveFilesInfo
+            // 
+            this.buttonRemoveFilesInfo.Location = new System.Drawing.Point(268, -1);
+            this.buttonRemoveFilesInfo.Name = "buttonRemoveFilesInfo";
+            this.buttonRemoveFilesInfo.Size = new System.Drawing.Size(45, 23);
+            this.buttonRemoveFilesInfo.TabIndex = 10;
+            this.buttonRemoveFilesInfo.Text = "Info";
+            this.buttonRemoveFilesInfo.UseVisualStyleBackColor = true;
+            this.buttonRemoveFilesInfo.Click += new System.EventHandler(this.buttonRemoveFilesInfo_Click);
             // 
             // richTextBoxRemoveFiles
             // 
-            this.richTextBoxRemoveFiles.Location = new System.Drawing.Point(0, 33);
+            this.richTextBoxRemoveFiles.Location = new System.Drawing.Point(6, 22);
             this.richTextBoxRemoveFiles.Name = "richTextBoxRemoveFiles";
-            this.richTextBoxRemoveFiles.Size = new System.Drawing.Size(340, 419);
-            this.richTextBoxRemoveFiles.TabIndex = 0;
+            this.richTextBoxRemoveFiles.Size = new System.Drawing.Size(307, 144);
+            this.richTextBoxRemoveFiles.TabIndex = 10;
             this.richTextBoxRemoveFiles.Text = "";
             // 
-            // tabPageArCodes
+            // groupBoxDolPatches
             // 
-            this.tabPageArCodes.Controls.Add(this.richTextBoxArCodes);
-            this.tabPageArCodes.Location = new System.Drawing.Point(4, 24);
-            this.tabPageArCodes.Name = "tabPageArCodes";
-            this.tabPageArCodes.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageArCodes.Size = new System.Drawing.Size(342, 455);
-            this.tabPageArCodes.TabIndex = 1;
-            this.tabPageArCodes.Text = "AR Codes";
-            this.tabPageArCodes.UseVisualStyleBackColor = true;
+            this.groupBoxDolPatches.Controls.Add(this.buttonDolPatchesInfo);
+            this.groupBoxDolPatches.Controls.Add(this.richTextBoxDolPatches);
+            this.groupBoxDolPatches.Location = new System.Drawing.Point(3, 612);
+            this.groupBoxDolPatches.Name = "groupBoxDolPatches";
+            this.groupBoxDolPatches.Size = new System.Drawing.Size(319, 172);
+            this.groupBoxDolPatches.TabIndex = 14;
+            this.groupBoxDolPatches.TabStop = false;
+            this.groupBoxDolPatches.Text = "DOL Patches";
             // 
-            // tabPageGeckoCodes
+            // buttonDolPatchesInfo
             // 
-            this.tabPageGeckoCodes.Controls.Add(this.richTextBoxGeckoCodes);
-            this.tabPageGeckoCodes.Location = new System.Drawing.Point(4, 24);
-            this.tabPageGeckoCodes.Name = "tabPageGeckoCodes";
-            this.tabPageGeckoCodes.Size = new System.Drawing.Size(342, 455);
-            this.tabPageGeckoCodes.TabIndex = 2;
-            this.tabPageGeckoCodes.Text = "Gecko Codes";
-            this.tabPageGeckoCodes.UseVisualStyleBackColor = true;
+            this.buttonDolPatchesInfo.Location = new System.Drawing.Point(268, -1);
+            this.buttonDolPatchesInfo.Name = "buttonDolPatchesInfo";
+            this.buttonDolPatchesInfo.Size = new System.Drawing.Size(45, 23);
+            this.buttonDolPatchesInfo.TabIndex = 13;
+            this.buttonDolPatchesInfo.Text = "Info";
+            this.buttonDolPatchesInfo.UseVisualStyleBackColor = true;
+            this.buttonDolPatchesInfo.Click += new System.EventHandler(this.buttonDolPatchesInfo_Click);
+            // 
+            // richTextBoxDolPatches
+            // 
+            this.richTextBoxDolPatches.Location = new System.Drawing.Point(6, 22);
+            this.richTextBoxDolPatches.Name = "richTextBoxDolPatches";
+            this.richTextBoxDolPatches.Size = new System.Drawing.Size(307, 144);
+            this.richTextBoxDolPatches.TabIndex = 12;
+            this.richTextBoxDolPatches.Text = "";
             // 
             // CreateMod
             // 
@@ -357,10 +481,14 @@ partial class CreateMod
             this.tabPageModData.ResumeLayout(false);
             this.groupBoxUpdatedAt.ResumeLayout(false);
             this.groupBoxCreatedAt.ResumeLayout(false);
-            this.tabPageRemoveFiles.ResumeLayout(false);
-            this.tabPageRemoveFiles.PerformLayout();
-            this.tabPageArCodes.ResumeLayout(false);
-            this.tabPageGeckoCodes.ResumeLayout(false);
+            this.tabPageSettings.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.groupBoxGameId.ResumeLayout(false);
+            this.groupBoxGameId.PerformLayout();
+            this.groupBoxIniValues.ResumeLayout(false);
+            this.groupBoxMergeHips.ResumeLayout(false);
+            this.groupBoxRemoveFiles.ResumeLayout(false);
+            this.groupBoxDolPatches.ResumeLayout(false);
             this.ResumeLayout(false);
 
     }
@@ -380,17 +508,28 @@ partial class CreateMod
     private GroupBox groupBoxModId;
     private TextBox textBoxModId;
     private Label labelModIdInfo;
-    private RichTextBox richTextBoxArCodes;
-    private RichTextBox richTextBoxGeckoCodes;
     private TabControl tabControl1;
     private TabPage tabPageModData;
-    private TabPage tabPageRemoveFiles;
-    private TabPage tabPageArCodes;
-    private TabPage tabPageGeckoCodes;
-    private Label label1;
-    private RichTextBox richTextBoxRemoveFiles;
     private DateTimePicker dateTimePickerCreatedAt;
     private GroupBox groupBoxCreatedAt;
     private GroupBox groupBoxUpdatedAt;
     private DateTimePicker dateTimePickerUpdatedAt;
+    private TabPage tabPageSettings;
+    private FlowLayoutPanel flowLayoutPanel1;
+    private GroupBox groupBoxGameId;
+    private Button buttonGameIdInfo;
+    private Label labelDefaultGameId;
+    private TextBox textBoxGameId;
+    private GroupBox groupBoxIniValues;
+    private GroupBox groupBoxMergeHips;
+    private Button buttonMergeHipsInfo;
+    private RichTextBox richTextBoxMergeHips;
+    private GroupBox groupBoxRemoveFiles;
+    private Button buttonRemoveFilesInfo;
+    private RichTextBox richTextBoxRemoveFiles;
+    private RichTextBox richTextBoxINIValues;
+    private Button buttonIniValuesInfo;
+    private GroupBox groupBoxDolPatches;
+    private Button buttonDolPatchesInfo;
+    private RichTextBox richTextBoxDolPatches;
 }
