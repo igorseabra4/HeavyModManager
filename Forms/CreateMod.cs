@@ -233,9 +233,11 @@ public partial class CreateMod : Form
 
     private void buttonMergeHipsInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip("Enter your mod's HIP and HOP files which should be\n" +
-            "merged into the running copy of the game instead of\n" +
-            "replacing the original ones, one per line.\n\n" +
+        ShowToolTip("Enter your mod's HIP and HOP files which should be merged into the\n" +
+            "running copy of the game instead of replacing the original ones, one per line.\n" +
+            "Note that assets are simply copied into the destination archive, replacing any\n" +
+            "existing assets, and more complex operations performed by Industrial Park's HIP\n" +
+            "importer (such as merging Sound Info assets) is not done here.\n\n" +
             "Example:\n\n" +
             "boot.HIP\n" +
             "hb\\hb01.HIP\n" +

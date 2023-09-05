@@ -1,6 +1,5 @@
 ﻿using HeavyModManager.Classes;
 using HeavyModManager.Enum;
-using Microsoft.VisualBasic.MyServices;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -399,37 +398,16 @@ public static class ModManager
 
         foreach (var modId in CurrentGameSettings.Mods)
             if (CurrentGameSettings.ActiveMods.Contains(modId))
-                ApplyMod(fs, modId);
+            {
+                var modJsonPath = GetModJsonPath(modId);
+                var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
+                mod.Apply();
+            }
 
         CurrentGameSettings.Invalidated = false;
         SaveGameSettings();
     }
 
-    private static void ApplyMod(FileSystemProxy fs, string modId)
-    {
-        // Copy mod files
-        var modFilesPath = GetModFilesPath(modId);
-        if (Directory.Exists(modFilesPath))
-            fs.CopyDirectory(modFilesPath, GameGameFilesPath, true);
-
-        // Delete files
-        var modJsonPath = GetModJsonPath(modId);
-        var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
-        if (!string.IsNullOrWhiteSpace(mod.RemoveFiles))
-            foreach (var path in mod.RemoveFiles.Split('\n'))
-            {
-                if (string.IsNullOrWhiteSpace(path))
-                    continue;
-
-                var file = Path.Combine(GameGameFilesPath, path);
-                if (Directory.Exists(file))
-                    Directory.Delete(file, true);
-                else if (File.Exists(file))
-                    File.Delete(file);
-            }
-
-        // now apply INI and ar/gecko codes
-    }
 
     public static bool GameBackupExists => Directory.Exists(GameBackupFilesPath) && Directory.Exists(GameBackupSysPath);
     public static bool GameExists => Directory.Exists(GameGameFilesPath) && Directory.Exists(GameGameSysPath) && File.Exists(GameDolPath);

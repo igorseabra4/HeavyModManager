@@ -72,4 +72,54 @@ public class Mod
             System.Diagnostics.Process.Start("explorer.exe", modPath);
         }
     }
+
+    public void Apply()
+    {
+        TempMergeFiles = MergeFiles.Split('\n').Select(p => p.ToLower());
+
+        RemoveRemoveFiles();
+
+        var modFilesPath = ModManager.GetModFilesPath(ModId);
+        CopyDirectory(modFilesPath, modFilesPath);
+    }
+
+    private void RemoveRemoveFiles()
+    {
+        if (!string.IsNullOrWhiteSpace(RemoveFiles))
+            foreach (var path in RemoveFiles.Split('\n'))
+            {
+                if (string.IsNullOrWhiteSpace(path))
+                    continue;
+
+                var file = Path.Combine(ModManager.GameGameFilesPath, path);
+                if (Directory.Exists(file))
+                    Directory.Delete(file, true);
+                else if (File.Exists(file))
+                    File.Delete(file);
+            }
+    }
+
+    [JsonIgnore]
+    private IEnumerable<string> TempMergeFiles;
+
+    private void CopyDirectory(string root, string path)
+    {
+        if (Directory.Exists(path))
+        {
+            foreach (var directory in Directory.GetDirectories(path))
+                CopyDirectory(root, directory);
+
+            foreach (var file in Directory.GetFiles(path))
+            {
+                var relativePath = Path.GetRelativePath(root, file);
+
+                if (TempMergeFiles.Contains(relativePath.ToLower()))
+                {
+                    HipManager.Merge(file, Path.Combine(ModManager.GameGameFilesPath, relativePath));
+                }
+                else
+                    File.Copy(file, Path.Combine(ModManager.GameGameFilesPath, relativePath), true);
+            }
+        }
+    }
 }
