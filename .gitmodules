@@ -1,0 +1,3 @@
+[submodule "HipHopTool"]
+	path = HipHopTool
+	url = https://github.com/igorseabra4/HipHopTool
