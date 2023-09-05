@@ -1,4 +1,4 @@
-﻿{
+{
   "Version": "v2023.09.01.2",
   "Description": "Adds creating backup from ISO.\nIf the automatic updater doesn't work, download the tool from the GitHub release."
 }
