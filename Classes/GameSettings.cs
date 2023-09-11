@@ -74,7 +74,7 @@ public class GameSettings
     }
 
     /// <summary>
-    /// Deactives a mod for the game.
+    /// Deactivates a mod for the game.
     /// </summary>
     /// <param name="modId">The ID of the mod to deactivate</param>
     public void DeactivateMod(string modId)
