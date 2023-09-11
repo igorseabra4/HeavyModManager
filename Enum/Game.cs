@@ -1,5 +1,8 @@
 ﻿namespace HeavyModManager.Enum;
 
+/// <summary>
+/// Represents a Heavy Iron game.
+/// </summary>
 public enum Game
 {
     Null,
