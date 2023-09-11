@@ -2,11 +2,22 @@
 
 namespace HeavyModManager.Classes
 {
+    /// <summary>
+    /// The version of the mod manager application.
+    /// </summary>
     public class ModManagerVersion
     {
+        /// <summary>
+        /// The version number.
+        /// </summary>
         [JsonInclude]
-        public string Version = "v2023.09.01.2";
+        public string Version { get; } = "v2023.09.01.2";
+
+        
+        /// <summary>
+        /// A description of the version changes.
+        /// </summary>
         [JsonInclude]
-        public string Description = "";
+        public string Description { get; } = "";
     }
 }
