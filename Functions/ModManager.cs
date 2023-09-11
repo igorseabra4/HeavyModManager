@@ -6,8 +6,17 @@ using System.Text.Json;
 
 namespace HeavyModManager.Functions;
 
+/// <summary>
+/// Contains functions related to managing mods.
+/// </summary>
 public static class ModManager
 {
+    /// <summary>
+    /// Returns the short name of a Heavy Iron game.
+    /// </summary>
+    /// <param name="game">The Heavy Iron game</param>
+    /// <returns>The short name</returns>
+    /// <exception cref="ArgumentException">If the game specified is not a valid Heavy Iron game</exception>
     public static string GameToString(Game game)
     {
         return game switch
@@ -25,10 +34,16 @@ public static class ModManager
             Game.UFC => "ufc",
             Game.FamilyGuy => "familyguy",
             Game.HollywoodWorkout => "hollywoodworkout",
-            _ => throw new ArgumentException("Invalid game."),
+            _ => throw new ArgumentException("Invalid game.", nameof(game)),
         };
     }
 
+    /// <summary>
+    /// Returns the long name of a Heavy Iron game.
+    /// </summary>
+    /// <param name="game">The Heavy Iron game</param>
+    /// <returns>The long name</returns>
+    /// <exception cref="ArgumentException">If the game specified is not a valid Heavy Iron game</exception>
     public static string GameToStringFull(Game game)
     {
         return game switch
@@ -46,10 +61,16 @@ public static class ModManager
             Game.UFC => "UFC Personal Trainer",
             Game.FamilyGuy => "Family Guy: Back to the Multiverse",
             Game.HollywoodWorkout => "Harley Pasternak's Hollywood Workout",
-            _ => throw new ArgumentException("Invalid game."),
+            _ => throw new ArgumentException("Invalid game.", nameof(game)),
         };
     }
 
+    /// <summary>
+    /// Returns a Heavy Iron game from its short name.
+    /// </summary>
+    /// <param name="game">The game's short name</param>
+    /// <returns>The Heavy Iron game</returns>
+    /// <exception cref="ArgumentException">If the short name specified is not a valid Heavy Iron game</exception>
     public static Game StringToGame(string game)
     {
         return game switch
@@ -67,11 +88,14 @@ public static class ModManager
             "ufc" => Game.UFC,
             "familyguy" => Game.FamilyGuy,
             "hollywoodworkout" => Game.HollywoodWorkout,
-            _ => throw new ArgumentException("Invalid game."),
+            _ => throw new ArgumentException("Invalid game.", nameof(game)),
         };
     }
 
-    public static List<Game> Games => new() {
+    /// <summary>
+    /// The complete list of Heavy Iron games since 2002.
+    /// </summary>
+    public static List<Game> Games { get; } = new() {
         Game.Scooby,
         Game.BFBB,
         Game.Movie,
@@ -87,7 +111,10 @@ public static class ModManager
         Game.HollywoodWorkout
     };
 
-    public static List<Game> EvilEngineGames => new() {
+    /// <summary>
+    /// The list of Heavy Iron games that use the Evil Engine.
+    /// </summary>
+    public static List<Game> EvilEngineGames { get; } = new() {
         Game.Scooby,
         Game.BFBB,
         Game.Movie,
@@ -96,7 +123,10 @@ public static class ModManager
         Game.RatProto,
     };
 
-    public static List<Game> GoodEngineGames => new() {
+    /// <summary>
+    /// The list of Heavy Iron games that use the Good Engine.
+    /// </summary>
+    public static List<Game> GoodEngineGames { get; } = new() {
         Game.Ratatouille,
         Game.WallE,
         Game.Up,
