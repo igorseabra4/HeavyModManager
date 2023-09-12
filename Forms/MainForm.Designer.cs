@@ -65,6 +65,7 @@ partial class MainForm
         // 
         // groupBoxGame
         // 
+        groupBoxGame.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         groupBoxGame.Controls.Add(buttonCreateBackup);
         groupBoxGame.Controls.Add(comboBoxGame);
         groupBoxGame.Location = new Point(12, 27);
@@ -98,6 +99,7 @@ partial class MainForm
         // 
         // groupBoxMods
         // 
+        groupBoxMods.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         groupBoxMods.Controls.Add(buttonRefreshModList);
         groupBoxMods.Controls.Add(buttonMoveDown);
         groupBoxMods.Controls.Add(buttonMoveUp);
@@ -113,7 +115,7 @@ partial class MainForm
         // 
         // buttonRefreshModList
         // 
-        buttonRefreshModList.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        buttonRefreshModList.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
         buttonRefreshModList.Location = new Point(66, 264);
         buttonRefreshModList.Name = "buttonRefreshModList";
         buttonRefreshModList.Size = new Size(96, 23);
@@ -124,7 +126,7 @@ partial class MainForm
         // 
         // buttonMoveDown
         // 
-        buttonMoveDown.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        buttonMoveDown.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
         buttonMoveDown.Location = new Point(36, 264);
         buttonMoveDown.Name = "buttonMoveDown";
         buttonMoveDown.Size = new Size(24, 24);
@@ -135,7 +137,7 @@ partial class MainForm
         // 
         // buttonMoveUp
         // 
-        buttonMoveUp.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        buttonMoveUp.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
         buttonMoveUp.Location = new Point(6, 264);
         buttonMoveUp.Name = "buttonMoveUp";
         buttonMoveUp.Size = new Size(24, 24);
@@ -169,6 +171,7 @@ partial class MainForm
         // 
         // buttonRunGame
         // 
+        buttonRunGame.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
         buttonRunGame.Enabled = false;
         buttonRunGame.Location = new Point(435, 348);
         buttonRunGame.Name = "buttonRunGame";
@@ -180,6 +183,7 @@ partial class MainForm
         // 
         // buttonApplyMods
         // 
+        buttonApplyMods.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
         buttonApplyMods.Enabled = false;
         buttonApplyMods.Location = new Point(340, 348);
         buttonApplyMods.Name = "buttonApplyMods";
@@ -191,10 +195,11 @@ partial class MainForm
         // 
         // menuStrip1
         // 
+        menuStrip1.Dock = DockStyle.None;
         menuStrip1.Items.AddRange(new ToolStripItem[] { settingsToolStripMenuItem, settingsToolStripMenuItem1 });
         menuStrip1.Location = new Point(0, 0);
         menuStrip1.Name = "menuStrip1";
-        menuStrip1.Size = new Size(592, 24);
+        menuStrip1.Size = new Size(131, 24);
         menuStrip1.TabIndex = 0;
         menuStrip1.Text = "menuStrip1";
         // 
@@ -304,6 +309,7 @@ partial class MainForm
         // 
         // groupBoxModInfo
         // 
+        groupBoxModInfo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
         groupBoxModInfo.Controls.Add(panelLabelModInfo);
         groupBoxModInfo.Location = new Point(340, 84);
         groupBoxModInfo.Name = "groupBoxModInfo";
@@ -314,6 +320,7 @@ partial class MainForm
         // 
         // labelDolphin
         // 
+        labelDolphin.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         labelDolphin.AutoSize = true;
         labelDolphin.Location = new Point(12, 381);
         labelDolphin.Name = "labelDolphin";
@@ -333,9 +340,9 @@ partial class MainForm
         Controls.Add(groupBoxMods);
         Controls.Add(groupBoxGame);
         Controls.Add(menuStrip1);
-        FormBorderStyle = FormBorderStyle.FixedSingle;
         MainMenuStrip = menuStrip1;
         MaximizeBox = false;
+        MinimumSize = new Size(540, 250);
         Name = "MainForm";
         ShowIcon = false;
         Text = "Heavy Mod Manager";
