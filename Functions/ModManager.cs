@@ -195,7 +195,7 @@ public static class ModManager
         {
             DolphinPath = openFile.FileName;
             SaveSettings();
-            MessageBox.Show("Dolphin path set successfully.");
+            MessageBox.Show("Dolphin path set successfully.", "Dolphin path set", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 

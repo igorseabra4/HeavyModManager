@@ -109,7 +109,8 @@ public partial class MainForm : Form
         if (listMods.SelectedIndices.Count == 1)
         {
             var mod = (Mod)listMods.SelectedItem;
-            var dr = MessageBox.Show($"Are you sure you want to delete the mod '{mod.ModName}' by '{mod.Author}'?", "Delete Mod", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var dr = MessageBox.Show($"Are you sure you want to delete the mod '{mod.ModName}' by '{mod.Author}'?",
+                "Delete Mod", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
                 ModManager.DeleteMod(mod.ModId);
             PopulateModList();
@@ -133,7 +134,8 @@ public partial class MainForm : Form
             }
             catch (Exception ex)
             {
-                MessageBox.Show("There was an error creating your mod ZIP archive: " + ex.Message);
+                MessageBox.Show("There was an error creating your mod ZIP archive: " + ex.Message, "Error creating ZIP", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
@@ -275,7 +277,7 @@ public partial class MainForm : Form
             }
             else
             {
-                MessageBox.Show("Unsupported file type.");
+                MessageBox.Show("Unsupported file type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             Enabled = true;

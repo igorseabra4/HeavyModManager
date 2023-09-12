@@ -151,7 +151,8 @@ public class Mod
             if (!Directory.Exists(files))
                 Directory.CreateDirectory(files);
 
-            MessageBox.Show("Mod created at " + modPath);
+            MessageBox.Show("Mod created at " + modPath, "Mod created",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
             System.Diagnostics.Process.Start("explorer.exe", modPath);
         }
     }
