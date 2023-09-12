@@ -164,9 +164,9 @@ public static class ModManager
     {
         File.WriteAllText(ModManagerSettingsPath, JsonSerializer.Serialize(new ModManagerSettings()
         {
-            currentGame = CurrentGame,
-            dolphinPath = DolphinPath,
-            checkForUpdatesOnStartup = CheckForUpdatesOnStartup,
+            CurrentGame = CurrentGame,
+            DolphinPath = DolphinPath,
+            CheckForUpdatesOnStartup = CheckForUpdatesOnStartup,
         }));
     }
 
@@ -177,9 +177,9 @@ public static class ModManager
         if (File.Exists(ModManagerSettingsPath))
         {
             var settings = JsonSerializer.Deserialize<ModManagerSettings>(File.ReadAllText(ModManagerSettingsPath));
-            CurrentGame = settings.currentGame;
-            DolphinPath = settings.dolphinPath;
-            CheckForUpdatesOnStartup = settings.checkForUpdatesOnStartup;
+            CurrentGame = settings.CurrentGame;
+            DolphinPath = settings.DolphinPath;
+            CheckForUpdatesOnStartup = settings.CheckForUpdatesOnStartup;
         }
     }
 
