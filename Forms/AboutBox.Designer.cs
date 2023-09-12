@@ -71,7 +71,7 @@
             labelProductName.MaximumSize = new Size(0, 20);
             labelProductName.Name = "labelProductName";
             labelProductName.Size = new Size(321, 20);
-            labelProductName.TabIndex = 19;
+            labelProductName.TabIndex = 1;
             labelProductName.Text = "Heavy Mod Manager";
             labelProductName.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -83,7 +83,7 @@
             labelCopyright.MaximumSize = new Size(0, 20);
             labelCopyright.Name = "labelCopyright";
             labelCopyright.Size = new Size(321, 20);
-            labelCopyright.TabIndex = 21;
+            labelCopyright.TabIndex = 2;
             labelCopyright.Text = "© 2023 igorseabra4";
             labelCopyright.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -97,7 +97,7 @@
             textBoxDescription.Name = "textBoxDescription";
             textBoxDescription.ReadOnly = true;
             textBoxDescription.Size = new Size(321, 213);
-            textBoxDescription.TabIndex = 23;
+            textBoxDescription.TabIndex = 3;
             textBoxDescription.TabStop = false;
             textBoxDescription.Text = resources.GetString("textBoxDescription.Text");
             // 
@@ -122,7 +122,7 @@
             buttonClose.Location = new Point(268, 3);
             buttonClose.Name = "buttonClose";
             buttonClose.Size = new Size(61, 25);
-            buttonClose.TabIndex = 26;
+            buttonClose.TabIndex = 7;
             buttonClose.Text = "Close";
             buttonClose.Click += button3_Click;
             // 
@@ -132,7 +132,7 @@
             buttonSource.Location = new Point(200, 3);
             buttonSource.Name = "buttonSource";
             buttonSource.Size = new Size(62, 25);
-            buttonSource.TabIndex = 27;
+            buttonSource.TabIndex = 6;
             buttonSource.Text = "Source";
             buttonSource.Click += button1_Click;
             // 
@@ -142,7 +142,7 @@
             buttonDiscord.Location = new Point(135, 3);
             buttonDiscord.Name = "buttonDiscord";
             buttonDiscord.Size = new Size(59, 25);
-            buttonDiscord.TabIndex = 28;
+            buttonDiscord.TabIndex = 5;
             buttonDiscord.Text = "Discord";
             buttonDiscord.Click += button2_Click;
             // 
@@ -152,7 +152,7 @@
             buttonWiki.Location = new Point(73, 3);
             buttonWiki.Name = "buttonWiki";
             buttonWiki.Size = new Size(56, 25);
-            buttonWiki.TabIndex = 29;
+            buttonWiki.TabIndex = 4;
             buttonWiki.Text = "Wiki";
             buttonWiki.Click += button4_Click;
             // 

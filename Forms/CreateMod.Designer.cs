@@ -171,7 +171,7 @@ partial class CreateMod
         groupBoxModId.Location = new Point(6, 348);
         groupBoxModId.Name = "groupBoxModId";
         groupBoxModId.Size = new Size(328, 102);
-        groupBoxModId.TabIndex = 6;
+        groupBoxModId.TabIndex = 8;
         groupBoxModId.TabStop = false;
         groupBoxModId.Text = "Mod ID";
         // 
