@@ -154,6 +154,7 @@ partial class MainForm
         listMods.TabIndex = 1;
         listMods.ItemCheck += listMods_ItemCheck;
         listMods.SelectedIndexChanged += listMods_SelectedIndexChanged;
+        listMods.KeyDown += listMods_KeyDown;
         // 
         // buttonAddMod
         // 

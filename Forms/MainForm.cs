@@ -134,7 +134,7 @@ public partial class MainForm : Form
             }
             catch (Exception ex)
             {
-                MessageBox.Show("There was an error creating your mod ZIP archive: " + ex.Message, "Error creating ZIP", 
+                MessageBox.Show("There was an error creating your mod ZIP archive: " + ex.Message, "Error creating ZIP",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -358,6 +358,22 @@ public partial class MainForm : Form
         if (activeModWithCheats)
         {
             labelDolphin.Text += "\nOne or more active mods use codes. Remember to activate \"Enable Cheats\" on Dolphin settings.";
+        }
+    }
+
+    private void listMods_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (e.KeyChar == (char)Keys.Delete)
+        {
+            deleteModToolStripMenuItem_Click(sender, e);
+        }
+    }
+
+    private void listMods_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Delete)
+        {
+            deleteModToolStripMenuItem_Click(sender, e);
         }
     }
 }
