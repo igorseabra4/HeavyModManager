@@ -249,7 +249,7 @@ partial class MainForm
         settingsToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem });
         settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
         settingsToolStripMenuItem1.Size = new Size(61, 20);
-        settingsToolStripMenuItem1.Text = "Settings";
+        settingsToolStripMenuItem1.Text = "&Settings";
         // 
         // chooseDolphinPathToolStripMenuItem
         // 
