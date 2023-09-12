@@ -337,6 +337,7 @@ partial class CreateMod
         Controls.Add(buttonCancel);
         Controls.Add(buttonCreateMod);
         FormBorderStyle = FormBorderStyle.FixedSingle;
+        MaximizeBox = false;
         Name = "CreateMod";
         ShowIcon = false;
         Text = "Create New Mod";
