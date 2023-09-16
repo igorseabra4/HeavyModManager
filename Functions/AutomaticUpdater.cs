@@ -24,7 +24,8 @@ namespace HeavyModManager.Functions
                 var updatedVersion = JsonSerializer.Deserialize<ModManagerVersion>(updatedJson);
                 var oldVersion = new ModManagerVersion();
 
-                if (oldVersion.Version != updatedVersion.Version)
+                if (updatedVersion != null
+                    && oldVersion.Version != updatedVersion.Version)
                 {
                     string messageText =
                         $"There is an update available: Heavy Mod Manager {updatedVersion.Version}.\n\n{updatedVersion.Description}\n\nDo you wish to download it?";
