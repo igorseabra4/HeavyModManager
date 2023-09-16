@@ -303,7 +303,8 @@ public static class ModManager
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Unable to read ISO: " + ex.Message);
+            MessageBox.Show("Unable to read ISO: " + ex.Message, "Error reading ISO",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
 
@@ -320,11 +321,13 @@ public static class ModManager
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Unable to create backup from ISO: " + ex.Message);
+            MessageBox.Show("Unable to create backup from ISO: " + ex.Message, "Backup failed",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
 
-        MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.");
+        MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.",
+            "Backup successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         return true;
     }
 
@@ -334,7 +337,8 @@ public static class ModManager
 
         if (!Directory.Exists(files))
         {
-            MessageBox.Show("Unable to create backup: 'files' directory not found. Are you sure you are using a proper ISO dump?");
+            MessageBox.Show("Unable to create backup: 'files' directory not found. Are you sure you are using a proper ISO dump?",
+                "Backup failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
@@ -342,7 +346,8 @@ public static class ModManager
 
         if (!Directory.Exists(sys))
         {
-            MessageBox.Show("Unable to create backup: 'sys' directory not found. Are you sure you are using a proper ISO dump?");
+            MessageBox.Show("Unable to create backup: 'sys' directory not found. Are you sure you are using a proper ISO dump?",
+                "Backup failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
@@ -358,7 +363,8 @@ public static class ModManager
         fs.CopyDirectory(files, GameBackupFilesPath);
         fs.CopyDirectory(sys, GameBackupSysPath);
 
-        MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.");
+        MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.",
+            "Backup successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     public static void Invalidate()
@@ -377,7 +383,8 @@ public static class ModManager
 
         if (!GameBackupExists)
         {
-            MessageBox.Show("Unable to apply mods: game backup not found. Please create the game's backup first.");
+            MessageBox.Show("Unable to apply mods: game backup not found. Please create the game's backup first.",
+                "Game backup not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
@@ -456,19 +463,22 @@ public static class ModManager
     {
         if (string.IsNullOrEmpty(DolphinPath))
         {
-            MessageBox.Show("Unable to launch game: Dolphin executable path not set.");
+            MessageBox.Show("Unable to launch game: Dolphin executable path not set.", "Error launching game",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
         if (!File.Exists(DolphinPath))
         {
-            MessageBox.Show("Unable to launch game: Dolphin executable not found on set path.");
+            MessageBox.Show("Unable to launch game: Dolphin executable not found on set path.", "Error launching game",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
         if (!GameExists)
         {
-            MessageBox.Show("Unable to launch game: game executable not found.");
+            MessageBox.Show("Unable to launch game: game executable not found.", "Error launching game",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
