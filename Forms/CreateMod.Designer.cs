@@ -186,9 +186,10 @@ partial class CreateMod
         // 
         // textBoxModId
         // 
+        textBoxModId.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point);
         textBoxModId.Location = new Point(6, 22);
         textBoxModId.Name = "textBoxModId";
-        textBoxModId.Size = new Size(316, 23);
+        textBoxModId.Size = new Size(316, 22);
         textBoxModId.TabIndex = 3;
         textBoxModId.TextChanged += textBoxModId_TextChanged;
         // 
