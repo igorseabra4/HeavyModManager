@@ -455,6 +455,7 @@ partial class CreateMod
             this.richTextBoxDolPatches.Size = new System.Drawing.Size(307, 144);
             this.richTextBoxDolPatches.TabIndex = 12;
             this.richTextBoxDolPatches.Text = "";
+            this.richTextBoxDolPatches.TextChanged += new System.EventHandler(this.richTextBoxDolPatches_TextChanged);
             // 
             // CreateMod
             // 

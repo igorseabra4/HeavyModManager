@@ -124,7 +124,8 @@ public partial class CreateMod : Form
             textBoxAuthor.Text.Length > 0 &&
             textBoxModName.Text.Length > 0 &&
             textBoxModId.Text.Length > 0 &&
-            (textBoxGameId.Text.Length == 0 || textBoxGameId.Text.Length == 6);
+            (textBoxGameId.Text.Length == 0 || textBoxGameId.Text.Length == 6) &&
+            DolPatchesValid();
     }
 
     private void ResetModId()
@@ -279,5 +280,32 @@ public partial class CreateMod : Form
             "00287D10 53494D50\n" +
             "00287DB0 54455854 # This is a comment\n" +
             "#another comment");
+    }
+
+    private void richTextBoxDolPatches_TextChanged(object sender, EventArgs e)
+    {
+        richTextBoxDolPatches.BackColor = DolPatchesValid() ? defaultBackgroundColor : Color.Red;
+        SetCreateModEnabled();
+    }
+
+    private bool DolPatchesValid()
+    {
+        try
+        {
+            var patches = richTextBoxDolPatches.Text
+                .Split('\n')
+                .Select(l => l.Split('#')[0].Trim())
+                .Where(l => !string.IsNullOrWhiteSpace(l))
+                .Select(l => l.Split(' '))
+                .Where(vals => vals.Length == 2 ? true : throw new Exception())
+                .Select(vals => (Convert.ToUInt32(vals[0], 16), BitConverter.GetBytes(Convert.ToUInt32(vals[1], 16))))
+                .ToArray();
+
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }

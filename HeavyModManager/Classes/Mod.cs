@@ -81,6 +81,8 @@ public class Mod
 
         var modFilesPath = ModManager.GetModFilesPath(ModId);
         CopyDirectory(modFilesPath, modFilesPath);
+
+        ApplyDolPatches();
     }
 
     private void RemoveRemoveFiles()
@@ -112,14 +114,40 @@ public class Mod
             foreach (var file in Directory.GetFiles(path))
             {
                 var relativePath = Path.GetRelativePath(root, file);
+                var destinationFilePath = Path.Combine(ModManager.GameGameFilesPath, relativePath);
 
                 if (TempMergeFiles.Contains(relativePath.ToLower()))
                 {
-                    HipManager.Merge(file, Path.Combine(ModManager.GameGameFilesPath, relativePath));
+                    HipManager.MergeInto(file, destinationFilePath);
                 }
                 else
-                    File.Copy(file, Path.Combine(ModManager.GameGameFilesPath, relativePath), true);
+                {
+                    File.Copy(file, destinationFilePath, true);
+                }
             }
+        }
+    }
+
+    private void ApplyDolPatches()
+    {
+        if (!string.IsNullOrWhiteSpace(DOLPatches))
+        {
+            var patches = DOLPatches
+                .Split('\n')
+                .Select(l => l.Split('#')[0].Trim())
+                .Where(l => !string.IsNullOrWhiteSpace(l))
+                .Select(l => l.Split(' '))
+                .Select(vals => (Convert.ToUInt32(vals[0], 16), BitConverter.GetBytes(Convert.ToUInt32(vals[1], 16))))
+                .ToArray();
+
+            var dol = File.ReadAllBytes(ModManager.GameDolPath);
+
+            foreach (var p in patches)
+                for (int i = 0; i < 4; i++)
+                    if (p.Item1 + i < dol.Length)
+                        dol[p.Item1 + i] = p.Item2[i];
+
+            File.WriteAllBytes(ModManager.GameDolPath, dol);
         }
     }
 }
