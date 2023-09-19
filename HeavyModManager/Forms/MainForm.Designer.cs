@@ -71,7 +71,7 @@ partial class MainForm
         groupBoxGame.Location = new Point(12, 27);
         groupBoxGame.Name = "groupBoxGame";
         groupBoxGame.Size = new Size(568, 51);
-        groupBoxGame.TabIndex = 0;
+        groupBoxGame.TabIndex = 1;
         groupBoxGame.TabStop = false;
         groupBoxGame.Text = "Choose Game";
         // 
@@ -82,7 +82,7 @@ partial class MainForm
         buttonCreateBackup.Location = new Point(452, 22);
         buttonCreateBackup.Name = "buttonCreateBackup";
         buttonCreateBackup.Size = new Size(110, 23);
-        buttonCreateBackup.TabIndex = 10;
+        buttonCreateBackup.TabIndex = 3;
         buttonCreateBackup.Text = "Create Backup";
         buttonCreateBackup.UseVisualStyleBackColor = true;
         buttonCreateBackup.Click += buttonRestoreBackup_Click;
@@ -94,7 +94,7 @@ partial class MainForm
         comboBoxGame.Location = new Point(6, 22);
         comboBoxGame.Name = "comboBoxGame";
         comboBoxGame.Size = new Size(440, 23);
-        comboBoxGame.TabIndex = 1;
+        comboBoxGame.TabIndex = 2;
         comboBoxGame.SelectedIndexChanged += comboBoxGame_SelectedIndexChanged;
         // 
         // groupBoxMods
@@ -109,7 +109,7 @@ partial class MainForm
         groupBoxMods.Location = new Point(12, 84);
         groupBoxMods.Name = "groupBoxMods";
         groupBoxMods.Size = new Size(322, 294);
-        groupBoxMods.TabIndex = 2;
+        groupBoxMods.TabIndex = 4;
         groupBoxMods.TabStop = false;
         groupBoxMods.Text = "Mods";
         // 
@@ -119,7 +119,7 @@ partial class MainForm
         buttonRefreshModList.Location = new Point(66, 264);
         buttonRefreshModList.Name = "buttonRefreshModList";
         buttonRefreshModList.Size = new Size(96, 23);
-        buttonRefreshModList.TabIndex = 9;
+        buttonRefreshModList.TabIndex = 8;
         buttonRefreshModList.Text = "Refresh Mods";
         buttonRefreshModList.UseVisualStyleBackColor = true;
         buttonRefreshModList.Click += buttonRefreshModList_Click;
@@ -141,7 +141,7 @@ partial class MainForm
         buttonMoveUp.Location = new Point(6, 264);
         buttonMoveUp.Name = "buttonMoveUp";
         buttonMoveUp.Size = new Size(24, 24);
-        buttonMoveUp.TabIndex = 8;
+        buttonMoveUp.TabIndex = 6;
         buttonMoveUp.Text = "▲";
         buttonMoveUp.UseVisualStyleBackColor = true;
         buttonMoveUp.Click += buttonMoveUp_Click;
@@ -153,7 +153,7 @@ partial class MainForm
         listMods.Location = new Point(6, 22);
         listMods.Name = "listMods";
         listMods.Size = new Size(310, 238);
-        listMods.TabIndex = 6;
+        listMods.TabIndex = 5;
         listMods.ItemCheck += listMods_ItemCheck;
         listMods.SelectedIndexChanged += listMods_SelectedIndexChanged;
         listMods.KeyDown += listMods_KeyDown;
@@ -165,7 +165,7 @@ partial class MainForm
         buttonAddMod.Location = new Point(236, 264);
         buttonAddMod.Name = "buttonAddMod";
         buttonAddMod.Size = new Size(80, 24);
-        buttonAddMod.TabIndex = 4;
+        buttonAddMod.TabIndex = 9;
         buttonAddMod.Text = "Install Mod";
         buttonAddMod.UseVisualStyleBackColor = true;
         buttonAddMod.Click += buttonAddMod_Click;
@@ -177,7 +177,7 @@ partial class MainForm
         buttonRunGame.Location = new Point(435, 348);
         buttonRunGame.Name = "buttonRunGame";
         buttonRunGame.Size = new Size(145, 24);
-        buttonRunGame.TabIndex = 5;
+        buttonRunGame.TabIndex = 14;
         buttonRunGame.Text = "Apply + Launch Game";
         buttonRunGame.UseVisualStyleBackColor = true;
         buttonRunGame.Click += buttonRunGame_Click;
@@ -189,7 +189,7 @@ partial class MainForm
         buttonApplyMods.Location = new Point(340, 348);
         buttonApplyMods.Name = "buttonApplyMods";
         buttonApplyMods.Size = new Size(89, 23);
-        buttonApplyMods.TabIndex = 6;
+        buttonApplyMods.TabIndex = 13;
         buttonApplyMods.Text = "Apply Mods";
         buttonApplyMods.UseVisualStyleBackColor = true;
         buttonApplyMods.Click += buttonApplyMods_Click;
@@ -200,7 +200,7 @@ partial class MainForm
         menuStrip1.Items.AddRange(new ToolStripItem[] { manageToolStripMenuItem, settingsToolStripMenuItem });
         menuStrip1.Location = new Point(0, 0);
         menuStrip1.Name = "menuStrip1";
-        menuStrip1.Size = new Size(251, 24);
+        menuStrip1.Size = new Size(131, 24);
         menuStrip1.TabIndex = 7;
         menuStrip1.Text = "menuStrip1";
         // 
@@ -214,7 +214,7 @@ partial class MainForm
         // createModToolStripMenuItem
         // 
         createModToolStripMenuItem.Name = "createModToolStripMenuItem";
-        createModToolStripMenuItem.Size = new Size(180, 22);
+        createModToolStripMenuItem.Size = new Size(176, 22);
         createModToolStripMenuItem.Text = "&Create Mod...";
         createModToolStripMenuItem.Click += createModToolStripMenuItem_Click;
         // 
@@ -222,7 +222,7 @@ partial class MainForm
         // 
         editModToolStripMenuItem.Enabled = false;
         editModToolStripMenuItem.Name = "editModToolStripMenuItem";
-        editModToolStripMenuItem.Size = new Size(180, 22);
+        editModToolStripMenuItem.Size = new Size(176, 22);
         editModToolStripMenuItem.Text = "&Edit Mod...";
         editModToolStripMenuItem.Click += editModToolStripMenuItem_Click;
         // 
@@ -230,7 +230,7 @@ partial class MainForm
         // 
         openModFolderToolStripMenuItem.Enabled = false;
         openModFolderToolStripMenuItem.Name = "openModFolderToolStripMenuItem";
-        openModFolderToolStripMenuItem.Size = new Size(180, 22);
+        openModFolderToolStripMenuItem.Size = new Size(176, 22);
         openModFolderToolStripMenuItem.Text = "&Open Mod Folder...";
         openModFolderToolStripMenuItem.Click += openModFolderToolStripMenuItem_Click;
         // 
@@ -238,7 +238,7 @@ partial class MainForm
         // 
         zipModToolStripMenuItem.Enabled = false;
         zipModToolStripMenuItem.Name = "zipModToolStripMenuItem";
-        zipModToolStripMenuItem.Size = new Size(180, 22);
+        zipModToolStripMenuItem.Size = new Size(176, 22);
         zipModToolStripMenuItem.Text = "&Zip Mod...";
         zipModToolStripMenuItem.Click += zipModToolStripMenuItem_Click;
         // 
@@ -246,7 +246,7 @@ partial class MainForm
         // 
         deleteModToolStripMenuItem.Enabled = false;
         deleteModToolStripMenuItem.Name = "deleteModToolStripMenuItem";
-        deleteModToolStripMenuItem.Size = new Size(180, 22);
+        deleteModToolStripMenuItem.Size = new Size(176, 22);
         deleteModToolStripMenuItem.Text = "&Delete Mod...";
         deleteModToolStripMenuItem.Click += deleteModToolStripMenuItem_Click;
         // 
@@ -295,7 +295,7 @@ partial class MainForm
         labelModInfo.Location = new Point(0, 0);
         labelModInfo.Name = "labelModInfo";
         labelModInfo.Size = new Size(182, 168);
-        labelModInfo.TabIndex = 8;
+        labelModInfo.TabIndex = 12;
         labelModInfo.Text = "Mod Info";
         // 
         // panelLabelModInfo
@@ -306,7 +306,7 @@ partial class MainForm
         panelLabelModInfo.Location = new Point(3, 19);
         panelLabelModInfo.Name = "panelLabelModInfo";
         panelLabelModInfo.Size = new Size(234, 236);
-        panelLabelModInfo.TabIndex = 9;
+        panelLabelModInfo.TabIndex = 11;
         // 
         // groupBoxModInfo
         // 
@@ -326,7 +326,7 @@ partial class MainForm
         labelDolphin.Location = new Point(12, 381);
         labelDolphin.Name = "labelDolphin";
         labelDolphin.Size = new Size(80, 15);
-        labelDolphin.TabIndex = 11;
+        labelDolphin.TabIndex = 15;
         labelDolphin.Text = "Dolphin Label";
         // 
         // MainForm

@@ -295,7 +295,7 @@ partial class CreateMod
         flowLayoutPanel1.Location = new Point(0, 0);
         flowLayoutPanel1.Name = "flowLayoutPanel1";
         flowLayoutPanel1.Size = new Size(342, 455);
-        flowLayoutPanel1.TabIndex = 0;
+        flowLayoutPanel1.TabIndex = 16;
         flowLayoutPanel1.WrapContents = false;
         // 
         // groupBoxGameId
@@ -306,7 +306,7 @@ partial class CreateMod
         groupBoxGameId.Location = new Point(3, 3);
         groupBoxGameId.Name = "groupBoxGameId";
         groupBoxGameId.Size = new Size(319, 69);
-        groupBoxGameId.TabIndex = 16;
+        groupBoxGameId.TabIndex = 17;
         groupBoxGameId.TabStop = false;
         groupBoxGameId.Text = "Save File Game ID";
         // 
@@ -315,7 +315,7 @@ partial class CreateMod
         buttonGameIdInfo.Location = new Point(268, 22);
         buttonGameIdInfo.Name = "buttonGameIdInfo";
         buttonGameIdInfo.Size = new Size(45, 23);
-        buttonGameIdInfo.TabIndex = 18;
+        buttonGameIdInfo.TabIndex = 19;
         buttonGameIdInfo.Text = "Info";
         buttonGameIdInfo.UseVisualStyleBackColor = true;
         buttonGameIdInfo.Click += buttonGameIdInfo_Click;
@@ -326,7 +326,7 @@ partial class CreateMod
         labelDefaultGameId.Location = new Point(6, 48);
         labelDefaultGameId.Name = "labelDefaultGameId";
         labelDefaultGameId.Size = new Size(95, 15);
-        labelDefaultGameId.TabIndex = 19;
+        labelDefaultGameId.TabIndex = 20;
         labelDefaultGameId.Text = "Default game ID:";
         // 
         // textBoxGameId
@@ -334,7 +334,7 @@ partial class CreateMod
         textBoxGameId.Location = new Point(6, 22);
         textBoxGameId.Name = "textBoxGameId";
         textBoxGameId.Size = new Size(256, 23);
-        textBoxGameId.TabIndex = 17;
+        textBoxGameId.TabIndex = 18;
         // 
         // groupBoxIniValues
         // 
@@ -343,7 +343,7 @@ partial class CreateMod
         groupBoxIniValues.Location = new Point(3, 78);
         groupBoxIniValues.Name = "groupBoxIniValues";
         groupBoxIniValues.Size = new Size(319, 172);
-        groupBoxIniValues.TabIndex = 20;
+        groupBoxIniValues.TabIndex = 21;
         groupBoxIniValues.TabStop = false;
         groupBoxIniValues.Text = "INI Values";
         // 
@@ -352,7 +352,7 @@ partial class CreateMod
         buttonIniValuesInfo.Location = new Point(268, -1);
         buttonIniValuesInfo.Name = "buttonIniValuesInfo";
         buttonIniValuesInfo.Size = new Size(45, 23);
-        buttonIniValuesInfo.TabIndex = 21;
+        buttonIniValuesInfo.TabIndex = 22;
         buttonIniValuesInfo.Text = "Info";
         buttonIniValuesInfo.UseVisualStyleBackColor = true;
         buttonIniValuesInfo.Click += button1_Click;
@@ -362,7 +362,7 @@ partial class CreateMod
         richTextBoxINIValues.Location = new Point(6, 22);
         richTextBoxINIValues.Name = "richTextBoxINIValues";
         richTextBoxINIValues.Size = new Size(307, 144);
-        richTextBoxINIValues.TabIndex = 22;
+        richTextBoxINIValues.TabIndex = 23;
         richTextBoxINIValues.Text = "";
         // 
         // groupBoxMergeHips
@@ -372,7 +372,7 @@ partial class CreateMod
         groupBoxMergeHips.Location = new Point(3, 256);
         groupBoxMergeHips.Name = "groupBoxMergeHips";
         groupBoxMergeHips.Size = new Size(319, 172);
-        groupBoxMergeHips.TabIndex = 23;
+        groupBoxMergeHips.TabIndex = 24;
         groupBoxMergeHips.TabStop = false;
         groupBoxMergeHips.Text = "Merge HIP Files";
         // 
@@ -381,7 +381,7 @@ partial class CreateMod
         buttonMergeHipsInfo.Location = new Point(268, -1);
         buttonMergeHipsInfo.Name = "buttonMergeHipsInfo";
         buttonMergeHipsInfo.Size = new Size(45, 23);
-        buttonMergeHipsInfo.TabIndex = 24;
+        buttonMergeHipsInfo.TabIndex = 25;
         buttonMergeHipsInfo.Text = "Info";
         buttonMergeHipsInfo.UseVisualStyleBackColor = true;
         buttonMergeHipsInfo.Click += buttonMergeHipsInfo_Click;
@@ -391,7 +391,7 @@ partial class CreateMod
         richTextBoxMergeHips.Location = new Point(6, 22);
         richTextBoxMergeHips.Name = "richTextBoxMergeHips";
         richTextBoxMergeHips.Size = new Size(307, 144);
-        richTextBoxMergeHips.TabIndex = 25;
+        richTextBoxMergeHips.TabIndex = 26;
         richTextBoxMergeHips.Text = "";
         // 
         // groupBoxRemoveFiles
@@ -401,7 +401,7 @@ partial class CreateMod
         groupBoxRemoveFiles.Location = new Point(3, 434);
         groupBoxRemoveFiles.Name = "groupBoxRemoveFiles";
         groupBoxRemoveFiles.Size = new Size(319, 172);
-        groupBoxRemoveFiles.TabIndex = 26;
+        groupBoxRemoveFiles.TabIndex = 27;
         groupBoxRemoveFiles.TabStop = false;
         groupBoxRemoveFiles.Text = "Remove Files";
         // 
@@ -410,7 +410,7 @@ partial class CreateMod
         buttonRemoveFilesInfo.Location = new Point(268, -1);
         buttonRemoveFilesInfo.Name = "buttonRemoveFilesInfo";
         buttonRemoveFilesInfo.Size = new Size(45, 23);
-        buttonRemoveFilesInfo.TabIndex = 27;
+        buttonRemoveFilesInfo.TabIndex = 28;
         buttonRemoveFilesInfo.Text = "Info";
         buttonRemoveFilesInfo.UseVisualStyleBackColor = true;
         buttonRemoveFilesInfo.Click += buttonRemoveFilesInfo_Click;
@@ -420,7 +420,7 @@ partial class CreateMod
         richTextBoxRemoveFiles.Location = new Point(6, 22);
         richTextBoxRemoveFiles.Name = "richTextBoxRemoveFiles";
         richTextBoxRemoveFiles.Size = new Size(307, 144);
-        richTextBoxRemoveFiles.TabIndex = 28;
+        richTextBoxRemoveFiles.TabIndex = 29;
         richTextBoxRemoveFiles.Text = "";
         // 
         // groupBoxDolPatches
@@ -430,7 +430,7 @@ partial class CreateMod
         groupBoxDolPatches.Location = new Point(3, 612);
         groupBoxDolPatches.Name = "groupBoxDolPatches";
         groupBoxDolPatches.Size = new Size(319, 172);
-        groupBoxDolPatches.TabIndex = 29;
+        groupBoxDolPatches.TabIndex = 30;
         groupBoxDolPatches.TabStop = false;
         groupBoxDolPatches.Text = "DOL Patches";
         // 
@@ -439,7 +439,7 @@ partial class CreateMod
         buttonDolPatchesInfo.Location = new Point(268, -1);
         buttonDolPatchesInfo.Name = "buttonDolPatchesInfo";
         buttonDolPatchesInfo.Size = new Size(45, 23);
-        buttonDolPatchesInfo.TabIndex = 30;
+        buttonDolPatchesInfo.TabIndex = 31;
         buttonDolPatchesInfo.Text = "Info";
         buttonDolPatchesInfo.UseVisualStyleBackColor = true;
         buttonDolPatchesInfo.Click += buttonDolPatchesInfo_Click;
@@ -449,7 +449,7 @@ partial class CreateMod
         richTextBoxDolPatches.Location = new Point(6, 22);
         richTextBoxDolPatches.Name = "richTextBoxDolPatches";
         richTextBoxDolPatches.Size = new Size(307, 144);
-        richTextBoxDolPatches.TabIndex = 31;
+        richTextBoxDolPatches.TabIndex = 32;
         richTextBoxDolPatches.Text = "";
         richTextBoxDolPatches.TextChanged += richTextBoxDolPatches_TextChanged;
         // 
