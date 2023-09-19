@@ -20,6 +20,9 @@
         public int NextOffset;
     }
 
+    /// <summary>
+    /// Represents a GameCube ISO image.
+    /// </summary>
     public class GameCubeImage
     {
         private byte[] Apploader;
@@ -29,6 +32,11 @@
         private byte[] Main;
         private List<GameCubeImageAbstract> Files;
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="GameCubeImage"/> class by reading from an ISO file.
+        /// </summary>
+        /// <param name="fileName">The ISO image filename</param>
+        /// <exception cref="InvalidDataException"></exception>
         public GameCubeImage(string fileName)
         {
             using var reader = new EndianBinaryReader(new FileStream(fileName, FileMode.Open), Endianness.Big);

@@ -5,37 +5,89 @@ using System.Text.Json.Serialization;
 
 namespace HeavyModManager.Classes;
 
+/// <summary>
+/// Represents a mod for a Heavy Iron game.
+/// </summary>
 public class Mod
 {
+    /// <summary>
+    /// The Heavy Iron game.
+    /// </summary>
     [JsonInclude]
     public Game Game { get; set; } = Game.Null;
+
+    /// <summary>
+    /// The name of the mod.
+    /// </summary>
     [JsonInclude]
     public string ModName { get; set; } = "";
+
+    /// <summary>
+    /// The mod author.
+    /// </summary>
     [JsonInclude]
     public string Author { get; set; } = "";
+
+    /// <summary>
+    /// The mod description.
+    /// </summary>
     [JsonInclude]
     public string Description { get; set; } = "";
+
+    /// <summary>
+    /// The mod ID.
+    /// <para>
+    /// By default, this is generated from the game, mod name and author.
+    /// </para>
+    /// </summary>
     [JsonInclude]
     public string ModId { get; set; } = "";
+
     [JsonInclude]
     public string GameId { get; set; } = "";
+
     [JsonInclude]
     public string INIReplacements { get; set; } = "";
+
     [JsonInclude]
     public string MergeFiles { get; set; } = "";
+
+    /// <summary>
+    /// Game files to remove when the mod is installed, if any.
+    /// </summary>
     [JsonInclude]
     public string RemoveFiles { get; set; } = "";
+
     [JsonInclude]
     public string DOLPatches { get; set; } = "";
+
+    /// <summary>
+    /// The Action Replay codes the mod uses, if any.
+    /// </summary>
     [JsonInclude]
     public string ArCodes { get; set; } = "";
+
+    /// <summary>
+    /// The Gecko codes the mod uses, if any.
+    /// </summary>
     [JsonInclude]
     public string GeckoCodes { get; set; } = "";
+
+    /// <summary>
+    /// The date and time the mod was created.
+    /// </summary>
     [JsonInclude]
     public DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time the mod was last updated.
+    /// </summary>
     [JsonInclude]
     public DateTime UpdatedAt { get; set; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Mod"/> class.
+    /// </summary>
     [JsonConstructor]
     public Mod()
     {
@@ -43,11 +95,19 @@ public class Mod
         UpdatedAt = DateTime.Now.ToUniversalTime().Date;
     }
 
+    /// <summary>
+    /// Returns a string that represents the mod.
+    /// </summary>
+    /// <returns>The mod name</returns>
     public override string ToString()
     {
         return ModName;
     }
 
+    /// <summary>
+    /// Writes the mod to a JSON file.
+    /// </summary>
+    /// <param name="isEditing"></param>
     public void SaveModJson(bool isEditing)
     {
         // Temporary

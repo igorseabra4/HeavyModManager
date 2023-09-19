@@ -5,8 +5,17 @@ using System.Text.Json;
 
 namespace HeavyModManager.Functions;
 
+/// <summary>
+/// Contains functions related to managing mods.
+/// </summary>
 public static class ModManager
 {
+    /// <summary>
+    /// Returns the short name of a Heavy Iron game.
+    /// </summary>
+    /// <param name="game">The Heavy Iron game</param>
+    /// <returns>The short name</returns>
+    /// <exception cref="ArgumentException">If the game specified is not a valid Heavy Iron game</exception>
     public static string GameToString(Game game)
     {
         return game switch
@@ -24,10 +33,16 @@ public static class ModManager
             Game.UFC => "ufc",
             Game.FamilyGuy => "familyguy",
             Game.HollywoodWorkout => "hollywoodworkout",
-            _ => throw new ArgumentException("Invalid game."),
+            _ => throw new ArgumentException("Invalid game.", nameof(game)),
         };
     }
 
+    /// <summary>
+    /// Returns the long name of a Heavy Iron game.
+    /// </summary>
+    /// <param name="game">The Heavy Iron game</param>
+    /// <returns>The long name</returns>
+    /// <exception cref="ArgumentException">If the game specified is not a valid Heavy Iron game</exception>
     public static string GameToStringFull(Game game)
     {
         return game switch
@@ -45,28 +60,7 @@ public static class ModManager
             Game.UFC => "UFC Personal Trainer",
             Game.FamilyGuy => "Family Guy: Back to the Multiverse",
             Game.HollywoodWorkout => "Harley Pasternak's Hollywood Workout",
-            _ => throw new ArgumentException("Invalid game."),
-        };
-    }
-
-    public static Game StringToGame(string game)
-    {
-        return game switch
-        {
-            "scooby" => Game.Scooby,
-            "bfbb" => Game.BFBB,
-            "movie" => Game.Movie,
-            "incredibles" => Game.Incredibles,
-            "rotu" => Game.Underminer,
-            "ratproto" => Game.RatProto,
-            "ratatouille" => Game.Ratatouille,
-            "walle" => Game.WallE,
-            "up" => Game.Up,
-            "tos" => Game.TruthOrSquare,
-            "ufc" => Game.UFC,
-            "familyguy" => Game.FamilyGuy,
-            "hollywoodworkout" => Game.HollywoodWorkout,
-            _ => throw new ArgumentException("Invalid game."),
+            _ => throw new ArgumentException("Invalid game.", nameof(game)),
         };
     }
 
@@ -89,6 +83,9 @@ public static class ModManager
         };
     }
 
+    /// <summary>
+    /// The complete list of Heavy Iron games since 2002.
+    /// </summary>
     public static List<Game> Games => new() {
         Game.Scooby,
         Game.BFBB,
@@ -105,6 +102,9 @@ public static class ModManager
         Game.HollywoodWorkout
     };
 
+    /// <summary>
+    /// The list of Heavy Iron games that use the Evil Engine.
+    /// </summary>
     public static List<Game> EvilEngineGames => new() {
         Game.Scooby,
         Game.BFBB,
@@ -114,6 +114,9 @@ public static class ModManager
         Game.RatProto,
     };
 
+    /// <summary>
+    /// The list of Heavy Iron games that use the Good Engine.
+    /// </summary>
     public static List<Game> GoodEngineGames => new() {
         Game.Ratatouille,
         Game.WallE,
@@ -152,9 +155,9 @@ public static class ModManager
     {
         File.WriteAllText(ModManagerSettingsPath, JsonSerializer.Serialize(new ModManagerSettings()
         {
-            currentGame = CurrentGame,
-            dolphinPath = DolphinPath,
-            checkForUpdatesOnStartup = CheckForUpdatesOnStartup,
+            CurrentGame = CurrentGame,
+            DolphinPath = DolphinPath,
+            CheckForUpdatesOnStartup = CheckForUpdatesOnStartup,
         }));
     }
 
@@ -165,9 +168,9 @@ public static class ModManager
         if (File.Exists(ModManagerSettingsPath))
         {
             var settings = JsonSerializer.Deserialize<ModManagerSettings>(File.ReadAllText(ModManagerSettingsPath));
-            CurrentGame = settings.currentGame;
-            DolphinPath = settings.dolphinPath;
-            CheckForUpdatesOnStartup = settings.checkForUpdatesOnStartup;
+            CurrentGame = settings.CurrentGame;
+            DolphinPath = settings.DolphinPath;
+            CheckForUpdatesOnStartup = settings.CheckForUpdatesOnStartup;
         }
     }
 
@@ -183,7 +186,7 @@ public static class ModManager
         {
             DolphinPath = openFile.FileName;
             SaveSettings();
-            MessageBox.Show("Dolphin path set successfully.");
+            MessageBox.Show("Dolphin path set successfully.", "Dolphin path set", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 
@@ -291,7 +294,8 @@ public static class ModManager
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Unable to read ISO: " + ex.Message);
+            MessageBox.Show("Unable to read ISO: " + ex.Message, "Error reading ISO",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
 
@@ -308,11 +312,13 @@ public static class ModManager
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Unable to create backup from ISO: " + ex.Message);
+            MessageBox.Show("Unable to create backup from ISO: " + ex.Message, "Backup failed",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
 
-        MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.");
+        MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.",
+            "Backup successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         return true;
     }
 
@@ -322,7 +328,8 @@ public static class ModManager
 
         if (!Directory.Exists(files))
         {
-            MessageBox.Show("Unable to create backup: 'files' directory not found. Are you sure you are using a proper ISO dump?");
+            MessageBox.Show("Unable to create backup: 'files' directory not found. Are you sure you are using a proper ISO dump?",
+                "Backup failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
@@ -330,7 +337,8 @@ public static class ModManager
 
         if (!Directory.Exists(sys))
         {
-            MessageBox.Show("Unable to create backup: 'sys' directory not found. Are you sure you are using a proper ISO dump?");
+            MessageBox.Show("Unable to create backup: 'sys' directory not found. Are you sure you are using a proper ISO dump?",
+                "Backup failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
@@ -346,7 +354,8 @@ public static class ModManager
         fs.CopyDirectory(files, GameBackupFilesPath);
         fs.CopyDirectory(sys, GameBackupSysPath);
 
-        MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.");
+        MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.",
+            "Backup successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     public static void Invalidate()
@@ -365,7 +374,8 @@ public static class ModManager
 
         if (!GameBackupExists)
         {
-            MessageBox.Show("Unable to apply mods: game backup not found. Please create the game's backup first.");
+            MessageBox.Show("Unable to apply mods: game backup not found. Please create the game's backup first.",
+                "Game backup not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
@@ -426,19 +436,22 @@ public static class ModManager
     {
         if (string.IsNullOrEmpty(DolphinPath))
         {
-            MessageBox.Show("Unable to launch game: Dolphin executable path not set.");
+            MessageBox.Show("Unable to launch game: Dolphin executable path not set.", "Error launching game",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
         if (!File.Exists(DolphinPath))
         {
-            MessageBox.Show("Unable to launch game: Dolphin executable not found on set path.");
+            MessageBox.Show("Unable to launch game: Dolphin executable not found on set path.", "Error launching game",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
         if (!GameExists)
         {
-            MessageBox.Show("Unable to launch game: game executable not found.");
+            MessageBox.Show("Unable to launch game: game executable not found.", "Error launching game",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 

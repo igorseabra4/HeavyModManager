@@ -28,165 +28,165 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox));
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.labelProductName = new System.Windows.Forms.Label();
-            this.labelCopyright = new System.Windows.Forms.Label();
-            this.textBoxDescription = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            tableLayoutPanel = new TableLayoutPanel();
+            labelProductName = new Label();
+            labelCopyright = new Label();
+            textBoxDescription = new TextBox();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            buttonClose = new Button();
+            buttonSource = new Button();
+            buttonDiscord = new Button();
+            buttonWiki = new Button();
+            tableLayoutPanel.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // tableLayoutPanel
             // 
-            this.tableLayoutPanel.ColumnCount = 1;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.Controls.Add(this.labelProductName, 0, 0);
-            this.tableLayoutPanel.Controls.Add(this.labelCopyright, 0, 1);
-            this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 0, 2);
-            this.tableLayoutPanel.Controls.Add(this.flowLayoutPanel1, 0, 3);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(6, 6);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 4;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(332, 295);
-            this.tableLayoutPanel.TabIndex = 0;
+            tableLayoutPanel.ColumnCount = 1;
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel.Controls.Add(labelProductName, 0, 0);
+            tableLayoutPanel.Controls.Add(labelCopyright, 0, 1);
+            tableLayoutPanel.Controls.Add(textBoxDescription, 0, 2);
+            tableLayoutPanel.Controls.Add(flowLayoutPanel1, 0, 3);
+            tableLayoutPanel.Dock = DockStyle.Fill;
+            tableLayoutPanel.Location = new Point(6, 6);
+            tableLayoutPanel.Margin = new Padding(0);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 4;
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 22F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 22F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel.Size = new Size(332, 295);
+            tableLayoutPanel.TabIndex = 0;
             // 
             // labelProductName
             // 
-            this.labelProductName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelProductName.Location = new System.Drawing.Point(7, 0);
-            this.labelProductName.Margin = new System.Windows.Forms.Padding(7, 0, 4, 0);
-            this.labelProductName.MaximumSize = new System.Drawing.Size(0, 20);
-            this.labelProductName.Name = "labelProductName";
-            this.labelProductName.Size = new System.Drawing.Size(321, 20);
-            this.labelProductName.TabIndex = 19;
-            this.labelProductName.Text = "Heavy Mod Manager";
-            this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            labelProductName.Dock = DockStyle.Fill;
+            labelProductName.Location = new Point(7, 0);
+            labelProductName.Margin = new Padding(7, 0, 4, 0);
+            labelProductName.MaximumSize = new Size(0, 20);
+            labelProductName.Name = "labelProductName";
+            labelProductName.Size = new Size(321, 20);
+            labelProductName.TabIndex = 1;
+            labelProductName.Text = "Heavy Mod Manager";
+            labelProductName.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelCopyright
             // 
-            this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCopyright.Location = new System.Drawing.Point(7, 22);
-            this.labelCopyright.Margin = new System.Windows.Forms.Padding(7, 0, 4, 0);
-            this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 20);
-            this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(321, 20);
-            this.labelCopyright.TabIndex = 21;
-            this.labelCopyright.Text = "(C) 2023 igorseabra4";
-            this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            labelCopyright.Dock = DockStyle.Fill;
+            labelCopyright.Location = new Point(7, 22);
+            labelCopyright.Margin = new Padding(7, 0, 4, 0);
+            labelCopyright.MaximumSize = new Size(0, 20);
+            labelCopyright.Name = "labelCopyright";
+            labelCopyright.Size = new Size(321, 20);
+            labelCopyright.TabIndex = 2;
+            labelCopyright.Text = "© 2023 igorseabra4";
+            labelCopyright.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // textBoxDescription
             // 
-            this.textBoxDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxDescription.Location = new System.Drawing.Point(7, 47);
-            this.textBoxDescription.Margin = new System.Windows.Forms.Padding(7, 3, 4, 3);
-            this.textBoxDescription.Multiline = true;
-            this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.ReadOnly = true;
-            this.textBoxDescription.Size = new System.Drawing.Size(321, 213);
-            this.textBoxDescription.TabIndex = 23;
-            this.textBoxDescription.TabStop = false;
-            this.textBoxDescription.Text = resources.GetString("textBoxDescription.Text");
+            textBoxDescription.BorderStyle = BorderStyle.None;
+            textBoxDescription.Dock = DockStyle.Fill;
+            textBoxDescription.Location = new Point(7, 47);
+            textBoxDescription.Margin = new Padding(7, 3, 4, 3);
+            textBoxDescription.Multiline = true;
+            textBoxDescription.Name = "textBoxDescription";
+            textBoxDescription.ReadOnly = true;
+            textBoxDescription.Size = new Size(321, 213);
+            textBoxDescription.TabIndex = 3;
+            textBoxDescription.TabStop = false;
+            textBoxDescription.Text = resources.GetString("textBoxDescription.Text");
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.button3);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Controls.Add(this.button2);
-            this.flowLayoutPanel1.Controls.Add(this.button4);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 263);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(332, 32);
-            this.flowLayoutPanel1.TabIndex = 24;
+            flowLayoutPanel1.Controls.Add(buttonClose);
+            flowLayoutPanel1.Controls.Add(buttonSource);
+            flowLayoutPanel1.Controls.Add(buttonDiscord);
+            flowLayoutPanel1.Controls.Add(buttonWiki);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
+            flowLayoutPanel1.Location = new Point(0, 263);
+            flowLayoutPanel1.Margin = new Padding(0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(332, 32);
+            flowLayoutPanel1.TabIndex = 24;
             // 
-            // button3
+            // buttonClose
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button3.Location = new System.Drawing.Point(268, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(61, 25);
-            this.button3.TabIndex = 26;
-            this.button3.Text = "Close";
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            buttonClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonClose.DialogResult = DialogResult.Cancel;
+            buttonClose.Location = new Point(268, 3);
+            buttonClose.Name = "buttonClose";
+            buttonClose.Size = new Size(61, 25);
+            buttonClose.TabIndex = 7;
+            buttonClose.Text = "Close";
+            buttonClose.Click += button3_Click;
             // 
-            // button1
+            // buttonSource
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(200, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(62, 25);
-            this.button1.TabIndex = 27;
-            this.button1.Text = "Source";
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            buttonSource.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonSource.Location = new Point(200, 3);
+            buttonSource.Name = "buttonSource";
+            buttonSource.Size = new Size(62, 25);
+            buttonSource.TabIndex = 6;
+            buttonSource.Text = "Source";
+            buttonSource.Click += button1_Click;
             // 
-            // button2
+            // buttonDiscord
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(135, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(59, 25);
-            this.button2.TabIndex = 28;
-            this.button2.Text = "Discord";
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            buttonDiscord.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonDiscord.Location = new Point(135, 3);
+            buttonDiscord.Name = "buttonDiscord";
+            buttonDiscord.Size = new Size(59, 25);
+            buttonDiscord.TabIndex = 5;
+            buttonDiscord.Text = "Discord";
+            buttonDiscord.Click += button2_Click;
             // 
-            // button4
+            // buttonWiki
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(73, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(56, 25);
-            this.button4.TabIndex = 29;
-            this.button4.Text = "Wiki";
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            buttonWiki.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonWiki.Location = new Point(73, 3);
+            buttonWiki.Name = "buttonWiki";
+            buttonWiki.Size = new Size(56, 25);
+            buttonWiki.TabIndex = 4;
+            buttonWiki.Text = "Wiki";
+            buttonWiki.Click += button4_Click;
             // 
             // AboutBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 307);
-            this.Controls.Add(this.tableLayoutPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MaximizeBox = false;
-            this.Name = "AboutBox";
-            this.Padding = new System.Windows.Forms.Padding(6);
-            this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "About Heavy Mod Manager";
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = buttonClose;
+            ClientSize = new Size(344, 307);
+            Controls.Add(tableLayoutPanel);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            Name = "AboutBox";
+            Padding = new Padding(6);
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "About Heavy Mod Manager";
+            tableLayoutPanel.ResumeLayout(false);
+            tableLayoutPanel.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
-        private System.Windows.Forms.Label labelProductName;
-        private System.Windows.Forms.Label labelCopyright;
-        private System.Windows.Forms.TextBox textBoxDescription;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private TableLayoutPanel tableLayoutPanel;
+        private Label labelProductName;
+        private Label labelCopyright;
+        private TextBox textBoxDescription;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Button buttonSource;
+        private Button buttonDiscord;
+        private Button buttonClose;
+        private Button buttonWiki;
     }
 }
