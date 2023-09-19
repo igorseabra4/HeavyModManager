@@ -1,4 +1,4 @@
-﻿﻿namespace HeavyModManager.Forms;
+﻿namespace HeavyModManager.Forms;
 
 partial class CreateMod
 {
@@ -28,472 +28,467 @@ partial class CreateMod
     /// </summary>
     private void InitializeComponent()
     {
-            this.groupBoxGame = new System.Windows.Forms.GroupBox();
-            this.comboBoxGame = new System.Windows.Forms.ComboBox();
-            this.groupBoxModName = new System.Windows.Forms.GroupBox();
-            this.textBoxModName = new System.Windows.Forms.TextBox();
-            this.groupBoxAuthor = new System.Windows.Forms.GroupBox();
-            this.textBoxAuthor = new System.Windows.Forms.TextBox();
-            this.groupBoxDescription = new System.Windows.Forms.GroupBox();
-            this.textBoxDescription = new System.Windows.Forms.TextBox();
-            this.buttonCreateMod = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.groupBoxModId = new System.Windows.Forms.GroupBox();
-            this.labelModIdInfo = new System.Windows.Forms.Label();
-            this.textBoxModId = new System.Windows.Forms.TextBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPageModData = new System.Windows.Forms.TabPage();
-            this.groupBoxUpdatedAt = new System.Windows.Forms.GroupBox();
-            this.dateTimePickerUpdatedAt = new System.Windows.Forms.DateTimePicker();
-            this.groupBoxCreatedAt = new System.Windows.Forms.GroupBox();
-            this.dateTimePickerCreatedAt = new System.Windows.Forms.DateTimePicker();
-            this.tabPageSettings = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBoxGameId = new System.Windows.Forms.GroupBox();
-            this.buttonGameIdInfo = new System.Windows.Forms.Button();
-            this.labelDefaultGameId = new System.Windows.Forms.Label();
-            this.textBoxGameId = new System.Windows.Forms.TextBox();
-            this.groupBoxIniValues = new System.Windows.Forms.GroupBox();
-            this.buttonIniValuesInfo = new System.Windows.Forms.Button();
-            this.richTextBoxINIValues = new System.Windows.Forms.RichTextBox();
-            this.groupBoxMergeHips = new System.Windows.Forms.GroupBox();
-            this.buttonMergeHipsInfo = new System.Windows.Forms.Button();
-            this.richTextBoxMergeHips = new System.Windows.Forms.RichTextBox();
-            this.groupBoxRemoveFiles = new System.Windows.Forms.GroupBox();
-            this.buttonRemoveFilesInfo = new System.Windows.Forms.Button();
-            this.richTextBoxRemoveFiles = new System.Windows.Forms.RichTextBox();
-            this.groupBoxDolPatches = new System.Windows.Forms.GroupBox();
-            this.buttonDolPatchesInfo = new System.Windows.Forms.Button();
-            this.richTextBoxDolPatches = new System.Windows.Forms.RichTextBox();
-            this.groupBoxGame.SuspendLayout();
-            this.groupBoxModName.SuspendLayout();
-            this.groupBoxAuthor.SuspendLayout();
-            this.groupBoxDescription.SuspendLayout();
-            this.groupBoxModId.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPageModData.SuspendLayout();
-            this.groupBoxUpdatedAt.SuspendLayout();
-            this.groupBoxCreatedAt.SuspendLayout();
-            this.tabPageSettings.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.groupBoxGameId.SuspendLayout();
-            this.groupBoxIniValues.SuspendLayout();
-            this.groupBoxMergeHips.SuspendLayout();
-            this.groupBoxRemoveFiles.SuspendLayout();
-            this.groupBoxDolPatches.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // groupBoxGame
-            // 
-            this.groupBoxGame.Controls.Add(this.comboBoxGame);
-            this.groupBoxGame.Location = new System.Drawing.Point(6, 6);
-            this.groupBoxGame.Name = "groupBoxGame";
-            this.groupBoxGame.Size = new System.Drawing.Size(328, 51);
-            this.groupBoxGame.TabIndex = 1;
-            this.groupBoxGame.TabStop = false;
-            this.groupBoxGame.Text = "Choose Game";
-            // 
-            // comboBoxGame
-            // 
-            this.comboBoxGame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxGame.FormattingEnabled = true;
-            this.comboBoxGame.Location = new System.Drawing.Point(6, 22);
-            this.comboBoxGame.Name = "comboBoxGame";
-            this.comboBoxGame.Size = new System.Drawing.Size(316, 23);
-            this.comboBoxGame.TabIndex = 1;
-            this.comboBoxGame.SelectedIndexChanged += new System.EventHandler(this.comboBoxGame_SelectedIndexChanged);
-            // 
-            // groupBoxModName
-            // 
-            this.groupBoxModName.Controls.Add(this.textBoxModName);
-            this.groupBoxModName.Location = new System.Drawing.Point(6, 63);
-            this.groupBoxModName.Name = "groupBoxModName";
-            this.groupBoxModName.Size = new System.Drawing.Size(328, 51);
-            this.groupBoxModName.TabIndex = 2;
-            this.groupBoxModName.TabStop = false;
-            this.groupBoxModName.Text = "Mod Name";
-            // 
-            // textBoxModName
-            // 
-            this.textBoxModName.Location = new System.Drawing.Point(6, 22);
-            this.textBoxModName.Name = "textBoxModName";
-            this.textBoxModName.Size = new System.Drawing.Size(316, 23);
-            this.textBoxModName.TabIndex = 3;
-            this.textBoxModName.TextChanged += new System.EventHandler(this.textBoxModName_TextChanged);
-            // 
-            // groupBoxAuthor
-            // 
-            this.groupBoxAuthor.Controls.Add(this.textBoxAuthor);
-            this.groupBoxAuthor.Location = new System.Drawing.Point(6, 120);
-            this.groupBoxAuthor.Name = "groupBoxAuthor";
-            this.groupBoxAuthor.Size = new System.Drawing.Size(328, 51);
-            this.groupBoxAuthor.TabIndex = 4;
-            this.groupBoxAuthor.TabStop = false;
-            this.groupBoxAuthor.Text = "Mod Author";
-            // 
-            // textBoxAuthor
-            // 
-            this.textBoxAuthor.Location = new System.Drawing.Point(6, 22);
-            this.textBoxAuthor.Name = "textBoxAuthor";
-            this.textBoxAuthor.Size = new System.Drawing.Size(316, 23);
-            this.textBoxAuthor.TabIndex = 3;
-            this.textBoxAuthor.TextChanged += new System.EventHandler(this.textBoxAuthor_TextChanged);
-            // 
-            // groupBoxDescription
-            // 
-            this.groupBoxDescription.Controls.Add(this.textBoxDescription);
-            this.groupBoxDescription.Location = new System.Drawing.Point(6, 177);
-            this.groupBoxDescription.Name = "groupBoxDescription";
-            this.groupBoxDescription.Size = new System.Drawing.Size(328, 51);
-            this.groupBoxDescription.TabIndex = 5;
-            this.groupBoxDescription.TabStop = false;
-            this.groupBoxDescription.Text = "Mod Description";
-            // 
-            // textBoxDescription
-            // 
-            this.textBoxDescription.Location = new System.Drawing.Point(6, 22);
-            this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(316, 23);
-            this.textBoxDescription.TabIndex = 3;
-            // 
-            // buttonCreateMod
-            // 
-            this.buttonCreateMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCreateMod.Enabled = false;
-            this.buttonCreateMod.Location = new System.Drawing.Point(186, 495);
-            this.buttonCreateMod.Name = "buttonCreateMod";
-            this.buttonCreateMod.Size = new System.Drawing.Size(161, 23);
-            this.buttonCreateMod.TabIndex = 6;
-            this.buttonCreateMod.Text = "Create Mod";
-            this.buttonCreateMod.UseVisualStyleBackColor = true;
-            this.buttonCreateMod.Click += new System.EventHandler(this.buttonCreateMod_Click);
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCancel.Location = new System.Drawing.Point(19, 495);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(161, 23);
-            this.buttonCancel.TabIndex = 7;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
-            // groupBoxModId
-            // 
-            this.groupBoxModId.Controls.Add(this.labelModIdInfo);
-            this.groupBoxModId.Controls.Add(this.textBoxModId);
-            this.groupBoxModId.Location = new System.Drawing.Point(6, 348);
-            this.groupBoxModId.Name = "groupBoxModId";
-            this.groupBoxModId.Size = new System.Drawing.Size(328, 102);
-            this.groupBoxModId.TabIndex = 6;
-            this.groupBoxModId.TabStop = false;
-            this.groupBoxModId.Text = "Mod ID";
-            // 
-            // labelModIdInfo
-            // 
-            this.labelModIdInfo.AutoSize = true;
-            this.labelModIdInfo.Location = new System.Drawing.Point(6, 48);
-        this.labelModIdInfo.Name = "labelModIdInfo";
-        this.labelModIdInfo.Size = new System.Drawing.Size(295, 45);
-        this.labelModIdInfo.TabIndex = 4;
-        this.labelModIdInfo.Text = "Feel free to enter your own custom ID for the mod, but\r\nmake sure that no other m" +
-"od, by any other author or\r\nfor any other game, will have the same ID as yours!";
+        groupBoxGame = new GroupBox();
+        comboBoxGame = new ComboBox();
+        groupBoxModName = new GroupBox();
+        textBoxModName = new TextBox();
+        groupBoxAuthor = new GroupBox();
+        textBoxAuthor = new TextBox();
+        groupBoxDescription = new GroupBox();
+        textBoxDescription = new TextBox();
+        buttonCreateMod = new Button();
+        buttonCancel = new Button();
+        groupBoxModId = new GroupBox();
+        labelModIdInfo = new Label();
+        textBoxModId = new TextBox();
+        tabControl1 = new TabControl();
+        tabPageModData = new TabPage();
+        groupBoxUpdatedAt = new GroupBox();
+        dateTimePickerUpdatedAt = new DateTimePicker();
+        groupBoxCreatedAt = new GroupBox();
+        dateTimePickerCreatedAt = new DateTimePicker();
+        tabPageSettings = new TabPage();
+        flowLayoutPanel1 = new FlowLayoutPanel();
+        groupBoxGameId = new GroupBox();
+        buttonGameIdInfo = new Button();
+        labelDefaultGameId = new Label();
+        textBoxGameId = new TextBox();
+        groupBoxIniValues = new GroupBox();
+        buttonIniValuesInfo = new Button();
+        richTextBoxINIValues = new RichTextBox();
+        groupBoxMergeHips = new GroupBox();
+        buttonMergeHipsInfo = new Button();
+        richTextBoxMergeHips = new RichTextBox();
+        groupBoxRemoveFiles = new GroupBox();
+        buttonRemoveFilesInfo = new Button();
+        richTextBoxRemoveFiles = new RichTextBox();
+        groupBoxDolPatches = new GroupBox();
+        buttonDolPatchesInfo = new Button();
+        richTextBoxDolPatches = new RichTextBox();
+        groupBoxGame.SuspendLayout();
+        groupBoxModName.SuspendLayout();
+        groupBoxAuthor.SuspendLayout();
+        groupBoxDescription.SuspendLayout();
+        groupBoxModId.SuspendLayout();
+        tabControl1.SuspendLayout();
+        tabPageModData.SuspendLayout();
+        groupBoxUpdatedAt.SuspendLayout();
+        groupBoxCreatedAt.SuspendLayout();
+        tabPageSettings.SuspendLayout();
+        flowLayoutPanel1.SuspendLayout();
+        groupBoxGameId.SuspendLayout();
+        groupBoxIniValues.SuspendLayout();
+        groupBoxMergeHips.SuspendLayout();
+        groupBoxRemoveFiles.SuspendLayout();
+        groupBoxDolPatches.SuspendLayout();
+        SuspendLayout();
+        // 
+        // groupBoxGame
+        // 
+        groupBoxGame.Controls.Add(comboBoxGame);
+        groupBoxGame.Location = new Point(6, 6);
+        groupBoxGame.Name = "groupBoxGame";
+        groupBoxGame.Size = new Size(328, 51);
+        groupBoxGame.TabIndex = 1;
+        groupBoxGame.TabStop = false;
+        groupBoxGame.Text = "Choose Game";
+        // 
+        // comboBoxGame
+        // 
+        comboBoxGame.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        comboBoxGame.FormattingEnabled = true;
+        comboBoxGame.Location = new Point(6, 22);
+        comboBoxGame.Name = "comboBoxGame";
+        comboBoxGame.Size = new Size(316, 23);
+        comboBoxGame.TabIndex = 2;
+        comboBoxGame.SelectedIndexChanged += comboBoxGame_SelectedIndexChanged;
+        // 
+        // groupBoxModName
+        // 
+        groupBoxModName.Controls.Add(textBoxModName);
+        groupBoxModName.Location = new Point(6, 63);
+        groupBoxModName.Name = "groupBoxModName";
+        groupBoxModName.Size = new Size(328, 51);
+        groupBoxModName.TabIndex = 3;
+        groupBoxModName.TabStop = false;
+        groupBoxModName.Text = "Mod Name";
+        // 
+        // textBoxModName
+        // 
+        textBoxModName.Location = new Point(6, 22);
+        textBoxModName.Name = "textBoxModName";
+        textBoxModName.Size = new Size(316, 23);
+        textBoxModName.TabIndex = 4;
+        textBoxModName.TextChanged += textBoxModName_TextChanged;
+        // 
+        // groupBoxAuthor
+        // 
+        groupBoxAuthor.Controls.Add(textBoxAuthor);
+        groupBoxAuthor.Location = new Point(6, 120);
+        groupBoxAuthor.Name = "groupBoxAuthor";
+        groupBoxAuthor.Size = new Size(328, 51);
+        groupBoxAuthor.TabIndex = 5;
+        groupBoxAuthor.TabStop = false;
+        groupBoxAuthor.Text = "Mod Author";
+        // 
+        // textBoxAuthor
+        // 
+        textBoxAuthor.Location = new Point(6, 22);
+        textBoxAuthor.Name = "textBoxAuthor";
+        textBoxAuthor.Size = new Size(316, 23);
+        textBoxAuthor.TabIndex = 6;
+        textBoxAuthor.TextChanged += textBoxAuthor_TextChanged;
+        // 
+        // groupBoxDescription
+        // 
+        groupBoxDescription.Controls.Add(textBoxDescription);
+        groupBoxDescription.Location = new Point(6, 177);
+        groupBoxDescription.Name = "groupBoxDescription";
+        groupBoxDescription.Size = new Size(328, 51);
+        groupBoxDescription.TabIndex = 7;
+        groupBoxDescription.TabStop = false;
+        groupBoxDescription.Text = "Mod Description";
+        // 
+        // textBoxDescription
+        // 
+        textBoxDescription.Location = new Point(6, 22);
+        textBoxDescription.Name = "textBoxDescription";
+        textBoxDescription.Size = new Size(316, 23);
+        textBoxDescription.TabIndex = 8;
+        // 
+        // buttonCreateMod
+        // 
+        buttonCreateMod.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        buttonCreateMod.Enabled = false;
+        buttonCreateMod.Location = new Point(186, 495);
+        buttonCreateMod.Name = "buttonCreateMod";
+        buttonCreateMod.Size = new Size(161, 23);
+        buttonCreateMod.TabIndex = 72;
+        buttonCreateMod.Text = "Create Mod";
+        buttonCreateMod.UseVisualStyleBackColor = true;
+        buttonCreateMod.Click += buttonCreateMod_Click;
+        // 
+        // buttonCancel
+        // 
+        buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        buttonCancel.Location = new Point(19, 495);
+        buttonCancel.Name = "buttonCancel";
+        buttonCancel.Size = new Size(161, 23);
+        buttonCancel.TabIndex = 71;
+        buttonCancel.Text = "Cancel";
+        buttonCancel.UseVisualStyleBackColor = true;
+        buttonCancel.Click += buttonCancel_Click;
+        // 
+        // groupBoxModId
+        // 
+        groupBoxModId.Controls.Add(labelModIdInfo);
+        groupBoxModId.Controls.Add(textBoxModId);
+        groupBoxModId.Location = new Point(6, 348);
+        groupBoxModId.Name = "groupBoxModId";
+        groupBoxModId.Size = new Size(328, 102);
+        groupBoxModId.TabIndex = 13;
+        groupBoxModId.TabStop = false;
+        groupBoxModId.Text = "Mod ID";
+        // 
+        // labelModIdInfo
+        // 
+        labelModIdInfo.AutoSize = true;
+        labelModIdInfo.Location = new Point(6, 48);
+        labelModIdInfo.Name = "labelModIdInfo";
+        labelModIdInfo.Size = new Size(295, 45);
+        labelModIdInfo.TabIndex = 15;
+        labelModIdInfo.Text = "Feel free to enter your own custom ID for the mod, but\r\nmake sure that no other mod, by any other author or\r\nfor any other game, will have the same ID as yours!";
         // 
         // textBoxModId
         // 
-
         textBoxModId.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point);
-        this.textBoxModId.Location = new System.Drawing.Point(6, 22);
-        this.textBoxModId.Name = "textBoxModId";
-        this.textBoxModId.Size = new System.Drawing.Size(316, 23);
-        this.textBoxModId.TabIndex = 3;
-        this.textBoxModId.TextChanged += new System.EventHandler(this.textBoxModId_TextChanged);
+        textBoxModId.Location = new Point(6, 22);
+        textBoxModId.Name = "textBoxModId";
+        textBoxModId.Size = new Size(316, 22);
+        textBoxModId.TabIndex = 14;
+        textBoxModId.TextChanged += textBoxModId_TextChanged;
         // 
         // tabControl1
         // 
-        this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPageModData);
-            this.tabControl1.Controls.Add(this.tabPageSettings);
-            this.tabControl1.Location = new System.Drawing.Point(9, 9);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(350, 483);
-            this.tabControl1.TabIndex = 8;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
-            // 
-            // tabPageModData
-            // 
-            this.tabPageModData.Controls.Add(this.groupBoxUpdatedAt);
-            this.tabPageModData.Controls.Add(this.groupBoxCreatedAt);
-            this.tabPageModData.Controls.Add(this.groupBoxGame);
-            this.tabPageModData.Controls.Add(this.groupBoxModName);
-            this.tabPageModData.Controls.Add(this.groupBoxAuthor);
-            this.tabPageModData.Controls.Add(this.groupBoxModId);
-            this.tabPageModData.Controls.Add(this.groupBoxDescription);
-            this.tabPageModData.Location = new System.Drawing.Point(4, 24);
-            this.tabPageModData.Name = "tabPageModData";
-            this.tabPageModData.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageModData.Size = new System.Drawing.Size(342, 455);
-            this.tabPageModData.TabIndex = 0;
-            this.tabPageModData.Text = "Mod Data";
-            this.tabPageModData.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxUpdatedAt
-            // 
-            this.groupBoxUpdatedAt.Controls.Add(this.dateTimePickerUpdatedAt);
-            this.groupBoxUpdatedAt.Location = new System.Drawing.Point(6, 291);
-            this.groupBoxUpdatedAt.Name = "groupBoxUpdatedAt";
-            this.groupBoxUpdatedAt.Size = new System.Drawing.Size(328, 51);
-            this.groupBoxUpdatedAt.TabIndex = 7;
-            this.groupBoxUpdatedAt.TabStop = false;
-            this.groupBoxUpdatedAt.Text = "Updated At";
-            // 
-            // dateTimePickerUpdatedAt
-            // 
-            this.dateTimePickerUpdatedAt.Location = new System.Drawing.Point(6, 22);
-            this.dateTimePickerUpdatedAt.Name = "dateTimePickerUpdatedAt";
-            this.dateTimePickerUpdatedAt.Size = new System.Drawing.Size(316, 23);
-            this.dateTimePickerUpdatedAt.TabIndex = 7;
-            // 
-            // groupBoxCreatedAt
-            // 
-            this.groupBoxCreatedAt.Controls.Add(this.dateTimePickerCreatedAt);
-            this.groupBoxCreatedAt.Location = new System.Drawing.Point(6, 234);
-            this.groupBoxCreatedAt.Name = "groupBoxCreatedAt";
-            this.groupBoxCreatedAt.Size = new System.Drawing.Size(328, 51);
-            this.groupBoxCreatedAt.TabIndex = 6;
-            this.groupBoxCreatedAt.TabStop = false;
-            this.groupBoxCreatedAt.Text = "Created At";
-            // 
-            // dateTimePickerCreatedAt
-            // 
-            this.dateTimePickerCreatedAt.Location = new System.Drawing.Point(6, 22);
-            this.dateTimePickerCreatedAt.Name = "dateTimePickerCreatedAt";
-            this.dateTimePickerCreatedAt.Size = new System.Drawing.Size(316, 23);
-            this.dateTimePickerCreatedAt.TabIndex = 7;
-            // 
-            // tabPageSettings
-            // 
-            this.tabPageSettings.Controls.Add(this.flowLayoutPanel1);
-            this.tabPageSettings.Location = new System.Drawing.Point(4, 24);
-            this.tabPageSettings.Name = "tabPageSettings";
-            this.tabPageSettings.Size = new System.Drawing.Size(342, 455);
-            this.tabPageSettings.TabIndex = 3;
-            this.tabPageSettings.Text = "Settings";
-            this.tabPageSettings.UseVisualStyleBackColor = true;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.groupBoxGameId);
-            this.flowLayoutPanel1.Controls.Add(this.groupBoxIniValues);
-            this.flowLayoutPanel1.Controls.Add(this.groupBoxMergeHips);
-            this.flowLayoutPanel1.Controls.Add(this.groupBoxRemoveFiles);
-            this.flowLayoutPanel1.Controls.Add(this.groupBoxDolPatches);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(342, 455);
-            this.flowLayoutPanel1.TabIndex = 0;
-            this.flowLayoutPanel1.WrapContents = false;
-            // 
-            // groupBoxGameId
-            // 
-            this.groupBoxGameId.Controls.Add(this.buttonGameIdInfo);
-            this.groupBoxGameId.Controls.Add(this.labelDefaultGameId);
-            this.groupBoxGameId.Controls.Add(this.textBoxGameId);
-            this.groupBoxGameId.Location = new System.Drawing.Point(3, 3);
-            this.groupBoxGameId.Name = "groupBoxGameId";
-            this.groupBoxGameId.Size = new System.Drawing.Size(319, 69);
-            this.groupBoxGameId.TabIndex = 8;
-            this.groupBoxGameId.TabStop = false;
-            this.groupBoxGameId.Text = "Save File Game ID";
-            // 
-            // buttonGameIdInfo
-            // 
-            this.buttonGameIdInfo.Location = new System.Drawing.Point(268, 22);
-            this.buttonGameIdInfo.Name = "buttonGameIdInfo";
-            this.buttonGameIdInfo.Size = new System.Drawing.Size(45, 23);
-            this.buttonGameIdInfo.TabIndex = 8;
-            this.buttonGameIdInfo.Text = "Info";
-            this.buttonGameIdInfo.UseVisualStyleBackColor = true;
-            this.buttonGameIdInfo.Click += new System.EventHandler(this.buttonGameIdInfo_Click);
-            // 
-            // labelDefaultGameId
-            // 
-            this.labelDefaultGameId.AutoSize = true;
-            this.labelDefaultGameId.Location = new System.Drawing.Point(6, 48);
-            this.labelDefaultGameId.Name = "labelDefaultGameId";
-            this.labelDefaultGameId.Size = new System.Drawing.Size(95, 15);
-            this.labelDefaultGameId.TabIndex = 5;
-            this.labelDefaultGameId.Text = "Default game ID:";
-            // 
-            // textBoxGameId
-            // 
-            this.textBoxGameId.Location = new System.Drawing.Point(6, 22);
-            this.textBoxGameId.Name = "textBoxGameId";
-            this.textBoxGameId.Size = new System.Drawing.Size(256, 23);
-            this.textBoxGameId.TabIndex = 3;
-            // 
-            // groupBoxIniValues
-            // 
-            this.groupBoxIniValues.Controls.Add(this.buttonIniValuesInfo);
-            this.groupBoxIniValues.Controls.Add(this.richTextBoxINIValues);
-            this.groupBoxIniValues.Location = new System.Drawing.Point(3, 78);
-            this.groupBoxIniValues.Name = "groupBoxIniValues";
-            this.groupBoxIniValues.Size = new System.Drawing.Size(319, 172);
-            this.groupBoxIniValues.TabIndex = 9;
-            this.groupBoxIniValues.TabStop = false;
-            this.groupBoxIniValues.Text = "INI Values";
-            // 
-            // buttonIniValuesInfo
-            // 
-            this.buttonIniValuesInfo.Location = new System.Drawing.Point(268, -1);
-            this.buttonIniValuesInfo.Name = "buttonIniValuesInfo";
-            this.buttonIniValuesInfo.Size = new System.Drawing.Size(45, 23);
-            this.buttonIniValuesInfo.TabIndex = 13;
-            this.buttonIniValuesInfo.Text = "Info";
-            this.buttonIniValuesInfo.UseVisualStyleBackColor = true;
-            this.buttonIniValuesInfo.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // richTextBoxINIValues
-            // 
-            this.richTextBoxINIValues.Location = new System.Drawing.Point(6, 22);
-            this.richTextBoxINIValues.Name = "richTextBoxINIValues";
-            this.richTextBoxINIValues.Size = new System.Drawing.Size(307, 144);
-            this.richTextBoxINIValues.TabIndex = 12;
-            this.richTextBoxINIValues.Text = "";
-            // 
-            // groupBoxMergeHips
-            // 
-            this.groupBoxMergeHips.Controls.Add(this.buttonMergeHipsInfo);
-            this.groupBoxMergeHips.Controls.Add(this.richTextBoxMergeHips);
-            this.groupBoxMergeHips.Location = new System.Drawing.Point(3, 256);
-            this.groupBoxMergeHips.Name = "groupBoxMergeHips";
-            this.groupBoxMergeHips.Size = new System.Drawing.Size(319, 172);
-            this.groupBoxMergeHips.TabIndex = 10;
-            this.groupBoxMergeHips.TabStop = false;
-            this.groupBoxMergeHips.Text = "Merge HIP Files";
-            // 
-            // buttonMergeHipsInfo
-            // 
-            this.buttonMergeHipsInfo.Location = new System.Drawing.Point(268, -1);
-            this.buttonMergeHipsInfo.Name = "buttonMergeHipsInfo";
-            this.buttonMergeHipsInfo.Size = new System.Drawing.Size(45, 23);
-            this.buttonMergeHipsInfo.TabIndex = 10;
-            this.buttonMergeHipsInfo.Text = "Info";
-            this.buttonMergeHipsInfo.UseVisualStyleBackColor = true;
-            this.buttonMergeHipsInfo.Click += new System.EventHandler(this.buttonMergeHipsInfo_Click);
-            // 
-            // richTextBoxMergeHips
-            // 
-            this.richTextBoxMergeHips.Location = new System.Drawing.Point(6, 22);
-            this.richTextBoxMergeHips.Name = "richTextBoxMergeHips";
-            this.richTextBoxMergeHips.Size = new System.Drawing.Size(307, 144);
-            this.richTextBoxMergeHips.TabIndex = 7;
-            this.richTextBoxMergeHips.Text = "";
-            // 
-            // groupBoxRemoveFiles
-            // 
-            this.groupBoxRemoveFiles.Controls.Add(this.buttonRemoveFilesInfo);
-            this.groupBoxRemoveFiles.Controls.Add(this.richTextBoxRemoveFiles);
-            this.groupBoxRemoveFiles.Location = new System.Drawing.Point(3, 434);
-            this.groupBoxRemoveFiles.Name = "groupBoxRemoveFiles";
-            this.groupBoxRemoveFiles.Size = new System.Drawing.Size(319, 172);
-            this.groupBoxRemoveFiles.TabIndex = 12;
-            this.groupBoxRemoveFiles.TabStop = false;
-            this.groupBoxRemoveFiles.Text = "Remove Files";
-            // 
-            // buttonRemoveFilesInfo
-            // 
-            this.buttonRemoveFilesInfo.Location = new System.Drawing.Point(268, -1);
-            this.buttonRemoveFilesInfo.Name = "buttonRemoveFilesInfo";
-            this.buttonRemoveFilesInfo.Size = new System.Drawing.Size(45, 23);
-            this.buttonRemoveFilesInfo.TabIndex = 10;
-            this.buttonRemoveFilesInfo.Text = "Info";
-            this.buttonRemoveFilesInfo.UseVisualStyleBackColor = true;
-            this.buttonRemoveFilesInfo.Click += new System.EventHandler(this.buttonRemoveFilesInfo_Click);
-            // 
-            // richTextBoxRemoveFiles
-            // 
-            this.richTextBoxRemoveFiles.Location = new System.Drawing.Point(6, 22);
-            this.richTextBoxRemoveFiles.Name = "richTextBoxRemoveFiles";
-            this.richTextBoxRemoveFiles.Size = new System.Drawing.Size(307, 144);
-            this.richTextBoxRemoveFiles.TabIndex = 10;
-            this.richTextBoxRemoveFiles.Text = "";
-            // 
-            // groupBoxDolPatches
-            // 
-            this.groupBoxDolPatches.Controls.Add(this.buttonDolPatchesInfo);
-            this.groupBoxDolPatches.Controls.Add(this.richTextBoxDolPatches);
-            this.groupBoxDolPatches.Location = new System.Drawing.Point(3, 612);
-            this.groupBoxDolPatches.Name = "groupBoxDolPatches";
-            this.groupBoxDolPatches.Size = new System.Drawing.Size(319, 172);
-            this.groupBoxDolPatches.TabIndex = 14;
-            this.groupBoxDolPatches.TabStop = false;
-            this.groupBoxDolPatches.Text = "DOL Patches";
-            // 
-            // buttonDolPatchesInfo
-            // 
-            this.buttonDolPatchesInfo.Location = new System.Drawing.Point(268, -1);
-            this.buttonDolPatchesInfo.Name = "buttonDolPatchesInfo";
-            this.buttonDolPatchesInfo.Size = new System.Drawing.Size(45, 23);
-            this.buttonDolPatchesInfo.TabIndex = 13;
-            this.buttonDolPatchesInfo.Text = "Info";
-            this.buttonDolPatchesInfo.UseVisualStyleBackColor = true;
-            this.buttonDolPatchesInfo.Click += new System.EventHandler(this.buttonDolPatchesInfo_Click);
-            // 
-            // richTextBoxDolPatches
-            // 
-            this.richTextBoxDolPatches.Location = new System.Drawing.Point(6, 22);
-            this.richTextBoxDolPatches.Name = "richTextBoxDolPatches";
-            this.richTextBoxDolPatches.Size = new System.Drawing.Size(307, 144);
-            this.richTextBoxDolPatches.TabIndex = 12;
-            this.richTextBoxDolPatches.Text = "";
-            this.richTextBoxDolPatches.TextChanged += new System.EventHandler(this.richTextBoxDolPatches_TextChanged);
-            // 
-            // CreateMod
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(368, 527);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonCreateMod);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "CreateMod";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Create New Mod";
-            this.groupBoxGame.ResumeLayout(false);
-            this.groupBoxModName.ResumeLayout(false);
-            this.groupBoxModName.PerformLayout();
-            this.groupBoxAuthor.ResumeLayout(false);
-            this.groupBoxAuthor.PerformLayout();
-            this.groupBoxDescription.ResumeLayout(false);
-            this.groupBoxDescription.PerformLayout();
-            this.groupBoxModId.ResumeLayout(false);
-            this.groupBoxModId.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPageModData.ResumeLayout(false);
-            this.groupBoxUpdatedAt.ResumeLayout(false);
-            this.groupBoxCreatedAt.ResumeLayout(false);
-            this.tabPageSettings.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.groupBoxGameId.ResumeLayout(false);
-            this.groupBoxGameId.PerformLayout();
-            this.groupBoxIniValues.ResumeLayout(false);
-            this.groupBoxMergeHips.ResumeLayout(false);
-            this.groupBoxRemoveFiles.ResumeLayout(false);
-            this.groupBoxDolPatches.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+        tabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        tabControl1.Controls.Add(tabPageModData);
+        tabControl1.Controls.Add(tabPageSettings);
+        tabControl1.Location = new Point(9, 9);
+        tabControl1.Margin = new Padding(0);
+        tabControl1.Name = "tabControl1";
+        tabControl1.SelectedIndex = 0;
+        tabControl1.Size = new Size(350, 483);
+        tabControl1.TabIndex = 0;
+        tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+        // 
+        // tabPageModData
+        // 
+        tabPageModData.Controls.Add(groupBoxUpdatedAt);
+        tabPageModData.Controls.Add(groupBoxCreatedAt);
+        tabPageModData.Controls.Add(groupBoxGame);
+        tabPageModData.Controls.Add(groupBoxModName);
+        tabPageModData.Controls.Add(groupBoxAuthor);
+        tabPageModData.Controls.Add(groupBoxModId);
+        tabPageModData.Controls.Add(groupBoxDescription);
+        tabPageModData.Location = new Point(4, 24);
+        tabPageModData.Name = "tabPageModData";
+        tabPageModData.Padding = new Padding(3);
+        tabPageModData.Size = new Size(342, 455);
+        tabPageModData.TabIndex = 0;
+        tabPageModData.Text = "Mod Data";
+        tabPageModData.UseVisualStyleBackColor = true;
+        // 
+        // groupBoxUpdatedAt
+        // 
+        groupBoxUpdatedAt.Controls.Add(dateTimePickerUpdatedAt);
+        groupBoxUpdatedAt.Location = new Point(6, 291);
+        groupBoxUpdatedAt.Name = "groupBoxUpdatedAt";
+        groupBoxUpdatedAt.Size = new Size(328, 51);
+        groupBoxUpdatedAt.TabIndex = 11;
+        groupBoxUpdatedAt.TabStop = false;
+        groupBoxUpdatedAt.Text = "Updated At";
+        // 
+        // dateTimePickerUpdatedAt
+        // 
+        dateTimePickerUpdatedAt.Location = new Point(6, 22);
+        dateTimePickerUpdatedAt.Name = "dateTimePickerUpdatedAt";
+        dateTimePickerUpdatedAt.Size = new Size(316, 23);
+        dateTimePickerUpdatedAt.TabIndex = 12;
+        // 
+        // groupBoxCreatedAt
+        // 
+        groupBoxCreatedAt.Controls.Add(dateTimePickerCreatedAt);
+        groupBoxCreatedAt.Location = new Point(6, 234);
+        groupBoxCreatedAt.Name = "groupBoxCreatedAt";
+        groupBoxCreatedAt.Size = new Size(328, 51);
+        groupBoxCreatedAt.TabIndex = 9;
+        groupBoxCreatedAt.TabStop = false;
+        groupBoxCreatedAt.Text = "Created At";
+        // 
+        // dateTimePickerCreatedAt
+        // 
+        dateTimePickerCreatedAt.Location = new Point(6, 22);
+        dateTimePickerCreatedAt.Name = "dateTimePickerCreatedAt";
+        dateTimePickerCreatedAt.Size = new Size(316, 23);
+        dateTimePickerCreatedAt.TabIndex = 10;
+        // 
+        // tabPageSettings
+        // 
+        tabPageSettings.Controls.Add(flowLayoutPanel1);
+        tabPageSettings.Location = new Point(4, 24);
+        tabPageSettings.Name = "tabPageSettings";
+        tabPageSettings.Size = new Size(342, 455);
+        tabPageSettings.TabIndex = 3;
+        tabPageSettings.Text = "Settings";
+        tabPageSettings.UseVisualStyleBackColor = true;
+        // 
+        // flowLayoutPanel1
+        // 
+        flowLayoutPanel1.AutoScroll = true;
+        flowLayoutPanel1.Controls.Add(groupBoxGameId);
+        flowLayoutPanel1.Controls.Add(groupBoxIniValues);
+        flowLayoutPanel1.Controls.Add(groupBoxMergeHips);
+        flowLayoutPanel1.Controls.Add(groupBoxRemoveFiles);
+        flowLayoutPanel1.Controls.Add(groupBoxDolPatches);
+        flowLayoutPanel1.Dock = DockStyle.Fill;
+        flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+        flowLayoutPanel1.Location = new Point(0, 0);
+        flowLayoutPanel1.Name = "flowLayoutPanel1";
+        flowLayoutPanel1.Size = new Size(342, 455);
+        flowLayoutPanel1.TabIndex = 0;
+        flowLayoutPanel1.WrapContents = false;
+        // 
+        // groupBoxGameId
+        // 
+        groupBoxGameId.Controls.Add(buttonGameIdInfo);
+        groupBoxGameId.Controls.Add(labelDefaultGameId);
+        groupBoxGameId.Controls.Add(textBoxGameId);
+        groupBoxGameId.Location = new Point(3, 3);
+        groupBoxGameId.Name = "groupBoxGameId";
+        groupBoxGameId.Size = new Size(319, 69);
+        groupBoxGameId.TabIndex = 16;
+        groupBoxGameId.TabStop = false;
+        groupBoxGameId.Text = "Save File Game ID";
+        // 
+        // buttonGameIdInfo
+        // 
+        buttonGameIdInfo.Location = new Point(268, 22);
+        buttonGameIdInfo.Name = "buttonGameIdInfo";
+        buttonGameIdInfo.Size = new Size(45, 23);
+        buttonGameIdInfo.TabIndex = 18;
+        buttonGameIdInfo.Text = "Info";
+        buttonGameIdInfo.UseVisualStyleBackColor = true;
+        buttonGameIdInfo.Click += buttonGameIdInfo_Click;
+        // 
+        // labelDefaultGameId
+        // 
+        labelDefaultGameId.AutoSize = true;
+        labelDefaultGameId.Location = new Point(6, 48);
+        labelDefaultGameId.Name = "labelDefaultGameId";
+        labelDefaultGameId.Size = new Size(95, 15);
+        labelDefaultGameId.TabIndex = 19;
+        labelDefaultGameId.Text = "Default game ID:";
+        // 
+        // textBoxGameId
+        // 
+        textBoxGameId.Location = new Point(6, 22);
+        textBoxGameId.Name = "textBoxGameId";
+        textBoxGameId.Size = new Size(256, 23);
+        textBoxGameId.TabIndex = 17;
+        // 
+        // groupBoxIniValues
+        // 
+        groupBoxIniValues.Controls.Add(buttonIniValuesInfo);
+        groupBoxIniValues.Controls.Add(richTextBoxINIValues);
+        groupBoxIniValues.Location = new Point(3, 78);
+        groupBoxIniValues.Name = "groupBoxIniValues";
+        groupBoxIniValues.Size = new Size(319, 172);
+        groupBoxIniValues.TabIndex = 20;
+        groupBoxIniValues.TabStop = false;
+        groupBoxIniValues.Text = "INI Values";
+        // 
+        // buttonIniValuesInfo
+        // 
+        buttonIniValuesInfo.Location = new Point(268, -1);
+        buttonIniValuesInfo.Name = "buttonIniValuesInfo";
+        buttonIniValuesInfo.Size = new Size(45, 23);
+        buttonIniValuesInfo.TabIndex = 21;
+        buttonIniValuesInfo.Text = "Info";
+        buttonIniValuesInfo.UseVisualStyleBackColor = true;
+        buttonIniValuesInfo.Click += button1_Click;
+        // 
+        // richTextBoxINIValues
+        // 
+        richTextBoxINIValues.Location = new Point(6, 22);
+        richTextBoxINIValues.Name = "richTextBoxINIValues";
+        richTextBoxINIValues.Size = new Size(307, 144);
+        richTextBoxINIValues.TabIndex = 22;
+        richTextBoxINIValues.Text = "";
+        // 
+        // groupBoxMergeHips
+        // 
+        groupBoxMergeHips.Controls.Add(buttonMergeHipsInfo);
+        groupBoxMergeHips.Controls.Add(richTextBoxMergeHips);
+        groupBoxMergeHips.Location = new Point(3, 256);
+        groupBoxMergeHips.Name = "groupBoxMergeHips";
+        groupBoxMergeHips.Size = new Size(319, 172);
+        groupBoxMergeHips.TabIndex = 23;
+        groupBoxMergeHips.TabStop = false;
+        groupBoxMergeHips.Text = "Merge HIP Files";
+        // 
+        // buttonMergeHipsInfo
+        // 
+        buttonMergeHipsInfo.Location = new Point(268, -1);
+        buttonMergeHipsInfo.Name = "buttonMergeHipsInfo";
+        buttonMergeHipsInfo.Size = new Size(45, 23);
+        buttonMergeHipsInfo.TabIndex = 24;
+        buttonMergeHipsInfo.Text = "Info";
+        buttonMergeHipsInfo.UseVisualStyleBackColor = true;
+        buttonMergeHipsInfo.Click += buttonMergeHipsInfo_Click;
+        // 
+        // richTextBoxMergeHips
+        // 
+        richTextBoxMergeHips.Location = new Point(6, 22);
+        richTextBoxMergeHips.Name = "richTextBoxMergeHips";
+        richTextBoxMergeHips.Size = new Size(307, 144);
+        richTextBoxMergeHips.TabIndex = 25;
+        richTextBoxMergeHips.Text = "";
+        // 
+        // groupBoxRemoveFiles
+        // 
+        groupBoxRemoveFiles.Controls.Add(buttonRemoveFilesInfo);
+        groupBoxRemoveFiles.Controls.Add(richTextBoxRemoveFiles);
+        groupBoxRemoveFiles.Location = new Point(3, 434);
+        groupBoxRemoveFiles.Name = "groupBoxRemoveFiles";
+        groupBoxRemoveFiles.Size = new Size(319, 172);
+        groupBoxRemoveFiles.TabIndex = 26;
+        groupBoxRemoveFiles.TabStop = false;
+        groupBoxRemoveFiles.Text = "Remove Files";
+        // 
+        // buttonRemoveFilesInfo
+        // 
+        buttonRemoveFilesInfo.Location = new Point(268, -1);
+        buttonRemoveFilesInfo.Name = "buttonRemoveFilesInfo";
+        buttonRemoveFilesInfo.Size = new Size(45, 23);
+        buttonRemoveFilesInfo.TabIndex = 27;
+        buttonRemoveFilesInfo.Text = "Info";
+        buttonRemoveFilesInfo.UseVisualStyleBackColor = true;
+        buttonRemoveFilesInfo.Click += buttonRemoveFilesInfo_Click;
+        // 
+        // richTextBoxRemoveFiles
+        // 
+        richTextBoxRemoveFiles.Location = new Point(6, 22);
+        richTextBoxRemoveFiles.Name = "richTextBoxRemoveFiles";
+        richTextBoxRemoveFiles.Size = new Size(307, 144);
+        richTextBoxRemoveFiles.TabIndex = 28;
+        richTextBoxRemoveFiles.Text = "";
+        // 
+        // groupBoxDolPatches
+        // 
+        groupBoxDolPatches.Controls.Add(buttonDolPatchesInfo);
+        groupBoxDolPatches.Controls.Add(richTextBoxDolPatches);
+        groupBoxDolPatches.Location = new Point(3, 612);
+        groupBoxDolPatches.Name = "groupBoxDolPatches";
+        groupBoxDolPatches.Size = new Size(319, 172);
+        groupBoxDolPatches.TabIndex = 29;
+        groupBoxDolPatches.TabStop = false;
+        groupBoxDolPatches.Text = "DOL Patches";
+        // 
+        // buttonDolPatchesInfo
+        // 
+        buttonDolPatchesInfo.Location = new Point(268, -1);
+        buttonDolPatchesInfo.Name = "buttonDolPatchesInfo";
+        buttonDolPatchesInfo.Size = new Size(45, 23);
+        buttonDolPatchesInfo.TabIndex = 30;
+        buttonDolPatchesInfo.Text = "Info";
+        buttonDolPatchesInfo.UseVisualStyleBackColor = true;
+        buttonDolPatchesInfo.Click += buttonDolPatchesInfo_Click;
+        // 
+        // richTextBoxDolPatches
+        // 
+        richTextBoxDolPatches.Location = new Point(6, 22);
+        richTextBoxDolPatches.Name = "richTextBoxDolPatches";
+        richTextBoxDolPatches.Size = new Size(307, 144);
+        richTextBoxDolPatches.TabIndex = 31;
+        richTextBoxDolPatches.Text = "";
+        richTextBoxDolPatches.TextChanged += richTextBoxDolPatches_TextChanged;
+        // 
+        // CreateMod
+        // 
+        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(368, 527);
+        Controls.Add(tabControl1);
+        Controls.Add(buttonCancel);
+        Controls.Add(buttonCreateMod);
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        MaximizeBox = false;
+        Name = "CreateMod";
+        ShowIcon = false;
+        StartPosition = FormStartPosition.CenterParent;
+        Text = "Create New Mod";
+        groupBoxGame.ResumeLayout(false);
+        groupBoxModName.ResumeLayout(false);
+        groupBoxModName.PerformLayout();
+        groupBoxAuthor.ResumeLayout(false);
+        groupBoxAuthor.PerformLayout();
+        groupBoxDescription.ResumeLayout(false);
+        groupBoxDescription.PerformLayout();
+        groupBoxModId.ResumeLayout(false);
+        groupBoxModId.PerformLayout();
+        tabControl1.ResumeLayout(false);
+        tabPageModData.ResumeLayout(false);
+        groupBoxUpdatedAt.ResumeLayout(false);
+        groupBoxCreatedAt.ResumeLayout(false);
+        tabPageSettings.ResumeLayout(false);
+        flowLayoutPanel1.ResumeLayout(false);
+        groupBoxGameId.ResumeLayout(false);
+        groupBoxGameId.PerformLayout();
+        groupBoxIniValues.ResumeLayout(false);
+        groupBoxMergeHips.ResumeLayout(false);
+        groupBoxRemoveFiles.ResumeLayout(false);
+        groupBoxDolPatches.ResumeLayout(false);
+        ResumeLayout(false);
     }
 
     #endregion
