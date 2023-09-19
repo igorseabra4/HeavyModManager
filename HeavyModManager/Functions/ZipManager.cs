@@ -5,9 +5,12 @@ using System.Text.Json;
 
 namespace HeavyModManager.Functions;
 
+/// <summary>
+/// Class for managing ZIP files containing mods.
+/// </summary>
 public static class ZipManager
 {
-    public static string TempUnzipPath => Path.Combine(Application.StartupPath, "temp", "unzip");
+    private static string TempUnzipPath => Path.Combine(Application.StartupPath, "temp", "unzip");
 
     public static void InstallMod(string fileName)
     {
@@ -20,7 +23,8 @@ public static class ZipManager
 
         if (zMod == null)
         {
-            MessageBox.Show("Error: could not find mod.json on zip root. Are you sure this is a compatible mod?");
+            MessageBox.Show("Could not find mod.json on zip root. Are you sure this is a compatible mod?",
+                "Error installing mod", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
@@ -55,7 +59,8 @@ public static class ZipManager
 
         if (!Directory.Exists(modPath))
         {
-            MessageBox.Show("Unable to zip mod: mod not found.");
+            MessageBox.Show("Unable to zip mod: mod not found.", "Error zipping mod",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 

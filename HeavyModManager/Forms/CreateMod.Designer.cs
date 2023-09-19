@@ -1,4 +1,4 @@
-﻿namespace HeavyModManager.Forms;
+﻿﻿namespace HeavyModManager.Forms;
 
 partial class CreateMod
 {
@@ -196,23 +196,25 @@ partial class CreateMod
             // 
             this.labelModIdInfo.AutoSize = true;
             this.labelModIdInfo.Location = new System.Drawing.Point(6, 48);
-            this.labelModIdInfo.Name = "labelModIdInfo";
-            this.labelModIdInfo.Size = new System.Drawing.Size(295, 45);
-            this.labelModIdInfo.TabIndex = 4;
-            this.labelModIdInfo.Text = "Feel free to enter your own custom ID for the mod, but\r\nmake sure that no other m" +
-    "od, by any other author or\r\nfor any other game, will have the same ID as yours!";
-            // 
-            // textBoxModId
-            // 
-            this.textBoxModId.Location = new System.Drawing.Point(6, 22);
-            this.textBoxModId.Name = "textBoxModId";
-            this.textBoxModId.Size = new System.Drawing.Size(316, 23);
-            this.textBoxModId.TabIndex = 3;
-            this.textBoxModId.TextChanged += new System.EventHandler(this.textBoxModId_TextChanged);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+        this.labelModIdInfo.Name = "labelModIdInfo";
+        this.labelModIdInfo.Size = new System.Drawing.Size(295, 45);
+        this.labelModIdInfo.TabIndex = 4;
+        this.labelModIdInfo.Text = "Feel free to enter your own custom ID for the mod, but\r\nmake sure that no other m" +
+"od, by any other author or\r\nfor any other game, will have the same ID as yours!";
+        // 
+        // textBoxModId
+        // 
+
+        textBoxModId.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        this.textBoxModId.Location = new System.Drawing.Point(6, 22);
+        this.textBoxModId.Name = "textBoxModId";
+        this.textBoxModId.Size = new System.Drawing.Size(316, 23);
+        this.textBoxModId.TabIndex = 3;
+        this.textBoxModId.TextChanged += new System.EventHandler(this.textBoxModId_TextChanged);
+        // 
+        // tabControl1
+        // 
+        this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPageModData);

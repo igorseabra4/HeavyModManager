@@ -3,16 +3,29 @@ using HeavyModManager.Functions;
 
 namespace HeavyModManager.Classes;
 
+/// <summary>
+/// Represents a Heavy Iron game as it appears in a combo box.
+/// </summary>
 public class ComboBoxGameItem
-{
-    private Game game;
+{  
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ComboBoxGameItem"/> class.
+    /// </summary>
+    /// <param name="game">The game</param>
     public ComboBoxGameItem(Game game)
     {
-        this.game = game;
+        Game = game;
     }
 
-    public Game Game => game;
+    /// <summary>
+    /// The Heavy Iron game.
+    /// </summary>
+    public Game Game { get; set; }
 
-    public override string ToString() => ModManager.GameToStringFull(game);
+    /// <summary>
+    /// Returns the long name of the game.
+    /// </summary>
+    /// <returns></returns>
+    public override string ToString() => ModManager.GameToStringFull(Game);
 }

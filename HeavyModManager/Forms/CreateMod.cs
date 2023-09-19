@@ -121,8 +121,8 @@ public partial class CreateMod : Form
     private void SetCreateModEnabled()
     {
         buttonCreateMod.Enabled = (isEditing || comboBoxGame.SelectedIndex > -1) &&
-            textBoxAuthor.Text.Length > 0 &&
-            textBoxModName.Text.Length > 0 &&
+            TreatString(textBoxAuthor.Text).Length > 0 &&
+            TreatString(textBoxModName.Text).Length > 0 &&
             textBoxModId.Text.Length > 0 &&
             (textBoxGameId.Text.Length == 0 || textBoxGameId.Text.Length == 6) &&
             DolPatchesValid();
@@ -130,7 +130,10 @@ public partial class CreateMod : Form
 
     private void ResetModId()
     {
-        string modId = $"{ModManager.GameToString(((ComboBoxGameItem)comboBoxGame.SelectedItem).Game)}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}";
+        var selectedGameItem = (ComboBoxGameItem)comboBoxGame.SelectedItem;
+        var gameName = selectedGameItem == null ? "gamename" : ModManager.GameToString(selectedGameItem.Game);
+        string modId = $"{gameName}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}";
+
         textBoxModId.Text = modId;
     }
 
@@ -169,7 +172,7 @@ public partial class CreateMod : Form
     }
 
     private static readonly string validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
-    public static string TreatString(string text)
+    private static string TreatString(string text)
     {
         var result = "";
         foreach (var c in text)
