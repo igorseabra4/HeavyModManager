@@ -159,6 +159,7 @@ public static class ModManager
     public static string GameGameINIPath => Path.Combine(GameGameFilesPath, GameIniFileName(CurrentGame));
 
     public static bool CheckForUpdatesOnStartup { get; set; } = true;
+    public static bool DeveloperMode { get; set; } = false;
     public static string DolphinPath { get; private set; }
     public static Game CurrentGame { get; private set; } = Game.Null;
     public static GameSettings? CurrentGameSettings { get; private set; } = null;
@@ -170,6 +171,7 @@ public static class ModManager
             CurrentGame = CurrentGame,
             DolphinPath = DolphinPath,
             CheckForUpdatesOnStartup = CheckForUpdatesOnStartup,
+            DeveloperMode = DeveloperMode
         }));
     }
 
@@ -183,6 +185,8 @@ public static class ModManager
             CurrentGame = settings.CurrentGame;
             DolphinPath = settings.DolphinPath;
             CheckForUpdatesOnStartup = settings.CheckForUpdatesOnStartup;
+            if (settings.Version >= 2)
+                DeveloperMode = settings.DeveloperMode;
         }
     }
 
@@ -376,12 +380,12 @@ public static class ModManager
         SaveGameSettings();
     }
 
-    public static void ApplyMods(bool devMode)
+    public static void ApplyMods()
     {
-        if (!devMode && !CurrentGameSettings.Invalidated)
+        if (!DeveloperMode && !CurrentGameSettings.Invalidated)
             return;
 
-        if (devMode)
+        if (DeveloperMode)
             CloseDolphin();
 
         if (!GameBackupExists)
@@ -393,7 +397,7 @@ public static class ModManager
 
         var fs = new Microsoft.VisualBasic.Devices.Computer().FileSystem;
 
-        if (devMode)
+        if (DeveloperMode)
         {
             if (!Directory.Exists(GameGamePath))
             {

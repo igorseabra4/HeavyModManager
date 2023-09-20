@@ -13,12 +13,12 @@ public class ModManagerSettings
     /// </summary>
     [JsonInclude]
     public int Version { get; set; }
-    
+
     /// <summary>
     /// The currently selected game.
     /// </summary>
     [JsonInclude]
-    public Game CurrentGame { get; set;  }
+    public Game CurrentGame { get; set; }
 
     /// <summary>
     /// The path to the Dolphin executable.
@@ -33,14 +33,21 @@ public class ModManagerSettings
     public bool CheckForUpdatesOnStartup { get; set; }
 
     /// <summary>
+    /// Whether the application is on Developer Mode.
+    /// </summary>
+    [JsonInclude]
+    public bool DeveloperMode { get; set; }
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="ModManagerSettings"/> class.
     /// </summary>
     [JsonConstructor]
     public ModManagerSettings()
     {
-        Version = 1;
+        Version = 2;
         CurrentGame = Game.Null;
         DolphinPath = "";
         CheckForUpdatesOnStartup = true;
+        DeveloperMode = false;
     }
 }

@@ -20,6 +20,7 @@ public partial class MainForm : Form
 
         ModManager.LoadSettings();
 
+        developerModeToolStripMenuItem.Checked = ModManager.DeveloperMode;
         checkForUpdatesOnStartupToolStripMenuItem.Checked = ModManager.CheckForUpdatesOnStartup;
 
         if (ModManager.CheckForUpdatesOnStartup)
@@ -316,7 +317,7 @@ public partial class MainForm : Form
     private void buttonApplyMods_Click(object sender, EventArgs e)
     {
         Enabled = false;
-        ModManager.ApplyMods(developerModeToolStripMenuItem.Checked);
+        ModManager.ApplyMods();
         Enabled = true;
         buttonRunGame.Enabled = comboBoxGame.SelectedIndex != -1 && ModManager.GameExists;
     }
@@ -324,7 +325,7 @@ public partial class MainForm : Form
     private void buttonRunGame_Click(object sender, EventArgs e)
     {
         Enabled = false;
-        ModManager.ApplyMods(developerModeToolStripMenuItem.Checked);
+        ModManager.ApplyMods();
         Enabled = true;
         ModManager.RunGame();
     }
@@ -350,7 +351,8 @@ public partial class MainForm : Form
 
     private void developerModeToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        developerModeToolStripMenuItem.Checked = !developerModeToolStripMenuItem.Checked;
+        ModManager.DeveloperMode = !ModManager.DeveloperMode;
+        developerModeToolStripMenuItem.Checked = ModManager.DeveloperMode;
         ModManager.Invalidate();
         UpdateDolphinLabel();
     }
@@ -377,7 +379,7 @@ public partial class MainForm : Form
 
         labelDolphin.Text = "Dolphin path: " + ModManager.DolphinPath;
 
-        if (developerModeToolStripMenuItem.Checked)
+        if (ModManager.DeveloperMode)
         {
             labelDolphin.Text += "\nDeveloper Mode";
         }
