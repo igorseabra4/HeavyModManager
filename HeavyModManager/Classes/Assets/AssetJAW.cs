@@ -28,13 +28,13 @@ public class EntryJAW
 
 public class AssetJAW
 {
-    public List<EntryJAW> JAW_Entries { get; set; }
+    public List<EntryJAW> Entries { get; set; }
 
     public AssetJAW(Section_AHDR AHDR, Endianness endianness)
     {
         using var reader = new EndianBinaryReader(new MemoryStream(AHDR.data), endianness);
         var count = reader.ReadInt32();
-        JAW_Entries = new List<EntryJAW>();
+        Entries = new List<EntryJAW>();
 
         int startOfJawData = 4 + 12 * count;
 
@@ -47,7 +47,7 @@ public class AssetJAW
             int length = BitConverter.ToInt32(AHDR.data, startOfJawData + offset);
             byte[] jawData = AHDR.data.Skip(startOfJawData + offset + 4).Take(length).ToArray();
 
-            JAW_Entries.Add(new EntryJAW(soundAssetID, jawData));
+            Entries.Add(new EntryJAW(soundAssetID, jawData));
         }
     }
 
@@ -57,9 +57,9 @@ public class AssetJAW
 
         List<byte> newJawData = new List<byte>();
 
-        writer.Write(JAW_Entries.Count);
+        writer.Write(Entries.Count);
 
-        foreach (var i in JAW_Entries)
+        foreach (var i in Entries)
         {
             writer.Write(i.Sound);
             writer.Write(newJawData.Count);
@@ -79,10 +79,10 @@ public class AssetJAW
 
     public void Merge(AssetJAW asset)
     {
-        foreach (var entry in asset.JAW_Entries)
+        foreach (var entry in asset.Entries)
         {
-            JAW_Entries.Remove(entry);
-            JAW_Entries.Add(entry);
+            Entries.RemoveAll(e => e.Sound == entry.Sound);
+            Entries.Add(entry);
         }
     }
 }

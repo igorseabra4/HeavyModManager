@@ -85,7 +85,7 @@ public class AssetLODT
     {
         foreach (var entry in asset.Entries)
         {
-            Entries.Remove(entry);
+            Entries.RemoveAll(e => e.BaseModel == entry.BaseModel);
             Entries.Add(entry);
         }
     }

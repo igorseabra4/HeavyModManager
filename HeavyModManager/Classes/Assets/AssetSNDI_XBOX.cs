@@ -111,19 +111,19 @@ public class AssetSNDI_XBOX
     {
         foreach (var entry in asset.Entries_SND)
         {
-            Entries_SND.Remove(entry);
+            Entries_SND.RemoveAll(e => e.soundAssetId == entry.soundAssetId);
             Entries_SND.Add(entry);
         }
 
         foreach (var entry in asset.Entries_SNDS)
         {
-            Entries_SNDS.Remove(entry);
+            Entries_SNDS.RemoveAll(e => e.soundAssetId == entry.soundAssetId);
             Entries_SNDS.Add(entry);
         }
 
         foreach (var entry in asset.Entries_Sound_CIN)
         {
-            Entries_Sound_CIN.Remove(entry);
+            Entries_Sound_CIN.RemoveAll(e => e.soundAssetId == entry.soundAssetId);
             Entries_Sound_CIN.Add(entry);
         }
     }

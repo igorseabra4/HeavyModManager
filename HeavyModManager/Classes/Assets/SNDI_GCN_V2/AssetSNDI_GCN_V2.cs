@@ -145,7 +145,17 @@ public class AssetSNDI_GCN_V2
         newEntries.Add(first);
 
         for (int i = 1; i < Entries.Count; i++)
-            newEntries.Add(Entries[i]);
+        {
+            bool found = false;
+            foreach (var entry in assetSNDI.Entries)
+                foreach (var entry2 in entry.SoundEntries)
+                    if (Entries[i].SoundEntries.Any(entry3 => entry3._assetID == entry2._assetID))
+                        found = true;
+
+            if (!found)
+                newEntries.Add(Entries[i]);
+        }
+
         for (int i = 1; i < assetSNDI.Entries.Count; i++)
             newEntries.Add(assetSNDI.Entries[i]);
 

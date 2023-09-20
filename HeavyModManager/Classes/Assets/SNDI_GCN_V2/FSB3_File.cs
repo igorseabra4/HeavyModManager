@@ -88,12 +88,10 @@ public class FSB3_File
 
     public void Merge(List<GcWavInfo> soundEntries)
     {
-        List<uint> existingSounds = new List<uint>(SoundEntries.Count);
-        foreach (GcWavInfo s in SoundEntries)
-            existingSounds.Add(s.Sound);
-
-        foreach (GcWavInfo s in soundEntries)
-            if (!existingSounds.Contains(s.Sound))
-                SoundEntries.Add(s);
+        foreach (var entry in soundEntries)
+        {
+            SoundEntries.RemoveAll(e => e._assetID == entry._assetID);
+            SoundEntries.Add(entry);
+        }
     }
 }

@@ -61,7 +61,7 @@ public class AssetSHDW
     {
         foreach (var entry in asset.Entries)
         {
-            Entries.Remove(entry);
+            Entries.RemoveAll(e => e.Model == entry.Model);
             Entries.Add(entry);
         }
     }

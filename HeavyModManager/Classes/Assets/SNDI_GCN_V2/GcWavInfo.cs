@@ -8,7 +8,6 @@ public class GcWavInfo
     public byte[] Data { get; set; }
 
     public uint _assetID;
-    public uint Sound { get => _assetID; set => _assetID = value; }
     public byte uFlags;
     public byte uAudioSampleIndex;
     public byte uFSBIndex;
@@ -25,7 +24,7 @@ public class GcWavInfo
 
     public void Serialize(EndianBinaryWriter writer)
     {
-        writer.Write(Sound);
+        writer.Write(_assetID);
         writer.Write(uFlags);
         writer.Write(uAudioSampleIndex);
         writer.Write(uFSBIndex);
