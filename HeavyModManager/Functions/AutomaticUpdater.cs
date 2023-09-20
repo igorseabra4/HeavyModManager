@@ -48,16 +48,28 @@ namespace HeavyModManager.Functions
                         if (!Directory.Exists(oldDirPath))
                             Directory.CreateDirectory(oldDirPath);
 
-                        File.Move(Path.Combine(Application.StartupPath, "HeavyModManager.dll"),
-                            Path.Combine(oldDirPath, "HeavyModManager.dll"));
-                        File.Move(Path.Combine(Application.StartupPath, "HeavyModManager.exe"),
-                            Path.Combine(oldDirPath, "HeavyModManager.exe"));
-                        File.Move(Path.Combine(Application.StartupPath, "HeavyModManager.runtimeconfig.json"),
-                            Path.Combine(oldDirPath, "HeavyModManager.runtimeconfig.json"));
+                        var fileNames = new string[]
+                        {
+                            "HeavyModManager.deps.json", // not needed
+                            "HeavyModManager.dll",
+                            "HeavyModManager.exe",
+                            "HeavyModManager.pdb", // not needed
+                            "HeavyModManager.runtimeconfig.json",
+                            "HipHopFile.dll",
+                            "HipHopFile.pdb", // not needed
+                        };
+
+                        foreach (var file in fileNames)
+                        {
+                            var oldFilePath = Path.Combine(Application.StartupPath, file);
+                            if (File.Exists(oldFilePath))
+                                File.Move(oldFilePath, Path.Combine(oldDirPath, file));
+                        }
 
                         ZipFile.ExtractToDirectory(updatedZipFilePath, Application.StartupPath);
 
                         File.Delete(updatedZipFilePath);
+                        Directory.Delete(tempDir);
 
                         return true;
                     }
