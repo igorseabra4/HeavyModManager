@@ -135,14 +135,15 @@ public class Mod
 
     public void Apply()
     {
-        TempMergeFiles = MergeFiles.Split('\n').Select(p => p.ToLower());
-
         RemoveRemoveFiles();
 
+        TempMergeFiles = MergeFiles.Split('\n').Select(p => p.ToLower());
         var modFilesPath = ModManager.GetModFilesPath(ModId);
         CopyDirectory(modFilesPath, modFilesPath);
 
         ApplyDolPatches();
+        ApplyGameIdOnBootBin();
+        ApplyINIPatches();
     }
 
     private void RemoveRemoveFiles()
@@ -190,6 +191,10 @@ public class Mod
 
     private void ApplyDolPatches()
     {
+        var dol = File.ReadAllBytes(ModManager.GameDolPath);
+
+        bool changed = ApplyGameIdOnDol(ref dol);
+
         if (!string.IsNullOrWhiteSpace(DOLPatches))
         {
             var patches = DOLPatches
@@ -200,14 +205,101 @@ public class Mod
                 .Select(vals => (Convert.ToUInt32(vals[0], 16), BitConverter.GetBytes(Convert.ToUInt32(vals[1], 16))))
                 .ToArray();
 
-            var dol = File.ReadAllBytes(ModManager.GameDolPath);
-
             foreach (var p in patches)
                 for (int i = 0; i < 4; i++)
                     if (p.Item1 + i < dol.Length)
                         dol[p.Item1 + i] = p.Item2[i];
 
+            changed = true;
+        }
+
+        if (changed)
             File.WriteAllBytes(ModManager.GameDolPath, dol);
+    }
+
+    private bool ApplyGameIdOnDol(ref byte[] dol)
+    {
+        if (!string.IsNullOrWhiteSpace(GameId))
+        {
+            switch (Game)
+            {
+                case Game.Scooby:
+                    WriteGameIdOnDol(ref dol, 0x1DC820);
+                    dol[0x1DC828] = (byte)GameId[4];
+                    dol[0x1DC828] = (byte)GameId[5];
+                    break;
+                case Game.BFBB:
+                    WriteGameIdOnDol(ref dol, 0x2635C0);
+                    dol[0x2635C5] = (byte)GameId[4];
+                    dol[0x2635C6] = (byte)GameId[5];
+                    break;
+                case Game.Movie:
+                    WriteGameIdOnDol(ref dol, 0x374CE8);
+                    WriteGameIdOnDol(ref dol, 0x3752BF);
+                    WriteGameIdOnDol(ref dol, 0x3752C4);
+                    WriteGameIdOnDol(ref dol, 0x3752C9);
+                    WriteGameIdOnDol(ref dol, 0x3752CE);
+                    dol[0x3752D3] = (byte)GameId[4];
+                    dol[0x3752D4] = (byte)GameId[5];
+                    WriteGameIdOnDol(ref dol, 0x3754F8);
+                    break;
+                case Game.Incredibles:
+                    WriteGameIdOnDol(ref dol, 0x2D5878);
+                    WriteGameIdOnDol(ref dol, 0x2DAFF8);
+                    break;
+                case Game.Underminer:
+                    WriteGameIdOnDol(ref dol, 0x2C8E19);
+                    WriteGameIdOnDol(ref dol, 0x2C8E1E);
+                    WriteGameIdOnDol(ref dol, 0x2C8E23);
+                    break;
+                default:
+                    throw new NotImplementedException("Cannot change game ID for this game yet.");
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private void WriteGameIdOnDol(ref byte[] dol, int startOffset, int amount = 4)
+    {
+        for (int i = 0; i < amount; i++)
+            dol[startOffset + i] = (byte)GameId[i];
+    }
+
+    private void ApplyGameIdOnBootBin()
+    {
+        if (!string.IsNullOrWhiteSpace(GameId))
+        {
+            var bootBinPath = Path.Combine(ModManager.GameGameSysPath, "boot.bin");
+            var bootBin = File.ReadAllBytes(bootBinPath);
+
+            bootBin[0] = (byte)GameId[0];
+            bootBin[1] = (byte)GameId[1];
+            bootBin[2] = (byte)GameId[2];
+            bootBin[3] = (byte)GameId[3];
+            bootBin[4] = (byte)GameId[4];
+            bootBin[5] = (byte)GameId[5];
+
+            File.WriteAllBytes(bootBinPath, bootBin);
+        }
+    }
+
+    private void ApplyINIPatches()
+    {
+        if (!string.IsNullOrWhiteSpace(INIReplacements))
+        {
+            var properties = INIReplacements
+                .Split('\n')
+                .Select(l => l.Split('#')[0].Trim())
+                .Where(l => !string.IsNullOrWhiteSpace(l))
+                .Select(l => l.Split('='))
+                .Select(vals => (vals[0].Trim(), vals[1].Trim()));
+
+            var ini = new INIFile(ModManager.GameGameINIPath);
+            ini.Replace(properties);
+            ini.SaveTo(ModManager.GameGameINIPath);
         }
     }
 }

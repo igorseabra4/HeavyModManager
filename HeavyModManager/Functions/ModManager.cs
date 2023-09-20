@@ -83,6 +83,17 @@ public static class ModManager
         };
     }
 
+    public static string GameIniFileName(Game game) => game switch
+    {
+        Game.Scooby => "sd2.ini",
+        Game.BFBB => "sb.ini",
+        Game.Movie => "SB04.ini",
+        Game.Incredibles => "in.ini",
+        Game.Underminer => "IN2.INI",
+        Game.RatProto => "rats.ini",
+        _ => "",
+    };
+
     /// <summary>
     /// The complete list of Heavy Iron games since 2002.
     /// </summary>
@@ -144,7 +155,8 @@ public static class ModManager
     public static string GameGamePath => Path.Combine(GameFolderPath, "game");
     public static string GameGameFilesPath => Path.Combine(GameGamePath, "files");
     public static string GameGameSysPath => Path.Combine(GameGamePath, "sys");
-    public static string GameDolPath => Path.Combine(GameGamePath, "sys", "main.dol");
+    public static string GameDolPath => Path.Combine(GameGameSysPath, "main.dol");
+    public static string GameGameINIPath => Path.Combine(GameGameFilesPath, GameIniFileName(CurrentGame));
 
     public static bool CheckForUpdatesOnStartup { get; set; } = true;
     public static string DolphinPath { get; private set; }
@@ -417,7 +429,6 @@ public static class ModManager
         CurrentGameSettings.Invalidated = false;
         SaveGameSettings();
     }
-
 
     public static bool GameBackupExists => Directory.Exists(GameBackupFilesPath) && Directory.Exists(GameBackupSysPath);
     public static bool GameExists => Directory.Exists(GameGameFilesPath) && Directory.Exists(GameGameSysPath) && File.Exists(GameDolPath);
