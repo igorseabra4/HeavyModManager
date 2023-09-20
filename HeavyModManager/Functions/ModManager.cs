@@ -305,6 +305,9 @@ public static class ModManager
 
     public static bool RestoreBackupIso(string isoPath)
     {
+        if (Directory.Exists(GameBackupPath))
+            Directory.Delete(GameBackupPath, true);
+
         GameCubeImage image;
 
         try
@@ -315,11 +318,9 @@ public static class ModManager
         {
             MessageBox.Show("Unable to read ISO: " + ex.Message, "Error reading ISO",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             return false;
         }
-
-        if (Directory.Exists(GameBackupPath))
-            Directory.Delete(GameBackupPath, true);
 
         Directory.CreateDirectory(GameBackupPath);
         Directory.CreateDirectory(GameBackupFilesPath);
@@ -333,6 +334,7 @@ public static class ModManager
         {
             MessageBox.Show("Unable to create backup from ISO: " + ex.Message, "Backup failed",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Directory.Delete(GameBackupPath, true);
             return false;
         }
 
@@ -388,8 +390,7 @@ public static class ModManager
         if (!DeveloperMode && !CurrentGameSettings.Invalidated)
             return;
 
-        if (DeveloperMode)
-            CloseDolphin();
+        CloseDolphin();
 
         if (!GameBackupExists)
         {

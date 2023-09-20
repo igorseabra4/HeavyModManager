@@ -25,6 +25,8 @@
     /// </summary>
     public class GameCubeImage
     {
+        private const string exceptionText = "Invalid ISO file.";
+
         private byte[] Apploader;
         private byte[] Boot;
         private byte[] Bi2;
@@ -49,6 +51,10 @@
 
             reader.BaseStream.Position = 0x0400;
             var apploaderSize = reader.ReadInt32();
+
+            if (apploaderSize == 0)
+                throw new InvalidDataException(exceptionText);
+
             reader.BaseStream.Position = 0x2440;
             Apploader = reader.ReadBytes(apploaderSize);
 
@@ -57,6 +63,8 @@
             var fstStartPos = reader.ReadInt32();
             var fstSize = reader.ReadInt32();
             var dolSize = fstStartPos - dolStartPos;
+            if (dolSize == 0)
+                throw new InvalidDataException(exceptionText);
             reader.BaseStream.Position = dolStartPos;
             Main = reader.ReadBytes(dolSize);
             reader.BaseStream.Position = fstStartPos;
@@ -98,8 +106,11 @@
                     });
                 }
                 else
-                    throw new InvalidDataException("Error reading ISO file.");
+                    throw new InvalidDataException(exceptionText);
             }
+
+            if (Files.Count <= 1)
+                throw new InvalidDataException(exceptionText);
 
             var fstStringsTableStartPos = reader.BaseStream.Position;
 
@@ -126,6 +137,8 @@
 
             GameCubeImageDirectory? currentDir = null;
 
+            var filesCount = 0;
+
             for (int i = 0; i < Files.Count; i++)
             {
                 if (Files[i] is GameCubeImageDirectory dir)
@@ -139,8 +152,14 @@
                     Directory.CreateDirectory(currentDirPath);
 
                 if (Files[i] is GameCubeImageFile file && ShouldDump(file.FileName))
+                {
                     File.WriteAllBytes(Path.Combine(currentDirPath, file.FileName), file.File);
+                    filesCount++;
+                }
             }
+
+            if (filesCount == 0)
+                throw new InvalidDataException(exceptionText);
         }
 
         private string BuildPath(GameCubeImageDirectory currentDir)
