@@ -138,7 +138,7 @@
                 if (!Directory.Exists(currentDirPath))
                     Directory.CreateDirectory(currentDirPath);
 
-                if (Files[i] is GameCubeImageFile file)
+                if (Files[i] is GameCubeImageFile file && ShouldDump(file.FileName))
                     File.WriteAllBytes(Path.Combine(currentDirPath, file.FileName), file.File);
             }
         }
@@ -148,6 +148,17 @@
             if (currentDir.IsRoot)
                 return "";
             return Path.Combine(BuildPath((GameCubeImageDirectory)Files[currentDir.ParentOffset]), currentDir.FileName);
+        }
+
+        private static HashSet<string> ValidExtensions = new()
+        {
+            ".hip", ".hop", ".bik", ".bnr", ".tpl", ".ini"
+        };
+
+        private static bool ShouldDump(string fileName)
+        {
+            string extension = Path.GetExtension(fileName).ToLower();
+            return ValidExtensions.Contains(extension);
         }
     }
 }
