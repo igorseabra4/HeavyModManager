@@ -55,6 +55,7 @@ partial class CreateMod
         labelDefaultGameId = new Label();
         textBoxGameId = new TextBox();
         groupBoxIniValues = new GroupBox();
+        buttonIniImport = new Button();
         buttonIniValuesInfo = new Button();
         richTextBoxINIValues = new RichTextBox();
         groupBoxMergeHips = new GroupBox();
@@ -371,6 +372,7 @@ partial class CreateMod
         // 
         // groupBoxIniValues
         // 
+        groupBoxIniValues.Controls.Add(buttonIniImport);
         groupBoxIniValues.Controls.Add(buttonIniValuesInfo);
         groupBoxIniValues.Controls.Add(richTextBoxINIValues);
         groupBoxIniValues.Dock = DockStyle.Top;
@@ -380,6 +382,17 @@ partial class CreateMod
         groupBoxIniValues.TabIndex = 21;
         groupBoxIniValues.TabStop = false;
         groupBoxIniValues.Text = "INI Values";
+        // 
+        // buttonIniImport
+        // 
+        buttonIniImport.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        buttonIniImport.Location = new Point(208, -1);
+        buttonIniImport.Name = "buttonIniImport";
+        buttonIniImport.Size = new Size(54, 23);
+        buttonIniImport.TabIndex = 24;
+        buttonIniImport.Text = "Import";
+        buttonIniImport.UseVisualStyleBackColor = true;
+        buttonIniImport.Click += buttonIniImport_Click;
         // 
         // buttonIniValuesInfo
         // 
@@ -574,4 +587,5 @@ partial class CreateMod
     private GroupBox groupBoxModId;
     private TextBox textBoxModId;
     private Button buttonModIdInfo;
+    private Button buttonIniImport;
 }

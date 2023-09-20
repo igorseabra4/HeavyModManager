@@ -20,6 +20,8 @@ public partial class CreateMod : Form
 
         dateTimePickerCreatedAt.Value = DateTime.Now;
         dateTimePickerUpdatedAt.Value = DateTime.Now;
+
+        buttonIniImport.Enabled = false;
     }
 
     private bool isEditing;
@@ -275,7 +277,10 @@ public partial class CreateMod : Form
             "ShowMenuOnBoot=0 # This is a comment\n" +
             "G.BubbleBowl=1\n" +
             "#another comment\n\n" +
-            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
+            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto\n\n" +
+            "On an already existing mod, click on 'Import' to import the mod's\n" +
+            "INI into here. Only modified values will be imported and the file\n" +
+            "itself will be deleted.");
     }
 
     private void buttonDolPatchesInfo_Click(object sender, EventArgs e)
@@ -354,5 +359,39 @@ public partial class CreateMod : Form
     private void flowLayoutPanelPage2_Resize(object sender, EventArgs e)
     {
         groupBoxGameId.Size = new Size(flowLayoutPanelPage2.Width - 23, groupBoxGameId.Size.Height);
+    }
+
+    private void buttonIniImport_Click(object sender, EventArgs e)
+    {
+        if (!ModManager.GameBackupExists)
+        {
+            MessageBox.Show($"Unable to import INI: game backup not found. Please create a backup from the original game's ISO file.", "Game backup not found",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        var modIniPath = Path.Combine(ModManager.GetModFilesPath(textBoxModId.Text), ModManager.GameIniFileName(prevGame));
+
+        if (!File.Exists(modIniPath))
+        {
+            MessageBox.Show($"Unable to import INI: INI file not found at {modIniPath}", "INI not found in files",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        var iniFile = new INIFile(modIniPath);
+        var ogIniFile = new INIFile(Path.Combine(ModManager.GameBackupFilesPath, ModManager.GameIniFileName(prevGame)));
+        var result = new List<string>();
+
+        if (!string.IsNullOrWhiteSpace(richTextBoxINIValues.Text))
+            result.Add(richTextBoxINIValues.Text);
+
+        foreach ((string key, string value) in iniFile.Properties)
+            if (!ogIniFile.Properties.ContainsKey(key) || ogIniFile.Properties[key] != value)
+                result.Add($"{key}={value}");
+
+        richTextBoxINIValues.Text = string.Join("\n", result);
+
+        File.Delete(modIniPath);
     }
 }
