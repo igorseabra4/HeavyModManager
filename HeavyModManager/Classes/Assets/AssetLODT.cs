@@ -66,12 +66,10 @@ public class AssetLODT
     public AssetLODT(Section_AHDR AHDR, Game game, Endianness endianness)
     {
         using var reader = new EndianBinaryReader(new MemoryStream(AHDR.data), endianness);
-        {
-            var count = reader.ReadInt32();
-            Entries = new List<EntryLODT>();
-            for (int i = 0; i < count; i++)
-                Entries.Add(new EntryLODT(reader, game));
-        }
+        var count = reader.ReadInt32();
+        Entries = new List<EntryLODT>();
+        for (int i = 0; i < count; i++)
+            Entries.Add(new EntryLODT(reader, game));
     }
 
     public byte[] Serialize(Game game, Endianness endianness)

@@ -308,7 +308,7 @@ partial class CreateMod
         groupBoxGameId.Size = new Size(319, 69);
         groupBoxGameId.TabIndex = 17;
         groupBoxGameId.TabStop = false;
-        groupBoxGameId.Text = "Save File Game ID";
+        groupBoxGameId.Text = "Game ID (Save File)";
         // 
         // buttonGameIdInfo
         // 

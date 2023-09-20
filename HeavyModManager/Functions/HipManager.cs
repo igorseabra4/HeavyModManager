@@ -28,154 +28,151 @@ public static class HipManager
     {
         foreach (Section_AHDR sourceAHDR in source.DICT.ATOC.AHDRList)
         {
-            if (sourceAHDR.assetType == AssetType.CollisionTable)
+            switch (sourceAHDR.assetType)
             {
-                var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetType == AssetType.CollisionTable);
-                if (existingAssets.Any())
+                case AssetType.CollisionTable:
                 {
-                    foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
-                        LHDR.assetIDlist.Remove(sourceAHDR.assetID);
+                    var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetType == AssetType.CollisionTable);
+                    if (existingAssets.Any())
+                    {
+                        foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
+                            LHDR.assetIDlist.Remove(sourceAHDR.assetID);
 
-                    var destinationAHDR = existingAssets.First();
-
-                    var destAsset = new AssetCOLL(destinationAHDR, Endianness);
-                    destAsset.Merge(new AssetCOLL(sourceAHDR, Endianness));
-
-                    destinationAHDR.data = destAsset.Serialize(Endianness);
-                    continue;
+                        var destinationAHDR = existingAssets.First();
+                        var destAsset = new AssetCOLL(destinationAHDR, Endianness);
+                        destAsset.Merge(new AssetCOLL(sourceAHDR, Endianness));
+                        destinationAHDR.data = destAsset.Serialize(Endianness);
+                        continue;
+                    }
+                    break;
                 }
-            }
-            else if (sourceAHDR.assetType == AssetType.JawDataTable)
-            {
-                var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetType == AssetType.JawDataTable);
-                if (existingAssets.Any())
+                case AssetType.JawDataTable:
                 {
-                    foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
-                        LHDR.assetIDlist.Remove(sourceAHDR.assetID);
+                    var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetType == AssetType.JawDataTable);
+                    if (existingAssets.Any())
+                    {
+                        foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
+                            LHDR.assetIDlist.Remove(sourceAHDR.assetID);
 
-                    var destinationAHDR = existingAssets.First();
-
-                    var destAsset = new AssetJAW(destinationAHDR, Endianness);
-                    destAsset.Merge(new AssetJAW(sourceAHDR, Endianness));
-
-                    destinationAHDR.data = destAsset.Serialize(Endianness);
-                    continue;
+                        var destinationAHDR = existingAssets.First();
+                        var destAsset = new AssetJAW(destinationAHDR, Endianness);
+                        destAsset.Merge(new AssetJAW(sourceAHDR, Endianness));
+                        destinationAHDR.data = destAsset.Serialize(Endianness);
+                        continue;
+                    }
+                    break;
                 }
-            }
-            else if (sourceAHDR.assetType == AssetType.LevelOfDetailTable)
-            {
-                var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetType == AssetType.LevelOfDetailTable);
-                if (existingAssets.Any())
+                case AssetType.LevelOfDetailTable:
                 {
-                    foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
-                        LHDR.assetIDlist.Remove(sourceAHDR.assetID);
+                    var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetType == AssetType.LevelOfDetailTable);
+                    if (existingAssets.Any())
+                    {
+                        foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
+                            LHDR.assetIDlist.Remove(sourceAHDR.assetID);
 
-                    var destinationAHDR = existingAssets.First();
-
-                    var destAsset = new AssetLODT(destinationAHDR, Game, Endianness);
-                    destAsset.Merge(new AssetLODT(sourceAHDR, Game, Endianness));
-
-                    destinationAHDR.data = destAsset.Serialize(Game, Endianness);
-                    continue;
+                        var destinationAHDR = existingAssets.First();
+                        var destAsset = new AssetLODT(destinationAHDR, Game, Endianness);
+                        destAsset.Merge(new AssetLODT(sourceAHDR, Game, Endianness));
+                        destinationAHDR.data = destAsset.Serialize(Game, Endianness);
+                        continue;
+                    }
+                    break;
                 }
-            }
-            else if (sourceAHDR.assetType == AssetType.PipeInfoTable)
-            {
-                var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetType == AssetType.PipeInfoTable);
-                if (existingAssets.Any())
+                case AssetType.PipeInfoTable:
                 {
-                    foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
-                        LHDR.assetIDlist.Remove(sourceAHDR.assetID);
+                    var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetType == AssetType.PipeInfoTable);
+                    if (existingAssets.Any())
+                    {
+                        foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
+                            LHDR.assetIDlist.Remove(sourceAHDR.assetID);
 
-                    var destinationAHDR = existingAssets.First();
-
-                    var destAsset = new AssetPIPT(destinationAHDR, Game, Endianness);
-                    destAsset.Merge(new AssetPIPT(sourceAHDR, Game, Endianness));
-
-                    destinationAHDR.data = destAsset.Serialize(Game, Endianness);
-                    continue;
+                        var destinationAHDR = existingAssets.First();
+                        var destAsset = new AssetPIPT(destinationAHDR, Game, Endianness);
+                        destAsset.Merge(new AssetPIPT(sourceAHDR, Game, Endianness));
+                        destinationAHDR.data = destAsset.Serialize(Game, Endianness);
+                        continue;
+                    }
+                    break;
                 }
-            }
-            else if (sourceAHDR.assetType == AssetType.ShadowTable)
-            {
-                var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetType == AssetType.ShadowTable);
-                if (existingAssets.Any())
+                case AssetType.ShadowTable:
                 {
-                    foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
-                        LHDR.assetIDlist.Remove(sourceAHDR.assetID);
+                    var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetType == AssetType.ShadowTable);
+                    if (existingAssets.Any())
+                    {
+                        foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
+                            LHDR.assetIDlist.Remove(sourceAHDR.assetID);
 
-                    var destinationAHDR = existingAssets.First();
-
-                    var destAsset = new AssetSHDW(destinationAHDR, Endianness);
-                    destAsset.Merge(new AssetSHDW(sourceAHDR, Endianness));
-
-                    destinationAHDR.data = destAsset.Serialize(Endianness);
-                    continue;
+                        var destinationAHDR = existingAssets.First();
+                        var destAsset = new AssetSHDW(destinationAHDR, Endianness);
+                        destAsset.Merge(new AssetSHDW(sourceAHDR, Endianness));
+                        destinationAHDR.data = destAsset.Serialize(Endianness);
+                        continue;
+                    }
+                    break;
                 }
-            }
-            //else if (sourceAHDR.assetType == AssetType.SoundInfo)
-            //{
-            //    var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetType == AssetType.SoundInfo);
-            //    if (existingAssets.Any())
-            //    {
-            //        foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
-            //            LHDR.assetIDlist.Remove(sourceAHDR.assetID);
-
-            //        var destinationAHDR = existingAssets.First();
-
-            //        if (source.Item3 == Platform.GameCube)
-            //        {
-            //            if (source.Item2 == Game.Incredibles)
-            //            {
-            //                var destAsset = new AssetSNDI_GCN_V2(destinationAHDR);
-            //                destAsset.Merge(new AssetSNDI_GCN_V2(sourceAHDR));
-            //                destinationAHDR.data = destAsset.Serialize();
-
-            //            }
-            //            else
-            //            {
-            //                var destAsset = new AssetSNDI_GCN_V1(destinationAHDR);
-            //                destAsset.Merge(new AssetSNDI_GCN_V1(sourceAHDR));
-            //                destinationAHDR.data = destAsset.Serialize();
-            //            }
-            //        }
-            //        else if (source.Item3 == Platform.Xbox)
-            //        {
-            //            var destAsset = new AssetSNDI_XBOX(destinationAHDR);
-            //            destAsset.Merge(new AssetSNDI_XBOX(sourceAHDR));
-            //            destinationAHDR.data = destAsset.Serialize();
-            //        }
-            //        else if (source.Item3 == Platform.PS2)
-            //        {
-            //            var destAsset = new AssetSNDI_PS2(destinationAHDR);
-            //            destAsset.Merge(new AssetSNDI_PS2(sourceAHDR));
-            //            destinationAHDR.data = destAsset.Serialize();
-            //        }
-
-            //        continue;
-            //    }
-            //}
-
-            bool found = false;
-
-            foreach (var AHDR in destination.DICT.ATOC.AHDRList)
-            {
-                if (AHDR.assetID == sourceAHDR.assetID)
+                case AssetType.SoundInfo:
                 {
-                    AHDR.ADBG = sourceAHDR.ADBG;
-                    AHDR.data = sourceAHDR.data;
-                    AHDR.assetType = sourceAHDR.assetType;
-                    AHDR.flags = sourceAHDR.flags;
-                    found = true;
+                    var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetType == AssetType.SoundInfo);
+                    if (existingAssets.Any())
+                    {
+                        foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
+                            LHDR.assetIDlist.Remove(sourceAHDR.assetID);
+
+                        var destinationAHDR = existingAssets.First();
+
+                        if (Platform == Platform.GameCube)
+                        {
+                            if (Game == Game.Incredibles)
+                            {
+                                var destAsset = new AssetSNDI_GCN_V2(destinationAHDR);
+                                destAsset.Merge(new AssetSNDI_GCN_V2(sourceAHDR));
+                                destinationAHDR.data = destAsset.Serialize();
+                            }
+                            else
+                            {
+                                var destAsset = new AssetSNDI_GCN_V1(destinationAHDR, Game);
+                                destAsset.Merge(new AssetSNDI_GCN_V1(sourceAHDR, Game));
+                                destinationAHDR.data = destAsset.Serialize(Game);
+                            }
+                        }
+                        else if (Platform == Platform.Xbox)
+                        {
+                            var destAsset = new AssetSNDI_XBOX(destinationAHDR);
+                            destAsset.Merge(new AssetSNDI_XBOX(sourceAHDR));
+                            destinationAHDR.data = destAsset.Serialize();
+                        }
+                        else if (Platform == Platform.PS2)
+                        {
+                            var destAsset = new AssetSNDI_PS2(destinationAHDR);
+                            destAsset.Merge(new AssetSNDI_PS2(sourceAHDR));
+                            destinationAHDR.data = destAsset.Serialize(destinationAHDR.assetID);
+                        }
+
+                        continue;
+                    }
+                    break;
+                }
+                default:
+                {
+                    var existingAssets = destination.DICT.ATOC.AHDRList.Where(ahdr => ahdr.assetID == sourceAHDR.assetID);
+                    if (existingAssets.Any())
+                    {
+                        foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
+                            LHDR.assetIDlist.Remove(sourceAHDR.assetID);
+
+                        var AHDR = existingAssets.First();
+
+                        AHDR.ADBG = sourceAHDR.ADBG;
+                        AHDR.data = sourceAHDR.data;
+                        AHDR.assetType = sourceAHDR.assetType;
+                        AHDR.flags = sourceAHDR.flags;
+                        continue;
+                    }
                     break;
                 }
             }
 
-            if (found)
-                foreach (Section_LHDR LHDR in source.DICT.LTOC.LHDRList)
-                    LHDR.assetIDlist.Remove(sourceAHDR.assetID);
-            else
-                destination.DICT.ATOC.AHDRList.Add(sourceAHDR);
+            destination.DICT.ATOC.AHDRList.Add(sourceAHDR);
         }
 
         for (int i = 0; i < source.DICT.LTOC.LHDRList.Count; i++)
