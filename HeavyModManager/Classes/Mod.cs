@@ -290,15 +290,8 @@ public class Mod
     {
         if (!string.IsNullOrWhiteSpace(INIReplacements))
         {
-            var properties = INIReplacements
-                .Split('\n')
-                .Select(l => l.Split('#')[0].Trim())
-                .Where(l => !string.IsNullOrWhiteSpace(l))
-                .Select(l => l.Split('='))
-                .Select(vals => (vals[0].Trim(), vals[1].Trim()));
-
-            var ini = new INIFile(ModManager.GameGameINIPath);
-            ini.Replace(properties);
+            var ini = INIFile.FromPath(ModManager.GameGameINIPath);
+            ini.ReplaceWith(INIFile.FromContents(INIReplacements));
             ini.SaveTo(ModManager.GameGameINIPath);
         }
     }

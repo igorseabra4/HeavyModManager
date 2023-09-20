@@ -268,19 +268,27 @@ public partial class CreateMod : Form
     private void buttonIniValuesInfo_Click(object sender, EventArgs e)
     {
         ShowToolTip(
-            "Enter the game's configuration INI key-value pairs for this mod,\n" +
-            "in the form of <key>=<value>, one per line.\n" +
+            "Enter the game's configuration INI key-value pairs for this mod, in the form\n" +
+            "of <key>=<value>, one per line.\n" +
             "You can add comments after #s.\n" +
-            "You only need to enter the lines needed by your mod.\n\n" +
+            "You only need to enter the lines needed by your mod.\n" +
             "Example:\n\n" +
             "BOOT=HB00\n" +
             "ShowMenuOnBoot=0 # This is a comment\n" +
             "G.BubbleBowl=1\n" +
             "#another comment\n\n" +
-            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto\n\n" +
             "On an already existing mod, click on 'Import' to import the mod's\n" +
             "INI into here. Only modified values will be imported and the file\n" +
-            "itself will be deleted.");
+            "itself will be deleted.\n\n" +
+            "A few types of key are special:\n" +
+            "- ScenePlayerMapping, ThresholdPointsRange and AlternateCostumeMapping:\n" +
+            "will replace values based on the stage ID name (first 4 characters of the value)\n" +
+            "- TaskStatus and Extra: if present, will replace ALL entries, so if you're\n" +
+            "replacing those, you must enter all of them.\n" +
+            "If you're still unsure how to use these keys, create your INI file\n" +
+            "manually, then use Import. The tool will import the values exactly\n" +
+            "as they are needed.\n\n" +
+            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
     }
 
     private void buttonDolPatchesInfo_Click(object sender, EventArgs e)
@@ -379,8 +387,8 @@ public partial class CreateMod : Form
             return;
         }
 
-        var iniFile = new INIFile(modIniPath);
-        var ogIniFile = new INIFile(Path.Combine(ModManager.GameBackupFilesPath, ModManager.GameIniFileName(prevGame)));
+        var iniFile = INIFile.FromPath(modIniPath);
+        var ogIniFile = INIFile.FromPath(Path.Combine(ModManager.GameBackupFilesPath, ModManager.GameIniFileName(prevGame)));
         var result = new List<string>();
 
         if (!string.IsNullOrWhiteSpace(richTextBoxINIValues.Text))
@@ -389,6 +397,58 @@ public partial class CreateMod : Form
         foreach ((string key, string value) in iniFile.Properties)
             if (!ogIniFile.Properties.ContainsKey(key) || ogIniFile.Properties[key] != value)
                 result.Add($"{key}={value}");
+
+        foreach ((string key, string value) in iniFile.ScenePlayerMapping)
+            if (!ogIniFile.ScenePlayerMapping.ContainsKey(key) || ogIniFile.ScenePlayerMapping[key] != value)
+                result.Add($"ScenePlayerMapping={key} {value}");
+
+        foreach ((string key, string value) in iniFile.ThresholdPointsRange)
+            if (!ogIniFile.ThresholdPointsRange.ContainsKey(key) || ogIniFile.ThresholdPointsRange[key] != value)
+                result.Add($"ThresholdPointsRange={key} {value}");
+
+        foreach ((string key, string value) in iniFile.AlternateCostumeMapping)
+            if (!ogIniFile.AlternateCostumeMapping.ContainsKey(key) || ogIniFile.AlternateCostumeMapping[key] != value)
+                result.Add($"AlternateCostumeMapping={key} {value}");
+
+        bool shouldAddTaskStatus = false;
+        if (iniFile.TaskStatus.Count != ogIniFile.TaskStatus.Count)
+        {
+            shouldAddTaskStatus = true;
+        }
+        else
+        {
+            for (int i = 0; i < iniFile.TaskStatus.Count; i++)
+            {
+                if (iniFile.TaskStatus[i] != ogIniFile.TaskStatus[i])
+                {
+                    shouldAddTaskStatus = true;
+                    break;
+                }
+            }
+        }
+        if (shouldAddTaskStatus)
+            foreach (string value in iniFile.TaskStatus)
+                result.Add($"TaskStatus={value}");
+
+        bool shouldAddExtra = false;
+        if (iniFile.Extra.Count != ogIniFile.Extra.Count)
+        {
+            shouldAddExtra = true;
+        }
+        else
+        {
+            for (int i = 0; i < iniFile.Extra.Count; i++)
+            {
+                if (iniFile.Extra[i] != ogIniFile.Extra[i])
+                {
+                    shouldAddExtra = true;
+                    break;
+                }
+            }
+        }
+        if (shouldAddExtra)
+            foreach (string value in iniFile.Extra)
+                result.Add($"Extra={value}");
 
         richTextBoxINIValues.Text = string.Join("\n", result);
 

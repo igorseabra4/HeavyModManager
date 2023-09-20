@@ -100,7 +100,7 @@ partial class CreateMod
         // 
         // buttonCancel
         // 
-        buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
         buttonCancel.Location = new Point(12, 560);
         buttonCancel.Name = "buttonCancel";
         buttonCancel.Size = new Size(169, 23);
