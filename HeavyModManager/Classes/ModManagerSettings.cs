@@ -1,4 +1,5 @@
 ﻿using HeavyModManager.Enum;
+using HeavyModManager.Forms.Other;
 using System.Text.Json.Serialization;
 
 namespace HeavyModManager.Classes;
@@ -38,6 +39,9 @@ public class ModManagerSettings
     [JsonInclude]
     public bool DeveloperMode { get; set; }
 
+    [JsonInclude]
+    public HeavyModManagerIcon Icon { get; set; }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ModManagerSettings"/> class.
     /// </summary>
@@ -49,5 +53,6 @@ public class ModManagerSettings
         DolphinPath = "";
         CheckForUpdatesOnStartup = true;
         DeveloperMode = false;
+        Icon = HeavyModManagerIcon.Rainbow;
     }
 }

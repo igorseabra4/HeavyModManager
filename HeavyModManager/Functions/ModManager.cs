@@ -1,5 +1,6 @@
 ﻿using HeavyModManager.Classes;
 using HeavyModManager.Enum;
+using HeavyModManager.Forms.Other;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -158,10 +159,10 @@ public static class ModManager
     public static string GameDolPath => Path.Combine(GameGameSysPath, "main.dol");
     public static string GameGameINIPath => Path.Combine(GameGameFilesPath, GameIniFileName(CurrentGame));
 
-    public static bool CheckForUpdatesOnStartup { get; set; } = true;
-    public static bool DeveloperMode { get; set; } = false;
+    public static bool CheckForUpdatesOnStartup { get; set; }
+    public static bool DeveloperMode { get; set; }
     public static string DolphinPath { get; private set; }
-    public static Game CurrentGame { get; private set; } = Game.Null;
+    public static Game CurrentGame { get; private set; }
     public static GameSettings? CurrentGameSettings { get; private set; } = null;
 
     public static void SaveSettings()
@@ -171,22 +172,24 @@ public static class ModManager
             CurrentGame = CurrentGame,
             DolphinPath = DolphinPath,
             CheckForUpdatesOnStartup = CheckForUpdatesOnStartup,
-            DeveloperMode = DeveloperMode
+            DeveloperMode = DeveloperMode,
+            Icon = IconManager.CurrentIcon,
         }));
     }
 
     public static void LoadSettings()
     {
-        CurrentGame = Game.Null;
-        DolphinPath = "";
-        if (File.Exists(ModManagerSettingsPath))
+        ModManagerSettings settings = File.Exists(ModManagerSettingsPath) ?
+             JsonSerializer.Deserialize<ModManagerSettings>(File.ReadAllText(ModManagerSettingsPath)) :
+             new ModManagerSettings();
+
+        CurrentGame = settings.CurrentGame;
+        DolphinPath = settings.DolphinPath;
+        CheckForUpdatesOnStartup = settings.CheckForUpdatesOnStartup;
+        if (settings.Version >= 2)
         {
-            var settings = JsonSerializer.Deserialize<ModManagerSettings>(File.ReadAllText(ModManagerSettingsPath));
-            CurrentGame = settings.CurrentGame;
-            DolphinPath = settings.DolphinPath;
-            CheckForUpdatesOnStartup = settings.CheckForUpdatesOnStartup;
-            if (settings.Version >= 2)
-                DeveloperMode = settings.DeveloperMode;
+            DeveloperMode = settings.DeveloperMode;
+            IconManager.CurrentIcon = settings.Icon;
         }
     }
 

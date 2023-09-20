@@ -1,6 +1,7 @@
 ﻿using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Forms;
+using HeavyModManager.Forms.Other;
 using HeavyModManager.Functions;
 using System.Text.Json;
 
@@ -12,13 +13,14 @@ public partial class MainForm : Form
     {
         InitializeComponent();
 
+        ModManager.LoadSettings();
+        IconManager.SetIcon(this);
+
         toolTip = new ToolTip();
         aboutBox = new AboutBox();
 
         foreach (Game game in ModManager.EvilEngineGames)
             comboBoxGame.Items.Add(new ComboBoxGameItem(game));
-
-        ModManager.LoadSettings();
 
         developerModeToolStripMenuItem.Checked = ModManager.DeveloperMode;
         checkForUpdatesOnStartupToolStripMenuItem.Checked = ModManager.CheckForUpdatesOnStartup;
@@ -404,5 +406,12 @@ public partial class MainForm : Form
         {
             deleteModToolStripMenuItem_Click(sender, e);
         }
+    }
+
+    private void changeIconToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        IconManager.ChangeIcon();
+        IconManager.SetIcon(this);
+        IconManager.SetIcon(aboutBox);
     }
 }

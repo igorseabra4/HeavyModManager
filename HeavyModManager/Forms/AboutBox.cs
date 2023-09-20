@@ -1,4 +1,5 @@
 ﻿using HeavyModManager.Classes;
+using HeavyModManager.Forms.Other;
 using System.Diagnostics;
 
 namespace HeavyModManager.Forms
@@ -8,6 +9,7 @@ namespace HeavyModManager.Forms
         public AboutBox()
         {
             InitializeComponent();
+            IconManager.SetIcon(this);
             labelProductName.Text = $"Heavy Mod Manager {new ModManagerVersion().Version}";
             TopMost = true;
         }

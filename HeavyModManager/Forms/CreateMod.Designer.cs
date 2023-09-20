@@ -276,7 +276,7 @@ partial class CreateMod
         groupBoxModId.Location = new Point(3, 466);
         groupBoxModId.Name = "groupBoxModId";
         groupBoxModId.Size = new Size(319, 51);
-        groupBoxModId.TabIndex = 16;
+        groupBoxModId.TabIndex = 13;
         groupBoxModId.TabStop = false;
         groupBoxModId.Text = "Mod ID";
         // 
@@ -286,7 +286,7 @@ partial class CreateMod
         buttonModIdInfo.Location = new Point(268, -2);
         buttonModIdInfo.Name = "buttonModIdInfo";
         buttonModIdInfo.Size = new Size(45, 23);
-        buttonModIdInfo.TabIndex = 20;
+        buttonModIdInfo.TabIndex = 14;
         buttonModIdInfo.Text = "Info";
         buttonModIdInfo.UseVisualStyleBackColor = true;
         buttonModIdInfo.Click += buttonModIdInfo_Click;
@@ -298,7 +298,7 @@ partial class CreateMod
         textBoxModId.Location = new Point(3, 19);
         textBoxModId.Name = "textBoxModId";
         textBoxModId.Size = new Size(310, 22);
-        textBoxModId.TabIndex = 14;
+        textBoxModId.TabIndex = 15;
         textBoxModId.TextChanged += textBoxModId_TextChanged;
         // 
         // tabPageSettings
@@ -448,6 +448,7 @@ partial class CreateMod
         // 
         // buttonRemoveFilesInfo
         // 
+        buttonRemoveFilesInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         buttonRemoveFilesInfo.Location = new Point(268, -1);
         buttonRemoveFilesInfo.Name = "buttonRemoveFilesInfo";
         buttonRemoveFilesInfo.Size = new Size(45, 23);
@@ -458,6 +459,7 @@ partial class CreateMod
         // 
         // richTextBoxRemoveFiles
         // 
+        richTextBoxRemoveFiles.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         richTextBoxRemoveFiles.Location = new Point(6, 22);
         richTextBoxRemoveFiles.Name = "richTextBoxRemoveFiles";
         richTextBoxRemoveFiles.Size = new Size(307, 144);
@@ -478,6 +480,7 @@ partial class CreateMod
         // 
         // buttonDolPatchesInfo
         // 
+        buttonDolPatchesInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         buttonDolPatchesInfo.Location = new Point(268, -1);
         buttonDolPatchesInfo.Name = "buttonDolPatchesInfo";
         buttonDolPatchesInfo.Size = new Size(45, 23);
@@ -488,6 +491,7 @@ partial class CreateMod
         // 
         // richTextBoxDolPatches
         // 
+        richTextBoxDolPatches.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         richTextBoxDolPatches.Location = new Point(6, 22);
         richTextBoxDolPatches.Name = "richTextBoxDolPatches";
         richTextBoxDolPatches.Size = new Size(307, 144);
@@ -503,7 +507,6 @@ partial class CreateMod
         Controls.Add(tabControl1);
         Controls.Add(buttonCancel);
         Controls.Add(buttonCreateMod);
-        MaximizeBox = false;
         Name = "CreateMod";
         ShowIcon = false;
         StartPosition = FormStartPosition.CenterParent;

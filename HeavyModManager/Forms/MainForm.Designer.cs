@@ -56,6 +56,7 @@ partial class MainForm
         panelLabelModInfo = new Panel();
         groupBoxModInfo = new GroupBox();
         labelDolphin = new Label();
+        changeIconToolStripMenuItem = new ToolStripMenuItem();
         groupBoxGame.SuspendLayout();
         groupBoxMods.SuspendLayout();
         menuStrip1.SuspendLayout();
@@ -200,7 +201,7 @@ partial class MainForm
         menuStrip1.Items.AddRange(new ToolStripItem[] { manageToolStripMenuItem, settingsToolStripMenuItem });
         menuStrip1.Location = new Point(0, 0);
         menuStrip1.Name = "menuStrip1";
-        menuStrip1.Size = new Size(131, 24);
+        menuStrip1.Size = new Size(251, 24);
         menuStrip1.TabIndex = 7;
         menuStrip1.Text = "menuStrip1";
         // 
@@ -252,7 +253,7 @@ partial class MainForm
         // 
         // settingsToolStripMenuItem
         // 
-        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem });
+        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem });
         settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
         settingsToolStripMenuItem.Size = new Size(61, 20);
         settingsToolStripMenuItem.Text = "Settings";
@@ -329,6 +330,13 @@ partial class MainForm
         labelDolphin.TabIndex = 15;
         labelDolphin.Text = "Dolphin Label";
         // 
+        // changeIconToolStripMenuItem
+        // 
+        changeIconToolStripMenuItem.Name = "changeIconToolStripMenuItem";
+        changeIconToolStripMenuItem.Size = new Size(231, 22);
+        changeIconToolStripMenuItem.Text = "Change Icon";
+        changeIconToolStripMenuItem.Click += changeIconToolStripMenuItem_Click;
+        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -342,10 +350,8 @@ partial class MainForm
         Controls.Add(groupBoxGame);
         Controls.Add(menuStrip1);
         MainMenuStrip = menuStrip1;
-        MaximizeBox = false;
         MinimumSize = new Size(540, 250);
         Name = "MainForm";
-        ShowIcon = false;
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Heavy Mod Manager";
         FormClosing += MainForm_FormClosing;
@@ -390,4 +396,5 @@ partial class MainForm
     private ToolStripSeparator toolStripSeparator2;
     private ToolStripMenuItem aboutToolStripMenuItem;
     private ToolStripMenuItem openModFolderToolStripMenuItem;
+    private ToolStripMenuItem changeIconToolStripMenuItem;
 }

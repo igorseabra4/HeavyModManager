@@ -168,7 +168,6 @@
             MaximizeBox = false;
             Name = "AboutBox";
             Padding = new Padding(6);
-            ShowIcon = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "About Heavy Mod Manager";
             tableLayoutPanel.ResumeLayout(false);

@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Resources\icon_rainbow.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\icon_rainbow.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HipHopTool\HipHopFile\HipHopFile.csproj" />
