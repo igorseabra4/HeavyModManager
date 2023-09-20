@@ -226,7 +226,7 @@ public class Mod
                 case Game.Scooby:
                     WriteGameIdOnDol(ref dol, 0x1DC820);
                     dol[0x1DC828] = (byte)GameId[4];
-                    dol[0x1DC828] = (byte)GameId[5];
+                    dol[0x1DC829] = (byte)GameId[5];
                     break;
                 case Game.BFBB:
                     WriteGameIdOnDol(ref dol, 0x2635C0);
