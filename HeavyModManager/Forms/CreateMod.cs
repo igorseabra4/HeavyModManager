@@ -15,7 +15,7 @@ public partial class CreateMod : Form
 
         defaultBackgroundColor = textBoxGameId.BackColor;
 
-        foreach (Game game in ModManager.Games)
+        foreach (Game game in ModManager.EvilEngineGames)
             comboBoxGame.Items.Add(new ComboBoxGameItem(game));
 
         dateTimePickerCreatedAt.Value = DateTime.Now;
@@ -37,7 +37,7 @@ public partial class CreateMod : Form
         prevGame = mod.Game;
         textBoxModName.Text = mod.ModName;
         textBoxAuthor.Text = mod.Author;
-        textBoxDescription.Text = mod.Description;
+        richTextBoxDescription.Text = mod.Description;
         textBoxModId.Text = mod.ModId;
         // richTextBoxArCodes.Text = mod.ArCodes;
         // richTextBoxGeckoCodes.Text = mod.GeckoCodes;
@@ -47,7 +47,6 @@ public partial class CreateMod : Form
         richTextBoxRemoveFiles.Text = mod.RemoveFiles;
         richTextBoxDolPatches.Text = mod.DOLPatches;
 
-        labelModIdInfo.Visible = false;
         comboBoxGame.Items.Add(new ComboBoxGameItem(mod.Game));
         comboBoxGame.SelectedIndex = 0;
         SetDefaultGameID(mod.Game);
@@ -125,13 +124,14 @@ public partial class CreateMod : Form
             TreatString(textBoxModName.Text).Length > 0 &&
             textBoxModId.Text.Length > 0 &&
             (textBoxGameId.Text.Length == 0 || textBoxGameId.Text.Length == 6) &&
-            DolPatchesValid();
+            DolPatchesValid() &&
+            IniPatchesValid();
     }
 
     private void ResetModId()
     {
         var selectedGameItem = (ComboBoxGameItem)comboBoxGame.SelectedItem;
-        var gameName = selectedGameItem == null ? "gamename" : ModManager.GameToString(selectedGameItem.Game);
+        var gameName = selectedGameItem == null ? "" : ModManager.GameToString(selectedGameItem.Game);
         string modId = $"{gameName}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}";
 
         textBoxModId.Text = modId;
@@ -154,7 +154,7 @@ public partial class CreateMod : Form
             Game = isEditing ? prevGame : ((ComboBoxGameItem)comboBoxGame.SelectedItem).Game,
             ModName = textBoxModName.Text,
             Author = textBoxAuthor.Text,
-            Description = textBoxDescription.Text,
+            Description = richTextBoxDescription.Text,
             ModId = textBoxModId.Text,
             GameId = textBoxGameId.Text,
             INIReplacements = richTextBoxINIValues.Text,
@@ -215,50 +215,55 @@ public partial class CreateMod : Form
         toolTip.Show(text, this, PointToClient(Cursor.Position), 20 * 1000);
     }
 
+    private void buttonModIdInfo_Click(object sender, EventArgs e)
+    {
+        ShowToolTip(
+            "The Mod ID is generated automatically from the game name, author and mod name.\n" +
+            "Feel free to enter your own custom ID for the mod, but make sure that it's unique!\n" +
+            "No other mod, by any other author or for any other game, should have the same ID as yours.\n" +
+            "The Mod ID cannot be changed after the mod is created.");
+    }
+
     private void buttonGameIdInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip("Enter a custom game ID for the mod.\n" +
+        ShowToolTip(
+            "Enter a custom game ID for the mod.\n" +
             "Save files are created using this game ID, enabling your mod to have a unique save file.\n" +
             "Make sure no other GameCube or Wii game has the same ID.\n" +
             "I recommend keeping the first four characters the same and changing only the last two.\n" +
-            "Must be 6 characters long. Leave blank for default.");
-    }
-
-    private void buttonIniValuesInfo_Click(object sender, EventArgs e)
-    {
-        ShowToolTip("Enter your mod's HIP and HOP files which should be\n" +
-            "merged into the running copy of the game instead of\n" +
-            "replacing the original ones, one per line.\n\n" +
-            "Example:\n\n" +
-            "boot.HIP\n" +
-            "hb\\hb01.HIP\n" +
-            "hb\\hb01.HOP");
+            "Must be 6 characters long. Leave blank for default.\n\n" +
+            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer");
     }
 
     private void buttonMergeHipsInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip("Enter your mod's HIP and HOP files which should be merged into the\n" +
-            "running copy of the game instead of replacing the original ones, one per line.\n" +
-            "Note that assets are simply copied into the destination archive, replacing any\n" +
-            "existing assets, and more complex operations performed by Industrial Park's HIP\n" +
-            "importer (such as merging Sound Info assets) is not done here.\n\n" +
+        ShowToolTip(
+            "Enter your mod's HIP and HOP files which should be merged into the running\n" +
+            "copy of the game instead of replacing the original ones, one per line.\n" +
+            "Assets from the mod will be imported into the destination archive, replacing any\n" +
+            "assets with the same asset ID if they exist, and assets of certain types will\n" +
+            "be merged into one (namely: Collision Table, Jaw Data Table, Level of Detail Table,\n" +
+            "Pipe Info Table, Shadow Table and Sound Info).\n\n" +
             "Example:\n\n" +
             "boot.HIP\n" +
-            "hb\\hb01.HIP\n" +
-            "hb\\hb01.HOP");
+            "hb\\hb01.HOP\n" +
+            "mn\\mn04.HIP\n\n" +
+            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
     }
 
     private void buttonRemoveFilesInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip("Enter the folders or files present in the original game\n" +
+        ShowToolTip(
+            "Enter the folders or files present in the original game\n" +
             "which should be deleted from the mod, one per line.\n\n" +
             "Example:\n\n" +
             "boot.HIP\n" +
-            "hb\\hb01.HIP\n" +
-            "hb\\hb01.HOP");
+            "hb\\hb01.HOP\n" +
+            "mn\\mn04.HIP\n\n" +
+            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
     }
 
-    private void button1_Click(object sender, EventArgs e)
+    private void buttonIniValuesInfo_Click(object sender, EventArgs e)
     {
         ShowToolTip(
             "Enter the game's configuration INI key-value pairs for this mod,\n" +
@@ -269,7 +274,8 @@ public partial class CreateMod : Form
             "BOOT=HB00\n" +
             "ShowMenuOnBoot=0 # This is a comment\n" +
             "G.BubbleBowl=1\n" +
-            "#another comment");
+            "#another comment\n\n" +
+            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
     }
 
     private void buttonDolPatchesInfo_Click(object sender, EventArgs e)
@@ -282,12 +288,19 @@ public partial class CreateMod : Form
             "Example:\n\n" +
             "00287D10 53494D50\n" +
             "00287DB0 54455854 # This is a comment\n" +
-            "#another comment");
+            "#another comment\n\n" +
+            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
     }
 
     private void richTextBoxDolPatches_TextChanged(object sender, EventArgs e)
     {
         richTextBoxDolPatches.BackColor = DolPatchesValid() ? defaultBackgroundColor : Color.Red;
+        SetCreateModEnabled();
+    }
+
+    private void richTextBoxINIValues_TextChanged(object sender, EventArgs e)
+    {
+        richTextBoxINIValues.BackColor = IniPatchesValid() ? defaultBackgroundColor : Color.Red;
         SetCreateModEnabled();
     }
 
@@ -310,5 +323,36 @@ public partial class CreateMod : Form
         {
             return false;
         }
+    }
+
+    private bool IniPatchesValid()
+    {
+        try
+        {
+            var patches = richTextBoxINIValues.Text
+                .Split('\n')
+                .Select(l => l.Split('#')[0].Trim())
+                .Where(l => !string.IsNullOrWhiteSpace(l))
+                .Select(l => l.Split('='))
+                .Where(vals => vals.Length == 2 ? true : throw new Exception())
+                .Select(vals => (vals[0].Trim(), vals[1].Trim()))
+                .ToArray();
+
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private void flowLayoutPanelPage1_Resize(object sender, EventArgs e)
+    {
+        groupBoxGame.Size = new Size(flowLayoutPanelPage1.Width - 23, groupBoxGame.Size.Height);
+    }
+
+    private void flowLayoutPanelPage2_Resize(object sender, EventArgs e)
+    {
+        groupBoxGameId.Size = new Size(flowLayoutPanelPage2.Width - 23, groupBoxGameId.Size.Height);
     }
 }

@@ -28,6 +28,11 @@ partial class CreateMod
     /// </summary>
     private void InitializeComponent()
     {
+        buttonCreateMod = new Button();
+        buttonCancel = new Button();
+        tabControl1 = new TabControl();
+        tabPageModData = new TabPage();
+        flowLayoutPanelPage1 = new FlowLayoutPanel();
         groupBoxGame = new GroupBox();
         comboBoxGame = new ComboBox();
         groupBoxModName = new GroupBox();
@@ -35,20 +40,16 @@ partial class CreateMod
         groupBoxAuthor = new GroupBox();
         textBoxAuthor = new TextBox();
         groupBoxDescription = new GroupBox();
-        textBoxDescription = new TextBox();
-        buttonCreateMod = new Button();
-        buttonCancel = new Button();
-        groupBoxModId = new GroupBox();
-        labelModIdInfo = new Label();
-        textBoxModId = new TextBox();
-        tabControl1 = new TabControl();
-        tabPageModData = new TabPage();
+        richTextBoxDescription = new RichTextBox();
         groupBoxUpdatedAt = new GroupBox();
         dateTimePickerUpdatedAt = new DateTimePicker();
         groupBoxCreatedAt = new GroupBox();
         dateTimePickerCreatedAt = new DateTimePicker();
+        groupBoxModId = new GroupBox();
+        buttonModIdInfo = new Button();
+        textBoxModId = new TextBox();
         tabPageSettings = new TabPage();
-        flowLayoutPanel1 = new FlowLayoutPanel();
+        flowLayoutPanelPage2 = new FlowLayoutPanel();
         groupBoxGameId = new GroupBox();
         buttonGameIdInfo = new Button();
         labelDefaultGameId = new Label();
@@ -65,17 +66,18 @@ partial class CreateMod
         groupBoxDolPatches = new GroupBox();
         buttonDolPatchesInfo = new Button();
         richTextBoxDolPatches = new RichTextBox();
+        tabControl1.SuspendLayout();
+        tabPageModData.SuspendLayout();
+        flowLayoutPanelPage1.SuspendLayout();
         groupBoxGame.SuspendLayout();
         groupBoxModName.SuspendLayout();
         groupBoxAuthor.SuspendLayout();
         groupBoxDescription.SuspendLayout();
-        groupBoxModId.SuspendLayout();
-        tabControl1.SuspendLayout();
-        tabPageModData.SuspendLayout();
         groupBoxUpdatedAt.SuspendLayout();
         groupBoxCreatedAt.SuspendLayout();
+        groupBoxModId.SuspendLayout();
         tabPageSettings.SuspendLayout();
-        flowLayoutPanel1.SuspendLayout();
+        flowLayoutPanelPage2.SuspendLayout();
         groupBoxGameId.SuspendLayout();
         groupBoxIniValues.SuspendLayout();
         groupBoxMergeHips.SuspendLayout();
@@ -83,86 +85,13 @@ partial class CreateMod
         groupBoxDolPatches.SuspendLayout();
         SuspendLayout();
         // 
-        // groupBoxGame
-        // 
-        groupBoxGame.Controls.Add(comboBoxGame);
-        groupBoxGame.Location = new Point(6, 6);
-        groupBoxGame.Name = "groupBoxGame";
-        groupBoxGame.Size = new Size(328, 51);
-        groupBoxGame.TabIndex = 1;
-        groupBoxGame.TabStop = false;
-        groupBoxGame.Text = "Choose Game";
-        // 
-        // comboBoxGame
-        // 
-        comboBoxGame.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        comboBoxGame.FormattingEnabled = true;
-        comboBoxGame.Location = new Point(6, 22);
-        comboBoxGame.Name = "comboBoxGame";
-        comboBoxGame.Size = new Size(316, 23);
-        comboBoxGame.TabIndex = 2;
-        comboBoxGame.SelectedIndexChanged += comboBoxGame_SelectedIndexChanged;
-        // 
-        // groupBoxModName
-        // 
-        groupBoxModName.Controls.Add(textBoxModName);
-        groupBoxModName.Location = new Point(6, 63);
-        groupBoxModName.Name = "groupBoxModName";
-        groupBoxModName.Size = new Size(328, 51);
-        groupBoxModName.TabIndex = 3;
-        groupBoxModName.TabStop = false;
-        groupBoxModName.Text = "Mod Name";
-        // 
-        // textBoxModName
-        // 
-        textBoxModName.Location = new Point(6, 22);
-        textBoxModName.Name = "textBoxModName";
-        textBoxModName.Size = new Size(316, 23);
-        textBoxModName.TabIndex = 4;
-        textBoxModName.TextChanged += textBoxModName_TextChanged;
-        // 
-        // groupBoxAuthor
-        // 
-        groupBoxAuthor.Controls.Add(textBoxAuthor);
-        groupBoxAuthor.Location = new Point(6, 120);
-        groupBoxAuthor.Name = "groupBoxAuthor";
-        groupBoxAuthor.Size = new Size(328, 51);
-        groupBoxAuthor.TabIndex = 5;
-        groupBoxAuthor.TabStop = false;
-        groupBoxAuthor.Text = "Mod Author";
-        // 
-        // textBoxAuthor
-        // 
-        textBoxAuthor.Location = new Point(6, 22);
-        textBoxAuthor.Name = "textBoxAuthor";
-        textBoxAuthor.Size = new Size(316, 23);
-        textBoxAuthor.TabIndex = 6;
-        textBoxAuthor.TextChanged += textBoxAuthor_TextChanged;
-        // 
-        // groupBoxDescription
-        // 
-        groupBoxDescription.Controls.Add(textBoxDescription);
-        groupBoxDescription.Location = new Point(6, 177);
-        groupBoxDescription.Name = "groupBoxDescription";
-        groupBoxDescription.Size = new Size(328, 51);
-        groupBoxDescription.TabIndex = 7;
-        groupBoxDescription.TabStop = false;
-        groupBoxDescription.Text = "Mod Description";
-        // 
-        // textBoxDescription
-        // 
-        textBoxDescription.Location = new Point(6, 22);
-        textBoxDescription.Name = "textBoxDescription";
-        textBoxDescription.Size = new Size(316, 23);
-        textBoxDescription.TabIndex = 8;
-        // 
         // buttonCreateMod
         // 
         buttonCreateMod.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
         buttonCreateMod.Enabled = false;
-        buttonCreateMod.Location = new Point(186, 495);
+        buttonCreateMod.Location = new Point(187, 560);
         buttonCreateMod.Name = "buttonCreateMod";
-        buttonCreateMod.Size = new Size(161, 23);
+        buttonCreateMod.Size = new Size(169, 23);
         buttonCreateMod.TabIndex = 72;
         buttonCreateMod.Text = "Create Mod";
         buttonCreateMod.UseVisualStyleBackColor = true;
@@ -171,42 +100,13 @@ partial class CreateMod
         // buttonCancel
         // 
         buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-        buttonCancel.Location = new Point(19, 495);
+        buttonCancel.Location = new Point(12, 560);
         buttonCancel.Name = "buttonCancel";
-        buttonCancel.Size = new Size(161, 23);
+        buttonCancel.Size = new Size(169, 23);
         buttonCancel.TabIndex = 71;
         buttonCancel.Text = "Cancel";
         buttonCancel.UseVisualStyleBackColor = true;
         buttonCancel.Click += buttonCancel_Click;
-        // 
-        // groupBoxModId
-        // 
-        groupBoxModId.Controls.Add(labelModIdInfo);
-        groupBoxModId.Controls.Add(textBoxModId);
-        groupBoxModId.Location = new Point(6, 348);
-        groupBoxModId.Name = "groupBoxModId";
-        groupBoxModId.Size = new Size(328, 102);
-        groupBoxModId.TabIndex = 13;
-        groupBoxModId.TabStop = false;
-        groupBoxModId.Text = "Mod ID";
-        // 
-        // labelModIdInfo
-        // 
-        labelModIdInfo.AutoSize = true;
-        labelModIdInfo.Location = new Point(6, 48);
-        labelModIdInfo.Name = "labelModIdInfo";
-        labelModIdInfo.Size = new Size(295, 45);
-        labelModIdInfo.TabIndex = 15;
-        labelModIdInfo.Text = "Feel free to enter your own custom ID for the mod, but\r\nmake sure that no other mod, by any other author or\r\nfor any other game, will have the same ID as yours!";
-        // 
-        // textBoxModId
-        // 
-        textBoxModId.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point);
-        textBoxModId.Location = new Point(6, 22);
-        textBoxModId.Name = "textBoxModId";
-        textBoxModId.Size = new Size(316, 22);
-        textBoxModId.TabIndex = 14;
-        textBoxModId.TextChanged += textBoxModId_TextChanged;
         // 
         // tabControl1
         // 
@@ -217,86 +117,216 @@ partial class CreateMod
         tabControl1.Margin = new Padding(0);
         tabControl1.Name = "tabControl1";
         tabControl1.SelectedIndex = 0;
-        tabControl1.Size = new Size(350, 483);
+        tabControl1.Size = new Size(350, 548);
         tabControl1.TabIndex = 0;
         tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
         // 
         // tabPageModData
         // 
-        tabPageModData.Controls.Add(groupBoxUpdatedAt);
-        tabPageModData.Controls.Add(groupBoxCreatedAt);
-        tabPageModData.Controls.Add(groupBoxGame);
-        tabPageModData.Controls.Add(groupBoxModName);
-        tabPageModData.Controls.Add(groupBoxAuthor);
-        tabPageModData.Controls.Add(groupBoxModId);
-        tabPageModData.Controls.Add(groupBoxDescription);
+        tabPageModData.Controls.Add(flowLayoutPanelPage1);
         tabPageModData.Location = new Point(4, 24);
         tabPageModData.Name = "tabPageModData";
-        tabPageModData.Padding = new Padding(3);
-        tabPageModData.Size = new Size(342, 455);
-        tabPageModData.TabIndex = 0;
-        tabPageModData.Text = "Mod Data";
+        tabPageModData.Size = new Size(342, 520);
+        tabPageModData.TabIndex = 4;
+        tabPageModData.Text = "Mod Metadata";
         tabPageModData.UseVisualStyleBackColor = true;
+        // 
+        // flowLayoutPanelPage1
+        // 
+        flowLayoutPanelPage1.AutoScroll = true;
+        flowLayoutPanelPage1.Controls.Add(groupBoxGame);
+        flowLayoutPanelPage1.Controls.Add(groupBoxModName);
+        flowLayoutPanelPage1.Controls.Add(groupBoxAuthor);
+        flowLayoutPanelPage1.Controls.Add(groupBoxDescription);
+        flowLayoutPanelPage1.Controls.Add(groupBoxUpdatedAt);
+        flowLayoutPanelPage1.Controls.Add(groupBoxCreatedAt);
+        flowLayoutPanelPage1.Controls.Add(groupBoxModId);
+        flowLayoutPanelPage1.Dock = DockStyle.Fill;
+        flowLayoutPanelPage1.FlowDirection = FlowDirection.TopDown;
+        flowLayoutPanelPage1.Location = new Point(0, 0);
+        flowLayoutPanelPage1.Name = "flowLayoutPanelPage1";
+        flowLayoutPanelPage1.Size = new Size(342, 520);
+        flowLayoutPanelPage1.TabIndex = 0;
+        flowLayoutPanelPage1.WrapContents = false;
+        flowLayoutPanelPage1.Resize += flowLayoutPanelPage1_Resize;
+        // 
+        // groupBoxGame
+        // 
+        groupBoxGame.Controls.Add(comboBoxGame);
+        groupBoxGame.Location = new Point(3, 3);
+        groupBoxGame.Name = "groupBoxGame";
+        groupBoxGame.Size = new Size(319, 51);
+        groupBoxGame.TabIndex = 1;
+        groupBoxGame.TabStop = false;
+        groupBoxGame.Text = "Game";
+        // 
+        // comboBoxGame
+        // 
+        comboBoxGame.Dock = DockStyle.Fill;
+        comboBoxGame.FormattingEnabled = true;
+        comboBoxGame.Location = new Point(3, 19);
+        comboBoxGame.Name = "comboBoxGame";
+        comboBoxGame.Size = new Size(313, 23);
+        comboBoxGame.TabIndex = 2;
+        comboBoxGame.SelectedIndexChanged += comboBoxGame_SelectedIndexChanged;
+        // 
+        // groupBoxModName
+        // 
+        groupBoxModName.Controls.Add(textBoxModName);
+        groupBoxModName.Dock = DockStyle.Top;
+        groupBoxModName.Location = new Point(3, 60);
+        groupBoxModName.Name = "groupBoxModName";
+        groupBoxModName.Size = new Size(319, 51);
+        groupBoxModName.TabIndex = 3;
+        groupBoxModName.TabStop = false;
+        groupBoxModName.Text = "Mod Name";
+        // 
+        // textBoxModName
+        // 
+        textBoxModName.Dock = DockStyle.Fill;
+        textBoxModName.Location = new Point(3, 19);
+        textBoxModName.Name = "textBoxModName";
+        textBoxModName.Size = new Size(313, 23);
+        textBoxModName.TabIndex = 4;
+        textBoxModName.TextChanged += textBoxModName_TextChanged;
+        // 
+        // groupBoxAuthor
+        // 
+        groupBoxAuthor.Controls.Add(textBoxAuthor);
+        groupBoxAuthor.Dock = DockStyle.Top;
+        groupBoxAuthor.Location = new Point(3, 117);
+        groupBoxAuthor.Name = "groupBoxAuthor";
+        groupBoxAuthor.Size = new Size(319, 51);
+        groupBoxAuthor.TabIndex = 5;
+        groupBoxAuthor.TabStop = false;
+        groupBoxAuthor.Text = "Mod Author";
+        // 
+        // textBoxAuthor
+        // 
+        textBoxAuthor.Dock = DockStyle.Fill;
+        textBoxAuthor.Location = new Point(3, 19);
+        textBoxAuthor.Name = "textBoxAuthor";
+        textBoxAuthor.Size = new Size(313, 23);
+        textBoxAuthor.TabIndex = 6;
+        textBoxAuthor.TextChanged += textBoxAuthor_TextChanged;
+        // 
+        // groupBoxDescription
+        // 
+        groupBoxDescription.Controls.Add(richTextBoxDescription);
+        groupBoxDescription.Dock = DockStyle.Top;
+        groupBoxDescription.Location = new Point(3, 174);
+        groupBoxDescription.Name = "groupBoxDescription";
+        groupBoxDescription.Size = new Size(319, 172);
+        groupBoxDescription.TabIndex = 7;
+        groupBoxDescription.TabStop = false;
+        groupBoxDescription.Text = "Mod Description";
+        // 
+        // richTextBoxDescription
+        // 
+        richTextBoxDescription.Dock = DockStyle.Fill;
+        richTextBoxDescription.Location = new Point(3, 19);
+        richTextBoxDescription.Name = "richTextBoxDescription";
+        richTextBoxDescription.Size = new Size(313, 150);
+        richTextBoxDescription.TabIndex = 8;
+        richTextBoxDescription.Text = "";
         // 
         // groupBoxUpdatedAt
         // 
         groupBoxUpdatedAt.Controls.Add(dateTimePickerUpdatedAt);
-        groupBoxUpdatedAt.Location = new Point(6, 291);
+        groupBoxUpdatedAt.Dock = DockStyle.Top;
+        groupBoxUpdatedAt.Location = new Point(3, 352);
         groupBoxUpdatedAt.Name = "groupBoxUpdatedAt";
-        groupBoxUpdatedAt.Size = new Size(328, 51);
-        groupBoxUpdatedAt.TabIndex = 11;
+        groupBoxUpdatedAt.Size = new Size(319, 51);
+        groupBoxUpdatedAt.TabIndex = 9;
         groupBoxUpdatedAt.TabStop = false;
         groupBoxUpdatedAt.Text = "Updated At";
         // 
         // dateTimePickerUpdatedAt
         // 
-        dateTimePickerUpdatedAt.Location = new Point(6, 22);
+        dateTimePickerUpdatedAt.Dock = DockStyle.Fill;
+        dateTimePickerUpdatedAt.Location = new Point(3, 19);
         dateTimePickerUpdatedAt.Name = "dateTimePickerUpdatedAt";
-        dateTimePickerUpdatedAt.Size = new Size(316, 23);
-        dateTimePickerUpdatedAt.TabIndex = 12;
+        dateTimePickerUpdatedAt.Size = new Size(313, 23);
+        dateTimePickerUpdatedAt.TabIndex = 10;
         // 
         // groupBoxCreatedAt
         // 
         groupBoxCreatedAt.Controls.Add(dateTimePickerCreatedAt);
-        groupBoxCreatedAt.Location = new Point(6, 234);
+        groupBoxCreatedAt.Dock = DockStyle.Top;
+        groupBoxCreatedAt.Location = new Point(3, 409);
         groupBoxCreatedAt.Name = "groupBoxCreatedAt";
-        groupBoxCreatedAt.Size = new Size(328, 51);
-        groupBoxCreatedAt.TabIndex = 9;
+        groupBoxCreatedAt.Size = new Size(319, 51);
+        groupBoxCreatedAt.TabIndex = 11;
         groupBoxCreatedAt.TabStop = false;
         groupBoxCreatedAt.Text = "Created At";
         // 
         // dateTimePickerCreatedAt
         // 
-        dateTimePickerCreatedAt.Location = new Point(6, 22);
+        dateTimePickerCreatedAt.Dock = DockStyle.Fill;
+        dateTimePickerCreatedAt.Location = new Point(3, 19);
         dateTimePickerCreatedAt.Name = "dateTimePickerCreatedAt";
-        dateTimePickerCreatedAt.Size = new Size(316, 23);
-        dateTimePickerCreatedAt.TabIndex = 10;
+        dateTimePickerCreatedAt.Size = new Size(313, 23);
+        dateTimePickerCreatedAt.TabIndex = 12;
+        // 
+        // groupBoxModId
+        // 
+        groupBoxModId.Controls.Add(buttonModIdInfo);
+        groupBoxModId.Controls.Add(textBoxModId);
+        groupBoxModId.Dock = DockStyle.Top;
+        groupBoxModId.Location = new Point(3, 466);
+        groupBoxModId.Name = "groupBoxModId";
+        groupBoxModId.Size = new Size(319, 51);
+        groupBoxModId.TabIndex = 16;
+        groupBoxModId.TabStop = false;
+        groupBoxModId.Text = "Mod ID";
+        // 
+        // buttonModIdInfo
+        // 
+        buttonModIdInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        buttonModIdInfo.Location = new Point(268, -2);
+        buttonModIdInfo.Name = "buttonModIdInfo";
+        buttonModIdInfo.Size = new Size(45, 23);
+        buttonModIdInfo.TabIndex = 20;
+        buttonModIdInfo.Text = "Info";
+        buttonModIdInfo.UseVisualStyleBackColor = true;
+        buttonModIdInfo.Click += buttonModIdInfo_Click;
+        // 
+        // textBoxModId
+        // 
+        textBoxModId.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        textBoxModId.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point);
+        textBoxModId.Location = new Point(3, 19);
+        textBoxModId.Name = "textBoxModId";
+        textBoxModId.Size = new Size(310, 22);
+        textBoxModId.TabIndex = 14;
+        textBoxModId.TextChanged += textBoxModId_TextChanged;
         // 
         // tabPageSettings
         // 
-        tabPageSettings.Controls.Add(flowLayoutPanel1);
+        tabPageSettings.Controls.Add(flowLayoutPanelPage2);
         tabPageSettings.Location = new Point(4, 24);
         tabPageSettings.Name = "tabPageSettings";
-        tabPageSettings.Size = new Size(342, 455);
+        tabPageSettings.Size = new Size(342, 520);
         tabPageSettings.TabIndex = 3;
-        tabPageSettings.Text = "Settings";
+        tabPageSettings.Text = "Patches and Replacements";
         tabPageSettings.UseVisualStyleBackColor = true;
         // 
-        // flowLayoutPanel1
+        // flowLayoutPanelPage2
         // 
-        flowLayoutPanel1.AutoScroll = true;
-        flowLayoutPanel1.Controls.Add(groupBoxGameId);
-        flowLayoutPanel1.Controls.Add(groupBoxIniValues);
-        flowLayoutPanel1.Controls.Add(groupBoxMergeHips);
-        flowLayoutPanel1.Controls.Add(groupBoxRemoveFiles);
-        flowLayoutPanel1.Controls.Add(groupBoxDolPatches);
-        flowLayoutPanel1.Dock = DockStyle.Fill;
-        flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-        flowLayoutPanel1.Location = new Point(0, 0);
-        flowLayoutPanel1.Name = "flowLayoutPanel1";
-        flowLayoutPanel1.Size = new Size(342, 455);
-        flowLayoutPanel1.TabIndex = 16;
-        flowLayoutPanel1.WrapContents = false;
+        flowLayoutPanelPage2.AutoScroll = true;
+        flowLayoutPanelPage2.Controls.Add(groupBoxGameId);
+        flowLayoutPanelPage2.Controls.Add(groupBoxIniValues);
+        flowLayoutPanelPage2.Controls.Add(groupBoxMergeHips);
+        flowLayoutPanelPage2.Controls.Add(groupBoxRemoveFiles);
+        flowLayoutPanelPage2.Controls.Add(groupBoxDolPatches);
+        flowLayoutPanelPage2.Dock = DockStyle.Fill;
+        flowLayoutPanelPage2.FlowDirection = FlowDirection.TopDown;
+        flowLayoutPanelPage2.Location = new Point(0, 0);
+        flowLayoutPanelPage2.Name = "flowLayoutPanelPage2";
+        flowLayoutPanelPage2.Size = new Size(342, 520);
+        flowLayoutPanelPage2.TabIndex = 16;
+        flowLayoutPanelPage2.WrapContents = false;
+        flowLayoutPanelPage2.Resize += flowLayoutPanelPage2_Resize;
         // 
         // groupBoxGameId
         // 
@@ -312,6 +342,7 @@ partial class CreateMod
         // 
         // buttonGameIdInfo
         // 
+        buttonGameIdInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         buttonGameIdInfo.Location = new Point(268, 22);
         buttonGameIdInfo.Name = "buttonGameIdInfo";
         buttonGameIdInfo.Size = new Size(45, 23);
@@ -331,15 +362,18 @@ partial class CreateMod
         // 
         // textBoxGameId
         // 
+        textBoxGameId.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         textBoxGameId.Location = new Point(6, 22);
         textBoxGameId.Name = "textBoxGameId";
         textBoxGameId.Size = new Size(256, 23);
         textBoxGameId.TabIndex = 18;
+        textBoxGameId.TextChanged += textBoxGameId_TextChanged;
         // 
         // groupBoxIniValues
         // 
         groupBoxIniValues.Controls.Add(buttonIniValuesInfo);
         groupBoxIniValues.Controls.Add(richTextBoxINIValues);
+        groupBoxIniValues.Dock = DockStyle.Top;
         groupBoxIniValues.Location = new Point(3, 78);
         groupBoxIniValues.Name = "groupBoxIniValues";
         groupBoxIniValues.Size = new Size(319, 172);
@@ -349,26 +383,30 @@ partial class CreateMod
         // 
         // buttonIniValuesInfo
         // 
+        buttonIniValuesInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         buttonIniValuesInfo.Location = new Point(268, -1);
         buttonIniValuesInfo.Name = "buttonIniValuesInfo";
         buttonIniValuesInfo.Size = new Size(45, 23);
         buttonIniValuesInfo.TabIndex = 22;
         buttonIniValuesInfo.Text = "Info";
         buttonIniValuesInfo.UseVisualStyleBackColor = true;
-        buttonIniValuesInfo.Click += button1_Click;
+        buttonIniValuesInfo.Click += buttonIniValuesInfo_Click;
         // 
         // richTextBoxINIValues
         // 
+        richTextBoxINIValues.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         richTextBoxINIValues.Location = new Point(6, 22);
         richTextBoxINIValues.Name = "richTextBoxINIValues";
         richTextBoxINIValues.Size = new Size(307, 144);
         richTextBoxINIValues.TabIndex = 23;
         richTextBoxINIValues.Text = "";
+        richTextBoxINIValues.TextChanged += richTextBoxINIValues_TextChanged;
         // 
         // groupBoxMergeHips
         // 
         groupBoxMergeHips.Controls.Add(buttonMergeHipsInfo);
         groupBoxMergeHips.Controls.Add(richTextBoxMergeHips);
+        groupBoxMergeHips.Dock = DockStyle.Top;
         groupBoxMergeHips.Location = new Point(3, 256);
         groupBoxMergeHips.Name = "groupBoxMergeHips";
         groupBoxMergeHips.Size = new Size(319, 172);
@@ -378,6 +416,7 @@ partial class CreateMod
         // 
         // buttonMergeHipsInfo
         // 
+        buttonMergeHipsInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         buttonMergeHipsInfo.Location = new Point(268, -1);
         buttonMergeHipsInfo.Name = "buttonMergeHipsInfo";
         buttonMergeHipsInfo.Size = new Size(45, 23);
@@ -388,6 +427,7 @@ partial class CreateMod
         // 
         // richTextBoxMergeHips
         // 
+        richTextBoxMergeHips.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         richTextBoxMergeHips.Location = new Point(6, 22);
         richTextBoxMergeHips.Name = "richTextBoxMergeHips";
         richTextBoxMergeHips.Size = new Size(307, 144);
@@ -398,6 +438,7 @@ partial class CreateMod
         // 
         groupBoxRemoveFiles.Controls.Add(buttonRemoveFilesInfo);
         groupBoxRemoveFiles.Controls.Add(richTextBoxRemoveFiles);
+        groupBoxRemoveFiles.Dock = DockStyle.Top;
         groupBoxRemoveFiles.Location = new Point(3, 434);
         groupBoxRemoveFiles.Name = "groupBoxRemoveFiles";
         groupBoxRemoveFiles.Size = new Size(319, 172);
@@ -427,6 +468,7 @@ partial class CreateMod
         // 
         groupBoxDolPatches.Controls.Add(buttonDolPatchesInfo);
         groupBoxDolPatches.Controls.Add(richTextBoxDolPatches);
+        groupBoxDolPatches.Dock = DockStyle.Top;
         groupBoxDolPatches.Location = new Point(3, 612);
         groupBoxDolPatches.Name = "groupBoxDolPatches";
         groupBoxDolPatches.Size = new Size(319, 172);
@@ -457,31 +499,30 @@ partial class CreateMod
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(368, 527);
+        ClientSize = new Size(368, 590);
         Controls.Add(tabControl1);
         Controls.Add(buttonCancel);
         Controls.Add(buttonCreateMod);
-        FormBorderStyle = FormBorderStyle.FixedSingle;
         MaximizeBox = false;
         Name = "CreateMod";
         ShowIcon = false;
         StartPosition = FormStartPosition.CenterParent;
         Text = "Create New Mod";
+        tabControl1.ResumeLayout(false);
+        tabPageModData.ResumeLayout(false);
+        flowLayoutPanelPage1.ResumeLayout(false);
         groupBoxGame.ResumeLayout(false);
         groupBoxModName.ResumeLayout(false);
         groupBoxModName.PerformLayout();
         groupBoxAuthor.ResumeLayout(false);
         groupBoxAuthor.PerformLayout();
         groupBoxDescription.ResumeLayout(false);
-        groupBoxDescription.PerformLayout();
-        groupBoxModId.ResumeLayout(false);
-        groupBoxModId.PerformLayout();
-        tabControl1.ResumeLayout(false);
-        tabPageModData.ResumeLayout(false);
         groupBoxUpdatedAt.ResumeLayout(false);
         groupBoxCreatedAt.ResumeLayout(false);
+        groupBoxModId.ResumeLayout(false);
+        groupBoxModId.PerformLayout();
         tabPageSettings.ResumeLayout(false);
-        flowLayoutPanel1.ResumeLayout(false);
+        flowLayoutPanelPage2.ResumeLayout(false);
         groupBoxGameId.ResumeLayout(false);
         groupBoxGameId.PerformLayout();
         groupBoxIniValues.ResumeLayout(false);
@@ -492,28 +533,12 @@ partial class CreateMod
     }
 
     #endregion
-
-    private GroupBox groupBoxGame;
-    private ComboBox comboBoxGame;
-    private GroupBox groupBoxModName;
-    private TextBox textBoxModName;
-    private GroupBox groupBoxAuthor;
-    private TextBox textBoxAuthor;
-    private GroupBox groupBoxDescription;
-    private TextBox textBoxDescription;
     private Button buttonCreateMod;
     private Button buttonCancel;
-    private GroupBox groupBoxModId;
-    private TextBox textBoxModId;
-    private Label labelModIdInfo;
     private TabControl tabControl1;
     private TabPage tabPageModData;
-    private DateTimePicker dateTimePickerCreatedAt;
-    private GroupBox groupBoxCreatedAt;
-    private GroupBox groupBoxUpdatedAt;
-    private DateTimePicker dateTimePickerUpdatedAt;
     private TabPage tabPageSettings;
-    private FlowLayoutPanel flowLayoutPanel1;
+    private FlowLayoutPanel flowLayoutPanelPage2;
     private GroupBox groupBoxGameId;
     private Button buttonGameIdInfo;
     private Label labelDefaultGameId;
@@ -530,4 +555,20 @@ partial class CreateMod
     private GroupBox groupBoxDolPatches;
     private Button buttonDolPatchesInfo;
     private RichTextBox richTextBoxDolPatches;
+    private FlowLayoutPanel flowLayoutPanelPage1;
+    private GroupBox groupBoxGame;
+    private ComboBox comboBoxGame;
+    private GroupBox groupBoxModName;
+    private TextBox textBoxModName;
+    private GroupBox groupBoxAuthor;
+    private TextBox textBoxAuthor;
+    private GroupBox groupBoxDescription;
+    private RichTextBox richTextBoxDescription;
+    private GroupBox groupBoxUpdatedAt;
+    private DateTimePicker dateTimePickerUpdatedAt;
+    private GroupBox groupBoxCreatedAt;
+    private DateTimePicker dateTimePickerCreatedAt;
+    private GroupBox groupBoxModId;
+    private TextBox textBoxModId;
+    private Button buttonModIdInfo;
 }

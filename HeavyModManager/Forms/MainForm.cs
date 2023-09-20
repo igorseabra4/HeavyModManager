@@ -15,7 +15,7 @@ public partial class MainForm : Form
         toolTip = new ToolTip();
         aboutBox = new AboutBox();
 
-        foreach (Game game in ModManager.Games)
+        foreach (Game game in ModManager.EvilEngineGames)
             comboBoxGame.Items.Add(new ComboBoxGameItem(game));
 
         ModManager.LoadSettings();
