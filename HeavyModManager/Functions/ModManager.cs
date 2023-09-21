@@ -165,23 +165,24 @@ public static class ModManager
     public static Game CurrentGame { get; private set; }
     public static GameSettings? CurrentGameSettings { get; private set; } = null;
 
-    public static void SaveSettings()
+    public static void SaveSettings(ModManagerSettings settings)
     {
-        File.WriteAllText(ModManagerSettingsPath, JsonSerializer.Serialize(new ModManagerSettings()
-        {
-            CurrentGame = CurrentGame,
-            DolphinPath = DolphinPath,
-            CheckForUpdatesOnStartup = CheckForUpdatesOnStartup,
-            DeveloperMode = DeveloperMode,
-            Icon = IconManager.CurrentIcon,
-        }));
+        settings.CurrentGame = CurrentGame;
+        settings.DolphinPath = DolphinPath;
+        settings.CheckForUpdatesOnStartup = CheckForUpdatesOnStartup;
+        settings.DeveloperMode = DeveloperMode;
+        settings.Icon = IconManager.CurrentIcon;
+
+        File.WriteAllText(ModManagerSettingsPath, JsonSerializer.Serialize(settings));
     }
 
-    public static void LoadSettings()
+    public static ModManagerSettings LoadSettings()
     {
-        ModManagerSettings settings = File.Exists(ModManagerSettingsPath) ?
+        ModManagerSettings? settings = File.Exists(ModManagerSettingsPath) ?
              JsonSerializer.Deserialize<ModManagerSettings>(File.ReadAllText(ModManagerSettingsPath)) :
              new ModManagerSettings();
+
+        settings ??= new ModManagerSettings();
 
         CurrentGame = settings.CurrentGame;
         DolphinPath = settings.DolphinPath;
@@ -191,6 +192,8 @@ public static class ModManager
             DeveloperMode = settings.DeveloperMode;
             IconManager.CurrentIcon = settings.Icon;
         }
+
+        return settings;
     }
 
     public static void SetDolphinPath()
@@ -204,7 +207,6 @@ public static class ModManager
         if (openFile.ShowDialog() == DialogResult.OK)
         {
             DolphinPath = openFile.FileName;
-            SaveSettings();
             MessageBox.Show("Dolphin path set successfully.", "Dolphin path set", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
@@ -229,10 +231,9 @@ public static class ModManager
 
     public static void RefreshGameSettings()
     {
-        if (File.Exists(GameSettingsPath))
-            CurrentGameSettings = JsonSerializer.Deserialize<GameSettings>(File.ReadAllText(GameSettingsPath));
-        else
-            CurrentGameSettings = new GameSettings();
+        CurrentGameSettings = File.Exists(GameSettingsPath) ?
+            JsonSerializer.Deserialize<GameSettings>(File.ReadAllText(GameSettingsPath)) :
+            new GameSettings();
 
         RefreshModList();
     }
@@ -284,23 +285,23 @@ public static class ModManager
         var openFile = new OpenFileDialog()
         {
             Filter = "ZIP Archives|*.zip",
-            Title = "Select a mod ZIP to install"
+            Title = "Select a mod ZIP to install",
+            Multiselect = true,
         };
 
         if (openFile.ShowDialog() == DialogResult.OK)
         {
-            ZipManager.InstallMod(openFile.FileName);
+            foreach (var fileName in openFile.FileNames)
+                ZipManager.InstallMod(fileName);
             RefreshModList();
         }
     }
 
-    public static void DeleteMod(string modId, bool skipRefresh = false)
+    public static void DeleteMod(string modId)
     {
         var path = GetModPath(modId);
         if (Directory.Exists(path))
             Directory.Delete(path, true);
-        if (!skipRefresh)
-            RefreshModList();
     }
 
     public static bool RestoreBackupIso(string isoPath)
@@ -385,7 +386,7 @@ public static class ModManager
         SaveGameSettings();
     }
 
-    public static void ApplyMods()
+    public static void ApplyMods(bool applyOnly = false)
     {
         if (!DeveloperMode && !CurrentGameSettings.Invalidated)
             return;
@@ -401,7 +402,7 @@ public static class ModManager
 
         var fs = new Microsoft.VisualBasic.Devices.Computer().FileSystem;
 
-        if (DeveloperMode)
+        if (DeveloperMode && !applyOnly)
         {
             if (!Directory.Exists(GameGamePath))
             {

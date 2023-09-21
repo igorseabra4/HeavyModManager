@@ -32,10 +32,14 @@ partial class MainForm
         buttonCreateBackup = new Button();
         comboBoxGame = new ComboBox();
         groupBoxMods = new GroupBox();
+        listViewMods = new ListView();
+        columnName = new ColumnHeader();
+        columnAuthor = new ColumnHeader();
+        columnCreatedDate = new ColumnHeader();
+        columnUpdatedDate = new ColumnHeader();
         buttonRefreshModList = new Button();
         buttonMoveDown = new Button();
         buttonMoveUp = new Button();
-        listMods = new CheckedListBox();
         buttonAddMod = new Button();
         buttonRunGame = new Button();
         buttonApplyMods = new Button();
@@ -52,11 +56,11 @@ partial class MainForm
         checkForUpdatesOnStartupToolStripMenuItem = new ToolStripMenuItem();
         toolStripSeparator2 = new ToolStripSeparator();
         aboutToolStripMenuItem = new ToolStripMenuItem();
+        changeIconToolStripMenuItem = new ToolStripMenuItem();
         labelModInfo = new Label();
         panelLabelModInfo = new Panel();
         groupBoxModInfo = new GroupBox();
         labelDolphin = new Label();
-        changeIconToolStripMenuItem = new ToolStripMenuItem();
         groupBoxGame.SuspendLayout();
         groupBoxMods.SuspendLayout();
         menuStrip1.SuspendLayout();
@@ -71,7 +75,7 @@ partial class MainForm
         groupBoxGame.Controls.Add(comboBoxGame);
         groupBoxGame.Location = new Point(12, 27);
         groupBoxGame.Name = "groupBoxGame";
-        groupBoxGame.Size = new Size(568, 51);
+        groupBoxGame.Size = new Size(698, 51);
         groupBoxGame.TabIndex = 1;
         groupBoxGame.TabStop = false;
         groupBoxGame.Text = "Choose Game";
@@ -80,7 +84,7 @@ partial class MainForm
         // 
         buttonCreateBackup.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
         buttonCreateBackup.Enabled = false;
-        buttonCreateBackup.Location = new Point(452, 22);
+        buttonCreateBackup.Location = new Point(582, 22);
         buttonCreateBackup.Name = "buttonCreateBackup";
         buttonCreateBackup.Size = new Size(110, 23);
         buttonCreateBackup.TabIndex = 3;
@@ -94,25 +98,61 @@ partial class MainForm
         comboBoxGame.FormattingEnabled = true;
         comboBoxGame.Location = new Point(6, 22);
         comboBoxGame.Name = "comboBoxGame";
-        comboBoxGame.Size = new Size(440, 23);
+        comboBoxGame.Size = new Size(570, 23);
         comboBoxGame.TabIndex = 2;
         comboBoxGame.SelectedIndexChanged += comboBoxGame_SelectedIndexChanged;
         // 
         // groupBoxMods
         // 
         groupBoxMods.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        groupBoxMods.Controls.Add(listViewMods);
         groupBoxMods.Controls.Add(buttonRefreshModList);
         groupBoxMods.Controls.Add(buttonMoveDown);
         groupBoxMods.Controls.Add(buttonMoveUp);
-        groupBoxMods.Controls.Add(listMods);
         groupBoxMods.Controls.Add(buttonAddMod);
         groupBoxMods.Enabled = false;
         groupBoxMods.Location = new Point(12, 84);
         groupBoxMods.Name = "groupBoxMods";
-        groupBoxMods.Size = new Size(322, 294);
+        groupBoxMods.Size = new Size(452, 294);
         groupBoxMods.TabIndex = 4;
         groupBoxMods.TabStop = false;
         groupBoxMods.Text = "Mods";
+        // 
+        // listViewMods
+        // 
+        listViewMods.AllowColumnReorder = true;
+        listViewMods.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        listViewMods.CheckBoxes = true;
+        listViewMods.Columns.AddRange(new ColumnHeader[] { columnName, columnAuthor, columnCreatedDate, columnUpdatedDate });
+        listViewMods.Location = new Point(6, 22);
+        listViewMods.Name = "listViewMods";
+        listViewMods.Size = new Size(440, 238);
+        listViewMods.TabIndex = 16;
+        listViewMods.UseCompatibleStateImageBehavior = false;
+        listViewMods.View = View.Details;
+        listViewMods.ItemCheck += listViewMods_ItemCheck;
+        listViewMods.SelectedIndexChanged += listViewMods_SelectedIndexChanged;
+        listViewMods.KeyDown += listViewMods_KeyDown;
+        // 
+        // columnName
+        // 
+        columnName.Text = "Mod";
+        columnName.Width = 212;
+        // 
+        // columnAuthor
+        // 
+        columnAuthor.Text = "Author";
+        columnAuthor.Width = 84;
+        // 
+        // columnCreatedDate
+        // 
+        columnCreatedDate.Text = "Created";
+        columnCreatedDate.Width = 70;
+        // 
+        // columnUpdatedDate
+        // 
+        columnUpdatedDate.Text = "Updated";
+        columnUpdatedDate.Width = 70;
         // 
         // buttonRefreshModList
         // 
@@ -147,27 +187,14 @@ partial class MainForm
         buttonMoveUp.UseVisualStyleBackColor = true;
         buttonMoveUp.Click += buttonMoveUp_Click;
         // 
-        // listMods
-        // 
-        listMods.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        listMods.FormattingEnabled = true;
-        listMods.Location = new Point(6, 22);
-        listMods.Name = "listMods";
-        listMods.Size = new Size(310, 238);
-        listMods.TabIndex = 5;
-        listMods.ItemCheck += listMods_ItemCheck;
-        listMods.SelectedIndexChanged += listMods_SelectedIndexChanged;
-        listMods.KeyDown += listMods_KeyDown;
-        listMods.KeyPress += listMods_KeyPress;
-        // 
         // buttonAddMod
         // 
         buttonAddMod.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-        buttonAddMod.Location = new Point(236, 264);
+        buttonAddMod.Location = new Point(366, 264);
         buttonAddMod.Name = "buttonAddMod";
         buttonAddMod.Size = new Size(80, 24);
         buttonAddMod.TabIndex = 9;
-        buttonAddMod.Text = "Install Mod";
+        buttonAddMod.Text = "Install Mods";
         buttonAddMod.UseVisualStyleBackColor = true;
         buttonAddMod.Click += buttonAddMod_Click;
         // 
@@ -175,7 +202,7 @@ partial class MainForm
         // 
         buttonRunGame.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
         buttonRunGame.Enabled = false;
-        buttonRunGame.Location = new Point(435, 348);
+        buttonRunGame.Location = new Point(565, 348);
         buttonRunGame.Name = "buttonRunGame";
         buttonRunGame.Size = new Size(145, 24);
         buttonRunGame.TabIndex = 14;
@@ -187,7 +214,7 @@ partial class MainForm
         // 
         buttonApplyMods.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
         buttonApplyMods.Enabled = false;
-        buttonApplyMods.Location = new Point(340, 348);
+        buttonApplyMods.Location = new Point(470, 348);
         buttonApplyMods.Name = "buttonApplyMods";
         buttonApplyMods.Size = new Size(89, 23);
         buttonApplyMods.TabIndex = 13;
@@ -201,7 +228,7 @@ partial class MainForm
         menuStrip1.Items.AddRange(new ToolStripItem[] { manageToolStripMenuItem, settingsToolStripMenuItem });
         menuStrip1.Location = new Point(0, 0);
         menuStrip1.Name = "menuStrip1";
-        menuStrip1.Size = new Size(251, 24);
+        menuStrip1.Size = new Size(131, 24);
         menuStrip1.TabIndex = 7;
         menuStrip1.Text = "menuStrip1";
         // 
@@ -291,6 +318,13 @@ partial class MainForm
         aboutToolStripMenuItem.Text = "&About...";
         aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
         // 
+        // changeIconToolStripMenuItem
+        // 
+        changeIconToolStripMenuItem.Name = "changeIconToolStripMenuItem";
+        changeIconToolStripMenuItem.Size = new Size(231, 22);
+        changeIconToolStripMenuItem.Text = "Change Icon";
+        changeIconToolStripMenuItem.Click += changeIconToolStripMenuItem_Click;
+        // 
         // labelModInfo
         // 
         labelModInfo.Location = new Point(0, 0);
@@ -313,7 +347,7 @@ partial class MainForm
         // 
         groupBoxModInfo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
         groupBoxModInfo.Controls.Add(panelLabelModInfo);
-        groupBoxModInfo.Location = new Point(340, 84);
+        groupBoxModInfo.Location = new Point(470, 84);
         groupBoxModInfo.Name = "groupBoxModInfo";
         groupBoxModInfo.Size = new Size(240, 258);
         groupBoxModInfo.TabIndex = 10;
@@ -330,18 +364,11 @@ partial class MainForm
         labelDolphin.TabIndex = 15;
         labelDolphin.Text = "Dolphin Label";
         // 
-        // changeIconToolStripMenuItem
-        // 
-        changeIconToolStripMenuItem.Name = "changeIconToolStripMenuItem";
-        changeIconToolStripMenuItem.Size = new Size(231, 22);
-        changeIconToolStripMenuItem.Text = "Change Icon";
-        changeIconToolStripMenuItem.Click += changeIconToolStripMenuItem_Click;
-        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(592, 435);
+        ClientSize = new Size(722, 435);
         Controls.Add(labelDolphin);
         Controls.Add(groupBoxModInfo);
         Controls.Add(buttonApplyMods);
@@ -375,7 +402,6 @@ partial class MainForm
     private Button buttonRunGame;
     private Button buttonApplyMods;
     private MenuStrip menuStrip1;
-    private CheckedListBox listMods;
     private ToolStripMenuItem manageToolStripMenuItem;
     private Button buttonMoveDown;
     private Button buttonMoveUp;
@@ -397,4 +423,9 @@ partial class MainForm
     private ToolStripMenuItem aboutToolStripMenuItem;
     private ToolStripMenuItem openModFolderToolStripMenuItem;
     private ToolStripMenuItem changeIconToolStripMenuItem;
+    private ListView listViewMods;
+    private ColumnHeader columnName;
+    private ColumnHeader columnAuthor;
+    private ColumnHeader columnCreatedDate;
+    private ColumnHeader columnUpdatedDate;
 }

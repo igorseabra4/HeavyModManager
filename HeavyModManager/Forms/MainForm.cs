@@ -13,7 +13,7 @@ public partial class MainForm : Form
     {
         InitializeComponent();
 
-        ModManager.LoadSettings();
+        LoadSettings();
         IconManager.SetIcon(this);
 
         toolTip = new ToolTip();
@@ -61,7 +61,42 @@ public partial class MainForm : Form
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
     {
-        ModManager.SaveSettings();
+        SaveSettings();
+    }
+
+    private void SaveSettings()
+    {
+        var settings = new ModManagerSettings
+        {
+            MainFormWidth = Width,
+            MainFormHeight = Height
+        };
+
+        foreach (ColumnHeader c in listViewMods.Columns)
+        {
+            settings.ColumnIndices.Add(c.DisplayIndex);
+            settings.ColumnSizes.Add(c.Width);
+        }
+
+        ModManager.SaveSettings(settings);
+    }
+
+    private void LoadSettings()
+    {
+        var settings = ModManager.LoadSettings();
+
+        if (settings.MainFormWidth > MaximumSize.Width)
+            Width = settings.MainFormWidth;
+        if (settings.MainFormHeight > MaximumSize.Height)
+            Height = settings.MainFormHeight;
+
+        if (settings.ColumnIndices != null && settings.ColumnIndices.Count == listViewMods.Columns.Count &&
+            settings.ColumnSizes != null && settings.ColumnSizes.Count == listViewMods.Columns.Count)
+            for (int i = 0; i < listViewMods.Columns.Count; i++)
+            {
+                listViewMods.Columns[i].DisplayIndex = settings.ColumnIndices[i];
+                listViewMods.Columns[i].Width = Math.Max(settings.ColumnSizes[i], 32);
+            }
     }
 
     private AboutBox aboutBox;
@@ -84,7 +119,7 @@ public partial class MainForm : Form
 
         ShowToolTip();
 
-        ModManager.SaveSettings();
+        SaveSettings();
     }
 
     private readonly ToolTip toolTip;
@@ -101,7 +136,7 @@ public partial class MainForm : Form
         {
             if (!ModManager.GameBackupExists)
                 toolTip.Show("You do not have a backup for this game.\nPlease click on \"Create Backup\" and select the game's ISO file.", comboBoxGame, 0, 24, 8 * 1000);
-            else if (listMods.Items.Count == 0)
+            else if (listViewMods.Items.Count == 0)
                 toolTip.Show("You do not have mods for this game.\nPlease click on \"Install Mod\" and select a mod ZIP file.", comboBoxGame, 0, 24, 8 * 1000);
         }
     }
@@ -115,43 +150,42 @@ public partial class MainForm : Form
 
     private void editModToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        if (listMods.SelectedIndices.Count == 1)
+        var mod = GetSelectedMod();
+        if (mod != null)
         {
-            var mod = (Mod)listMods.SelectedItem;
-            var prev = listMods.SelectedIndex;
             new CreateMod(mod).ShowDialog();
             ModManager.RefreshModList();
-            PopulateModList();
-            listMods.SelectedIndex = prev;
+            PopulateModList(mod.ModId);
         }
     }
 
     private void openModFolderToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        if (listMods.SelectedIndices.Count == 1)
-        {
-            var mod = (Mod)listMods.SelectedItem;
+        var mod = GetSelectedMod();
+        if (mod != null)
             System.Diagnostics.Process.Start("explorer.exe", ModManager.GetModPath(mod.ModId));
-        }
     }
 
     private void deleteModToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        if (listMods.SelectedIndices.Count == 1)
+        var mod = GetSelectedMod();
+        if (mod != null)
         {
-            var mod = (Mod)listMods.SelectedItem;
             var dr = MessageBox.Show($"Are you sure you want to delete the mod '{mod.ModName}' by '{mod.Author}'?", "Delete Mod", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dr == DialogResult.Yes)
+            {
                 ModManager.DeleteMod(mod.ModId);
-            PopulateModList();
+                ModManager.RefreshModList();
+                PopulateModList();
+            }
         }
     }
 
     private void zipModToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        if (listMods.SelectedIndices.Count == 1)
+        var mod = GetSelectedMod();
+        if (mod != null)
         {
-            var mod = (Mod)listMods.SelectedItem;
             try
             {
                 string TreatToFilename(string s)
@@ -173,12 +207,12 @@ public partial class MainForm : Form
 
     private bool activeModWithCheats = false;
 
-    private void PopulateModList()
+    private void PopulateModList(string selectedModId = "")
     {
         programChangingData = true;
 
         labelModInfo.Text = "";
-        listMods.Items.Clear();
+        listViewMods.Items.Clear();
 
         editModToolStripMenuItem.Enabled = false;
         deleteModToolStripMenuItem.Enabled = false;
@@ -191,8 +225,7 @@ public partial class MainForm : Form
         {
             var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(ModManager.GetModJsonPath(modId)));
             bool active = ModManager.CurrentGameSettings.ActiveMods.Contains(mod.ModId);
-            listMods.Items.Add(mod, active);
-
+            listViewMods.Items.Add(ListViewItemFromMod(mod, active, selectedModId == mod.ModId));
             if (active)
                 SetActiveModWithCheats(mod);
         }
@@ -202,18 +235,44 @@ public partial class MainForm : Form
         programChangingData = false;
     }
 
+    private static ListViewItem ListViewItemFromMod(Mod mod, bool active, bool selected)
+    {
+        ListViewItem item = new(mod.ModName)
+        {
+            Selected = selected,
+            Checked = active,
+            Tag = mod
+        };
+
+        item.SubItems.AddRange(new ListViewItem.ListViewSubItem[]
+        {
+            new ListViewItem.ListViewSubItem(item, mod.Author),
+            new ListViewItem.ListViewSubItem(item, mod.CreatedAt.ToShortDateString()),
+            new ListViewItem.ListViewSubItem(item, mod.UpdatedAt.ToShortDateString()),
+        });
+
+        return item;
+    }
+
     private void SetActiveModWithCheats(Mod mod)
     {
         if (!string.IsNullOrEmpty(mod.ArCodes) || !string.IsNullOrEmpty(mod.GeckoCodes))
             activeModWithCheats = true;
     }
 
-    private void listMods_ItemCheck(object sender, ItemCheckEventArgs e)
+    private Mod? GetSelectedMod()
+    {
+        if (listViewMods.SelectedIndices.Count == 1)
+            return (Mod)listViewMods.SelectedItems[0].Tag;
+        return null;
+    }
+
+    private void listViewMods_ItemCheck(object sender, ItemCheckEventArgs e)
     {
         if (programChangingData)
             return;
 
-        var mod = (Mod)listMods.Items[e.Index];
+        var mod = (Mod)listViewMods.Items[e.Index].Tag;
 
         if (e.NewValue == CheckState.Checked)
             ModManager.CurrentGameSettings.ActivateMod(mod.ModId);
@@ -224,21 +283,14 @@ public partial class MainForm : Form
         ModManager.SaveGameSettings();
     }
 
-    private void listMods_SelectedIndexChanged(object sender, EventArgs e)
+    private void listViewMods_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (listMods.SelectedIndex == -1)
+        var mod = GetSelectedMod();
+        if (mod != null)
         {
-            labelModInfo.Text = "";
-            editModToolStripMenuItem.Enabled = false;
-            deleteModToolStripMenuItem.Enabled = false;
-            zipModToolStripMenuItem.Enabled = false;
-            openModFolderToolStripMenuItem.Enabled = false;
-        }
-        else
-        {
-            var mod = (Mod)listMods.SelectedItem;
-            labelModInfo.Text = $"Author: {mod.Author}\n\n" +
-                $"Description:\n{mod.Description}\n\n" +
+            labelModInfo.Text =
+                $"{mod.Description}\n\n" +
+                (string.IsNullOrEmpty(mod.GameId) ? "" : $"This mod uses a custom save.\nGame ID: {mod.GameId}\n\n") +
                 $"Mod ID:\n{mod.ModId}\n\n" +
                 //$"Has AR codes: {(string.IsNullOrEmpty(mod.ArCodes) ? "No" : "Yes")}\n" +
                 //$"Has Gecko codes: {(string.IsNullOrEmpty(mod.GeckoCodes) ? "No" : "Yes")}" +
@@ -248,39 +300,49 @@ public partial class MainForm : Form
             zipModToolStripMenuItem.Enabled = true;
             openModFolderToolStripMenuItem.Enabled = true;
         }
+        else
+        {
+            labelModInfo.Text = "";
+            editModToolStripMenuItem.Enabled = false;
+            deleteModToolStripMenuItem.Enabled = false;
+            zipModToolStripMenuItem.Enabled = false;
+            openModFolderToolStripMenuItem.Enabled = false;
+        }
+    }
+
+    private void listViewMods_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Delete)
+            deleteModToolStripMenuItem_Click(sender, e);
     }
 
     private void buttonMoveUp_Click(object sender, EventArgs e)
     {
-        if (listMods.SelectedItems.Count == 1)
+        var mod = GetSelectedMod();
+        if (mod != null)
         {
-            int previndex = listMods.SelectedIndex;
-
+            int previndex = listViewMods.SelectedIndices[0];
             if (previndex > 0)
             {
                 (ModManager.CurrentGameSettings.Mods[previndex], ModManager.CurrentGameSettings.Mods[previndex - 1]) = (ModManager.CurrentGameSettings.Mods[previndex - 1], ModManager.CurrentGameSettings.Mods[previndex]);
                 ModManager.Invalidate();
             }
-
-            PopulateModList();
-            listMods.SelectedIndex = Math.Max(previndex - 1, 0);
+            PopulateModList(mod.ModId);
         }
     }
 
     private void buttonMoveDown_Click(object sender, EventArgs e)
     {
-        if (listMods.SelectedItems.Count == 1)
+        var mod = GetSelectedMod();
+        if (mod != null)
         {
-            int previndex = listMods.SelectedIndex;
-
-            if (previndex < listMods.Items.Count - 1)
+            int previndex = listViewMods.SelectedIndices[0];
+            if (previndex < listViewMods.Items.Count - 1)
             {
                 (ModManager.CurrentGameSettings.Mods[previndex], ModManager.CurrentGameSettings.Mods[previndex + 1]) = (ModManager.CurrentGameSettings.Mods[previndex + 1], ModManager.CurrentGameSettings.Mods[previndex]);
                 ModManager.Invalidate();
             }
-
-            PopulateModList();
-            listMods.SelectedIndex = Math.Min(previndex + 1, listMods.Items.Count - 1);
+            PopulateModList(mod.ModId);
         }
     }
 
@@ -319,7 +381,7 @@ public partial class MainForm : Form
     private void buttonApplyMods_Click(object sender, EventArgs e)
     {
         Enabled = false;
-        ModManager.ApplyMods();
+        ModManager.ApplyMods(true);
         Enabled = true;
         buttonRunGame.Enabled = comboBoxGame.SelectedIndex != -1 && ModManager.GameExists;
     }
@@ -347,6 +409,7 @@ public partial class MainForm : Form
     private void chooseDolphinPathToolStripMenuItem_Click(object sender, EventArgs e)
     {
         ModManager.SetDolphinPath();
+        SaveSettings();
         UpdateDolphinLabel();
         ShowToolTip();
     }
@@ -389,22 +452,6 @@ public partial class MainForm : Form
         if (activeModWithCheats)
         {
             labelDolphin.Text += "\nOne or more active mods use codes. Remember to activate \"Enable Cheats\" on Dolphin settings.";
-        }
-    }
-
-    private void listMods_KeyPress(object sender, KeyPressEventArgs e)
-    {
-        if (e.KeyChar == (char)Keys.Delete)
-        {
-            deleteModToolStripMenuItem_Click(sender, e);
-        }
-    }
-
-    private void listMods_KeyDown(object sender, KeyEventArgs e)
-    {
-        if (e.KeyCode == Keys.Delete)
-        {
-            deleteModToolStripMenuItem_Click(sender, e);
         }
     }
 

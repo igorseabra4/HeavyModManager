@@ -42,6 +42,18 @@ public class ModManagerSettings
     [JsonInclude]
     public HeavyModManagerIcon Icon { get; set; }
 
+    [JsonInclude]
+    public List<int> ColumnIndices { get; set; }
+
+    [JsonInclude]
+    public List<int> ColumnSizes { get; set; }
+
+    [JsonInclude]
+    public int MainFormWidth { get; set; }
+
+    [JsonInclude]
+    public int MainFormHeight { get; set; }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ModManagerSettings"/> class.
     /// </summary>
@@ -54,5 +66,9 @@ public class ModManagerSettings
         CheckForUpdatesOnStartup = true;
         DeveloperMode = false;
         Icon = HeavyModManagerIcon.Rainbow;
+        ColumnIndices = new List<int>();
+        ColumnSizes = new List<int>();
+        MainFormWidth = 738;
+        MainFormHeight = 474;
     }
 }

@@ -10,20 +10,15 @@ namespace HeavyModManager.Functions;
 /// </summary>
 public static class ZipManager
 {
-    private static string TempUnzipPath => Path.Combine(Application.StartupPath, "temp", "unzip");
-
     public static void InstallMod(string fileName)
     {
-        if (!Directory.Exists(TempUnzipPath))
-            Directory.CreateDirectory(TempUnzipPath);
-
         using var file = File.OpenRead(fileName);
         using var zip = new ZipArchive(file, ZipArchiveMode.Read);
         var zMod = zip.GetEntry("mod.json");
 
         if (zMod == null)
         {
-            MessageBox.Show("Could not find mod.json on zip root. Are you sure this is a compatible mod?",
+            MessageBox.Show($"Could not find mod.json on zip root of {Path.GetFileName(fileName)}. Are you sure this is a compatible mod?",
                 "Error installing mod", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
@@ -33,9 +28,16 @@ public static class ZipManager
         var zModString = reader.ReadToEnd();
 
         var mod = JsonSerializer.Deserialize<Mod>(zModString);
+        if (mod == null)
+        {
+            MessageBox.Show($"Could not read mod.json on {Path.GetFileName(fileName)}. Are you sure this is a compatible mod?",
+                "Error installing mod", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
         var modPath = ModManager.GetModPath(mod.ModId);
 
-        ModManager.DeleteMod(mod.ModId, true);
+        ModManager.DeleteMod(mod.ModId);
         Directory.CreateDirectory(modPath);
 
         foreach (var entry in zip.Entries)
@@ -48,9 +50,6 @@ public static class ZipManager
 
             entry.ExtractToFile(destinationPath, true);
         }
-
-        if (Directory.Exists(TempUnzipPath))
-            Directory.Delete(TempUnzipPath);
     }
 
     public static void ZipMod(string modId, string fileName)

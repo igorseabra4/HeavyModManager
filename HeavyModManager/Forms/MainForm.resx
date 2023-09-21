@@ -128,4 +128,10 @@
   <data name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
   </data>
+  <data name="shiny_object" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shiny_object.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sock.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
