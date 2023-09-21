@@ -30,7 +30,16 @@ namespace HeavyModManager.Classes
                 .Select(l => l.Split('#')[0].Trim())
                 .Where(l => !string.IsNullOrWhiteSpace(l))
                 .Select(l => l.Split('='))
+                .Where(vals => vals.Length == 2 ? true : throw new InvalidDataException("Wrong format"))
                 .Select(vals => (vals[0].Trim(), Regex.Replace(vals[1], @"\s+", " ").Trim()));
+
+            void AddToDict(Dictionary<string, string> dict, string value)
+            {
+                var values = value.Split(' ', 2);
+                if (values.Length != 2 || values[0].Length != 4)
+                    throw new InvalidDataException("Wrong format");
+                dict[values[0]] = values[1];
+            }
 
             foreach ((string key, string value) in properties)
             {
@@ -38,12 +47,12 @@ namespace HeavyModManager.Classes
                 {
                     case "ScenePlayerMapping":
                     {
-                        ScenePlayerMapping[value.Substring(0, 4)] = value.Substring(5);
+                        AddToDict(ScenePlayerMapping, value);
                         continue;
                     }
                     case "ThresholdPointsRange":
                     {
-                        ThresholdPointsRange[value.Substring(0, 4)] = value.Substring(5);
+                        AddToDict(ThresholdPointsRange, value);
                         continue;
                     }
                     case "TaskStatus":
@@ -58,7 +67,7 @@ namespace HeavyModManager.Classes
                     }
                     case "AlternateCostumeMapping":
                     {
-                        AlternateCostumeMapping[value.Substring(0, 4)] = value.Substring(5);
+                        AddToDict(AlternateCostumeMapping, value);
                         continue;
                     }
                     default:

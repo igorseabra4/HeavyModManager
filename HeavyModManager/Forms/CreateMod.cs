@@ -268,10 +268,9 @@ public partial class CreateMod : Form
     private void buttonIniValuesInfo_Click(object sender, EventArgs e)
     {
         ShowToolTip(
-            "Enter the game's configuration INI key-value pairs for this mod, in the form\n" +
-            "of <key>=<value>, one per line.\n" +
-            "You can add comments after #s.\n" +
-            "You only need to enter the lines needed by your mod.\n" +
+            "Enter the game's configuration INI key-value pairs for this mod, in the form of\n" +
+            "<key>=<value>, one per line. You can add comments after #s. You only need to\n" +
+            "enter the lines needed by your mod.\n" +
             "Example:\n\n" +
             "BOOT=HB00\n" +
             "ShowMenuOnBoot=0 # This is a comment\n" +
@@ -280,7 +279,7 @@ public partial class CreateMod : Form
             "On an already existing mod, click on 'Import' to import the mod's\n" +
             "INI into here. Only modified values will be imported and the file\n" +
             "itself will be deleted.\n\n" +
-            "A few types of key are special:\n" +
+            "A few types of key are special because they can appear multiple times in the INI:\n" +
             "- ScenePlayerMapping, ThresholdPointsRange and AlternateCostumeMapping:\n" +
             "will replace values based on the stage ID name (first 4 characters of the value)\n" +
             "- TaskStatus and Extra: if present, will replace ALL entries, so if you're\n" +
@@ -342,15 +341,7 @@ public partial class CreateMod : Form
     {
         try
         {
-            var patches = richTextBoxINIValues.Text
-                .Split('\n')
-                .Select(l => l.Split('#')[0].Trim())
-                .Where(l => !string.IsNullOrWhiteSpace(l))
-                .Select(l => l.Split('='))
-                .Where(vals => vals.Length == 2 ? true : throw new Exception())
-                .Select(vals => (vals[0].Trim(), vals[1].Trim()))
-                .ToArray();
-
+            var tempIni = INIFile.FromContents(richTextBoxINIValues.Text);
             return true;
         }
         catch
