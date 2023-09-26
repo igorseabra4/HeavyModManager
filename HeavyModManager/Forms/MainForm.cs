@@ -137,7 +137,7 @@ public partial class MainForm : Form
             if (!ModManager.GameBackupExists)
                 toolTip.Show("You do not have a backup for this game.\nPlease click on \"Create Backup\" and select the game's ISO file.", comboBoxGame, 0, 24, 8 * 1000);
             else if (listViewMods.Items.Count == 0)
-                toolTip.Show("You do not have mods for this game.\nPlease click on \"Install Mod\" and select a mod ZIP file.", comboBoxGame, 0, 24, 8 * 1000);
+                toolTip.Show("You do not have mods for this game.\nPlease click on \"Add Mods\" and select a mod ZIP file.", comboBoxGame, 0, 24, 8 * 1000);
         }
     }
 
@@ -289,8 +289,8 @@ public partial class MainForm : Form
         if (mod != null)
         {
             labelModInfo.Text =
-                $"{mod.Description}\n\n" +
-                (string.IsNullOrEmpty(mod.GameId) ? "" : $"This mod uses a custom save.\nGame ID: {mod.GameId}\n\n") +
+                (string.IsNullOrWhiteSpace(mod.Description) ? "" : $"{mod.Description}\n\n") +
+                (string.IsNullOrEmpty(mod.GameId) ? "" : $"This mod uses a custom save file:\n{mod.GameId}\n\n") +
                 $"Mod ID:\n{mod.ModId}\n\n" +
                 //$"Has AR codes: {(string.IsNullOrEmpty(mod.ArCodes) ? "No" : "Yes")}\n" +
                 //$"Has Gecko codes: {(string.IsNullOrEmpty(mod.GeckoCodes) ? "No" : "Yes")}" +

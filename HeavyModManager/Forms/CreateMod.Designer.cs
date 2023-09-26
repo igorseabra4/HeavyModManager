@@ -139,8 +139,8 @@ partial class CreateMod
         flowLayoutPanelPage1.Controls.Add(groupBoxModName);
         flowLayoutPanelPage1.Controls.Add(groupBoxAuthor);
         flowLayoutPanelPage1.Controls.Add(groupBoxDescription);
-        flowLayoutPanelPage1.Controls.Add(groupBoxUpdatedAt);
         flowLayoutPanelPage1.Controls.Add(groupBoxCreatedAt);
+        flowLayoutPanelPage1.Controls.Add(groupBoxUpdatedAt);
         flowLayoutPanelPage1.Controls.Add(groupBoxModId);
         flowLayoutPanelPage1.Dock = DockStyle.Fill;
         flowLayoutPanelPage1.FlowDirection = FlowDirection.TopDown;
@@ -235,10 +235,10 @@ partial class CreateMod
         // 
         groupBoxUpdatedAt.Controls.Add(dateTimePickerUpdatedAt);
         groupBoxUpdatedAt.Dock = DockStyle.Top;
-        groupBoxUpdatedAt.Location = new Point(3, 352);
+        groupBoxUpdatedAt.Location = new Point(3, 409);
         groupBoxUpdatedAt.Name = "groupBoxUpdatedAt";
         groupBoxUpdatedAt.Size = new Size(319, 51);
-        groupBoxUpdatedAt.TabIndex = 9;
+        groupBoxUpdatedAt.TabIndex = 11;
         groupBoxUpdatedAt.TabStop = false;
         groupBoxUpdatedAt.Text = "Updated At";
         // 
@@ -248,16 +248,16 @@ partial class CreateMod
         dateTimePickerUpdatedAt.Location = new Point(3, 19);
         dateTimePickerUpdatedAt.Name = "dateTimePickerUpdatedAt";
         dateTimePickerUpdatedAt.Size = new Size(313, 23);
-        dateTimePickerUpdatedAt.TabIndex = 10;
+        dateTimePickerUpdatedAt.TabIndex = 12;
         // 
         // groupBoxCreatedAt
         // 
         groupBoxCreatedAt.Controls.Add(dateTimePickerCreatedAt);
         groupBoxCreatedAt.Dock = DockStyle.Top;
-        groupBoxCreatedAt.Location = new Point(3, 409);
+        groupBoxCreatedAt.Location = new Point(3, 352);
         groupBoxCreatedAt.Name = "groupBoxCreatedAt";
         groupBoxCreatedAt.Size = new Size(319, 51);
-        groupBoxCreatedAt.TabIndex = 11;
+        groupBoxCreatedAt.TabIndex = 9;
         groupBoxCreatedAt.TabStop = false;
         groupBoxCreatedAt.Text = "Created At";
         // 
@@ -267,7 +267,7 @@ partial class CreateMod
         dateTimePickerCreatedAt.Location = new Point(3, 19);
         dateTimePickerCreatedAt.Name = "dateTimePickerCreatedAt";
         dateTimePickerCreatedAt.Size = new Size(313, 23);
-        dateTimePickerCreatedAt.TabIndex = 12;
+        dateTimePickerCreatedAt.TabIndex = 10;
         // 
         // groupBoxModId
         // 
@@ -284,7 +284,7 @@ partial class CreateMod
         // buttonModIdInfo
         // 
         buttonModIdInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        buttonModIdInfo.Location = new Point(268, -2);
+        buttonModIdInfo.Location = new Point(268, -1);
         buttonModIdInfo.Name = "buttonModIdInfo";
         buttonModIdInfo.Size = new Size(45, 23);
         buttonModIdInfo.TabIndex = 14;

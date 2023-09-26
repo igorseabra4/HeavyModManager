@@ -19,7 +19,7 @@ public static class ZipManager
         if (zMod == null)
         {
             MessageBox.Show($"Could not find mod.json on zip root of {Path.GetFileName(fileName)}. Are you sure this is a compatible mod?",
-                "Error installing mod", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                "Error adding mod", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
@@ -31,7 +31,7 @@ public static class ZipManager
         if (mod == null)
         {
             MessageBox.Show($"Could not read mod.json on {Path.GetFileName(fileName)}. Are you sure this is a compatible mod?",
-                "Error installing mod", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                "Error adding mod", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 

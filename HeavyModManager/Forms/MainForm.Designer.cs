@@ -190,11 +190,11 @@ partial class MainForm
         // buttonAddMod
         // 
         buttonAddMod.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-        buttonAddMod.Location = new Point(366, 264);
+        buttonAddMod.Location = new Point(371, 264);
         buttonAddMod.Name = "buttonAddMod";
-        buttonAddMod.Size = new Size(80, 24);
+        buttonAddMod.Size = new Size(75, 24);
         buttonAddMod.TabIndex = 9;
-        buttonAddMod.Text = "Install Mods";
+        buttonAddMod.Text = "Add Mods";
         buttonAddMod.UseVisualStyleBackColor = true;
         buttonAddMod.Click += buttonAddMod_Click;
         // 

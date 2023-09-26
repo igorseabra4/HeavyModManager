@@ -285,7 +285,7 @@ public static class ModManager
         var openFile = new OpenFileDialog()
         {
             Filter = "ZIP Archives|*.zip",
-            Title = "Select a mod ZIP to install",
+            Title = "Select one or more mod ZIPs to add",
             Multiselect = true,
         };
 
