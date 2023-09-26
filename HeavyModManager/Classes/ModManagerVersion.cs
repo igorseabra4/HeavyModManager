@@ -11,9 +11,9 @@ namespace HeavyModManager.Classes
         /// The version number.
         /// </summary>
         [JsonInclude]
-        public string Version { get; } = "v2023.09.01.2";
+        public string Version { get; } = "v2023.09.26";
 
-        
+
         /// <summary>
         /// A description of the version changes.
         /// </summary>
