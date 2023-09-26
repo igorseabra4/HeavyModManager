@@ -29,7 +29,7 @@ namespace HeavyModManager.Classes
             var properties = contents
                 .Select(l => l.Split('#')[0].Trim())
                 .Where(l => !string.IsNullOrWhiteSpace(l))
-                .Select(l => l.Split('='))
+                .Select(l => l.Split('=', 2))
                 .Where(vals => vals.Length == 2 ? true : throw new InvalidDataException("Wrong format"))
                 .Select(vals => (vals[0].Trim(), Regex.Replace(vals[1], @"\s+", " ").Trim()));
 

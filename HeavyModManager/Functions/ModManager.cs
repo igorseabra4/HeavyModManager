@@ -427,16 +427,24 @@ public static class ModManager
             fs.CopyDirectory(GameBackupSysPath, GameGameSysPath);
         }
 
+        var modsUsingCustomGameId = 0;
+
         foreach (var modId in CurrentGameSettings.Mods)
             if (CurrentGameSettings.ActiveMods.Contains(modId))
             {
                 var modJsonPath = GetModJsonPath(modId);
                 var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
                 mod.Apply();
+                if (!string.IsNullOrWhiteSpace(mod.GameId))
+                    modsUsingCustomGameId++;
             }
 
         CurrentGameSettings.Invalidated = false;
         SaveGameSettings();
+
+        if (modsUsingCustomGameId > 1)
+            MessageBox.Show("Warning: Multiple mods which use custom save files are enabled. This might cause issues.",
+                "Multiple mods use custom save files", MessageBoxButtons.OK, MessageBoxIcon.Warning);
     }
 
     public static bool GameBackupExists => Directory.Exists(GameBackupFilesPath) && Directory.Exists(GameBackupSysPath);
