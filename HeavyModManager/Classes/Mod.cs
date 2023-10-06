@@ -129,19 +129,7 @@ public class Mod
         }
     }
 
-    public void Apply()
-    {
-        RemoveRemoveFiles();
-
-        TempMergeFiles = MergeFiles.Split('\n').Select(p => p.ToLower());
-        var modFilesPath = ModManager.GetModFilesPath(ModId);
-        CopyDirectory(modFilesPath, modFilesPath);
-
-        ApplyDolPatches();
-        ApplyINIPatches();
-    }
-
-    private void RemoveRemoveFiles()
+    public void RemoveRemoveFiles()
     {
         if (!string.IsNullOrWhiteSpace(RemoveFiles))
             foreach (var path in RemoveFiles.Split('\n'))
@@ -157,68 +145,71 @@ public class Mod
             }
     }
 
-    [JsonIgnore]
-    private IEnumerable<string> TempMergeFiles;
-
-    private void CopyDirectory(string root, string path)
+    public void CopyFiles()
     {
-        if (Directory.Exists(path))
+        var mergeFiles = MergeFiles.Split('\n').Select(p => p.ToLower());
+        var root = ModManager.GetModFilesPath(ModId);
+
+        void CopyDirectory(string path)
         {
-            foreach (var directory in Directory.GetDirectories(path))
-                CopyDirectory(root, directory);
-
-            foreach (var file in Directory.GetFiles(path))
+            if (Directory.Exists(path))
             {
-                var relativePath = Path.GetRelativePath(root, file);
-                var destinationFilePath = Path.Combine(ModManager.GameGameFilesPath, relativePath);
-                var destinationFolder = Path.GetDirectoryName(destinationFilePath);
+                foreach (var directory in Directory.GetDirectories(path))
+                    CopyDirectory(directory);
 
-                if (!Directory.Exists(destinationFolder))
-                    Directory.CreateDirectory(destinationFolder);
+                foreach (var file in Directory.GetFiles(path))
+                {
+                    var relativePath = Path.GetRelativePath(root, file);
+                    var destinationFilePath = Path.Combine(ModManager.GameGameFilesPath, relativePath);
+                    var destinationFolder = Path.GetDirectoryName(destinationFilePath);
 
-                if (TempMergeFiles.Contains(relativePath.ToLower()))
-                {
-                    HipManager.MergeInto(file, destinationFilePath);
-                }
-                else
-                {
-                    File.Copy(file, destinationFilePath, true);
+                    if (!Directory.Exists(destinationFolder))
+                        Directory.CreateDirectory(destinationFolder);
+
+                    if (mergeFiles.Contains(relativePath.ToLower()) && File.Exists(destinationFilePath))
+                    {
+                        HipManager.MergeInto(file, destinationFilePath);
+                    }
+                    else
+                    {
+                        File.Copy(file, destinationFilePath, true);
+                    }
                 }
             }
         }
+
+        CopyDirectory(root);
     }
 
-    private void ApplyDolPatches()
+    public bool ApplyIniPatches(ref INIFile ini)
     {
-        var dol = File.ReadAllBytes(ModManager.GameDolPath);
+        if (string.IsNullOrWhiteSpace(INIReplacements))
+            return false;
 
-        if (!string.IsNullOrWhiteSpace(DOLPatches))
-        {
-            var patches = DOLPatches
-                .Split('\n')
-                .Select(l => l.Split('#')[0].Trim())
-                .Where(l => !string.IsNullOrWhiteSpace(l))
-                .Select(l => l.Split(' '))
-                .Select(vals => (Convert.ToUInt32(vals[0], 16), BitConverter.GetBytes(Convert.ToUInt32(vals[1], 16))))
-                .ToArray();
+        ini.ReplaceWith(INIFile.FromContents(INIReplacements));
 
-            foreach (var p in patches)
-                for (int i = 0; i < 4; i++)
-                    if (p.Item1 + i < dol.Length)
-                        dol[p.Item1 + i] = p.Item2[i];
-
-            File.WriteAllBytes(ModManager.GameDolPath, dol);
-        }
+        return true;
     }
 
-    private void ApplyINIPatches()
+    public bool ApplyDolPatches(ref byte[] dol)
     {
-        if (!string.IsNullOrWhiteSpace(INIReplacements))
-        {
-            var ini = INIFile.FromPath(ModManager.GameGameINIPath);
-            ini.ReplaceWith(INIFile.FromContents(INIReplacements));
-            ini.SaveTo(ModManager.GameGameINIPath);
-        }
+        if (string.IsNullOrWhiteSpace(DOLPatches))
+            return false;
+
+        var patches = DOLPatches
+            .Split('\n')
+            .Select(l => l.Split('#')[0].Trim())
+            .Where(l => !string.IsNullOrWhiteSpace(l))
+            .Select(l => l.Split(' '))
+            .Select(vals => (Convert.ToUInt32(vals[0], 16), BitConverter.GetBytes(Convert.ToUInt32(vals[1], 16))))
+            .ToArray();
+
+        foreach (var p in patches)
+            for (int i = 0; i < 4; i++)
+                if (p.Item1 + i < dol.Length)
+                    dol[p.Item1 + i] = p.Item2[i];
+
+        return true;
     }
 
     public List<DolphinCode> GetArCodes() => DolphinGameSettings.FromContents(ArCodes, DolphinSettingsReaderMode.ActionReplay).ActionReplay;

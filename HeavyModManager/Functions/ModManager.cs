@@ -449,9 +449,16 @@ public static class ModManager
             fs.CopyDirectory(GameBackupSysPath, GameGameSysPath);
         }
 
-        var modsUsingCustomGameId = 0;
+        var ini = INIFile.FromPath(GameGameINIPath);
+        var hasIniPatches = false;
+
+        var dol = File.ReadAllBytes(GameDolPath);
+        var hasDolPatches = false;
+
         var arCodes = new List<DolphinCode>();
         var geckoCodes = new List<DolphinCode>();
+
+        var modsUsingCustomGameId = 0;
         string? gameId = null;
 
         foreach (var modId in CurrentGameSettings.Mods)
@@ -459,7 +466,15 @@ public static class ModManager
             {
                 var modJsonPath = GetModJsonPath(modId);
                 var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
-                mod.Apply();
+
+                mod.RemoveRemoveFiles();
+                mod.CopyFiles();
+
+                if (mod.ApplyIniPatches(ref ini))
+                    hasIniPatches = true;
+
+                if (mod.ApplyDolPatches(ref dol))
+                    hasDolPatches = true;
 
                 if (!string.IsNullOrEmpty(mod.ArCodes))
                     AddOrReplaceCodes(ref arCodes, mod.GetArCodes());
@@ -476,20 +491,23 @@ public static class ModManager
 
         if (arCodes.Any() || geckoCodes.Any())
         {
-            if (gameId == null)
-            {
-                var strBuilder = new System.Text.StringBuilder(GameToGameID(CurrentGame));
-                strBuilder[3] = 'H';
-                gameId = strBuilder.ToString();
-            }
+            gameId ??= GetDefaultCodesGameId();
             CreateCustomDolphinSettings(gameId, arCodes, geckoCodes);
         }
 
         if (gameId != null)
         {
-            ApplyGameIdOnDol(gameId);
+            hasDolPatches = true;
+
+            ApplyGameIdOnDol(gameId, ref dol);
             ApplyGameIdOnBootBin(gameId);
         }
+
+        if (hasIniPatches)
+            ini.SaveTo(GameGameINIPath);
+
+        if (hasDolPatches)
+            File.WriteAllBytes(GameDolPath, dol);
 
         CurrentGameSettings.Invalidated = false;
         SaveGameSettings();
@@ -509,6 +527,13 @@ public static class ModManager
             code.Enabled = true;
             codeList.Add(code);
         }
+    }
+
+    private static string GetDefaultCodesGameId()
+    {
+        var strBuilder = new System.Text.StringBuilder(GameToGameID(CurrentGame));
+        strBuilder[3] = 'H';
+        return strBuilder.ToString();
     }
 
     public static string GameDolphinSettingsPath(string gameId) => Path.Combine(DolphinFolderPath, "GameSettings", gameId + ".ini");
@@ -542,10 +567,8 @@ public static class ModManager
         dolphinSettings.SaveTo(newDolphinSettingsPath);
     }
 
-    private static void ApplyGameIdOnDol(string gameId)
+    private static void ApplyGameIdOnDol(string gameId, ref byte[] dol)
     {
-        var dol = File.ReadAllBytes(GameDolPath);
-
         switch (CurrentGame)
         {
             case Game.Scooby:
