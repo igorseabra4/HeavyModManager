@@ -113,14 +113,24 @@ public partial class MainForm : Form
         PopulateModList();
 
         groupBoxMods.Enabled = comboBoxGame.SelectedIndex != -1;
-        buttonApplyMods.Enabled = comboBoxGame.SelectedIndex != -1 && ModManager.GameBackupExists;
-        buttonRunGame.Enabled = comboBoxGame.SelectedIndex != -1 && ModManager.GameExists;
+        buttonApplyMods.Enabled = CanApplyMods;
+        buttonRunGame.Enabled = CanRunGame;
         buttonCreateBackup.Enabled = comboBoxGame.SelectedIndex != -1;
 
         ShowToolTip();
 
         SaveSettings();
     }
+
+    private bool CanApplyMods => comboBoxGame.SelectedIndex != -1 &&
+        ModManager.GameBackupExists &&
+        !string.IsNullOrWhiteSpace(ModManager.DolphinPath) &&
+        !string.IsNullOrWhiteSpace(ModManager.DolphinFolderPath);
+
+    private bool CanRunGame => comboBoxGame.SelectedIndex != -1 &&
+        ModManager.GameExists &&
+        !string.IsNullOrWhiteSpace(ModManager.DolphinPath) &&
+        !string.IsNullOrWhiteSpace(ModManager.DolphinFolderPath);
 
     private readonly ToolTip toolTip;
 
@@ -130,7 +140,15 @@ public partial class MainForm : Form
 
         if (string.IsNullOrEmpty(ModManager.DolphinPath))
         {
-            toolTip.Show("Dolphin executable path not set.\nPlease click on Settings -> Choose Dolphin Path and select the Dolphin executable.", comboBoxGame, 0, 24, 12 * 1000);
+            toolTip.Show("Dolphin executable path not set.\n" +
+                "Please click on Settings -> Choose Dolphin Path and select the Dolphin executable.\n" +
+                "It is usually located under \"C:\\Program Files\\Dolphin-x64\\Dolphin.exe\". Selecting a shortcut is also possible.", comboBoxGame, 0, 24, 12 * 1000);
+        }
+        else if (string.IsNullOrEmpty(ModManager.DolphinFolderPath))
+        {
+            toolTip.Show("Dolphin user folder path not set.\n" +
+                "Please click on Settings -> Choose Dolphin User Folder Path and select the Dolphin user folder\n" +
+                "It is usually located under \"Documents\\Dolphin Emulator\".", comboBoxGame, 0, 24, 12 * 1000);
         }
         else if (comboBoxGame.SelectedIndex != -1)
         {
@@ -205,8 +223,6 @@ public partial class MainForm : Form
 
     private bool programChangingData = false;
 
-    private bool activeModWithCheats = false;
-
     private void PopulateModList(string selectedModId = "")
     {
         programChangingData = true;
@@ -219,15 +235,11 @@ public partial class MainForm : Form
         zipModToolStripMenuItem.Enabled = false;
         openModFolderToolStripMenuItem.Enabled = false;
 
-        activeModWithCheats = false;
-
         foreach (var modId in ModManager.CurrentGameSettings.Mods)
         {
             var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(ModManager.GetModJsonPath(modId)));
             bool active = ModManager.CurrentGameSettings.ActiveMods.Contains(mod.ModId);
             listViewMods.Items.Add(ListViewItemFromMod(mod, active, selectedModId == mod.ModId));
-            if (active)
-                SetActiveModWithCheats(mod);
         }
 
         UpdateDolphinLabel();
@@ -254,12 +266,6 @@ public partial class MainForm : Form
         return item;
     }
 
-    private void SetActiveModWithCheats(Mod mod)
-    {
-        if (!string.IsNullOrEmpty(mod.ArCodes) || !string.IsNullOrEmpty(mod.GeckoCodes))
-            activeModWithCheats = true;
-    }
-
     private Mod? GetSelectedMod()
     {
         if (listViewMods.SelectedIndices.Count == 1)
@@ -279,22 +285,34 @@ public partial class MainForm : Form
         else
             ModManager.CurrentGameSettings.DeactivateMod(mod.ModId);
 
-        SetActiveModWithCheats(mod);
         ModManager.SaveGameSettings();
     }
 
     private void listViewMods_SelectedIndexChanged(object sender, EventArgs e)
     {
+        labelModInfo.Text = "";
+
         var mod = GetSelectedMod();
+
         if (mod != null)
         {
-            labelModInfo.Text =
-                (string.IsNullOrWhiteSpace(mod.Description) ? "" : $"{mod.Description}\n\n") +
-                (string.IsNullOrEmpty(mod.GameId) ? "" : $"This mod uses a custom save file:\n{mod.GameId}\n\n") +
-                $"Mod ID:\n{mod.ModId}\n\n" +
-                //$"Has AR codes: {(string.IsNullOrEmpty(mod.ArCodes) ? "No" : "Yes")}\n" +
-                //$"Has Gecko codes: {(string.IsNullOrEmpty(mod.GeckoCodes) ? "No" : "Yes")}" +
-                "";
+            if (!string.IsNullOrWhiteSpace(mod.Description))
+                labelModInfo.Text += $"{mod.Description}\n\n";
+
+            if (!string.IsNullOrEmpty(mod.GameId))
+                labelModInfo.Text += $"This mod uses a custom save file:\n{mod.GameId}\n\n";
+
+            if (!string.IsNullOrEmpty(mod.DOLPatches))
+                labelModInfo.Text += "Has DOL Patches\n";
+
+            if (!string.IsNullOrEmpty(mod.ArCodes))
+                labelModInfo.Text += "Has AR Codes\n";
+
+            if (!string.IsNullOrEmpty(mod.GeckoCodes))
+                labelModInfo.Text += "Has Gecko Codes\n";
+
+            labelModInfo.Text += $"Mod ID:\n{mod.ModId}\n\n";
+
             editModToolStripMenuItem.Enabled = true;
             deleteModToolStripMenuItem.Enabled = true;
             zipModToolStripMenuItem.Enabled = true;
@@ -302,7 +320,6 @@ public partial class MainForm : Form
         }
         else
         {
-            labelModInfo.Text = "";
             editModToolStripMenuItem.Enabled = false;
             deleteModToolStripMenuItem.Enabled = false;
             zipModToolStripMenuItem.Enabled = false;
@@ -373,8 +390,8 @@ public partial class MainForm : Form
 
             Enabled = true;
 
-            buttonApplyMods.Enabled = comboBoxGame.SelectedIndex != -1 && ModManager.GameBackupExists;
-            buttonRunGame.Enabled = comboBoxGame.SelectedIndex != -1 && ModManager.GameExists;
+            buttonApplyMods.Enabled = CanApplyMods;
+            buttonRunGame.Enabled = CanRunGame;
         }
     }
 
@@ -383,7 +400,7 @@ public partial class MainForm : Form
         Enabled = false;
         ModManager.ApplyMods(true);
         Enabled = true;
-        buttonRunGame.Enabled = comboBoxGame.SelectedIndex != -1 && ModManager.GameExists;
+        buttonRunGame.Enabled = CanRunGame;
     }
 
     private void buttonRunGame_Click(object sender, EventArgs e)
@@ -409,6 +426,14 @@ public partial class MainForm : Form
     private void chooseDolphinPathToolStripMenuItem_Click(object sender, EventArgs e)
     {
         ModManager.SetDolphinPath();
+        SaveSettings();
+        UpdateDolphinLabel();
+        ShowToolTip();
+    }
+
+    private void chooseDolphinUserFolderPathToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        ModManager.SetDolphinFolderPath();
         SaveSettings();
         UpdateDolphinLabel();
         ShowToolTip();
@@ -442,17 +467,22 @@ public partial class MainForm : Form
             return;
         }
 
-        labelDolphin.Text = "Dolphin path: " + ModManager.DolphinPath;
+        if (string.IsNullOrEmpty(ModManager.DolphinFolderPath))
+        {
+            labelDolphin.Text = "Dolphin user folder path not set.";
+            return;
+        }
+
+        if (!Directory.Exists(ModManager.DolphinFolderPath))
+        {
+            labelDolphin.Text = "Dolphin user folder not found on set path.";
+            return;
+        }
+
+        labelDolphin.Text = $"Dolphin: {ModManager.DolphinPath}\nDolphin user folder: {ModManager.DolphinFolderPath}";
 
         if (ModManager.DeveloperMode)
-        {
             labelDolphin.Text += "\nDeveloper Mode";
-        }
-
-        if (activeModWithCheats)
-        {
-            labelDolphin.Text += "\nOne or more active mods use codes. Remember to activate \"Enable Cheats\" on Dolphin settings.";
-        }
     }
 
     private void changeIconToolStripMenuItem_Click(object sender, EventArgs e)

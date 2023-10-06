@@ -27,6 +27,9 @@ public class ModManagerSettings
     [JsonInclude]
     public string DolphinPath { get; set; }
 
+    [JsonInclude]
+    public string DolphinFolderPath { get; set; }
+
     /// <summary>
     /// Whether the application checks for updates on startup.
     /// </summary>
@@ -63,6 +66,7 @@ public class ModManagerSettings
         Version = 2;
         CurrentGame = Game.Null;
         DolphinPath = "";
+        DolphinFolderPath = "";
         CheckForUpdatesOnStartup = true;
         DeveloperMode = false;
         Icon = HeavyModManagerIcon.Rainbow;

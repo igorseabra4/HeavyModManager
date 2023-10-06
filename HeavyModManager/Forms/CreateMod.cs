@@ -41,8 +41,8 @@ public partial class CreateMod : Form
         textBoxAuthor.Text = mod.Author;
         richTextBoxDescription.Text = mod.Description;
         textBoxModId.Text = mod.ModId;
-        // richTextBoxArCodes.Text = mod.ArCodes;
-        // richTextBoxGeckoCodes.Text = mod.GeckoCodes;
+        richTextBoxArCodes.Text = mod.ArCodes;
+        richTextBoxGeckoCodes.Text = mod.GeckoCodes;
         textBoxGameId.Text = mod.GameId;
         richTextBoxINIValues.Text = mod.INIReplacements;
         richTextBoxMergeHips.Text = mod.MergeFiles;
@@ -127,7 +127,9 @@ public partial class CreateMod : Form
             textBoxModId.Text.Length > 0 &&
             (textBoxGameId.Text.Length == 0 || textBoxGameId.Text.Length == 6) &&
             DolPatchesValid() &&
-            IniPatchesValid();
+            IniPatchesValid() &&
+            ArCodesValid() &&
+            GeckoCodesValid();
     }
 
     private void ResetModId()
@@ -163,8 +165,8 @@ public partial class CreateMod : Form
             MergeFiles = richTextBoxMergeHips.Text,
             RemoveFiles = richTextBoxRemoveFiles.Text,
             DOLPatches = richTextBoxDolPatches.Text,
-            ArCodes = "", // richTextBoxArCodes.Text,
-            GeckoCodes = "", //richTextBoxGeckoCodes.Text,
+            ArCodes = richTextBoxArCodes.Text,
+            GeckoCodes = richTextBoxGeckoCodes.Text,
             CreatedAt = dateTimePickerCreatedAt.Value,
             UpdatedAt = dateTimePickerUpdatedAt.Value,
         };
@@ -296,11 +298,35 @@ public partial class CreateMod : Form
             "Enter patches to be applied to the game's DOL file, in the form of\n" +
             "<offset> <value>, both 4-byte hexadecimal numbers, one per line.\n" +
             "You can add comments after #s.\n" +
-            "AR codes do not work as DOL patches.\n\n" +
             "Example:\n\n" +
             "00287D10 53494D50\n" +
             "00287DB0 54455854 # This is a comment\n" +
             "#another comment\n\n" +
+            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
+    }
+
+    private void buttonArCodesInfo_Click(object sender, EventArgs e)
+    {
+        ShowCodesInfo("Action Replay (AR)");
+    }
+
+    private void buttonGeckoCodesInfo_Click(object sender, EventArgs e)
+    {
+        ShowCodesInfo("Gecko");
+    }
+
+    private void ShowCodesInfo(string codeType)
+    {
+        ShowToolTip(
+            "Enter " + codeType + " codes to be applied by Dolphin. Format should be similar to\n" +
+            "Dolphin Settings: Each code starts with $<code name>, then each line follows\n" +
+            "the format <offset> <value>, both 4-byte hexadecimal numbers.\n" +
+            "You can add comments after *s.\n" +
+            "Example:\n\n" +
+            "$Blue Box Fix\n043CD04C 00000000\n" +
+            "*This is a comment\n\n" +
+            "$Warp Anywhere\n040BC1C8 38000001\n040BC258 38000001\n040BC300 38000001\n" +
+            "*another comment\n\n" +
             "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
     }
 
@@ -313,6 +339,18 @@ public partial class CreateMod : Form
     private void richTextBoxINIValues_TextChanged(object sender, EventArgs e)
     {
         richTextBoxINIValues.BackColor = IniPatchesValid() ? defaultBackgroundColor : Color.Red;
+        SetCreateModEnabled();
+    }
+
+    private void richTextBoxArCodes_TextChanged(object sender, EventArgs e)
+    {
+        richTextBoxArCodes.BackColor = ArCodesValid() ? defaultBackgroundColor : Color.Red;
+        SetCreateModEnabled();
+    }
+
+    private void richTextBoxGeckoCodes_TextChanged(object sender, EventArgs e)
+    {
+        richTextBoxGeckoCodes.BackColor = GeckoCodesValid() ? defaultBackgroundColor : Color.Red;
         SetCreateModEnabled();
     }
 
@@ -342,6 +380,32 @@ public partial class CreateMod : Form
         try
         {
             var tempIni = INIFile.FromContents(richTextBoxINIValues.Text);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private bool ArCodesValid()
+    {
+        try
+        {
+            var tempSettings = DolphinGameSettings.FromContents(richTextBoxArCodes.Text, DolphinSettingsReaderMode.ActionReplay);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private bool GeckoCodesValid()
+    {
+        try
+        {
+            var tempSettings = DolphinGameSettings.FromContents(richTextBoxGeckoCodes.Text, DolphinSettingsReaderMode.Gecko);
             return true;
         }
         catch

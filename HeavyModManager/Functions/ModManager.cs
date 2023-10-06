@@ -162,6 +162,7 @@ public static class ModManager
     public static bool CheckForUpdatesOnStartup { get; set; }
     public static bool DeveloperMode { get; set; }
     public static string DolphinPath { get; private set; }
+    public static string DolphinFolderPath { get; private set; }
     public static Game CurrentGame { get; private set; }
     public static GameSettings? CurrentGameSettings { get; private set; } = null;
 
@@ -169,6 +170,7 @@ public static class ModManager
     {
         settings.CurrentGame = CurrentGame;
         settings.DolphinPath = DolphinPath;
+        settings.DolphinFolderPath = DolphinFolderPath;
         settings.CheckForUpdatesOnStartup = CheckForUpdatesOnStartup;
         settings.DeveloperMode = DeveloperMode;
         settings.Icon = IconManager.CurrentIcon;
@@ -185,8 +187,17 @@ public static class ModManager
         settings ??= new ModManagerSettings();
 
         CurrentGame = settings.CurrentGame;
-        DolphinPath = settings.DolphinPath;
+
+        var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+        var defaultDolphinPath = Path.Combine(programFiles, "Dolphin-x64", "Dolphin.exe");
+        DolphinPath = (string.IsNullOrWhiteSpace(settings.DolphinPath) && File.Exists(defaultDolphinPath)) ? defaultDolphinPath : settings.DolphinPath;
+
+        var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        var defaultDolphinFolderPath = Path.Combine(documents, "Dolphin Emulator");
+        DolphinFolderPath = (string.IsNullOrWhiteSpace(settings.DolphinFolderPath) && Directory.Exists(defaultDolphinFolderPath)) ? defaultDolphinFolderPath : settings.DolphinFolderPath;
+
         CheckForUpdatesOnStartup = settings.CheckForUpdatesOnStartup;
+
         if (settings.Version >= 2)
         {
             DeveloperMode = settings.DeveloperMode;
@@ -208,6 +219,17 @@ public static class ModManager
         {
             DolphinPath = openFile.FileName;
             MessageBox.Show("Dolphin path set successfully.", "Dolphin path set", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+    }
+
+    public static void SetDolphinFolderPath()
+    {
+        var openFile = new FolderBrowserDialog();
+
+        if (openFile.ShowDialog() == DialogResult.OK)
+        {
+            DolphinFolderPath = openFile.SelectedPath;
+            MessageBox.Show("Dolphin folder path set successfully.", "Dolphin folder path set", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 
@@ -428,6 +450,9 @@ public static class ModManager
         }
 
         var modsUsingCustomGameId = 0;
+        var arCodes = new List<DolphinCode>();
+        var geckoCodes = new List<DolphinCode>();
+        string? gameId = null;
 
         foreach (var modId in CurrentGameSettings.Mods)
             if (CurrentGameSettings.ActiveMods.Contains(modId))
@@ -435,9 +460,36 @@ public static class ModManager
                 var modJsonPath = GetModJsonPath(modId);
                 var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
                 mod.Apply();
+
+                if (!string.IsNullOrEmpty(mod.ArCodes))
+                    AddOrReplaceCodes(ref arCodes, mod.GetArCodes());
+
+                if (!string.IsNullOrEmpty(mod.GeckoCodes))
+                    AddOrReplaceCodes(ref geckoCodes, mod.GetGeckoCodes());
+
                 if (!string.IsNullOrWhiteSpace(mod.GameId))
+                {
+                    gameId = mod.GameId;
                     modsUsingCustomGameId++;
+                }
             }
+
+        if (arCodes.Any() || geckoCodes.Any())
+        {
+            if (gameId == null)
+            {
+                var strBuilder = new System.Text.StringBuilder(GameToGameID(CurrentGame));
+                strBuilder[3] = 'H';
+                gameId = strBuilder.ToString();
+            }
+            CreateCustomDolphinSettings(gameId, arCodes, geckoCodes);
+        }
+
+        if (gameId != null)
+        {
+            ApplyGameIdOnDol(gameId);
+            ApplyGameIdOnBootBin(gameId);
+        }
 
         CurrentGameSettings.Invalidated = false;
         SaveGameSettings();
@@ -445,6 +497,110 @@ public static class ModManager
         if (modsUsingCustomGameId > 1)
             MessageBox.Show("Warning: Multiple mods which use custom save files are enabled. This might cause issues.",
                 "Multiple mods use custom save files", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    }
+
+    private static void AddOrReplaceCodes(ref List<DolphinCode> codeList, List<DolphinCode> toAdd)
+    {
+        foreach (var code in toAdd)
+        {
+            codeList.RemoveAll(c => c.Name == code.Name);
+            if (string.IsNullOrWhiteSpace(code.Name))
+                code.Name = "code_" + code.GetHashCode().ToString();
+            code.Enabled = true;
+            codeList.Add(code);
+        }
+    }
+
+    public static string GameDolphinSettingsPath(string gameId) => Path.Combine(DolphinFolderPath, "GameSettings", gameId + ".ini");
+
+    private static void CreateCustomDolphinSettings(string destinationGameId, List<DolphinCode> arCodes, List<DolphinCode> geckoCodes)
+    {
+        DolphinGameSettings dolphinSettings;
+        var originalDolphinSettingsPath = GameDolphinSettingsPath(GameToGameID(CurrentGame));
+
+        try
+        {
+            dolphinSettings = DolphinGameSettings.FromPath(originalDolphinSettingsPath);
+        }
+        catch
+        {
+            dolphinSettings = DolphinGameSettings.FromContents("");
+        }
+
+        dolphinSettings.Core["EnableCheats"] = "True";
+
+        dolphinSettings.ActionReplay.RemoveAll(c => c.Enabled == false);
+        dolphinSettings.ActionReplay.AddRange(arCodes);
+
+        dolphinSettings.Gecko.RemoveAll(c => c.Enabled == false);
+        dolphinSettings.Gecko.AddRange(geckoCodes);
+
+        var newDolphinSettingsPath = GameDolphinSettingsPath(destinationGameId);
+        var dir = Path.GetDirectoryName(newDolphinSettingsPath);
+        if (!Directory.Exists(dir))
+            Directory.CreateDirectory(dir);
+        dolphinSettings.SaveTo(newDolphinSettingsPath);
+    }
+
+    private static void ApplyGameIdOnDol(string gameId)
+    {
+        var dol = File.ReadAllBytes(GameDolPath);
+
+        switch (CurrentGame)
+        {
+            case Game.Scooby:
+                WriteGameIdOnDol(ref dol, 0x1DC820, gameId);
+                dol[0x1DC828] = (byte)gameId[4];
+                dol[0x1DC829] = (byte)gameId[5];
+                break;
+            case Game.BFBB:
+                WriteGameIdOnDol(ref dol, 0x2635C0, gameId);
+                dol[0x2635C5] = (byte)gameId[4];
+                dol[0x2635C6] = (byte)gameId[5];
+                break;
+            case Game.Movie:
+                WriteGameIdOnDol(ref dol, 0x374CE8, gameId);
+                WriteGameIdOnDol(ref dol, 0x3752BF, gameId);
+                WriteGameIdOnDol(ref dol, 0x3752C4, gameId);
+                WriteGameIdOnDol(ref dol, 0x3752C9, gameId);
+                WriteGameIdOnDol(ref dol, 0x3752CE, gameId);
+                dol[0x3752D3] = (byte)gameId[4];
+                dol[0x3752D4] = (byte)gameId[5];
+                WriteGameIdOnDol(ref dol, 0x3754F8, gameId);
+                break;
+            case Game.Incredibles:
+                WriteGameIdOnDol(ref dol, 0x2D5878, gameId);
+                WriteGameIdOnDol(ref dol, 0x2DAFF8, gameId);
+                break;
+            case Game.Underminer:
+                WriteGameIdOnDol(ref dol, 0x2C8E19, gameId);
+                WriteGameIdOnDol(ref dol, 0x2C8E1E, gameId);
+                WriteGameIdOnDol(ref dol, 0x2C8E23, gameId);
+                break;
+            default:
+                throw new NotImplementedException("Cannot change game ID for this game yet.");
+        }
+    }
+
+    private static void WriteGameIdOnDol(ref byte[] dol, int startOffset, string gameId, int amount = 4)
+    {
+        for (int i = 0; i < amount; i++)
+            dol[startOffset + i] = (byte)gameId[i];
+    }
+
+    private static void ApplyGameIdOnBootBin(string gameId)
+    {
+        var bootBinPath = Path.Combine(GameGameSysPath, "boot.bin");
+        var bootBin = File.ReadAllBytes(bootBinPath);
+
+        bootBin[0] = (byte)gameId[0];
+        bootBin[1] = (byte)gameId[1];
+        bootBin[2] = (byte)gameId[2];
+        bootBin[3] = (byte)gameId[3];
+        bootBin[4] = (byte)gameId[4];
+        bootBin[5] = (byte)gameId[5];
+
+        File.WriteAllBytes(bootBinPath, bootBin);
     }
 
     public static bool GameBackupExists => Directory.Exists(GameBackupFilesPath) && Directory.Exists(GameBackupSysPath);
@@ -456,7 +612,6 @@ public static class ModManager
             if (!p.HasExited)
             {
                 p.CloseMainWindow();
-                p.WaitForExit();
             }
     }
 

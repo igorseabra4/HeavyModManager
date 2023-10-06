@@ -41,10 +41,10 @@ partial class CreateMod
         textBoxAuthor = new TextBox();
         groupBoxDescription = new GroupBox();
         richTextBoxDescription = new RichTextBox();
-        groupBoxUpdatedAt = new GroupBox();
-        dateTimePickerUpdatedAt = new DateTimePicker();
         groupBoxCreatedAt = new GroupBox();
         dateTimePickerCreatedAt = new DateTimePicker();
+        groupBoxUpdatedAt = new GroupBox();
+        dateTimePickerUpdatedAt = new DateTimePicker();
         groupBoxModId = new GroupBox();
         buttonModIdInfo = new Button();
         textBoxModId = new TextBox();
@@ -67,6 +67,12 @@ partial class CreateMod
         groupBoxDolPatches = new GroupBox();
         buttonDolPatchesInfo = new Button();
         richTextBoxDolPatches = new RichTextBox();
+        groupBoxArCodes = new GroupBox();
+        buttonArCodesInfo = new Button();
+        richTextBoxArCodes = new RichTextBox();
+        groupBoxGeckoCodes = new GroupBox();
+        buttonGeckoCodesInfo = new Button();
+        richTextBoxGeckoCodes = new RichTextBox();
         tabControl1.SuspendLayout();
         tabPageModData.SuspendLayout();
         flowLayoutPanelPage1.SuspendLayout();
@@ -74,8 +80,8 @@ partial class CreateMod
         groupBoxModName.SuspendLayout();
         groupBoxAuthor.SuspendLayout();
         groupBoxDescription.SuspendLayout();
-        groupBoxUpdatedAt.SuspendLayout();
         groupBoxCreatedAt.SuspendLayout();
+        groupBoxUpdatedAt.SuspendLayout();
         groupBoxModId.SuspendLayout();
         tabPageSettings.SuspendLayout();
         flowLayoutPanelPage2.SuspendLayout();
@@ -84,6 +90,8 @@ partial class CreateMod
         groupBoxMergeHips.SuspendLayout();
         groupBoxRemoveFiles.SuspendLayout();
         groupBoxDolPatches.SuspendLayout();
+        groupBoxArCodes.SuspendLayout();
+        groupBoxGeckoCodes.SuspendLayout();
         SuspendLayout();
         // 
         // buttonCreateMod
@@ -231,25 +239,6 @@ partial class CreateMod
         richTextBoxDescription.TabIndex = 8;
         richTextBoxDescription.Text = "";
         // 
-        // groupBoxUpdatedAt
-        // 
-        groupBoxUpdatedAt.Controls.Add(dateTimePickerUpdatedAt);
-        groupBoxUpdatedAt.Dock = DockStyle.Top;
-        groupBoxUpdatedAt.Location = new Point(3, 409);
-        groupBoxUpdatedAt.Name = "groupBoxUpdatedAt";
-        groupBoxUpdatedAt.Size = new Size(319, 51);
-        groupBoxUpdatedAt.TabIndex = 11;
-        groupBoxUpdatedAt.TabStop = false;
-        groupBoxUpdatedAt.Text = "Updated At";
-        // 
-        // dateTimePickerUpdatedAt
-        // 
-        dateTimePickerUpdatedAt.Dock = DockStyle.Fill;
-        dateTimePickerUpdatedAt.Location = new Point(3, 19);
-        dateTimePickerUpdatedAt.Name = "dateTimePickerUpdatedAt";
-        dateTimePickerUpdatedAt.Size = new Size(313, 23);
-        dateTimePickerUpdatedAt.TabIndex = 12;
-        // 
         // groupBoxCreatedAt
         // 
         groupBoxCreatedAt.Controls.Add(dateTimePickerCreatedAt);
@@ -268,6 +257,25 @@ partial class CreateMod
         dateTimePickerCreatedAt.Name = "dateTimePickerCreatedAt";
         dateTimePickerCreatedAt.Size = new Size(313, 23);
         dateTimePickerCreatedAt.TabIndex = 10;
+        // 
+        // groupBoxUpdatedAt
+        // 
+        groupBoxUpdatedAt.Controls.Add(dateTimePickerUpdatedAt);
+        groupBoxUpdatedAt.Dock = DockStyle.Top;
+        groupBoxUpdatedAt.Location = new Point(3, 409);
+        groupBoxUpdatedAt.Name = "groupBoxUpdatedAt";
+        groupBoxUpdatedAt.Size = new Size(319, 51);
+        groupBoxUpdatedAt.TabIndex = 11;
+        groupBoxUpdatedAt.TabStop = false;
+        groupBoxUpdatedAt.Text = "Updated At";
+        // 
+        // dateTimePickerUpdatedAt
+        // 
+        dateTimePickerUpdatedAt.Dock = DockStyle.Fill;
+        dateTimePickerUpdatedAt.Location = new Point(3, 19);
+        dateTimePickerUpdatedAt.Name = "dateTimePickerUpdatedAt";
+        dateTimePickerUpdatedAt.Size = new Size(313, 23);
+        dateTimePickerUpdatedAt.TabIndex = 12;
         // 
         // groupBoxModId
         // 
@@ -320,6 +328,8 @@ partial class CreateMod
         flowLayoutPanelPage2.Controls.Add(groupBoxMergeHips);
         flowLayoutPanelPage2.Controls.Add(groupBoxRemoveFiles);
         flowLayoutPanelPage2.Controls.Add(groupBoxDolPatches);
+        flowLayoutPanelPage2.Controls.Add(groupBoxArCodes);
+        flowLayoutPanelPage2.Controls.Add(groupBoxGeckoCodes);
         flowLayoutPanelPage2.Dock = DockStyle.Fill;
         flowLayoutPanelPage2.FlowDirection = FlowDirection.TopDown;
         flowLayoutPanelPage2.Location = new Point(0, 0);
@@ -512,6 +522,72 @@ partial class CreateMod
         richTextBoxDolPatches.Text = "";
         richTextBoxDolPatches.TextChanged += richTextBoxDolPatches_TextChanged;
         // 
+        // groupBoxArCodes
+        // 
+        groupBoxArCodes.Controls.Add(buttonArCodesInfo);
+        groupBoxArCodes.Controls.Add(richTextBoxArCodes);
+        groupBoxArCodes.Dock = DockStyle.Top;
+        groupBoxArCodes.Location = new Point(3, 790);
+        groupBoxArCodes.Name = "groupBoxArCodes";
+        groupBoxArCodes.Size = new Size(319, 172);
+        groupBoxArCodes.TabIndex = 33;
+        groupBoxArCodes.TabStop = false;
+        groupBoxArCodes.Text = "AR Codes";
+        // 
+        // buttonArCodesInfo
+        // 
+        buttonArCodesInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        buttonArCodesInfo.Location = new Point(268, -1);
+        buttonArCodesInfo.Name = "buttonArCodesInfo";
+        buttonArCodesInfo.Size = new Size(45, 23);
+        buttonArCodesInfo.TabIndex = 34;
+        buttonArCodesInfo.Text = "Info";
+        buttonArCodesInfo.UseVisualStyleBackColor = true;
+        buttonArCodesInfo.Click += buttonArCodesInfo_Click;
+        // 
+        // richTextBoxArCodes
+        // 
+        richTextBoxArCodes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        richTextBoxArCodes.Location = new Point(6, 22);
+        richTextBoxArCodes.Name = "richTextBoxArCodes";
+        richTextBoxArCodes.Size = new Size(307, 144);
+        richTextBoxArCodes.TabIndex = 35;
+        richTextBoxArCodes.Text = "";
+        richTextBoxArCodes.TextChanged += richTextBoxArCodes_TextChanged;
+        // 
+        // groupBoxGeckoCodes
+        // 
+        groupBoxGeckoCodes.Controls.Add(buttonGeckoCodesInfo);
+        groupBoxGeckoCodes.Controls.Add(richTextBoxGeckoCodes);
+        groupBoxGeckoCodes.Dock = DockStyle.Top;
+        groupBoxGeckoCodes.Location = new Point(3, 968);
+        groupBoxGeckoCodes.Name = "groupBoxGeckoCodes";
+        groupBoxGeckoCodes.Size = new Size(319, 172);
+        groupBoxGeckoCodes.TabIndex = 36;
+        groupBoxGeckoCodes.TabStop = false;
+        groupBoxGeckoCodes.Text = "Gecko Codes";
+        // 
+        // buttonGeckoCodesInfo
+        // 
+        buttonGeckoCodesInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        buttonGeckoCodesInfo.Location = new Point(268, -1);
+        buttonGeckoCodesInfo.Name = "buttonGeckoCodesInfo";
+        buttonGeckoCodesInfo.Size = new Size(45, 23);
+        buttonGeckoCodesInfo.TabIndex = 37;
+        buttonGeckoCodesInfo.Text = "Info";
+        buttonGeckoCodesInfo.UseVisualStyleBackColor = true;
+        buttonGeckoCodesInfo.Click += buttonGeckoCodesInfo_Click;
+        // 
+        // richTextBoxGeckoCodes
+        // 
+        richTextBoxGeckoCodes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        richTextBoxGeckoCodes.Location = new Point(6, 22);
+        richTextBoxGeckoCodes.Name = "richTextBoxGeckoCodes";
+        richTextBoxGeckoCodes.Size = new Size(307, 144);
+        richTextBoxGeckoCodes.TabIndex = 38;
+        richTextBoxGeckoCodes.Text = "";
+        richTextBoxGeckoCodes.TextChanged += richTextBoxGeckoCodes_TextChanged;
+        // 
         // CreateMod
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -533,8 +609,8 @@ partial class CreateMod
         groupBoxAuthor.ResumeLayout(false);
         groupBoxAuthor.PerformLayout();
         groupBoxDescription.ResumeLayout(false);
-        groupBoxUpdatedAt.ResumeLayout(false);
         groupBoxCreatedAt.ResumeLayout(false);
+        groupBoxUpdatedAt.ResumeLayout(false);
         groupBoxModId.ResumeLayout(false);
         groupBoxModId.PerformLayout();
         tabPageSettings.ResumeLayout(false);
@@ -545,6 +621,8 @@ partial class CreateMod
         groupBoxMergeHips.ResumeLayout(false);
         groupBoxRemoveFiles.ResumeLayout(false);
         groupBoxDolPatches.ResumeLayout(false);
+        groupBoxArCodes.ResumeLayout(false);
+        groupBoxGeckoCodes.ResumeLayout(false);
         ResumeLayout(false);
     }
 
@@ -588,4 +666,10 @@ partial class CreateMod
     private TextBox textBoxModId;
     private Button buttonModIdInfo;
     private Button buttonIniImport;
+    private GroupBox groupBoxArCodes;
+    private Button buttonArCodesInfo;
+    private RichTextBox richTextBoxArCodes;
+    private GroupBox groupBoxGeckoCodes;
+    private Button buttonGeckoCodesInfo;
+    private RichTextBox richTextBoxGeckoCodes;
 }

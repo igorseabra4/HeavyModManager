@@ -52,6 +52,7 @@ partial class MainForm
         deleteModToolStripMenuItem = new ToolStripMenuItem();
         settingsToolStripMenuItem = new ToolStripMenuItem();
         chooseDolphinPathToolStripMenuItem = new ToolStripMenuItem();
+        chooseDolphinUserFolderPathToolStripMenuItem = new ToolStripMenuItem();
         developerModeToolStripMenuItem = new ToolStripMenuItem();
         checkForUpdatesOnStartupToolStripMenuItem = new ToolStripMenuItem();
         toolStripSeparator2 = new ToolStripSeparator();
@@ -280,7 +281,7 @@ partial class MainForm
         // 
         // settingsToolStripMenuItem
         // 
-        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem });
+        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, chooseDolphinUserFolderPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem });
         settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
         settingsToolStripMenuItem.Size = new Size(61, 20);
         settingsToolStripMenuItem.Text = "Settings";
@@ -291,6 +292,13 @@ partial class MainForm
         chooseDolphinPathToolStripMenuItem.Size = new Size(231, 22);
         chooseDolphinPathToolStripMenuItem.Text = "&Choose Dolphin Path...";
         chooseDolphinPathToolStripMenuItem.Click += chooseDolphinPathToolStripMenuItem_Click;
+        // 
+        // chooseDolphinUserFolderPathToolStripMenuItem
+        // 
+        chooseDolphinUserFolderPathToolStripMenuItem.Name = "chooseDolphinUserFolderPathToolStripMenuItem";
+        chooseDolphinUserFolderPathToolStripMenuItem.Size = new Size(257, 22);
+        chooseDolphinUserFolderPathToolStripMenuItem.Text = "&Choose Dolphin User Folder Path...";
+        chooseDolphinUserFolderPathToolStripMenuItem.Click += chooseDolphinUserFolderPathToolStripMenuItem_Click;
         // 
         // developerModeToolStripMenuItem
         // 
@@ -360,9 +368,9 @@ partial class MainForm
         labelDolphin.AutoSize = true;
         labelDolphin.Location = new Point(12, 381);
         labelDolphin.Name = "labelDolphin";
-        labelDolphin.Size = new Size(80, 15);
+        labelDolphin.Size = new Size(80, 45);
         labelDolphin.TabIndex = 15;
-        labelDolphin.Text = "Dolphin Label";
+        labelDolphin.Text = "Dolphin Label\r\nDolphin Label\r\nDolphin Label";
         // 
         // MainForm
         // 
@@ -428,4 +436,5 @@ partial class MainForm
     private ColumnHeader columnAuthor;
     private ColumnHeader columnCreatedDate;
     private ColumnHeader columnUpdatedDate;
+    private ToolStripMenuItem chooseDolphinUserFolderPathToolStripMenuItem;
 }

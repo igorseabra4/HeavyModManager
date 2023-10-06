@@ -110,10 +110,6 @@ public class Mod
     /// <param name="isEditing"></param>
     public void SaveModJson(bool isEditing)
     {
-        // Temporary
-        ArCodes = "";
-        GeckoCodes = "";
-
         var modPath = ModManager.GetModPath(ModId);
 
         if (!Directory.Exists(modPath))
@@ -142,7 +138,6 @@ public class Mod
         CopyDirectory(modFilesPath, modFilesPath);
 
         ApplyDolPatches();
-        ApplyGameIdOnBootBin();
         ApplyINIPatches();
     }
 
@@ -176,6 +171,10 @@ public class Mod
             {
                 var relativePath = Path.GetRelativePath(root, file);
                 var destinationFilePath = Path.Combine(ModManager.GameGameFilesPath, relativePath);
+                var destinationFolder = Path.GetDirectoryName(destinationFilePath);
+
+                if (!Directory.Exists(destinationFolder))
+                    Directory.CreateDirectory(destinationFolder);
 
                 if (TempMergeFiles.Contains(relativePath.ToLower()))
                 {
@@ -193,8 +192,6 @@ public class Mod
     {
         var dol = File.ReadAllBytes(ModManager.GameDolPath);
 
-        bool changed = ApplyGameIdOnDol(ref dol);
-
         if (!string.IsNullOrWhiteSpace(DOLPatches))
         {
             var patches = DOLPatches
@@ -210,79 +207,7 @@ public class Mod
                     if (p.Item1 + i < dol.Length)
                         dol[p.Item1 + i] = p.Item2[i];
 
-            changed = true;
-        }
-
-        if (changed)
             File.WriteAllBytes(ModManager.GameDolPath, dol);
-    }
-
-    private bool ApplyGameIdOnDol(ref byte[] dol)
-    {
-        if (!string.IsNullOrWhiteSpace(GameId))
-        {
-            switch (Game)
-            {
-                case Game.Scooby:
-                    WriteGameIdOnDol(ref dol, 0x1DC820);
-                    dol[0x1DC828] = (byte)GameId[4];
-                    dol[0x1DC829] = (byte)GameId[5];
-                    break;
-                case Game.BFBB:
-                    WriteGameIdOnDol(ref dol, 0x2635C0);
-                    dol[0x2635C5] = (byte)GameId[4];
-                    dol[0x2635C6] = (byte)GameId[5];
-                    break;
-                case Game.Movie:
-                    WriteGameIdOnDol(ref dol, 0x374CE8);
-                    WriteGameIdOnDol(ref dol, 0x3752BF);
-                    WriteGameIdOnDol(ref dol, 0x3752C4);
-                    WriteGameIdOnDol(ref dol, 0x3752C9);
-                    WriteGameIdOnDol(ref dol, 0x3752CE);
-                    dol[0x3752D3] = (byte)GameId[4];
-                    dol[0x3752D4] = (byte)GameId[5];
-                    WriteGameIdOnDol(ref dol, 0x3754F8);
-                    break;
-                case Game.Incredibles:
-                    WriteGameIdOnDol(ref dol, 0x2D5878);
-                    WriteGameIdOnDol(ref dol, 0x2DAFF8);
-                    break;
-                case Game.Underminer:
-                    WriteGameIdOnDol(ref dol, 0x2C8E19);
-                    WriteGameIdOnDol(ref dol, 0x2C8E1E);
-                    WriteGameIdOnDol(ref dol, 0x2C8E23);
-                    break;
-                default:
-                    throw new NotImplementedException("Cannot change game ID for this game yet.");
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    private void WriteGameIdOnDol(ref byte[] dol, int startOffset, int amount = 4)
-    {
-        for (int i = 0; i < amount; i++)
-            dol[startOffset + i] = (byte)GameId[i];
-    }
-
-    private void ApplyGameIdOnBootBin()
-    {
-        if (!string.IsNullOrWhiteSpace(GameId))
-        {
-            var bootBinPath = Path.Combine(ModManager.GameGameSysPath, "boot.bin");
-            var bootBin = File.ReadAllBytes(bootBinPath);
-
-            bootBin[0] = (byte)GameId[0];
-            bootBin[1] = (byte)GameId[1];
-            bootBin[2] = (byte)GameId[2];
-            bootBin[3] = (byte)GameId[3];
-            bootBin[4] = (byte)GameId[4];
-            bootBin[5] = (byte)GameId[5];
-
-            File.WriteAllBytes(bootBinPath, bootBin);
         }
     }
 
@@ -295,4 +220,8 @@ public class Mod
             ini.SaveTo(ModManager.GameGameINIPath);
         }
     }
+
+    public List<DolphinCode> GetArCodes() => DolphinGameSettings.FromContents(ArCodes, DolphinSettingsReaderMode.ActionReplay).ActionReplay;
+
+    public List<DolphinCode> GetGeckoCodes() => DolphinGameSettings.FromContents(GeckoCodes, DolphinSettingsReaderMode.Gecko).Gecko;
 }
