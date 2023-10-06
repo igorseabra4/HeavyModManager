@@ -449,9 +449,6 @@ public static class ModManager
             fs.CopyDirectory(GameBackupSysPath, GameGameSysPath);
         }
 
-        var ini = INIFile.FromPath(GameGameINIPath);
-        var hasIniPatches = false;
-
         var dol = File.ReadAllBytes(GameDolPath);
         var hasDolPatches = false;
 
@@ -469,9 +466,7 @@ public static class ModManager
 
                 mod.RemoveRemoveFiles();
                 mod.CopyFiles();
-
-                if (mod.ApplyIniPatches(ref ini))
-                    hasIniPatches = true;
+                mod.ApplyIniPatches();
 
                 if (mod.ApplyDolPatches(ref dol))
                     hasDolPatches = true;
@@ -489,22 +484,18 @@ public static class ModManager
                 }
             }
 
-        if (arCodes.Any() || geckoCodes.Any())
-        {
-            gameId ??= GetDefaultCodesGameId();
-            CreateCustomDolphinSettings(gameId, arCodes, geckoCodes);
-        }
+        if (gameId == null && (arCodes.Any() || geckoCodes.Any()))
+            gameId = GetDefaultCodesGameId();
 
         if (gameId != null)
         {
+            CreateCustomDolphinSettings(gameId, arCodes, geckoCodes);
+
             hasDolPatches = true;
 
             ApplyGameIdOnDol(gameId, ref dol);
             ApplyGameIdOnBootBin(gameId);
         }
-
-        if (hasIniPatches)
-            ini.SaveTo(GameGameINIPath);
 
         if (hasDolPatches)
             File.WriteAllBytes(GameDolPath, dol);

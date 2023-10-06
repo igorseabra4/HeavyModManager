@@ -181,14 +181,14 @@ public class Mod
         CopyDirectory(root);
     }
 
-    public bool ApplyIniPatches(ref INIFile ini)
+    public void ApplyIniPatches()
     {
         if (string.IsNullOrWhiteSpace(INIReplacements))
-            return false;
+            return;
 
+        var ini = INIFile.FromPath(ModManager.GameGameINIPath);
         ini.ReplaceWith(INIFile.FromContents(INIReplacements));
-
-        return true;
+        ini.SaveTo(ModManager.GameGameINIPath);
     }
 
     public bool ApplyDolPatches(ref byte[] dol)
