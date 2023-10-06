@@ -300,7 +300,10 @@ public partial class MainForm : Form
                 labelModInfo.Text += $"{mod.Description}\n\n";
 
             if (!string.IsNullOrEmpty(mod.GameId))
-                labelModInfo.Text += $"This mod uses a custom save file:\n{mod.GameId}\n\n";
+                labelModInfo.Text += $"Has a custom save file: {mod.GameId}\n";
+
+            if (!string.IsNullOrEmpty(mod.MergeFiles))
+                labelModInfo.Text += "Has HIP/HOP files for merging\n";
 
             if (!string.IsNullOrEmpty(mod.DOLPatches))
                 labelModInfo.Text += "Has DOL Patches\n";
@@ -310,6 +313,9 @@ public partial class MainForm : Form
 
             if (!string.IsNullOrEmpty(mod.GeckoCodes))
                 labelModInfo.Text += "Has Gecko Codes\n";
+
+            if (!labelModInfo.Text.EndsWith("\n\n"))
+                labelModInfo.Text += "\n";
 
             labelModInfo.Text += $"Mod ID:\n{mod.ModId}\n\n";
 
