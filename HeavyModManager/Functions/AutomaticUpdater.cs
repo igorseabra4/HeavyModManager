@@ -22,7 +22,7 @@ namespace HeavyModManager.Functions
                 var client = new HttpClient();
                 string updatedJson = await client.GetStringAsync(versionInfoURL);
                 var updatedVersion = JsonSerializer.Deserialize<ModManagerVersion>(updatedJson);
-                var oldVersion = new ModManagerVersion();
+                var oldVersion = ModManagerVersion.GetCurrent();
 
                 if (updatedVersion != null && oldVersion.Version != updatedVersion.Version)
                 {
