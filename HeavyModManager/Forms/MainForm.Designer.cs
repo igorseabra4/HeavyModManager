@@ -242,8 +242,9 @@ partial class MainForm
         // 
         // createModToolStripMenuItem
         // 
+        createModToolStripMenuItem.Enabled = false;
         createModToolStripMenuItem.Name = "createModToolStripMenuItem";
-        createModToolStripMenuItem.Size = new Size(176, 22);
+        createModToolStripMenuItem.Size = new Size(180, 22);
         createModToolStripMenuItem.Text = "&Create Mod...";
         createModToolStripMenuItem.Click += createModToolStripMenuItem_Click;
         // 
@@ -251,7 +252,7 @@ partial class MainForm
         // 
         editModToolStripMenuItem.Enabled = false;
         editModToolStripMenuItem.Name = "editModToolStripMenuItem";
-        editModToolStripMenuItem.Size = new Size(176, 22);
+        editModToolStripMenuItem.Size = new Size(180, 22);
         editModToolStripMenuItem.Text = "&Edit Mod...";
         editModToolStripMenuItem.Click += editModToolStripMenuItem_Click;
         // 
@@ -259,7 +260,7 @@ partial class MainForm
         // 
         openModFolderToolStripMenuItem.Enabled = false;
         openModFolderToolStripMenuItem.Name = "openModFolderToolStripMenuItem";
-        openModFolderToolStripMenuItem.Size = new Size(176, 22);
+        openModFolderToolStripMenuItem.Size = new Size(180, 22);
         openModFolderToolStripMenuItem.Text = "&Open Mod Folder...";
         openModFolderToolStripMenuItem.Click += openModFolderToolStripMenuItem_Click;
         // 
@@ -267,7 +268,7 @@ partial class MainForm
         // 
         zipModToolStripMenuItem.Enabled = false;
         zipModToolStripMenuItem.Name = "zipModToolStripMenuItem";
-        zipModToolStripMenuItem.Size = new Size(176, 22);
+        zipModToolStripMenuItem.Size = new Size(180, 22);
         zipModToolStripMenuItem.Text = "&Zip Mod...";
         zipModToolStripMenuItem.Click += zipModToolStripMenuItem_Click;
         // 
@@ -275,7 +276,7 @@ partial class MainForm
         // 
         deleteModToolStripMenuItem.Enabled = false;
         deleteModToolStripMenuItem.Name = "deleteModToolStripMenuItem";
-        deleteModToolStripMenuItem.Size = new Size(176, 22);
+        deleteModToolStripMenuItem.Size = new Size(180, 22);
         deleteModToolStripMenuItem.Text = "&Delete Mod...";
         deleteModToolStripMenuItem.Click += deleteModToolStripMenuItem_Click;
         // 
@@ -289,7 +290,7 @@ partial class MainForm
         // chooseDolphinPathToolStripMenuItem
         // 
         chooseDolphinPathToolStripMenuItem.Name = "chooseDolphinPathToolStripMenuItem";
-        chooseDolphinPathToolStripMenuItem.Size = new Size(231, 22);
+        chooseDolphinPathToolStripMenuItem.Size = new Size(257, 22);
         chooseDolphinPathToolStripMenuItem.Text = "&Choose Dolphin Path...";
         chooseDolphinPathToolStripMenuItem.Click += chooseDolphinPathToolStripMenuItem_Click;
         // 
@@ -303,33 +304,33 @@ partial class MainForm
         // developerModeToolStripMenuItem
         // 
         developerModeToolStripMenuItem.Name = "developerModeToolStripMenuItem";
-        developerModeToolStripMenuItem.Size = new Size(231, 22);
+        developerModeToolStripMenuItem.Size = new Size(257, 22);
         developerModeToolStripMenuItem.Text = "&Developer Mode";
         developerModeToolStripMenuItem.Click += developerModeToolStripMenuItem_Click;
         // 
         // checkForUpdatesOnStartupToolStripMenuItem
         // 
         checkForUpdatesOnStartupToolStripMenuItem.Name = "checkForUpdatesOnStartupToolStripMenuItem";
-        checkForUpdatesOnStartupToolStripMenuItem.Size = new Size(231, 22);
+        checkForUpdatesOnStartupToolStripMenuItem.Size = new Size(257, 22);
         checkForUpdatesOnStartupToolStripMenuItem.Text = "&Check For Updates on Startup";
         checkForUpdatesOnStartupToolStripMenuItem.Click += checkForUpdatesOnStartupToolStripMenuItem_Click;
         // 
         // toolStripSeparator2
         // 
         toolStripSeparator2.Name = "toolStripSeparator2";
-        toolStripSeparator2.Size = new Size(228, 6);
+        toolStripSeparator2.Size = new Size(254, 6);
         // 
         // aboutToolStripMenuItem
         // 
         aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-        aboutToolStripMenuItem.Size = new Size(231, 22);
+        aboutToolStripMenuItem.Size = new Size(257, 22);
         aboutToolStripMenuItem.Text = "&About...";
         aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
         // 
         // changeIconToolStripMenuItem
         // 
         changeIconToolStripMenuItem.Name = "changeIconToolStripMenuItem";
-        changeIconToolStripMenuItem.Size = new Size(231, 22);
+        changeIconToolStripMenuItem.Size = new Size(257, 22);
         changeIconToolStripMenuItem.Text = "Change Icon";
         changeIconToolStripMenuItem.Click += changeIconToolStripMenuItem_Click;
         // 

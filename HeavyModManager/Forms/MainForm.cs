@@ -112,6 +112,7 @@ public partial class MainForm : Form
 
         PopulateModList();
 
+        createModToolStripMenuItem.Enabled = true;
         groupBoxMods.Enabled = comboBoxGame.SelectedIndex != -1;
         buttonApplyMods.Enabled = CanApplyMods;
         buttonRunGame.Enabled = CanRunGame;
