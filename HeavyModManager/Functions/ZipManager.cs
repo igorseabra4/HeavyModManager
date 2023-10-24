@@ -42,6 +42,12 @@ public static class ZipManager
 
         foreach (var entry in zip.Entries)
         {
+            // If the entry is a directory, FullName ends with '/'
+            // Can skip directories since they are created below
+            // - Pepperpot
+            if (entry.FullName.EndsWith('/'))
+                continue;
+
             var destinationPath = Path.Combine(modPath, entry.FullName);
 
             var destFolder = Path.GetDirectoryName(destinationPath);
