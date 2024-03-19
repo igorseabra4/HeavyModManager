@@ -1,11 +1,16 @@
 ﻿using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Functions;
+using System.Resources;
 
 namespace HeavyModManager.Forms;
 
 public partial class CreateMod : Form
 {
+
+    private ResourceManager ResourceManager = new ResourceManager("HeavyModManager.Forms.CreateMod",
+        typeof(Program).Assembly);
+    
     public CreateMod()
     {
         isEditing = false;
@@ -74,8 +79,8 @@ public partial class CreateMod : Form
             dateTimePickerUpdatedAt.Value = DateTime.Now;
         }
 
-        Text = "Edit Mod";
-        buttonCreateMod.Text = "Save";
+        Text = ResourceManager.GetString("editMod");
+        buttonCreateMod.Text = ResourceManager.GetString("save");
     }
 
     private void buttonCancel_Click(object sender, EventArgs e)
@@ -148,7 +153,9 @@ public partial class CreateMod : Form
             var existingModPath = ModManager.GetModPath(textBoxModId.Text);
             if (Directory.Exists(existingModPath))
             {
-                MessageBox.Show("Unable to create mod: a mod with the same ID already exists.");
+                MessageBox.Show(ResourceManager.GetString("modIdAlreadyExists"),
+                    ResourceManager.GetString("unableToCreateMod"), 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -187,7 +194,7 @@ public partial class CreateMod : Form
 
     private void SetDefaultGameID(Game game)
     {
-        labelDefaultGameId.Text = $"Default game ID: {ModManager.GameToGameID(game)}";
+        labelDefaultGameId.Text = $"{ResourceManager.GetString("labelDefaultGameId.Text")} {ModManager.GameToGameID(game)}";
     }
 
     private Color defaultBackgroundColor;
@@ -221,38 +228,33 @@ public partial class CreateMod : Form
 
     private void buttonModIdInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip(
-            "The Mod ID is generated automatically from the game name, author and mod name.\n" +
-            "Feel free to enter your own custom ID for the mod, but make sure that it's unique!\n" +
-            "No other mod, by any other author or for any other game, should have the same ID as yours.\n" +
-            "The Mod ID cannot be changed after the mod is created.");
+        ShowToolTip(ResourceManager.GetString("modIdInfo"));
     }
 
     private void buttonGameIdInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip(
-            "Enter a custom game ID for the mod.\n" +
-            "Save files are created using this game ID, enabling your mod to have a unique save file.\n" +
-            "Make sure no other GameCube or Wii game has the same ID.\n" +
-            "I recommend keeping the first four characters the same and changing only the last two.\n" +
-            "Must be 6 characters long. Leave blank for default.\n\n" +
-            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer");
+
+        // todo: show compatible games (Scooby, BFBB, Movie, Incredibles, Underminer)
+        ShowToolTip(ResourceManager.GetString("gameIdInfo"));
     }
 
     private void buttonMergeHipsInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip(
-            "Enter your mod's HIP and HOP files which should be merged into the running\n" +
-            "copy of the game instead of replacing the original ones, one per line.\n" +
-            "Assets from the mod will be imported into the destination archive, replacing any\n" +
-            "assets with the same asset ID if they exist, and assets of certain types will\n" +
-            "be merged into one (namely: Collision Table, Jaw Data Table, Level of Detail Table,\n" +
-            "Pipe Info Table, Shadow Table and Sound Info).\n\n" +
-            "Example:\n\n" +
-            "boot.HIP\n" +
-            "hb\\hb01.HOP\n" +
-            "mn\\mn04.HIP\n\n" +
-            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
+        // todo: show compatible games (Scooby, BFBB, Movie, Incredibles, Underminer, RatProto)
+        ShowToolTip(ResourceManager.GetString("mergeHipsInfo"));
+        
+        //ShowToolTip(
+        //    "Enter your mod's HIP and HOP files which should be merged into the running\n" +
+        //    "copy of the game instead of replacing the original ones, one per line.\n" +
+        //    "Assets from the mod will be imported into the destination archive, replacing any\n" +
+        //    "assets with the same asset ID if they exist, and assets of certain types will\n" +
+        //    "be merged into one (namely: Collision Table, Jaw Data Table, Level of Detail Table,\n" +
+        //    "Pipe Info Table, Shadow Table and Sound Info).\n\n" +
+        //    "Example:\n\n" +
+        //    "boot.HIP\n" +
+        //    "hb\\hb01.HOP\n" +
+        //    "mn\\mn04.HIP\n\n" +
+        //    "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
     }
 
     private void buttonRemoveFilesInfo_Click(object sender, EventArgs e)

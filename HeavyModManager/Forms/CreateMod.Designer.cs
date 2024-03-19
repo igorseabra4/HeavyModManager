@@ -120,8 +120,8 @@ partial class CreateMod
         // 
         // tabPageModData
         // 
-        resources.ApplyResources(tabPageModData, "tabPageModData");
         tabPageModData.Controls.Add(flowLayoutPanelPage1);
+        resources.ApplyResources(tabPageModData, "tabPageModData");
         tabPageModData.Name = "tabPageModData";
         tabPageModData.UseVisualStyleBackColor = true;
         // 
@@ -140,8 +140,8 @@ partial class CreateMod
         // 
         // groupBoxGame
         // 
-        resources.ApplyResources(groupBoxGame, "groupBoxGame");
         groupBoxGame.Controls.Add(comboBoxGame);
+        resources.ApplyResources(groupBoxGame, "groupBoxGame");
         groupBoxGame.Name = "groupBoxGame";
         groupBoxGame.TabStop = false;
         // 
@@ -154,8 +154,8 @@ partial class CreateMod
         // 
         // groupBoxModName
         // 
-        resources.ApplyResources(groupBoxModName, "groupBoxModName");
         groupBoxModName.Controls.Add(textBoxModName);
+        resources.ApplyResources(groupBoxModName, "groupBoxModName");
         groupBoxModName.Name = "groupBoxModName";
         groupBoxModName.TabStop = false;
         // 
@@ -167,8 +167,8 @@ partial class CreateMod
         // 
         // groupBoxAuthor
         // 
-        resources.ApplyResources(groupBoxAuthor, "groupBoxAuthor");
         groupBoxAuthor.Controls.Add(textBoxAuthor);
+        resources.ApplyResources(groupBoxAuthor, "groupBoxAuthor");
         groupBoxAuthor.Name = "groupBoxAuthor";
         groupBoxAuthor.TabStop = false;
         // 
@@ -180,8 +180,8 @@ partial class CreateMod
         // 
         // groupBoxDescription
         // 
-        resources.ApplyResources(groupBoxDescription, "groupBoxDescription");
         groupBoxDescription.Controls.Add(richTextBoxDescription);
+        resources.ApplyResources(groupBoxDescription, "groupBoxDescription");
         groupBoxDescription.Name = "groupBoxDescription";
         groupBoxDescription.TabStop = false;
         // 
@@ -192,8 +192,8 @@ partial class CreateMod
         // 
         // groupBoxCreatedAt
         // 
-        resources.ApplyResources(groupBoxCreatedAt, "groupBoxCreatedAt");
         groupBoxCreatedAt.Controls.Add(dateTimePickerCreatedAt);
+        resources.ApplyResources(groupBoxCreatedAt, "groupBoxCreatedAt");
         groupBoxCreatedAt.Name = "groupBoxCreatedAt";
         groupBoxCreatedAt.TabStop = false;
         // 
@@ -204,8 +204,8 @@ partial class CreateMod
         // 
         // groupBoxUpdatedAt
         // 
-        resources.ApplyResources(groupBoxUpdatedAt, "groupBoxUpdatedAt");
         groupBoxUpdatedAt.Controls.Add(dateTimePickerUpdatedAt);
+        resources.ApplyResources(groupBoxUpdatedAt, "groupBoxUpdatedAt");
         groupBoxUpdatedAt.Name = "groupBoxUpdatedAt";
         groupBoxUpdatedAt.TabStop = false;
         // 
@@ -216,9 +216,9 @@ partial class CreateMod
         // 
         // groupBoxModId
         // 
-        resources.ApplyResources(groupBoxModId, "groupBoxModId");
         groupBoxModId.Controls.Add(buttonModIdInfo);
         groupBoxModId.Controls.Add(textBoxModId);
+        resources.ApplyResources(groupBoxModId, "groupBoxModId");
         groupBoxModId.Name = "groupBoxModId";
         groupBoxModId.TabStop = false;
         // 
@@ -237,8 +237,8 @@ partial class CreateMod
         // 
         // tabPageSettings
         // 
-        resources.ApplyResources(tabPageSettings, "tabPageSettings");
         tabPageSettings.Controls.Add(flowLayoutPanelPage2);
+        resources.ApplyResources(tabPageSettings, "tabPageSettings");
         tabPageSettings.Name = "tabPageSettings";
         tabPageSettings.UseVisualStyleBackColor = true;
         // 
@@ -257,10 +257,10 @@ partial class CreateMod
         // 
         // groupBoxGameId
         // 
-        resources.ApplyResources(groupBoxGameId, "groupBoxGameId");
         groupBoxGameId.Controls.Add(buttonGameIdInfo);
         groupBoxGameId.Controls.Add(labelDefaultGameId);
         groupBoxGameId.Controls.Add(textBoxGameId);
+        resources.ApplyResources(groupBoxGameId, "groupBoxGameId");
         groupBoxGameId.Name = "groupBoxGameId";
         groupBoxGameId.TabStop = false;
         // 
@@ -284,10 +284,10 @@ partial class CreateMod
         // 
         // groupBoxIniValues
         // 
-        resources.ApplyResources(groupBoxIniValues, "groupBoxIniValues");
         groupBoxIniValues.Controls.Add(buttonIniImport);
         groupBoxIniValues.Controls.Add(buttonIniValuesInfo);
         groupBoxIniValues.Controls.Add(richTextBoxINIValues);
+        resources.ApplyResources(groupBoxIniValues, "groupBoxIniValues");
         groupBoxIniValues.Name = "groupBoxIniValues";
         groupBoxIniValues.TabStop = false;
         // 
@@ -313,9 +313,9 @@ partial class CreateMod
         // 
         // groupBoxMergeHips
         // 
-        resources.ApplyResources(groupBoxMergeHips, "groupBoxMergeHips");
         groupBoxMergeHips.Controls.Add(buttonMergeHipsInfo);
         groupBoxMergeHips.Controls.Add(richTextBoxMergeHips);
+        resources.ApplyResources(groupBoxMergeHips, "groupBoxMergeHips");
         groupBoxMergeHips.Name = "groupBoxMergeHips";
         groupBoxMergeHips.TabStop = false;
         // 
@@ -333,9 +333,9 @@ partial class CreateMod
         // 
         // groupBoxRemoveFiles
         // 
-        resources.ApplyResources(groupBoxRemoveFiles, "groupBoxRemoveFiles");
         groupBoxRemoveFiles.Controls.Add(buttonRemoveFilesInfo);
         groupBoxRemoveFiles.Controls.Add(richTextBoxRemoveFiles);
+        resources.ApplyResources(groupBoxRemoveFiles, "groupBoxRemoveFiles");
         groupBoxRemoveFiles.Name = "groupBoxRemoveFiles";
         groupBoxRemoveFiles.TabStop = false;
         // 
@@ -353,9 +353,9 @@ partial class CreateMod
         // 
         // groupBoxDolPatches
         // 
-        resources.ApplyResources(groupBoxDolPatches, "groupBoxDolPatches");
         groupBoxDolPatches.Controls.Add(buttonDolPatchesInfo);
         groupBoxDolPatches.Controls.Add(richTextBoxDolPatches);
+        resources.ApplyResources(groupBoxDolPatches, "groupBoxDolPatches");
         groupBoxDolPatches.Name = "groupBoxDolPatches";
         groupBoxDolPatches.TabStop = false;
         // 
@@ -374,9 +374,9 @@ partial class CreateMod
         // 
         // groupBoxArCodes
         // 
-        resources.ApplyResources(groupBoxArCodes, "groupBoxArCodes");
         groupBoxArCodes.Controls.Add(buttonArCodesInfo);
         groupBoxArCodes.Controls.Add(richTextBoxArCodes);
+        resources.ApplyResources(groupBoxArCodes, "groupBoxArCodes");
         groupBoxArCodes.Name = "groupBoxArCodes";
         groupBoxArCodes.TabStop = false;
         // 
@@ -395,9 +395,9 @@ partial class CreateMod
         // 
         // groupBoxGeckoCodes
         // 
-        resources.ApplyResources(groupBoxGeckoCodes, "groupBoxGeckoCodes");
         groupBoxGeckoCodes.Controls.Add(buttonGeckoCodesInfo);
         groupBoxGeckoCodes.Controls.Add(richTextBoxGeckoCodes);
+        resources.ApplyResources(groupBoxGeckoCodes, "groupBoxGeckoCodes");
         groupBoxGeckoCodes.Name = "groupBoxGeckoCodes";
         groupBoxGeckoCodes.TabStop = false;
         // 
@@ -442,7 +442,6 @@ partial class CreateMod
         groupBoxGameId.ResumeLayout(false);
         groupBoxGameId.PerformLayout();
         groupBoxIniValues.ResumeLayout(false);
-        groupBoxIniValues.PerformLayout();
         groupBoxMergeHips.ResumeLayout(false);
         groupBoxRemoveFiles.ResumeLayout(false);
         groupBoxDolPatches.ResumeLayout(false);
