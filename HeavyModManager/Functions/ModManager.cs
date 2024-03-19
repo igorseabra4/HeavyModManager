@@ -1,9 +1,11 @@
 ﻿using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Forms.Other;
+using HeavyModManager.Properties;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text.Json;
+using System.Resources;
 
 namespace HeavyModManager.Functions;
 
@@ -47,21 +49,26 @@ public static class ModManager
     /// <exception cref="ArgumentException">If the game specified is not a valid Heavy Iron game</exception>
     public static string GameToStringFull(Game game)
     {
+
+        // Use localised strings
+        var resourceManager = new ResourceManager("HeavyModManager.Forms.GlobalResources",
+            typeof(Program).Assembly);
+        
         return game switch
         {
-            Game.Scooby => "Scooby-Doo! Night of 100 Frights",
-            Game.BFBB => "SpongeBob SquarePants: Battle for Bikini Bottom",
-            Game.Movie => "The SpongeBob SquarePants Movie",
-            Game.Incredibles => "The Incredibles",
-            Game.Underminer => "The Incredibles: Rise of the Underminer",
-            Game.RatProto => "Ratatouille (January 18th, 2006 Prototype)",
-            Game.Ratatouille => "Ratatouille",
-            Game.WallE => "WALL-E",
-            Game.Up => "Up",
-            Game.TruthOrSquare => "SpongeBob's Truth or Square",
-            Game.UFC => "UFC Personal Trainer",
-            Game.FamilyGuy => "Family Guy: Back to the Multiverse",
-            Game.HollywoodWorkout => "Harley Pasternak's Hollywood Workout",
+            Game.Scooby => resourceManager.GetString("scoobyName") ?? "Scooby-Doo! Night of 100 Frights",
+            Game.BFBB => resourceManager.GetString("bfbbName") ?? "SpongeBob SquarePants: Battle for Bikini Bottom",
+            Game.Movie => resourceManager.GetString("tssmName") ?? "The SpongeBob SquarePants Movie",
+            Game.Incredibles => resourceManager.GetString("incrediblesName") ?? "The Incredibles",
+            Game.Underminer => resourceManager.GetString("rotuName") ?? "The Incredibles: Rise of the Underminer",
+            Game.RatProto => resourceManager.GetString("ratProtoName") ?? "Ratatouille (January 18th, 2006 Prototype)",
+            Game.Ratatouille => resourceManager.GetString("ratName") ?? "Ratatouille",
+            Game.WallE => resourceManager.GetString("wallEName") ?? "WALL-E",
+            Game.Up => resourceManager.GetString("upName") ?? "Up",
+            Game.TruthOrSquare => resourceManager.GetString("tosName") ?? "SpongeBob's Truth or Square",
+            Game.UFC => resourceManager.GetString("ufcName") ?? "UFC Personal Trainer",
+            Game.FamilyGuy => resourceManager.GetString("bttmName") ?? "Family Guy: Back to the Multiverse",
+            Game.HollywoodWorkout => resourceManager.GetString("hollywoodWorkoutName") ?? "Harley Pasternak's Hollywood Workout",
             _ => throw new ArgumentException("Invalid game.", nameof(game)),
         };
     }
@@ -70,6 +77,8 @@ public static class ModManager
     {
         return game switch
         {
+            // Note: Only the NTSC-U IDs are returned here
+            // TODO: Add PAL IDs, 2-in-1 IDs etc
             Game.Scooby => "GIHE78",
             Game.BFBB => "GQPE78",
             Game.Movie => "GGVE78",
