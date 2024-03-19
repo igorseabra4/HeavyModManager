@@ -5,11 +5,16 @@ using HeavyModManager.Forms.Other;
 using HeavyModManager.Functions;
 using System.Globalization;
 using System.Text.Json;
+using System.Resources;
 
 namespace HeavyModManager;
 
 public partial class MainForm : Form
 {
+    private ResourceManager ResourceManager = new ResourceManager("HeavyModManager.MainForm", 
+        typeof(Program).Assembly);
+
+
     public MainForm()
     {
         var settings = LoadSettings();
@@ -158,31 +163,30 @@ public partial class MainForm : Form
     private void ShowToolTip()
     {
         toolTip.Hide(comboBoxGame);
+        
+        int tooltipX = 0;
+        int tooltipY = 24;
+        int tooltipDurationMs = 12 * 1000;
 
-        // From MainForm, get the localised string from the Resources file Mainform.resx
-        string dolphinPathNotSetText = Properties.Resources.ResourceManager.GetString("dolphinPathNotSet");
-
-
-        //string dolphinUserFolderPathNotSetText = Properties.Resources.dolphinUserFolderPathNotSet;
-        //string noBackupText = Properties.Resources.noBackup;
-        //string noModsText = Properties.Resources.noMods;
-
+        // Display localised strings (from MainForm.resx) in tooltips instead of hard-coded string.
         if (string.IsNullOrEmpty(ModManager.DolphinPath))
         {
-            toolTip.Show(dolphinPathNotSetText, comboBoxGame, 0, 24, 12 * 1000);
+            toolTip.Show(ResourceManager.GetString("dolphinPathNotSetTooltip"),
+                comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
         }
         else if (string.IsNullOrEmpty(ModManager.DolphinFolderPath))
         {
-            toolTip.Show("Dolphin user folder path not set.\n" +
-                "Please click on Settings -> Choose Dolphin User Folder Path and select the Dolphin user folder\n" +
-                "It is usually located under \"Documents\\Dolphin Emulator\".", comboBoxGame, 0, 24, 12 * 1000);
+            toolTip.Show(ResourceManager.GetString("dolphinUserFolderPathNotSetTooltip"), 
+                comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
         }
         else if (comboBoxGame.SelectedIndex != -1)
         {
             if (!ModManager.GameBackupExists)
-                toolTip.Show("You do not have a backup for this game.\nPlease click on \"Create Backup\" and select the game's ISO file.", comboBoxGame, 0, 24, 8 * 1000);
+                toolTip.Show(ResourceManager.GetString("noBackupTooltip"), comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
+                //toolTip.Show("You do not have a backup for this game.\nPlease click on \"Create Backup\" and select the game's ISO file.", comboBoxGame, 0, 24, 8 * 1000);
             else if (listViewMods.Items.Count == 0)
-                toolTip.Show("You do not have mods for this game.\nPlease click on \"Add Mods\" and select a mod ZIP file.", comboBoxGame, 0, 24, 8 * 1000);
+                toolTip.Show(ResourceManager.GetString("noModsTooltip"), comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
+            //toolTip.Show("You do not have mods for this game.\nPlease click on \"Add Mods\" and select a mod ZIP file.", comboBoxGame, 0, 24, 8 * 1000);
         }
     }
 
@@ -490,32 +494,32 @@ public partial class MainForm : Form
     {
         if (string.IsNullOrEmpty(ModManager.DolphinPath))
         {
-            labelDolphin.Text = "Dolphin executable path not set.";
+            labelDolphin.Text = ResourceManager.GetString("dolphinPathNotSetLabel");
             return;
         }
 
         if (!File.Exists(ModManager.DolphinPath))
         {
-            labelDolphin.Text = "Dolphin executable not found on set path.";
+            labelDolphin.Text = ResourceManager.GetString("dolphinNotFoundLabel");
             return;
         }
 
         if (string.IsNullOrEmpty(ModManager.DolphinFolderPath))
         {
-            labelDolphin.Text = "Dolphin user folder path not set.";
+            labelDolphin.Text = ResourceManager.GetString("dolphinPathNotSetLabel");
             return;
         }
 
         if (!Directory.Exists(ModManager.DolphinFolderPath))
         {
-            labelDolphin.Text = "Dolphin user folder not found on set path.";
+            labelDolphin.Text = ResourceManager.GetString("dolphinUserFolderNotFoundLabel");
             return;
         }
 
-        labelDolphin.Text = $"Dolphin: {ModManager.DolphinPath}\nDolphin user folder: {ModManager.DolphinFolderPath}";
+        labelDolphin.Text = $"{ResourceManager.GetString("dolphin")} {ModManager.DolphinPath}\n{ResourceManager.GetString("dolphinUserFolder")} {ModManager.DolphinFolderPath}";
 
         if (ModManager.DeveloperMode)
-            labelDolphin.Text += "\nDeveloper Mode";
+            labelDolphin.Text += "\n" + ResourceManager.GetString("developerMode");
     }
 
     private void changeIconToolStripMenuItem_Click(object sender, EventArgs e)

@@ -863,4 +863,47 @@ Dolphin Label</value>
   <data name="sock" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sock.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="developerMode" xml:space="preserve">
+    <value>Developer Mode</value>
+  </data>
+  <data name="dolphin" xml:space="preserve">
+    <value>Dolphin:</value>
+  </data>
+  <data name="dolphinNotFoundLabel" xml:space="preserve">
+    <value>Dolphin executable not found on set path.</value>
+  </data>
+  <data name="dolphinPathNotSetLabel" xml:space="preserve">
+    <value>Dolphin executable path not set.</value>
+  </data>
+  <data name="dolphinPathNotSetTooltip" xml:space="preserve">
+    <value>Dolphin executable path not set.
+
+Please click on Settings -&gt; Choose Dolphin Path... and select the Dolphin executable.
+It is usually located under {filepath}. Selecting a shortcut is also possible.</value>
+  </data>
+  <data name="dolphinUserFolder" xml:space="preserve">
+    <value>Dolphin user folder:</value>
+  </data>
+  <data name="dolphinUserFolderPathNotSetLabel" xml:space="preserve">
+    <value>Dolphin user folder path not set.</value>
+  </data>
+  <data name="dolphinUserFolderPathNotSetTooltip" xml:space="preserve">
+    <value>Dolphin user folder path not set.
+
+Please click on Settings -&gt; Choose Dolphin User Folder Path... and select the Dolphin user folder.
+It is usually located in "AppData" (for newer installs), or "Documents\Dolphin Emulator". To find it, you can open Dolphin and select File -&gt; Open User Folder.</value>
+  </data>
+  <data name="dolphinUserPathNotFoundLabel" xml:space="preserve">
+    <value>Dolphin user folder not found on set path.</value>
+  </data>
+  <data name="noBackupTooltip" xml:space="preserve">
+    <value>You do not have a backup for this game.
+
+Please click on "Create Backup" and select the game's ISO file.</value>
+  </data>
+  <data name="noModsTooltip" xml:space="preserve">
+    <value>You do not have mods for this game.
+
+Please click on "Add Mods" and select a mod ZIP file.</value>
+  </data>
 </root>
