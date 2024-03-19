@@ -127,7 +127,7 @@
     <value>Autor</value>
   </data>
   <data name="columnCreatedDate.Text" xml:space="preserve">
-    <value>Hergestellt in</value>
+    <value>Erstellt am</value>
   </data>
   <data name="columnUpdatedDate.Text" xml:space="preserve">
     <value>Aktualisiert am</value>
@@ -222,13 +222,13 @@
     <value>322, 22</value>
   </data>
   <data name="chooseDolphinPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Wählen Sie den &amp;Dolphin Pfad…</value>
+    <value>Ausführbare Dolphin Datei auswählen...</value>
   </data>
   <data name="chooseDolphinUserFolderPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>322, 22</value>
   </data>
   <data name="chooseDolphinUserFolderPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Wählen Sie den Dolphin &amp;Benutzer Ordnerpfad…</value>
+    <value>Dolphin Benutzerordner auswählen...</value>
   </data>
   <data name="developerModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>322, 22</value>
@@ -240,7 +240,7 @@
     <value>322, 22</value>
   </data>
   <data name="checkForUpdatesOnStartupToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Suchen Sie beim Start nach Updates</value>
+    <value>&amp;Automatisch nach Updates suchen</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 6</value>
@@ -285,13 +285,13 @@
     <value>Die ausführbare Dolphin Datei wurde im festgelegten Pfad nicht gefunden.</value>
   </data>
   <data name="dolphinPathNotSetLabel" xml:space="preserve">
-    <value>Der ausführbare Pfad für Dolphin ist nicht festgelegt.</value>
+    <value>Der Pfad für die ausführbare Dolphin Datei ist nicht festgelegt.</value>
   </data>
   <data name="dolphinPathNotSetTooltip" xml:space="preserve">
-    <value>Der ausführbare Pfad für Dolphin ist nicht festgelegt.
+    <value>Der Pfad für die ausführbare Dolphin Datei ist nicht festgelegt.
 
-Klicken Sie bitte auf Einstellungen -&gt; Wählen Sie den Dolphin Pfad… und wählen Sie die ausführbare Dolphin Datei aus.
-Es befindet sich normalerweise unter {filepath}. Auch die Auswahl einer Verknüpfung ist möglich.</value>
+Klicke auf Einstellungen -&gt; Ausführbare Dolphin Datei auswählen...  und wähle die Dolphin.exe aus.
+Auch die Auswahl einer Verknüpfung ist möglich.</value>
   </data>
   <data name="dolphinUserFolder" xml:space="preserve">
     <value>Dolphin Benutzerordner:</value>
@@ -300,9 +300,9 @@ Es befindet sich normalerweise unter {filepath}. Auch die Auswahl einer Verknüp
     <value>Der Pfad zum Dolphin Benutzerordner ist nicht festgelegt.</value>
   </data>
   <data name="dolphinUserFolderPathNotSetTooltip" xml:space="preserve">
-    <value>Wählen Sie den Dolphin Benutzer Ordnerpfad…
+    <value>Wählen Sie den Dolphin Benutzerordner Pfad…
 
-Klicken Sie bitte auf Einstellungen -&gt; Wählen Sie den Dolphin Benutzer Ordnerpfad… und wählen Sie der Dolphin Benutzerordner.
+Klicke auf Einstellungen -&gt; Dolphin Benutzerorder auswählen...
 Es befindet sich normalerweise unter "AppData" oder "Documents\Dolphin Emulator".</value>
   </data>
   <data name="dolphinUserPathNotFoundLabel" xml:space="preserve">
@@ -315,14 +315,14 @@ Es befindet sich normalerweise unter "AppData" oder "Documents\Dolphin Emulator"
     <value>ISO oder main.dol</value>
   </data>
   <data name="noBackupTooltip" xml:space="preserve">
-    <value>Sie haben kein Backup für dieses Spiel.
+    <value>Es existiert kein Backup für dieses Spiel.
 
-Klicken Sie bitte auf "Backup erstellen" und wählen Sie die ISO des Spiels.</value>
+Klicke auf "Backup erstellen" und wähle die ISO des Spiels.</value>
   </data>
   <data name="noModsTooltip" xml:space="preserve">
-    <value>Sie haben keine Mods für das Spiel.
+    <value>Es existieren keine Mods für dieses Spiel.
 
-Klicken Sie bitte auf "Mods hinzufügen" und wählen Sie eine Mod-Zip-Datei aus.</value>
+Klicke auf "Mods hinzufügen" und wähle eine Mod-Zip-Datei aus.</value>
   </data>
   <data name="selectGameTitle" xml:space="preserve">
     <value>Bitte wählen Sie die ISO Ihres Spiels oder main.dol aus einem unveränderten Dolphin-Dump aus.</value>

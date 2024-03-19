@@ -1546,4 +1546,68 @@ Feel free to enter your own custom ID for the mod, but make sure that it's uniqu
 No other mod, by any other author or for any other game, should have the same ID as yours.
 The Mod ID cannot be changed after the mod is created.</value>
   </data>
+  <data name="DolPatchesInfo" xml:space="preserve">
+    <value>Enter patches to be applied to the game's DOL file, in the form of
+&lt;offset&gt; &lt;value&gt;, both 4-byte hexadecimal numbers, one per line.
+You can add comments after #s.
+
+Example:
+00287D10 53494D50
+00287DB0 54455854 # This is a comment
+#another comment
+
+Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
+  </data>
+  <data name="IniValuesInfo" xml:space="preserve">
+    <value>Enter the game's configuration INI key-value pairs for this mod, in the form of
+&lt;key&gt;=&lt;value&gt;, one per line. You can add comments after #s. You only need to
+enter the lines needed by your mod.
+Example:
+
+BOOT=HB00
+ShowMenuOnBoot=0 # This is a comment
+G.BubbleBowl=1
+#another comment
+
+On an already existing mod, click on 'Import' to import the mod's
+INI into here. Only modified values will be imported and the file
+itself will be deleted.
+
+A few types of key are special because they can appear multiple times in the INI:
+- ScenePlayerMapping, ThresholdPointsRange and AlternateCostumeMapping:
+will replace values based on the stage ID name (first 4 characters of the value)
+- TaskStatus and Extra: if present, will replace ALL entries, so if you're
+replacing those, you must enter all of them.
+If you're still unsure how to use these keys, create your INI file
+manually, then use Import. The tool will import the values exactly
+as they are needed.
+
+Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
+  </data>
+  <data name="removeFilesInfo" xml:space="preserve">
+    <value>Enter the folders or files present in the original game
+which should be deleted from the mod, one per line.
+
+Example:
+boot.HIP
+hb\\hb01.HOP
+mn\\mn04.HIP
+
+Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
+  </data>
+  <data name="showCodesInfo" xml:space="preserve">
+    <value>codes to be applied by Dolphin. Format should be similar to
+Dolphin Settings: Each code starts with $&lt;code name&gt;, then each line follows
+the format &lt;offset&gt; &lt;value&gt;, both 4-byte hexadecimal numbers.
+You can add comments after *s.
+Example:
+
+$Blue Box Fix\n043CD04C 00000000
+*This is a comment
+
+$Warp Anywhere\n040BC1C8 38000001\n040BC258 38000001\n040BC300 38000001
+*another comment
+
+Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
+  </data>
 </root>

@@ -133,16 +133,16 @@
     <value>Mod Beschreibung</value>
   </data>
   <data name="groupBoxCreatedAt.Text" xml:space="preserve">
-    <value>Hergestellt in</value>
+    <value>Erstellt am</value>
   </data>
   <data name="groupBoxUpdatedAt.Text" xml:space="preserve">
     <value>Aktualisiert am</value>
   </data>
   <data name="tabPageSettings.Text" xml:space="preserve">
-    <value>Patches und Ersätze</value>
+    <value>Patches und Überschreibungen</value>
   </data>
   <data name="groupBoxGameId.Text" xml:space="preserve">
-    <value>Spiel ID (Speicherdatei)</value>
+    <value>Spiel ID (Spielstand Datei)</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="labelDefaultGameId.Size" type="System.Drawing.Size, System.Drawing">
@@ -174,10 +174,10 @@
     <value>Dateien entfernen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Erstelle einen neuen Mod</value>
+    <value>Erstelle eine neue Mod</value>
   </data>
   <data name="modIdAlreadyExists" xml:space="preserve">
-    <value>Mod kann nicht erstellt werden: Es existiert bereits ein Mod mit derselben ID.</value>
+    <value>Mod kann nicht erstellt werden: Es existiert bereits eine Mod mit derselben ID.</value>
   </data>
   <data name="unableToCreateMod" xml:space="preserve">
     <value>Mod kann nicht erstellt werden</value>
@@ -196,9 +196,92 @@ Es wird empfohlen, die ersten vier Zeichen beizubehalten und nur die letzten bei
 Muss 6 Zeichen lang sein. Für die Standardeinstellung leer lassen.</value>
   </data>
   <data name="modIdInfo" xml:space="preserve">
-    <value>Die Mod-ID wird automatisch aus dem  Spielnamen, Autor und Mod-Name generiert.
-Fühlen Sie sich frei, Ihre eigene benutzerdefinierte ID für den Mod einzugeben, aber stellen Sie sicher, dass diese einmalig ist!
-Kein anderer Mod, von einem anderen Autor oder für ein anderes Spiel, sollte dieselbe ID wie Ihre haben.
-Die Mod-ID kann nach der Erstellung des Mods nicht mehr geändert werden.</value>
+    <value>Die Mod-ID wird automatisch aus dem Spielnamen, Autor und Mod-Name generiert. 
+Es ist auch möglich eine eigene benutzerdefinierte ID einzugeben, solange diese 
+nicht in Konflikt mit bereits existierenden Mods steht. Stelle also sicher, dass die Mod-ID einzigartig ist.
+Die Mod-ID kann nach der Erstellung der Mod nicht mehr geändert werden.</value>
+  </data>
+  <data name="DolPatchesInfo" xml:space="preserve">
+    <value>Patches die auf die ausführbare DOL-Datei angewendet werden sollen.
+Diese ersetzen eine vierstellige Byte Zahl unter dem
+angegebenen Offset.
+Format: &lt;offset&gt; &lt;value&gt;, jeweils eine pro Zeile.
+Kommentare können mit einem # hinzugefügt werden.
+
+Beispiel:
+00287D10 53494D50
+00287DB0 54455854 # Dies ist ein Kommentar
+# Weiterer Kommentar
+
+Unterstützte Spiele: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
+  </data>
+  <data name="IniValuesInfo" xml:space="preserve">
+    <value>INI Einstellungen für diese Mod, im Format &lt;key&gt;=&lt;wert&gt;, jeweils eine pro Zeile.
+Kommentare können nach ein # hinzugefügt werden.
+Es müssen nur Einstellungen hinzugefügt werden, die von der Mod benötigt werden.
+
+Beispiel:
+BOOT=HB00
+ShowMenuOnBoot=0 # Dies ist ein Kommentar
+G.BubbleBowl=1
+# Weiterer Kommentar
+
+Bei bereits existierenden Mods, klicke auf "Importieren", um die INI-Datei der Mod
+hinzuzufügen. Nur modifizierte Einstellungen werden übernommen und die Datei selbst
+wird gelöscht. 
+
+Einige Einstellungen sind besonders: 
+- ScenePlayerMapping, ThresholdPointsRange und AlternateCostumeMapping: 
+Werte werden basierend auf deren vierstelligen Levelcode (BB01, B101 etc.) ersetzt.
+- TaskStatus und Extra: Falls angegeben, ersetzt alle vorhandenen Werte.
+Wenn du eins dieser beiden Einstellungen hinzufügst, musst du die restlichen fehlenden angeben.
+
+Falls du dir immer noch unsicher bist, erstelle die INI-Datei manuell
+und klicke auf "Importieren". Das Tool importiert die Werte automatisch.
+
+Unterstützte Spiele: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
+  </data>
+  <data name="mergeHipsInfo" xml:space="preserve">
+    <value>HIP- und HOP-Dateien der Mod, die in die Kopie des Spiels eingefügt 
+werden sollen, anstatt die Originaldateien zu ersetzen, jeweils eine pro Zeile.
+
+Assets aus dem Mod werden in das Zielarchiv importiert und ersetzen dabei 
+vorhandene Assets mit derselben Asset-ID, falls diese existieren. 
+
+Assets bestimmter Typen werden nicht ersetzt, sondern zusammengeführt: 
+Collision Table, Jaw Data Table, Level of Detail Table, Pipe Info Table, Shadow Table und Sound Info.</value>
+  </data>
+  <data name="removeFilesInfo" xml:space="preserve">
+    <value>Ordner und Dateien des Originalspiels, die aus der Mod entfernt werden sollen, jeweils eine pro Zeile.
+
+Beispiel:
+boot.HIP
+hb\\hb01.HOP
+mn\\mn04.HIP
+
+Unterstützte Spiele: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
+  </data>
+  <data name="showCodesInfo" xml:space="preserve">
+    <value>codes, die in Dolphin angewendet werden sollen.
+Format ähnelt den Dolphin Einstellungen. Codes starten
+wie folgt: $&lt;code name&gt;, jede weitere Zeile folgt dem Format
+&lt;offset&gt; &lt;value&gt;, wovon beide jeweils eine vierstellige Hexadezimalzahl beinhalten.
+Kommentare können mit einem * hinzugefügt werden.
+
+Beispiel:
+$Blue Box Fix
+043CD04C 00000000
+* Dies ist ein Kommentar
+
+$Warp Anywhere
+040BC1C8 38000001
+040BC258 38000001
+040BC300 38000001
+* Weiterer Kommentar
+
+Unterstützte Spiele: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
+  </data>
+  <data name="tabPageModData.Text" xml:space="preserve">
+    <value>Mod Metadaten</value>
   </data>
 </root>
