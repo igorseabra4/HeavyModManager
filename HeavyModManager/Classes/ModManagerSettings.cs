@@ -57,13 +57,16 @@ public class ModManagerSettings
     [JsonInclude]
     public int MainFormHeight { get; set; }
 
+    [JsonInclude]
+    public string Language { get; set; }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ModManagerSettings"/> class.
     /// </summary>
     [JsonConstructor]
     public ModManagerSettings()
     {
-        Version = 2;
+        Version = 3;
         CurrentGame = Game.Null;
         DolphinPath = "";
         DolphinFolderPath = "";

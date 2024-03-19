@@ -28,6 +28,7 @@ partial class MainForm
     /// </summary>
     private void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
         groupBoxGame = new GroupBox();
         buttonCreateBackup = new Button();
         comboBoxGame = new ComboBox();
@@ -58,6 +59,9 @@ partial class MainForm
         toolStripSeparator2 = new ToolStripSeparator();
         aboutToolStripMenuItem = new ToolStripMenuItem();
         changeIconToolStripMenuItem = new ToolStripMenuItem();
+        languageToolStripMenuItem = new ToolStripMenuItem();
+        englishToolStripMenuItem = new ToolStripMenuItem();
+        germanToolStripMenuItem = new ToolStripMenuItem();
         labelModInfo = new Label();
         panelLabelModInfo = new Panel();
         groupBoxModInfo = new GroupBox();
@@ -71,64 +75,44 @@ partial class MainForm
         // 
         // groupBoxGame
         // 
-        groupBoxGame.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        resources.ApplyResources(groupBoxGame, "groupBoxGame");
         groupBoxGame.Controls.Add(buttonCreateBackup);
         groupBoxGame.Controls.Add(comboBoxGame);
-        groupBoxGame.Location = new Point(12, 27);
         groupBoxGame.Name = "groupBoxGame";
-        groupBoxGame.Size = new Size(698, 51);
-        groupBoxGame.TabIndex = 1;
         groupBoxGame.TabStop = false;
-        groupBoxGame.Text = "Choose Game";
         // 
         // buttonCreateBackup
         // 
-        buttonCreateBackup.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-        buttonCreateBackup.Enabled = false;
-        buttonCreateBackup.Location = new Point(582, 22);
+        resources.ApplyResources(buttonCreateBackup, "buttonCreateBackup");
         buttonCreateBackup.Name = "buttonCreateBackup";
-        buttonCreateBackup.Size = new Size(110, 23);
-        buttonCreateBackup.TabIndex = 3;
-        buttonCreateBackup.Text = "Create Backup";
         buttonCreateBackup.UseVisualStyleBackColor = true;
         buttonCreateBackup.Click += buttonRestoreBackup_Click;
         // 
         // comboBoxGame
         // 
-        comboBoxGame.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        resources.ApplyResources(comboBoxGame, "comboBoxGame");
         comboBoxGame.FormattingEnabled = true;
-        comboBoxGame.Location = new Point(6, 22);
         comboBoxGame.Name = "comboBoxGame";
-        comboBoxGame.Size = new Size(570, 23);
-        comboBoxGame.TabIndex = 2;
         comboBoxGame.SelectedIndexChanged += comboBoxGame_SelectedIndexChanged;
         // 
         // groupBoxMods
         // 
-        groupBoxMods.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        resources.ApplyResources(groupBoxMods, "groupBoxMods");
         groupBoxMods.Controls.Add(listViewMods);
         groupBoxMods.Controls.Add(buttonRefreshModList);
         groupBoxMods.Controls.Add(buttonMoveDown);
         groupBoxMods.Controls.Add(buttonMoveUp);
         groupBoxMods.Controls.Add(buttonAddMod);
-        groupBoxMods.Enabled = false;
-        groupBoxMods.Location = new Point(12, 84);
         groupBoxMods.Name = "groupBoxMods";
-        groupBoxMods.Size = new Size(452, 294);
-        groupBoxMods.TabIndex = 4;
         groupBoxMods.TabStop = false;
-        groupBoxMods.Text = "Mods";
         // 
         // listViewMods
         // 
         listViewMods.AllowColumnReorder = true;
-        listViewMods.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        resources.ApplyResources(listViewMods, "listViewMods");
         listViewMods.CheckBoxes = true;
         listViewMods.Columns.AddRange(new ColumnHeader[] { columnName, columnAuthor, columnCreatedDate, columnUpdatedDate });
-        listViewMods.Location = new Point(6, 22);
         listViewMods.Name = "listViewMods";
-        listViewMods.Size = new Size(440, 238);
-        listViewMods.TabIndex = 16;
         listViewMods.UseCompatibleStateImageBehavior = false;
         listViewMods.View = View.Details;
         listViewMods.ItemCheck += listViewMods_ItemCheck;
@@ -137,247 +121,200 @@ partial class MainForm
         // 
         // columnName
         // 
-        columnName.Text = "Mod";
-        columnName.Width = 212;
+        resources.ApplyResources(columnName, "columnName");
         // 
         // columnAuthor
         // 
-        columnAuthor.Text = "Author";
-        columnAuthor.Width = 84;
+        resources.ApplyResources(columnAuthor, "columnAuthor");
         // 
         // columnCreatedDate
         // 
-        columnCreatedDate.Text = "Created";
-        columnCreatedDate.Width = 70;
+        resources.ApplyResources(columnCreatedDate, "columnCreatedDate");
         // 
         // columnUpdatedDate
         // 
-        columnUpdatedDate.Text = "Updated";
-        columnUpdatedDate.Width = 70;
+        resources.ApplyResources(columnUpdatedDate, "columnUpdatedDate");
         // 
         // buttonRefreshModList
         // 
-        buttonRefreshModList.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-        buttonRefreshModList.Location = new Point(66, 264);
+        resources.ApplyResources(buttonRefreshModList, "buttonRefreshModList");
         buttonRefreshModList.Name = "buttonRefreshModList";
-        buttonRefreshModList.Size = new Size(96, 23);
-        buttonRefreshModList.TabIndex = 8;
-        buttonRefreshModList.Text = "Refresh Mods";
         buttonRefreshModList.UseVisualStyleBackColor = true;
         buttonRefreshModList.Click += buttonRefreshModList_Click;
         // 
         // buttonMoveDown
         // 
-        buttonMoveDown.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-        buttonMoveDown.Location = new Point(36, 264);
+        resources.ApplyResources(buttonMoveDown, "buttonMoveDown");
         buttonMoveDown.Name = "buttonMoveDown";
-        buttonMoveDown.Size = new Size(24, 24);
-        buttonMoveDown.TabIndex = 7;
-        buttonMoveDown.Text = "▼";
         buttonMoveDown.UseVisualStyleBackColor = true;
         buttonMoveDown.Click += buttonMoveDown_Click;
         // 
         // buttonMoveUp
         // 
-        buttonMoveUp.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-        buttonMoveUp.Location = new Point(6, 264);
+        resources.ApplyResources(buttonMoveUp, "buttonMoveUp");
         buttonMoveUp.Name = "buttonMoveUp";
-        buttonMoveUp.Size = new Size(24, 24);
-        buttonMoveUp.TabIndex = 6;
-        buttonMoveUp.Text = "▲";
         buttonMoveUp.UseVisualStyleBackColor = true;
         buttonMoveUp.Click += buttonMoveUp_Click;
         // 
         // buttonAddMod
         // 
-        buttonAddMod.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-        buttonAddMod.Location = new Point(371, 264);
+        resources.ApplyResources(buttonAddMod, "buttonAddMod");
         buttonAddMod.Name = "buttonAddMod";
-        buttonAddMod.Size = new Size(75, 24);
-        buttonAddMod.TabIndex = 9;
-        buttonAddMod.Text = "Add Mods";
         buttonAddMod.UseVisualStyleBackColor = true;
         buttonAddMod.Click += buttonAddMod_Click;
         // 
         // buttonRunGame
         // 
-        buttonRunGame.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-        buttonRunGame.Enabled = false;
-        buttonRunGame.Location = new Point(565, 348);
+        resources.ApplyResources(buttonRunGame, "buttonRunGame");
         buttonRunGame.Name = "buttonRunGame";
-        buttonRunGame.Size = new Size(145, 24);
-        buttonRunGame.TabIndex = 14;
-        buttonRunGame.Text = "Apply + Launch Game";
         buttonRunGame.UseVisualStyleBackColor = true;
         buttonRunGame.Click += buttonRunGame_Click;
         // 
         // buttonApplyMods
         // 
-        buttonApplyMods.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-        buttonApplyMods.Enabled = false;
-        buttonApplyMods.Location = new Point(470, 348);
+        resources.ApplyResources(buttonApplyMods, "buttonApplyMods");
         buttonApplyMods.Name = "buttonApplyMods";
-        buttonApplyMods.Size = new Size(89, 23);
-        buttonApplyMods.TabIndex = 13;
-        buttonApplyMods.Text = "Apply Mods";
         buttonApplyMods.UseVisualStyleBackColor = true;
         buttonApplyMods.Click += buttonApplyMods_Click;
         // 
         // menuStrip1
         // 
-        menuStrip1.Dock = DockStyle.None;
+        resources.ApplyResources(menuStrip1, "menuStrip1");
         menuStrip1.Items.AddRange(new ToolStripItem[] { manageToolStripMenuItem, settingsToolStripMenuItem });
-        menuStrip1.Location = new Point(0, 0);
         menuStrip1.Name = "menuStrip1";
-        menuStrip1.Size = new Size(131, 24);
-        menuStrip1.TabIndex = 7;
-        menuStrip1.Text = "menuStrip1";
         // 
         // manageToolStripMenuItem
         // 
         manageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createModToolStripMenuItem, editModToolStripMenuItem, openModFolderToolStripMenuItem, zipModToolStripMenuItem, deleteModToolStripMenuItem });
         manageToolStripMenuItem.Name = "manageToolStripMenuItem";
-        manageToolStripMenuItem.Size = new Size(62, 20);
-        manageToolStripMenuItem.Text = "&Manage";
+        resources.ApplyResources(manageToolStripMenuItem, "manageToolStripMenuItem");
         // 
         // createModToolStripMenuItem
         // 
-        createModToolStripMenuItem.Enabled = false;
+        resources.ApplyResources(createModToolStripMenuItem, "createModToolStripMenuItem");
         createModToolStripMenuItem.Name = "createModToolStripMenuItem";
-        createModToolStripMenuItem.Size = new Size(180, 22);
-        createModToolStripMenuItem.Text = "&Create Mod...";
         createModToolStripMenuItem.Click += createModToolStripMenuItem_Click;
         // 
         // editModToolStripMenuItem
         // 
-        editModToolStripMenuItem.Enabled = false;
+        resources.ApplyResources(editModToolStripMenuItem, "editModToolStripMenuItem");
         editModToolStripMenuItem.Name = "editModToolStripMenuItem";
-        editModToolStripMenuItem.Size = new Size(180, 22);
-        editModToolStripMenuItem.Text = "&Edit Mod...";
         editModToolStripMenuItem.Click += editModToolStripMenuItem_Click;
         // 
         // openModFolderToolStripMenuItem
         // 
-        openModFolderToolStripMenuItem.Enabled = false;
+        resources.ApplyResources(openModFolderToolStripMenuItem, "openModFolderToolStripMenuItem");
         openModFolderToolStripMenuItem.Name = "openModFolderToolStripMenuItem";
-        openModFolderToolStripMenuItem.Size = new Size(180, 22);
-        openModFolderToolStripMenuItem.Text = "&Open Mod Folder...";
         openModFolderToolStripMenuItem.Click += openModFolderToolStripMenuItem_Click;
         // 
         // zipModToolStripMenuItem
         // 
-        zipModToolStripMenuItem.Enabled = false;
+        resources.ApplyResources(zipModToolStripMenuItem, "zipModToolStripMenuItem");
         zipModToolStripMenuItem.Name = "zipModToolStripMenuItem";
-        zipModToolStripMenuItem.Size = new Size(180, 22);
-        zipModToolStripMenuItem.Text = "&Zip Mod...";
         zipModToolStripMenuItem.Click += zipModToolStripMenuItem_Click;
         // 
         // deleteModToolStripMenuItem
         // 
-        deleteModToolStripMenuItem.Enabled = false;
+        resources.ApplyResources(deleteModToolStripMenuItem, "deleteModToolStripMenuItem");
         deleteModToolStripMenuItem.Name = "deleteModToolStripMenuItem";
-        deleteModToolStripMenuItem.Size = new Size(180, 22);
-        deleteModToolStripMenuItem.Text = "&Delete Mod...";
         deleteModToolStripMenuItem.Click += deleteModToolStripMenuItem_Click;
         // 
         // settingsToolStripMenuItem
         // 
-        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, chooseDolphinUserFolderPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem });
+        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, chooseDolphinUserFolderPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem, languageToolStripMenuItem });
         settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-        settingsToolStripMenuItem.Size = new Size(61, 20);
-        settingsToolStripMenuItem.Text = "Settings";
+        resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
         // 
         // chooseDolphinPathToolStripMenuItem
         // 
         chooseDolphinPathToolStripMenuItem.Name = "chooseDolphinPathToolStripMenuItem";
-        chooseDolphinPathToolStripMenuItem.Size = new Size(257, 22);
-        chooseDolphinPathToolStripMenuItem.Text = "&Choose Dolphin Path...";
+        resources.ApplyResources(chooseDolphinPathToolStripMenuItem, "chooseDolphinPathToolStripMenuItem");
         chooseDolphinPathToolStripMenuItem.Click += chooseDolphinPathToolStripMenuItem_Click;
         // 
         // chooseDolphinUserFolderPathToolStripMenuItem
         // 
         chooseDolphinUserFolderPathToolStripMenuItem.Name = "chooseDolphinUserFolderPathToolStripMenuItem";
-        chooseDolphinUserFolderPathToolStripMenuItem.Size = new Size(257, 22);
-        chooseDolphinUserFolderPathToolStripMenuItem.Text = "&Choose Dolphin User Folder Path...";
+        resources.ApplyResources(chooseDolphinUserFolderPathToolStripMenuItem, "chooseDolphinUserFolderPathToolStripMenuItem");
         chooseDolphinUserFolderPathToolStripMenuItem.Click += chooseDolphinUserFolderPathToolStripMenuItem_Click;
         // 
         // developerModeToolStripMenuItem
         // 
         developerModeToolStripMenuItem.Name = "developerModeToolStripMenuItem";
-        developerModeToolStripMenuItem.Size = new Size(257, 22);
-        developerModeToolStripMenuItem.Text = "&Developer Mode";
+        resources.ApplyResources(developerModeToolStripMenuItem, "developerModeToolStripMenuItem");
         developerModeToolStripMenuItem.Click += developerModeToolStripMenuItem_Click;
         // 
         // checkForUpdatesOnStartupToolStripMenuItem
         // 
         checkForUpdatesOnStartupToolStripMenuItem.Name = "checkForUpdatesOnStartupToolStripMenuItem";
-        checkForUpdatesOnStartupToolStripMenuItem.Size = new Size(257, 22);
-        checkForUpdatesOnStartupToolStripMenuItem.Text = "&Check For Updates on Startup";
+        resources.ApplyResources(checkForUpdatesOnStartupToolStripMenuItem, "checkForUpdatesOnStartupToolStripMenuItem");
         checkForUpdatesOnStartupToolStripMenuItem.Click += checkForUpdatesOnStartupToolStripMenuItem_Click;
         // 
         // toolStripSeparator2
         // 
         toolStripSeparator2.Name = "toolStripSeparator2";
-        toolStripSeparator2.Size = new Size(254, 6);
+        resources.ApplyResources(toolStripSeparator2, "toolStripSeparator2");
         // 
         // aboutToolStripMenuItem
         // 
         aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-        aboutToolStripMenuItem.Size = new Size(257, 22);
-        aboutToolStripMenuItem.Text = "&About...";
+        resources.ApplyResources(aboutToolStripMenuItem, "aboutToolStripMenuItem");
         aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
         // 
         // changeIconToolStripMenuItem
         // 
         changeIconToolStripMenuItem.Name = "changeIconToolStripMenuItem";
-        changeIconToolStripMenuItem.Size = new Size(257, 22);
-        changeIconToolStripMenuItem.Text = "Change Icon";
+        resources.ApplyResources(changeIconToolStripMenuItem, "changeIconToolStripMenuItem");
         changeIconToolStripMenuItem.Click += changeIconToolStripMenuItem_Click;
+        // 
+        // languageToolStripMenuItem
+        // 
+        languageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { englishToolStripMenuItem, germanToolStripMenuItem });
+        languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+        resources.ApplyResources(languageToolStripMenuItem, "languageToolStripMenuItem");
+        // 
+        // englishToolStripMenuItem
+        // 
+        englishToolStripMenuItem.Image = Properties.Resources.us;
+        englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+        resources.ApplyResources(englishToolStripMenuItem, "englishToolStripMenuItem");
+        englishToolStripMenuItem.Tag = "en";
+        englishToolStripMenuItem.Click += changeLanguageToolStripMenuItem_Click;
+        // 
+        // germanToolStripMenuItem
+        // 
+        germanToolStripMenuItem.Image = Properties.Resources.de;
+        germanToolStripMenuItem.Name = "germanToolStripMenuItem";
+        resources.ApplyResources(germanToolStripMenuItem, "germanToolStripMenuItem");
+        germanToolStripMenuItem.Tag = "de";
+        germanToolStripMenuItem.Click += changeLanguageToolStripMenuItem_Click;
         // 
         // labelModInfo
         // 
-        labelModInfo.Location = new Point(0, 0);
+        resources.ApplyResources(labelModInfo, "labelModInfo");
         labelModInfo.Name = "labelModInfo";
-        labelModInfo.Size = new Size(182, 168);
-        labelModInfo.TabIndex = 12;
-        labelModInfo.Text = "Mod Info";
         // 
         // panelLabelModInfo
         // 
-        panelLabelModInfo.AutoScroll = true;
+        resources.ApplyResources(panelLabelModInfo, "panelLabelModInfo");
         panelLabelModInfo.Controls.Add(labelModInfo);
-        panelLabelModInfo.Dock = DockStyle.Fill;
-        panelLabelModInfo.Location = new Point(3, 19);
         panelLabelModInfo.Name = "panelLabelModInfo";
-        panelLabelModInfo.Size = new Size(234, 236);
-        panelLabelModInfo.TabIndex = 11;
         // 
         // groupBoxModInfo
         // 
-        groupBoxModInfo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+        resources.ApplyResources(groupBoxModInfo, "groupBoxModInfo");
         groupBoxModInfo.Controls.Add(panelLabelModInfo);
-        groupBoxModInfo.Location = new Point(470, 84);
         groupBoxModInfo.Name = "groupBoxModInfo";
-        groupBoxModInfo.Size = new Size(240, 258);
-        groupBoxModInfo.TabIndex = 10;
         groupBoxModInfo.TabStop = false;
-        groupBoxModInfo.Text = "Mod Info";
         // 
         // labelDolphin
         // 
-        labelDolphin.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        labelDolphin.AutoSize = true;
-        labelDolphin.Location = new Point(12, 381);
+        resources.ApplyResources(labelDolphin, "labelDolphin");
         labelDolphin.Name = "labelDolphin";
-        labelDolphin.Size = new Size(80, 45);
-        labelDolphin.TabIndex = 15;
-        labelDolphin.Text = "Dolphin Label\r\nDolphin Label\r\nDolphin Label";
         // 
         // MainForm
         // 
-        AutoScaleDimensions = new SizeF(7F, 15F);
+        resources.ApplyResources(this, "$this");
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(722, 435);
         Controls.Add(labelDolphin);
         Controls.Add(groupBoxModInfo);
         Controls.Add(buttonApplyMods);
@@ -386,10 +323,7 @@ partial class MainForm
         Controls.Add(groupBoxGame);
         Controls.Add(menuStrip1);
         MainMenuStrip = menuStrip1;
-        MinimumSize = new Size(540, 250);
         Name = "MainForm";
-        StartPosition = FormStartPosition.CenterScreen;
-        Text = "Heavy Mod Manager";
         FormClosing += MainForm_FormClosing;
         Shown += MainForm_Shown;
         groupBoxGame.ResumeLayout(false);
@@ -438,4 +372,7 @@ partial class MainForm
     private ColumnHeader columnCreatedDate;
     private ColumnHeader columnUpdatedDate;
     private ToolStripMenuItem chooseDolphinUserFolderPathToolStripMenuItem;
+    private ToolStripMenuItem languageToolStripMenuItem;
+    private ToolStripMenuItem englishToolStripMenuItem;
+    private ToolStripMenuItem germanToolStripMenuItem;
 }

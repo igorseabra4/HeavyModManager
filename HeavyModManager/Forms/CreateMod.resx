@@ -18,7 +18,7 @@
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
     <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing"">Blue</data>
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
         <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
@@ -117,4 +117,1235 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="buttonIniImport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="groupBoxMergeHips.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 256</value>
+  </data>
+  <data name="textBoxModName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="groupBoxDolPatches.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="comboBoxGame.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="buttonIniImport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, -1</value>
+  </data>
+  <data name="&gt;&gt;tabPageSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonRemoveFilesInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="richTextBoxRemoveFiles.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;buttonRemoveFilesInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonArCodesInfo.Name" xml:space="preserve">
+    <value>buttonArCodesInfo</value>
+  </data>
+  <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerUpdatedAt.Parent" xml:space="preserve">
+    <value>groupBoxUpdatedAt</value>
+  </data>
+  <data name="&gt;&gt;groupBoxArCodes.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage2</value>
+  </data>
+  <data name="textBoxModId.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="groupBoxGame.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="flowLayoutPanelPage1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>342, 520</value>
+  </data>
+  <data name="&gt;&gt;groupBoxModName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonRemoveFilesInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, -1</value>
+  </data>
+  <data name="richTextBoxDolPatches.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="&gt;&gt;buttonDolPatchesInfo.Name" xml:space="preserve">
+    <value>buttonDolPatchesInfo</value>
+  </data>
+  <data name="&gt;&gt;groupBoxCreatedAt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMergeHips.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBoxArCodes.Text" xml:space="preserve">
+    <value>AR Codes</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxDolPatches.Name" xml:space="preserve">
+    <value>richTextBoxDolPatches</value>
+  </data>
+  <data name="groupBoxModName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="&gt;&gt;groupBoxAuthor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 15</value>
+  </data>
+  <data name="buttonIniValuesInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="&gt;&gt;comboBoxGame.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBoxGeckoCodes.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="buttonArCodesInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, -1</value>
+  </data>
+  <data name="buttonMergeHipsInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="dateTimePickerCreatedAt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;buttonMergeHipsInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;buttonIniValuesInfo.Name" xml:space="preserve">
+    <value>buttonIniValuesInfo</value>
+  </data>
+  <data name="textBoxModId.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonIniValuesInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="labelDefaultGameId.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="richTextBoxDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="flowLayoutPanelPage1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanelPage2.Name" xml:space="preserve">
+    <value>flowLayoutPanelPage2</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Create New Mod</value>
+  </data>
+  <data name="buttonCancel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBoxGeckoCodes.Text" xml:space="preserve">
+    <value>Gecko Codes</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxDescription.Name" xml:space="preserve">
+    <value>richTextBoxDescription</value>
+  </data>
+  <data name="textBoxAuthor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="groupBoxCreatedAt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 352</value>
+  </data>
+  <data name="&gt;&gt;buttonRemoveFilesInfo.Parent" xml:space="preserve">
+    <value>groupBoxRemoveFiles</value>
+  </data>
+  <data name="textBoxAuthor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>313, 23</value>
+  </data>
+  <data name="buttonGeckoCodesInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, -1</value>
+  </data>
+  <data name="buttonCreateMod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 558</value>
+  </data>
+  <data name="&gt;&gt;textBoxAuthor.Parent" xml:space="preserve">
+    <value>groupBoxAuthor</value>
+  </data>
+  <data name="buttonGeckoCodesInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="dateTimePickerCreatedAt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="&gt;&gt;tabPageModData.Name" xml:space="preserve">
+    <value>tabPageModData</value>
+  </data>
+  <data name="richTextBoxDolPatches.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;tabPageSettings.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonDolPatchesInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="richTextBoxRemoveFiles.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;buttonGeckoCodesInfo.Name" xml:space="preserve">
+    <value>buttonGeckoCodesInfo</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxMergeHips.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBoxAuthor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 51</value>
+  </data>
+  <data name="&gt;&gt;textBoxGameId.Name" xml:space="preserve">
+    <value>textBoxGameId</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxMergeHips.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonMergeHipsInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="buttonGameIdInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxDescription.Parent" xml:space="preserve">
+    <value>groupBoxDescription</value>
+  </data>
+  <data name="&gt;&gt;groupBoxArCodes.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="buttonCreateMod.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonGameIdInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBoxIniValues.Text" xml:space="preserve">
+    <value>INI Values</value>
+  </data>
+  <data name="textBoxModId.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="groupBoxCreatedAt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 51</value>
+  </data>
+  <data name="&gt;&gt;buttonIniValuesInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonMergeHipsInfo.Name" xml:space="preserve">
+    <value>buttonMergeHipsInfo</value>
+  </data>
+  <data name="groupBoxArCodes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 790</value>
+  </data>
+  <data name="buttonRemoveFilesInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="buttonCreateMod.Text" xml:space="preserve">
+    <value>Create Mod</value>
+  </data>
+  <data name="&gt;&gt;buttonRemoveFilesInfo.Name" xml:space="preserve">
+    <value>buttonRemoveFilesInfo</value>
+  </data>
+  <data name="flowLayoutPanelPage2.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGeckoCodes.Name" xml:space="preserve">
+    <value>groupBoxGeckoCodes</value>
+  </data>
+  <data name="groupBoxArCodes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 172</value>
+  </data>
+  <data name="&gt;&gt;buttonCreateMod.Name" xml:space="preserve">
+    <value>buttonCreateMod</value>
+  </data>
+  <data name="flowLayoutPanelPage2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;buttonCreateMod.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="richTextBoxGeckoCodes.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="groupBoxCreatedAt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>CreateMod</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxRemoveFiles.Parent" xml:space="preserve">
+    <value>groupBoxRemoveFiles</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGameId.Name" xml:space="preserve">
+    <value>groupBoxGameId</value>
+  </data>
+  <data name="richTextBoxMergeHips.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="richTextBoxArCodes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="&gt;&gt;groupBoxModId.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage1</value>
+  </data>
+  <data name="richTextBoxGeckoCodes.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBoxRemoveFiles.Text" xml:space="preserve">
+    <value>Remove Files</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxGeckoCodes.Parent" xml:space="preserve">
+    <value>groupBoxGeckoCodes</value>
+  </data>
+  <data name="groupBoxDolPatches.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 172</value>
+  </data>
+  <data name="groupBoxDolPatches.Text" xml:space="preserve">
+    <value>DOL Patches</value>
+  </data>
+  <data name="groupBoxGeckoCodes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="&gt;&gt;textBoxModName.Name" xml:space="preserve">
+    <value>textBoxModName</value>
+  </data>
+  <data name="&gt;&gt;groupBoxUpdatedAt.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage1</value>
+  </data>
+  <data name="&gt;&gt;groupBoxCreatedAt.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>71</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerUpdatedAt.Name" xml:space="preserve">
+    <value>dateTimePickerUpdatedAt</value>
+  </data>
+  <data name="&gt;&gt;groupBoxCreatedAt.Name" xml:space="preserve">
+    <value>groupBoxCreatedAt</value>
+  </data>
+  <data name="richTextBoxDolPatches.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;groupBoxCreatedAt.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage1</value>
+  </data>
+  <data name="flowLayoutPanelPage1.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="dateTimePickerUpdatedAt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;textBoxGameId.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="textBoxModName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;textBoxModId.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxDolPatches.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxUpdatedAt.Name" xml:space="preserve">
+    <value>groupBoxUpdatedAt</value>
+  </data>
+  <data name="groupBoxGameId.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="richTextBoxDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="&gt;&gt;groupBoxIniValues.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage2</value>
+  </data>
+  <data name="&gt;&gt;tabPageSettings.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="flowLayoutPanelPage2.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+    <value>TopDown</value>
+  </data>
+  <data name="richTextBoxRemoveFiles.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="groupBoxMergeHips.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 172</value>
+  </data>
+  <data name="richTextBoxMergeHips.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelDefaultGameId.Text" xml:space="preserve">
+    <value>Default Game ID:</value>
+  </data>
+  <data name="buttonCreateMod.TabIndex" type="System.Int32, mscorlib">
+    <value>72</value>
+  </data>
+  <data name="buttonGameIdInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 22</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanelPage1.Name" xml:space="preserve">
+    <value>flowLayoutPanelPage1</value>
+  </data>
+  <data name="&gt;&gt;buttonDolPatchesInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;buttonGeckoCodesInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxRemoveFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageModData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="buttonRemoveFilesInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="flowLayoutPanelPage2.WrapContents" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="groupBoxUpdatedAt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="buttonGeckoCodesInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="&gt;&gt;buttonIniValuesInfo.Parent" xml:space="preserve">
+    <value>groupBoxIniValues</value>
+  </data>
+  <data name="&gt;&gt;comboBoxGame.Parent" xml:space="preserve">
+    <value>groupBoxGame</value>
+  </data>
+  <data name="groupBoxDolPatches.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxDolPatches.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="groupBoxModId.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="buttonModIdInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;groupBoxModName.Name" xml:space="preserve">
+    <value>groupBoxModName</value>
+  </data>
+  <data name="buttonCreateMod.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 25</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerUpdatedAt.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;buttonGameIdInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;buttonMergeHipsInfo.Parent" xml:space="preserve">
+    <value>groupBoxMergeHips</value>
+  </data>
+  <data name="buttonGeckoCodesInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="comboBoxGame.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;groupBoxRemoveFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dateTimePickerUpdatedAt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="&gt;&gt;tabPageModData.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPageModData.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBoxRemoveFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 434</value>
+  </data>
+  <data name="richTextBoxMergeHips.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="flowLayoutPanelPage1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="groupBoxModId.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 51</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tabControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="groupBoxGeckoCodes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 172</value>
+  </data>
+  <data name="&gt;&gt;textBoxGameId.Parent" xml:space="preserve">
+    <value>groupBoxGameId</value>
+  </data>
+  <data name="richTextBoxDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>313, 150</value>
+  </data>
+  <data name="&gt;&gt;groupBoxArCodes.Name" xml:space="preserve">
+    <value>groupBoxArCodes</value>
+  </data>
+  <data name="richTextBoxRemoveFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 144</value>
+  </data>
+  <data name="richTextBoxINIValues.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 144</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="groupBoxCreatedAt.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="groupBoxUpdatedAt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 409</value>
+  </data>
+  <data name="groupBoxUpdatedAt.Text" xml:space="preserve">
+    <value>Updated At</value>
+  </data>
+  <data name="comboBoxGame.Size" type="System.Drawing.Size, System.Drawing">
+    <value>313, 23</value>
+  </data>
+  <data name="richTextBoxDescription.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBoxRemoveFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 172</value>
+  </data>
+  <data name="textBoxGameId.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="flowLayoutPanelPage2.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxGeckoCodes.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;groupBoxArCodes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonIniValuesInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="groupBoxMergeHips.Text" xml:space="preserve">
+    <value>Merge HIP Files</value>
+  </data>
+  <data name="groupBoxDolPatches.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 612</value>
+  </data>
+  <data name="buttonDolPatchesInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, -1</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerCreatedAt.Name" xml:space="preserve">
+    <value>dateTimePickerCreatedAt</value>
+  </data>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>350, 548</value>
+  </data>
+  <data name="richTextBoxDolPatches.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 144</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxRemoveFiles.Name" xml:space="preserve">
+    <value>richTextBoxRemoveFiles</value>
+  </data>
+  <data name="richTextBoxArCodes.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBoxDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="groupBoxArCodes.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="&gt;&gt;groupBoxUpdatedAt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 9</value>
+  </data>
+  <data name="tabPageSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>342, 520</value>
+  </data>
+  <data name="&gt;&gt;groupBoxAuthor.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;labelDefaultGameId.Name" xml:space="preserve">
+    <value>labelDefaultGameId</value>
+  </data>
+  <data name="buttonIniImport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 23</value>
+  </data>
+  <data name="groupBoxGame.Text" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="&gt;&gt;buttonGeckoCodesInfo.Parent" xml:space="preserve">
+    <value>groupBoxGeckoCodes</value>
+  </data>
+  <data name="&gt;&gt;groupBoxRemoveFiles.Name" xml:space="preserve">
+    <value>groupBoxRemoveFiles</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGameId.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage2</value>
+  </data>
+  <data name="textBoxModId.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 9pt</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;buttonArCodesInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBoxArCodes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="groupBoxAuthor.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="dateTimePickerCreatedAt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>313, 23</value>
+  </data>
+  <data name="&gt;&gt;groupBoxRemoveFiles.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage2</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDescription.Name" xml:space="preserve">
+    <value>groupBoxDescription</value>
+  </data>
+  <data name="groupBoxCreatedAt.Text" xml:space="preserve">
+    <value>Created At</value>
+  </data>
+  <data name="textBoxModId.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;buttonDolPatchesInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBoxUpdatedAt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 51</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGameId.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="richTextBoxGeckoCodes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 144</value>
+  </data>
+  <data name="&gt;&gt;buttonGameIdInfo.Parent" xml:space="preserve">
+    <value>groupBoxGameId</value>
+  </data>
+  <data name="&gt;&gt;buttonGeckoCodesInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
+    <value>buttonCancel</value>
+  </data>
+  <data name="buttonGameIdInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="tabPageModData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>342, 520</value>
+  </data>
+  <data name="&gt;&gt;tabPageModData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxIniValues.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;buttonDolPatchesInfo.Parent" xml:space="preserve">
+    <value>groupBoxDolPatches</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxGeckoCodes.Name" xml:space="preserve">
+    <value>richTextBoxGeckoCodes</value>
+  </data>
+  <data name="richTextBoxGeckoCodes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="buttonDolPatchesInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="buttonArCodesInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="groupBoxGame.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 25</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerCreatedAt.Parent" xml:space="preserve">
+    <value>groupBoxCreatedAt</value>
+  </data>
+  <data name="richTextBoxMergeHips.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMergeHips.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage2</value>
+  </data>
+  <data name="dateTimePickerCreatedAt.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;textBoxAuthor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBoxAuthor.Text" xml:space="preserve">
+    <value>Mod Author</value>
+  </data>
+  <data name="textBoxGameId.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;buttonModIdInfo.Name" xml:space="preserve">
+    <value>buttonModIdInfo</value>
+  </data>
+  <data name="buttonIniImport.Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="&gt;&gt;textBoxGameId.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxModId.Parent" xml:space="preserve">
+    <value>groupBoxModId</value>
+  </data>
+  <data name="buttonModIdInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="flowLayoutPanelPage1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="groupBoxModName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 60</value>
+  </data>
+  <data name="&gt;&gt;comboBoxGame.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonMergeHipsInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;buttonMergeHipsInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelDefaultGameId.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 48</value>
+  </data>
+  <data name="groupBoxIniValues.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="groupBoxMergeHips.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;textBoxModName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBoxRemoveFiles.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="groupBoxModId.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;buttonCreateMod.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonModIdInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonModIdInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="textBoxModName.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;buttonIniImport.Name" xml:space="preserve">
+    <value>buttonIniImport</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxINIValues.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="buttonDolPatchesInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxINIValues.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanelPage2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxArCodes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxIniValues.Name" xml:space="preserve">
+    <value>groupBoxIniValues</value>
+  </data>
+  <data name="buttonGameIdInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGeckoCodes.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxMergeHips.Parent" xml:space="preserve">
+    <value>groupBoxMergeHips</value>
+  </data>
+  <data name="&gt;&gt;buttonIniImport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelDefaultGameId.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 15</value>
+  </data>
+  <data name="&gt;&gt;textBoxAuthor.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labelDefaultGameId.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxArCodes.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerCreatedAt.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBoxGameId.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 69</value>
+  </data>
+  <data name="groupBoxMergeHips.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="flowLayoutPanelPage2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>266, 558</value>
+  </data>
+  <data name="textBoxAuthor.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;buttonIniValuesInfo.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonModIdInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;buttonArCodesInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxModId.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerCreatedAt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="richTextBoxMergeHips.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 144</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDolPatches.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="richTextBoxINIValues.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerUpdatedAt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGeckoCodes.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage2</value>
+  </data>
+  <data name="labelDefaultGameId.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tabPageSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="groupBoxModName.Text" xml:space="preserve">
+    <value>Mod Name</value>
+  </data>
+  <data name="&gt;&gt;buttonIniImport.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="richTextBoxArCodes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="richTextBoxDolPatches.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="richTextBoxINIValues.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="&gt;&gt;groupBoxAuthor.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage1</value>
+  </data>
+  <data name="buttonMergeHipsInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="tabControl1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="buttonMergeHipsInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, -1</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDolPatches.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage2</value>
+  </data>
+  <data name="richTextBoxArCodes.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="groupBoxDescription.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="buttonRemoveFilesInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="richTextBoxRemoveFiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanelPage1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonIniValuesInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="&gt;&gt;buttonCreateMod.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="flowLayoutPanelPage1.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+    <value>TopDown</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMergeHips.Name" xml:space="preserve">
+    <value>groupBoxMergeHips</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGame.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage1</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGame.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonIniImport.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="groupBoxGeckoCodes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 968</value>
+  </data>
+  <data name="&gt;&gt;textBoxModId.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonGeckoCodesInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;groupBoxRemoveFiles.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBoxDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 174</value>
+  </data>
+  <data name="buttonCreateMod.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxGeckoCodes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBoxModId.Text" xml:space="preserve">
+    <value>Mod ID</value>
+  </data>
+  <data name="richTextBoxINIValues.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;flowLayoutPanelPage2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxDolPatches.Parent" xml:space="preserve">
+    <value>groupBoxDolPatches</value>
+  </data>
+  <data name="groupBoxIniValues.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 78</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxRemoveFiles.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;textBoxModName.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;textBoxModId.Name" xml:space="preserve">
+    <value>textBoxModId</value>
+  </data>
+  <data name="&gt;&gt;groupBoxModName.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage1</value>
+  </data>
+  <data name="&gt;&gt;groupBoxModName.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGameId.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanelPage1.Parent" xml:space="preserve">
+    <value>tabPageModData</value>
+  </data>
+  <data name="&gt;&gt;buttonModIdInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonArCodesInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="textBoxModName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>313, 23</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxINIValues.Name" xml:space="preserve">
+    <value>richTextBoxINIValues</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanelPage2.Parent" xml:space="preserve">
+    <value>tabPageSettings</value>
+  </data>
+  <data name="&gt;&gt;buttonModIdInfo.Parent" xml:space="preserve">
+    <value>groupBoxModId</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxArCodes.Name" xml:space="preserve">
+    <value>richTextBoxArCodes</value>
+  </data>
+  <data name="groupBoxModName.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;groupBoxAuthor.Name" xml:space="preserve">
+    <value>groupBoxAuthor</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>368, 590</value>
+  </data>
+  <data name="groupBoxAuthor.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;groupBoxUpdatedAt.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="groupBoxModName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 51</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxINIValues.Parent" xml:space="preserve">
+    <value>groupBoxIniValues</value>
+  </data>
+  <data name="richTextBoxDescription.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGame.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelDefaultGameId.Parent" xml:space="preserve">
+    <value>groupBoxGameId</value>
+  </data>
+  <data name="buttonCreateMod.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="flowLayoutPanelPage1.WrapContents" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="buttonIniValuesInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, -1</value>
+  </data>
+  <data name="dateTimePickerUpdatedAt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>313, 23</value>
+  </data>
+  <data name="groupBoxDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 172</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGeckoCodes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonArCodesInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="richTextBoxGeckoCodes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="groupBoxAuthor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 117</value>
+  </data>
+  <data name="dateTimePickerUpdatedAt.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;buttonArCodesInfo.Parent" xml:space="preserve">
+    <value>groupBoxArCodes</value>
+  </data>
+  <data name="richTextBoxArCodes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 144</value>
+  </data>
+  <data name="&gt;&gt;labelDefaultGameId.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonModIdInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, -1</value>
+  </data>
+  <data name="groupBoxGame.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 51</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDolPatches.Name" xml:space="preserve">
+    <value>groupBoxDolPatches</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDescription.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="buttonRemoveFilesInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxDescription.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="textBoxAuthor.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;groupBoxModId.Name" xml:space="preserve">
+    <value>groupBoxModId</value>
+  </data>
+  <data name="groupBoxGameId.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="&gt;&gt;tabPageSettings.Name" xml:space="preserve">
+    <value>tabPageSettings</value>
+  </data>
+  <data name="groupBoxModId.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 466</value>
+  </data>
+  <data name="&gt;&gt;textBoxAuthor.Name" xml:space="preserve">
+    <value>textBoxAuthor</value>
+  </data>
+  <data name="tabPageSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="&gt;&gt;groupBoxModId.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="groupBoxDescription.Text" xml:space="preserve">
+    <value>Mod Description</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanelPage1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBoxUpdatedAt.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="groupBoxIniValues.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 172</value>
+  </data>
+  <data name="flowLayoutPanelPage2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>342, 520</value>
+  </data>
+  <data name="textBoxGameId.Size" type="System.Drawing.Size, System.Drawing">
+    <value>256, 23</value>
+  </data>
+  <data name="&gt;&gt;textBoxModName.Parent" xml:space="preserve">
+    <value>groupBoxModName</value>
+  </data>
+  <data name="buttonArCodesInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="&gt;&gt;comboBoxGame.Name" xml:space="preserve">
+    <value>comboBoxGame</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxArCodes.Parent" xml:space="preserve">
+    <value>groupBoxArCodes</value>
+  </data>
+  <data name="&gt;&gt;groupBoxIniValues.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="groupBoxRemoveFiles.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="textBoxGameId.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="tabPageSettings.Text" xml:space="preserve">
+    <value>Patches and Replacements</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDescription.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage1</value>
+  </data>
+  <data name="buttonGameIdInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="tabPageModData.Text" xml:space="preserve">
+    <value>Mod Metadata</value>
+  </data>
+  <data name="groupBoxGameId.Text" xml:space="preserve">
+    <value>Game ID (Save File)</value>
+  </data>
+  <data name="&gt;&gt;buttonIniImport.Parent" xml:space="preserve">
+    <value>groupBoxIniValues</value>
+  </data>
+  <data name="tabPageModData.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;richTextBoxMergeHips.Name" xml:space="preserve">
+    <value>richTextBoxMergeHips</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGame.Name" xml:space="preserve">
+    <value>groupBoxGame</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDolPatches.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="comboBoxGame.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="richTextBoxINIValues.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMergeHips.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;buttonGameIdInfo.Name" xml:space="preserve">
+    <value>buttonGameIdInfo</value>
+  </data>
+  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="groupBoxIniValues.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="buttonDolPatchesInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

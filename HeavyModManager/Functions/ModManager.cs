@@ -2,6 +2,7 @@
 using HeavyModManager.Enum;
 using HeavyModManager.Forms.Other;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text.Json;
 
 namespace HeavyModManager.Functions;
@@ -174,6 +175,7 @@ public static class ModManager
         settings.CheckForUpdatesOnStartup = CheckForUpdatesOnStartup;
         settings.DeveloperMode = DeveloperMode;
         settings.Icon = IconManager.CurrentIcon;
+        settings.Language = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 
         File.WriteAllText(ModManagerSettingsPath, JsonSerializer.Serialize(settings));
     }
@@ -202,6 +204,12 @@ public static class ModManager
         {
             DeveloperMode = settings.DeveloperMode;
             IconManager.CurrentIcon = settings.Icon;
+        }
+
+        if (settings.Version >= 3)
+        {
+            CultureInfo.CurrentCulture = new CultureInfo(settings.Language);
+            CultureInfo.CurrentUICulture = new CultureInfo(settings.Language);
         }
 
         return settings;

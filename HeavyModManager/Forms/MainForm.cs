@@ -3,6 +3,7 @@ using HeavyModManager.Enum;
 using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
 using HeavyModManager.Functions;
+using System.Globalization;
 using System.Text.Json;
 
 namespace HeavyModManager;
@@ -11,9 +12,11 @@ public partial class MainForm : Form
 {
     public MainForm()
     {
+        var settings = LoadSettings();
         InitializeComponent();
+        UpdateFormSize(settings);
+        UpdateCurrentLanguageMenuItem();
 
-        LoadSettings();
         IconManager.SetIcon(this);
 
         toolTip = new ToolTip();
@@ -43,6 +46,20 @@ public partial class MainForm : Form
         labelModInfo.Text = "";
 
         UpdateDolphinLabel();
+    }
+    private void UpdateCurrentLanguageMenuItem()
+    {
+        foreach (ToolStripMenuItem item in languageToolStripMenuItem.DropDownItems)
+        {
+            if (item.Tag.ToString() == CultureInfo.CurrentUICulture.TwoLetterISOLanguageName)
+            {
+                item.Checked = true;
+                return;
+            }
+        }
+
+        englishToolStripMenuItem.Checked = true;
+        return;
     }
 
     private async void TryUpdate()
@@ -81,10 +98,13 @@ public partial class MainForm : Form
         ModManager.SaveSettings(settings);
     }
 
-    private void LoadSettings()
+    private ModManagerSettings LoadSettings()
     {
-        var settings = ModManager.LoadSettings();
+        return ModManager.LoadSettings();
+    }
 
+    private void UpdateFormSize(ModManagerSettings settings)
+    {
         if (settings.MainFormWidth > MaximumSize.Width)
             Width = settings.MainFormWidth;
         if (settings.MainFormHeight > MaximumSize.Height)
@@ -139,11 +159,17 @@ public partial class MainForm : Form
     {
         toolTip.Hide(comboBoxGame);
 
+        // From MainForm, get the localised string from the Resources file Mainform.resx
+        string dolphinPathNotSetText = Properties.Resources.ResourceManager.GetString("dolphinPathNotSet");
+
+
+        //string dolphinUserFolderPathNotSetText = Properties.Resources.dolphinUserFolderPathNotSet;
+        //string noBackupText = Properties.Resources.noBackup;
+        //string noModsText = Properties.Resources.noMods;
+
         if (string.IsNullOrEmpty(ModManager.DolphinPath))
         {
-            toolTip.Show("Dolphin executable path not set.\n" +
-                "Please click on Settings -> Choose Dolphin Path and select the Dolphin executable.\n" +
-                "It is usually located under \"C:\\Program Files\\Dolphin-x64\\Dolphin.exe\". Selecting a shortcut is also possible.", comboBoxGame, 0, 24, 12 * 1000);
+            toolTip.Show(dolphinPathNotSetText, comboBoxGame, 0, 24, 12 * 1000);
         }
         else if (string.IsNullOrEmpty(ModManager.DolphinFolderPath))
         {
@@ -498,4 +524,31 @@ public partial class MainForm : Form
         IconManager.SetIcon(this);
         IconManager.SetIcon(aboutBox);
     }
+
+    private void changeLanguageToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // If sender is already checked, do nothing
+        if (((ToolStripMenuItem)sender).Checked)
+            return;
+
+        // Get the tag of the sender
+        string tag = ((ToolStripMenuItem)sender).Tag.ToString();
+
+        if (!string.IsNullOrEmpty(tag))
+        {
+            // Set the current culture to the one from the tag
+            CultureInfo.CurrentCulture = new CultureInfo(tag);
+            CultureInfo.CurrentUICulture = new CultureInfo(tag);
+
+            // Save the settings
+            SaveSettings();
+
+            // Close the current form
+            Close();
+
+            // Start a new instance of the form
+            System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "HeavyModManager.exe"));
+        }
+    }
+
 }
