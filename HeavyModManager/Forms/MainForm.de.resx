@@ -308,6 +308,12 @@ Es befindet sich normalerweise unter "AppData" oder "Documents\Dolphin Emulator"
   <data name="dolphinUserPathNotFoundLabel" xml:space="preserve">
     <value>Der Pfad zum Dolphin Benutzerordner ist nicht festgelegt.</value>
   </data>
+  <data name="error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="isoOrMainDol" xml:space="preserve">
+    <value>ISO oder main.dol</value>
+  </data>
   <data name="noBackupTooltip" xml:space="preserve">
     <value>Sie haben kein Backup für dieses Spiel.
 
@@ -317,5 +323,11 @@ Klicken Sie bitte auf "Backup erstellen" und wählen Sie die ISO des Spiels.</va
     <value>Sie haben keine Mods für das Spiel.
 
 Klicken Sie bitte auf "Mods hinzufügen" und wählen Sie eine Mod-Zip-Datei aus.</value>
+  </data>
+  <data name="selectGameTitle" xml:space="preserve">
+    <value>Bitte wählen Sie die ISO Ihres Spiels oder main.dol aus einem unveränderten Dolphin-Dump aus.</value>
+  </data>
+  <data name="unsupportedFiletype" xml:space="preserve">
+    <value>Nicht unterstütztes Dateiformat.</value>
   </data>
 </root>

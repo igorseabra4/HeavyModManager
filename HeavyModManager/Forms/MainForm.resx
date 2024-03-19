@@ -896,6 +896,12 @@ It is usually located in "AppData" (for newer installs), or "Documents\Dolphin E
   <data name="dolphinUserPathNotFoundLabel" xml:space="preserve">
     <value>Dolphin user folder not found on set path.</value>
   </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="isoOrMainDol" xml:space="preserve">
+    <value>ISO or main.dol</value>
+  </data>
   <data name="noBackupTooltip" xml:space="preserve">
     <value>You do not have a backup for this game.
 
@@ -905,5 +911,11 @@ Please click on "Create Backup" and select the game's ISO file.</value>
     <value>You do not have mods for this game.
 
 Please click on "Add Mods" and select a mod ZIP file.</value>
+  </data>
+  <data name="selectGameTitle" xml:space="preserve">
+    <value>Please select your game's ISO or the main.dol from an unchanged Dolphin dump.</value>
+  </data>
+  <data name="unsupportedFiletype" xml:space="preserve">
+    <value>Unsupported file type.</value>
   </data>
 </root>

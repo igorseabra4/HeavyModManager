@@ -404,8 +404,8 @@ public partial class MainForm : Form
     {
         var openFile = new OpenFileDialog()
         {
-            Filter = "ISO or main.dol|*.iso;main.dol",
-            Title = "Please select your game's ISO or the main.dol from an unchanged Dolphin dump."
+            Filter = ResourceManager.GetString("isoOrMainDol") + "|*.iso;main.dol|All files(*.*)|*.*",
+            Title = ResourceManager.GetString("selectGameTitle")
         };
 
         if (openFile.ShowDialog() == DialogResult.OK)
@@ -422,7 +422,9 @@ public partial class MainForm : Form
             }
             else
             {
-                MessageBox.Show("Unsupported file type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ResourceManager.GetString("unsupportedFiletype"), 
+                    ResourceManager.GetString("error"), 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             Enabled = true;
