@@ -259,52 +259,55 @@ public partial class CreateMod : Form
 
     private void buttonRemoveFilesInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip(
-            "Enter the folders or files present in the original game\n" +
-            "which should be deleted from the mod, one per line.\n\n" +
-            "Example:\n\n" +
-            "boot.HIP\n" +
-            "hb\\hb01.HOP\n" +
-            "mn\\mn04.HIP\n\n" +
-            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
+        ShowToolTip(ResourceManager.GetString("removeFilesInfo"));
+        //ShowToolTip(
+        //    "Enter the folders or files present in the original game\n" +
+        //    "which should be deleted from the mod, one per line.\n\n" +
+        //    "Example:\n\n" +
+        //    "boot.HIP\n" +
+        //    "hb\\hb01.HOP\n" +
+        //    "mn\\mn04.HIP\n\n" +
+        //    "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
     }
 
     private void buttonIniValuesInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip(
-            "Enter the game's configuration INI key-value pairs for this mod, in the form of\n" +
-            "<key>=<value>, one per line. You can add comments after #s. You only need to\n" +
-            "enter the lines needed by your mod.\n" +
-            "Example:\n\n" +
-            "BOOT=HB00\n" +
-            "ShowMenuOnBoot=0 # This is a comment\n" +
-            "G.BubbleBowl=1\n" +
-            "#another comment\n\n" +
-            "On an already existing mod, click on 'Import' to import the mod's\n" +
-            "INI into here. Only modified values will be imported and the file\n" +
-            "itself will be deleted.\n\n" +
-            "A few types of key are special because they can appear multiple times in the INI:\n" +
-            "- ScenePlayerMapping, ThresholdPointsRange and AlternateCostumeMapping:\n" +
-            "will replace values based on the stage ID name (first 4 characters of the value)\n" +
-            "- TaskStatus and Extra: if present, will replace ALL entries, so if you're\n" +
-            "replacing those, you must enter all of them.\n" +
-            "If you're still unsure how to use these keys, create your INI file\n" +
-            "manually, then use Import. The tool will import the values exactly\n" +
-            "as they are needed.\n\n" +
-            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
+        ShowToolTip(ResourceManager.GetString("IniValuesInfo"));
+        //ShowToolTip(
+        //    "Enter the game's configuration INI key-value pairs for this mod, in the form of\n" +
+        //    "<key>=<value>, one per line. You can add comments after #s. You only need to\n" +
+        //    "enter the lines needed by your mod.\n" +
+        //    "Example:\n\n" +
+        //    "BOOT=HB00\n" +
+        //    "ShowMenuOnBoot=0 # This is a comment\n" +
+        //    "G.BubbleBowl=1\n" +
+        //    "#another comment\n\n" +
+        //    "On an already existing mod, click on 'Import' to import the mod's\n" +
+        //    "INI into here. Only modified values will be imported and the file\n" +
+        //    "itself will be deleted.\n\n" +
+        //    "A few types of key are special because they can appear multiple times in the INI:\n" +
+        //    "- ScenePlayerMapping, ThresholdPointsRange and AlternateCostumeMapping:\n" +
+        //    "will replace values based on the stage ID name (first 4 characters of the value)\n" +
+        //    "- TaskStatus and Extra: if present, will replace ALL entries, so if you're\n" +
+        //    "replacing those, you must enter all of them.\n" +
+        //    "If you're still unsure how to use these keys, create your INI file\n" +
+        //    "manually, then use Import. The tool will import the values exactly\n" +
+        //    "as they are needed.\n\n" +
+        //    "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
     }
 
     private void buttonDolPatchesInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip(
-            "Enter patches to be applied to the game's DOL file, in the form of\n" +
-            "<offset> <value>, both 4-byte hexadecimal numbers, one per line.\n" +
-            "You can add comments after #s.\n" +
-            "Example:\n\n" +
-            "00287D10 53494D50\n" +
-            "00287DB0 54455854 # This is a comment\n" +
-            "#another comment\n\n" +
-            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
+        ShowToolTip(ResourceManager.GetString("DolPatchesInfo"));
+        //ShowToolTip(
+        //    "Enter patches to be applied to the game's DOL file, in the form of\n" +
+        //    "<offset> <value>, both 4-byte hexadecimal numbers, one per line.\n" +
+        //    "You can add comments after #s.\n" +
+        //    "Example:\n\n" +
+        //    "00287D10 53494D50\n" +
+        //    "00287DB0 54455854 # This is a comment\n" +
+        //    "#another comment\n\n" +
+        //    "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
     }
 
     private void buttonArCodesInfo_Click(object sender, EventArgs e)
@@ -319,17 +322,18 @@ public partial class CreateMod : Form
 
     private void ShowCodesInfo(string codeType)
     {
-        ShowToolTip(
-            "Enter " + codeType + " codes to be applied by Dolphin. Format should be similar to\n" +
-            "Dolphin Settings: Each code starts with $<code name>, then each line follows\n" +
-            "the format <offset> <value>, both 4-byte hexadecimal numbers.\n" +
-            "You can add comments after *s.\n" +
-            "Example:\n\n" +
-            "$Blue Box Fix\n043CD04C 00000000\n" +
-            "*This is a comment\n\n" +
-            "$Warp Anywhere\n040BC1C8 38000001\n040BC258 38000001\n040BC300 38000001\n" +
-            "*another comment\n\n" +
-            "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
+        ShowToolTip(codeType + " " + ResourceManager.GetString("showCodesInfo"));
+        //ShowToolTip(
+        //    "Enter " + codeType + " codes to be applied by Dolphin. Format should be similar to\n" +
+        //    "Dolphin Settings: Each code starts with $<code name>, then each line follows\n" +
+        //    "the format <offset> <value>, both 4-byte hexadecimal numbers.\n" +
+        //    "You can add comments after *s.\n" +
+        //    "Example:\n\n" +
+        //    "$Blue Box Fix\n043CD04C 00000000\n" +
+        //    "*This is a comment\n\n" +
+        //    "$Warp Anywhere\n040BC1C8 38000001\n040BC258 38000001\n040BC300 38000001\n" +
+        //    "*another comment\n\n" +
+        //    "Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto");
     }
 
     private void richTextBoxDolPatches_TextChanged(object sender, EventArgs e)
