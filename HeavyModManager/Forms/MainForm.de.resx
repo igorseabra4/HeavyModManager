@@ -263,10 +263,16 @@
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>S&amp;prache</value>
   </data>
+  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
   <data name="englishToolStripMenuItem.Text" xml:space="preserve">
-    <value>Englisch</value>
+    <value>&amp;Englisch</value>
+  </data>
+  <data name="germanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
   <data name="germanToolStripMenuItem.Text" xml:space="preserve">
-    <value>Deutsch</value>
+    <value>&amp;Deutsch</value>
   </data>
 </root>

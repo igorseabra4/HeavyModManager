@@ -206,7 +206,7 @@ public static class ModManager
             IconManager.CurrentIcon = settings.Icon;
         }
 
-        if (settings.Version >= 3)
+        if (settings.Version >= 3 && settings.Language != null)
         {
             CultureInfo.CurrentCulture = new CultureInfo(settings.Language);
             CultureInfo.CurrentUICulture = new CultureInfo(settings.Language);
