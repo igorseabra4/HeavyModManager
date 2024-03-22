@@ -235,6 +235,7 @@ public static class ModManager
         if (openFile.ShowDialog() == DialogResult.OK)
         {
             DolphinPath = openFile.FileName;
+            // TODO: Localize!
             MessageBox.Show("Dolphin path set successfully.", "Dolphin path set", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
@@ -246,6 +247,7 @@ public static class ModManager
         if (openFile.ShowDialog() == DialogResult.OK)
         {
             DolphinFolderPath = openFile.SelectedPath;
+            // TODO: Localize!
             MessageBox.Show("Dolphin folder path set successfully.", "Dolphin folder path set", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
@@ -356,6 +358,7 @@ public static class ModManager
         }
         catch (Exception ex)
         {
+            // TODO: Localize!
             MessageBox.Show("Unable to read ISO: " + ex.Message, "Error reading ISO",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -372,12 +375,14 @@ public static class ModManager
         }
         catch (Exception ex)
         {
+            // TODO: Localize!
             MessageBox.Show("Unable to create backup from ISO: " + ex.Message, "Backup failed",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             Directory.Delete(GameBackupPath, true);
             return false;
         }
 
+        // TODO: Localize!
         MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.",
             "Backup successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         return true;
@@ -389,6 +394,7 @@ public static class ModManager
 
         if (!Directory.Exists(files))
         {
+            // TODO: Localize!
             MessageBox.Show("Unable to create backup: 'files' directory not found. Are you sure you are using a proper ISO dump?",
                 "Backup failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
@@ -398,6 +404,7 @@ public static class ModManager
 
         if (!Directory.Exists(sys))
         {
+            // TODO: Localize!
             MessageBox.Show("Unable to create backup: 'sys' directory not found. Are you sure you are using a proper ISO dump?",
                 "Backup failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
@@ -415,6 +422,7 @@ public static class ModManager
         fs.CopyDirectory(files, GameBackupFilesPath);
         fs.CopyDirectory(sys, GameBackupSysPath);
 
+        // TODO: Localize!
         MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.",
             "Backup successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
@@ -434,6 +442,7 @@ public static class ModManager
 
         if (!GameBackupExists)
         {
+            // TODO: Localize!
             MessageBox.Show("Unable to apply mods: game backup not found. Please create the game's backup first.",
                 "Game backup not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
@@ -520,6 +529,7 @@ public static class ModManager
         CurrentGameSettings.Invalidated = false;
         SaveGameSettings();
 
+        // TODO: Localize!
         if (modsUsingCustomGameId > 1)
             MessageBox.Show("Warning: Multiple mods which use custom save files are enabled. This might cause issues.",
                 "Multiple mods use custom save files", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -648,6 +658,7 @@ public static class ModManager
 
     public static void RunGame()
     {
+        // TODO: Localize!
         if (string.IsNullOrEmpty(DolphinPath))
         {
             MessageBox.Show("Unable to launch game: Dolphin executable path not set.", "Error launching game",
@@ -655,6 +666,7 @@ public static class ModManager
             return;
         }
 
+        // TODO: Localize!
         if (!File.Exists(DolphinPath))
         {
             MessageBox.Show("Unable to launch game: Dolphin executable not found on set path.", "Error launching game",
@@ -662,6 +674,7 @@ public static class ModManager
             return;
         }
 
+        // TODO: Localize!
         if (!GameExists)
         {
             MessageBox.Show("Unable to launch game: game executable not found.", "Error launching game",

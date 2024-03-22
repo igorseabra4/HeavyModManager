@@ -113,6 +113,7 @@ partial class MainForm
         listViewMods.CheckBoxes = true;
         listViewMods.Columns.AddRange(new ColumnHeader[] { columnName, columnAuthor, columnCreatedDate, columnUpdatedDate });
         listViewMods.Name = "listViewMods";
+        listViewMods.Sorting = SortOrder.Ascending;
         listViewMods.UseCompatibleStateImageBehavior = false;
         listViewMods.View = View.Details;
         listViewMods.ItemCheck += listViewMods_ItemCheck;
@@ -269,8 +270,8 @@ partial class MainForm
         // languageToolStripMenuItem
         // 
         languageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { englishToolStripMenuItem, germanToolStripMenuItem });
-        languageToolStripMenuItem.Name = "languageToolStripMenuItem";
         resources.ApplyResources(languageToolStripMenuItem, "languageToolStripMenuItem");
+        languageToolStripMenuItem.Name = "languageToolStripMenuItem";
         // 
         // englishToolStripMenuItem
         // 

@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+  <!--
     Microsoft ResX Schema 
-    
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
     <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing"">Blue</data>
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
         <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="buttonCreateMod.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -130,13 +130,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonCreateMod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>228, 930</value>
-  </data>
-  <data name="buttonCreateMod.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>160, 558</value>
   </data>
   <data name="buttonCreateMod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 42</value>
+    <value>101, 25</value>
   </data>
   <data name="buttonCreateMod.TabIndex" type="System.Int32, mscorlib">
     <value>72</value>
@@ -163,13 +160,10 @@
     <value>True</value>
   </data>
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>380, 930</value>
-  </data>
-  <data name="buttonCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>266, 558</value>
   </data>
   <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 42</value>
+    <value>89, 25</value>
   </data>
   <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
     <value>71</value>
@@ -199,13 +193,10 @@
     <value>Fill</value>
   </data>
   <data name="comboBoxGame.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 29</value>
-  </data>
-  <data name="comboBoxGame.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 19</value>
   </data>
   <data name="comboBoxGame.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 33</value>
+    <value>313, 23</value>
   </data>
   <data name="comboBoxGame.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -223,16 +214,10 @@
     <value>0</value>
   </data>
   <data name="groupBoxGame.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 5</value>
-  </data>
-  <data name="groupBoxGame.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxGame.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 3</value>
   </data>
   <data name="groupBoxGame.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 85</value>
+    <value>319, 51</value>
   </data>
   <data name="groupBoxGame.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -256,13 +241,10 @@
     <value>Fill</value>
   </data>
   <data name="textBoxModName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 29</value>
-  </data>
-  <data name="textBoxModName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 19</value>
   </data>
   <data name="textBoxModName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 31</value>
+    <value>313, 23</value>
   </data>
   <data name="textBoxModName.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -283,16 +265,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxModName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 100</value>
-  </data>
-  <data name="groupBoxModName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxModName.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 60</value>
   </data>
   <data name="groupBoxModName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 85</value>
+    <value>319, 51</value>
   </data>
   <data name="groupBoxModName.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -316,13 +292,10 @@
     <value>Fill</value>
   </data>
   <data name="textBoxAuthor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 29</value>
-  </data>
-  <data name="textBoxAuthor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 19</value>
   </data>
   <data name="textBoxAuthor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 31</value>
+    <value>313, 23</value>
   </data>
   <data name="textBoxAuthor.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -343,16 +316,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxAuthor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 195</value>
-  </data>
-  <data name="groupBoxAuthor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxAuthor.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 117</value>
   </data>
   <data name="groupBoxAuthor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 85</value>
+    <value>319, 51</value>
   </data>
   <data name="groupBoxAuthor.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -376,13 +343,10 @@
     <value>Fill</value>
   </data>
   <data name="richTextBoxDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 29</value>
-  </data>
-  <data name="richTextBoxDescription.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 19</value>
   </data>
   <data name="richTextBoxDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 246</value>
+    <value>313, 146</value>
   </data>
   <data name="richTextBoxDescription.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -406,16 +370,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 290</value>
-  </data>
-  <data name="groupBoxDescription.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxDescription.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 174</value>
   </data>
   <data name="groupBoxDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 280</value>
+    <value>319, 168</value>
   </data>
   <data name="groupBoxDescription.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -439,13 +397,10 @@
     <value>Fill</value>
   </data>
   <data name="dateTimePickerCreatedAt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 29</value>
-  </data>
-  <data name="dateTimePickerCreatedAt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 19</value>
   </data>
   <data name="dateTimePickerCreatedAt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 31</value>
+    <value>313, 23</value>
   </data>
   <data name="dateTimePickerCreatedAt.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -466,16 +421,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxCreatedAt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 580</value>
-  </data>
-  <data name="groupBoxCreatedAt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxCreatedAt.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 348</value>
   </data>
   <data name="groupBoxCreatedAt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 85</value>
+    <value>319, 51</value>
   </data>
   <data name="groupBoxCreatedAt.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -499,13 +448,10 @@
     <value>Fill</value>
   </data>
   <data name="dateTimePickerUpdatedAt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 29</value>
-  </data>
-  <data name="dateTimePickerUpdatedAt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 19</value>
   </data>
   <data name="dateTimePickerUpdatedAt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>448, 31</value>
+    <value>313, 23</value>
   </data>
   <data name="dateTimePickerUpdatedAt.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -526,16 +472,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxUpdatedAt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 675</value>
-  </data>
-  <data name="groupBoxUpdatedAt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxUpdatedAt.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 405</value>
   </data>
   <data name="groupBoxUpdatedAt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 85</value>
+    <value>319, 51</value>
   </data>
   <data name="groupBoxUpdatedAt.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -559,13 +499,10 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonModIdInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, -2</value>
-  </data>
-  <data name="buttonModIdInfo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>268, -1</value>
   </data>
   <data name="buttonModIdInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 38</value>
+    <value>45, 23</value>
   </data>
   <data name="buttonModIdInfo.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -592,13 +529,10 @@
     <value>Consolas, 9pt</value>
   </data>
   <data name="textBoxModId.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 32</value>
-  </data>
-  <data name="textBoxModId.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 19</value>
   </data>
   <data name="textBoxModId.Size" type="System.Drawing.Size, System.Drawing">
-    <value>441, 29</value>
+    <value>310, 22</value>
   </data>
   <data name="textBoxModId.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -619,16 +553,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxModId.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 770</value>
-  </data>
-  <data name="groupBoxModId.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxModId.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 462</value>
   </data>
   <data name="groupBoxModId.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 85</value>
+    <value>319, 51</value>
   </data>
   <data name="groupBoxModId.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -657,11 +585,8 @@
   <data name="flowLayoutPanelPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="flowLayoutPanelPage1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
   <data name="flowLayoutPanelPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 875</value>
+    <value>342, 520</value>
   </data>
   <data name="flowLayoutPanelPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -682,13 +607,10 @@
     <value>0</value>
   </data>
   <data name="tabPageModData.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 34</value>
-  </data>
-  <data name="tabPageModData.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>4, 24</value>
   </data>
   <data name="tabPageModData.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 875</value>
+    <value>342, 520</value>
   </data>
   <data name="tabPageModData.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -715,13 +637,10 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonGameIdInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, 37</value>
-  </data>
-  <data name="buttonGameIdInfo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>268, 22</value>
   </data>
   <data name="buttonGameIdInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 38</value>
+    <value>45, 23</value>
   </data>
   <data name="buttonGameIdInfo.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -745,13 +664,10 @@
     <value>True</value>
   </data>
   <data name="labelDefaultGameId.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 80</value>
-  </data>
-  <data name="labelDefaultGameId.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>6, 48</value>
   </data>
   <data name="labelDefaultGameId.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 25</value>
+    <value>96, 15</value>
   </data>
   <data name="labelDefaultGameId.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -775,13 +691,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="textBoxGameId.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 37</value>
-  </data>
-  <data name="textBoxGameId.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>6, 22</value>
   </data>
   <data name="textBoxGameId.Size" type="System.Drawing.Size, System.Drawing">
-    <value>364, 31</value>
+    <value>256, 23</value>
   </data>
   <data name="textBoxGameId.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -799,16 +712,10 @@
     <value>2</value>
   </data>
   <data name="groupBoxGameId.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 5</value>
-  </data>
-  <data name="groupBoxGameId.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxGameId.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 3</value>
   </data>
   <data name="groupBoxGameId.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 115</value>
+    <value>319, 69</value>
   </data>
   <data name="groupBoxGameId.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -832,13 +739,10 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonIniImport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>297, -2</value>
-  </data>
-  <data name="buttonIniImport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>208, -1</value>
   </data>
   <data name="buttonIniImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 38</value>
+    <value>54, 23</value>
   </data>
   <data name="buttonIniImport.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -862,13 +766,10 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonIniValuesInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, -2</value>
-  </data>
-  <data name="buttonIniValuesInfo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>268, -1</value>
   </data>
   <data name="buttonIniValuesInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 38</value>
+    <value>45, 23</value>
   </data>
   <data name="buttonIniValuesInfo.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -892,13 +793,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="richTextBoxINIValues.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 37</value>
-  </data>
-  <data name="richTextBoxINIValues.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>6, 22</value>
   </data>
   <data name="richTextBoxINIValues.Size" type="System.Drawing.Size, System.Drawing">
-    <value>437, 237</value>
+    <value>307, 144</value>
   </data>
   <data name="richTextBoxINIValues.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -922,16 +820,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxIniValues.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 130</value>
-  </data>
-  <data name="groupBoxIniValues.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxIniValues.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 78</value>
   </data>
   <data name="groupBoxIniValues.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 287</value>
+    <value>319, 172</value>
   </data>
   <data name="groupBoxIniValues.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -955,13 +847,10 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonMergeHipsInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, -2</value>
-  </data>
-  <data name="buttonMergeHipsInfo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>268, -1</value>
   </data>
   <data name="buttonMergeHipsInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 38</value>
+    <value>45, 23</value>
   </data>
   <data name="buttonMergeHipsInfo.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -985,13 +874,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="richTextBoxMergeHips.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 37</value>
-  </data>
-  <data name="richTextBoxMergeHips.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>6, 22</value>
   </data>
   <data name="richTextBoxMergeHips.Size" type="System.Drawing.Size, System.Drawing">
-    <value>437, 237</value>
+    <value>307, 144</value>
   </data>
   <data name="richTextBoxMergeHips.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -1015,16 +901,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxMergeHips.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 427</value>
-  </data>
-  <data name="groupBoxMergeHips.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxMergeHips.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 256</value>
   </data>
   <data name="groupBoxMergeHips.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 287</value>
+    <value>319, 172</value>
   </data>
   <data name="groupBoxMergeHips.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -1048,13 +928,10 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonRemoveFilesInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, -2</value>
-  </data>
-  <data name="buttonRemoveFilesInfo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>268, -1</value>
   </data>
   <data name="buttonRemoveFilesInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 38</value>
+    <value>45, 23</value>
   </data>
   <data name="buttonRemoveFilesInfo.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -1078,13 +955,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="richTextBoxRemoveFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 37</value>
-  </data>
-  <data name="richTextBoxRemoveFiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>6, 22</value>
   </data>
   <data name="richTextBoxRemoveFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>437, 237</value>
+    <value>307, 144</value>
   </data>
   <data name="richTextBoxRemoveFiles.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -1108,16 +982,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxRemoveFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 724</value>
-  </data>
-  <data name="groupBoxRemoveFiles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxRemoveFiles.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 434</value>
   </data>
   <data name="groupBoxRemoveFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 287</value>
+    <value>319, 172</value>
   </data>
   <data name="groupBoxRemoveFiles.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -1141,13 +1009,10 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonDolPatchesInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, -2</value>
-  </data>
-  <data name="buttonDolPatchesInfo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>268, -1</value>
   </data>
   <data name="buttonDolPatchesInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 38</value>
+    <value>45, 23</value>
   </data>
   <data name="buttonDolPatchesInfo.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -1171,13 +1036,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="richTextBoxDolPatches.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 37</value>
-  </data>
-  <data name="richTextBoxDolPatches.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>6, 22</value>
   </data>
   <data name="richTextBoxDolPatches.Size" type="System.Drawing.Size, System.Drawing">
-    <value>437, 237</value>
+    <value>307, 144</value>
   </data>
   <data name="richTextBoxDolPatches.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
@@ -1201,16 +1063,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxDolPatches.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 1021</value>
-  </data>
-  <data name="groupBoxDolPatches.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxDolPatches.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 612</value>
   </data>
   <data name="groupBoxDolPatches.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 287</value>
+    <value>319, 172</value>
   </data>
   <data name="groupBoxDolPatches.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
@@ -1234,13 +1090,10 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonArCodesInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, -2</value>
-  </data>
-  <data name="buttonArCodesInfo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>268, -1</value>
   </data>
   <data name="buttonArCodesInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 38</value>
+    <value>45, 23</value>
   </data>
   <data name="buttonArCodesInfo.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>
@@ -1264,13 +1117,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="richTextBoxArCodes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 37</value>
-  </data>
-  <data name="richTextBoxArCodes.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>6, 22</value>
   </data>
   <data name="richTextBoxArCodes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>437, 237</value>
+    <value>307, 144</value>
   </data>
   <data name="richTextBoxArCodes.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
@@ -1294,16 +1144,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxArCodes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 1318</value>
-  </data>
-  <data name="groupBoxArCodes.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxArCodes.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 790</value>
   </data>
   <data name="groupBoxArCodes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 287</value>
+    <value>319, 172</value>
   </data>
   <data name="groupBoxArCodes.TabIndex" type="System.Int32, mscorlib">
     <value>33</value>
@@ -1327,13 +1171,10 @@
     <value>Top, Right</value>
   </data>
   <data name="buttonGeckoCodesInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, -2</value>
-  </data>
-  <data name="buttonGeckoCodesInfo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>268, -1</value>
   </data>
   <data name="buttonGeckoCodesInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 38</value>
+    <value>45, 23</value>
   </data>
   <data name="buttonGeckoCodesInfo.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -1357,13 +1198,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="richTextBoxGeckoCodes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 37</value>
-  </data>
-  <data name="richTextBoxGeckoCodes.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>6, 22</value>
   </data>
   <data name="richTextBoxGeckoCodes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>437, 237</value>
+    <value>307, 144</value>
   </data>
   <data name="richTextBoxGeckoCodes.TabIndex" type="System.Int32, mscorlib">
     <value>38</value>
@@ -1387,16 +1225,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxGeckoCodes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 1615</value>
-  </data>
-  <data name="groupBoxGeckoCodes.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="groupBoxGeckoCodes.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>3, 968</value>
   </data>
   <data name="groupBoxGeckoCodes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 287</value>
+    <value>319, 172</value>
   </data>
   <data name="groupBoxGeckoCodes.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -1425,11 +1257,8 @@
   <data name="flowLayoutPanelPage2.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="flowLayoutPanelPage2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
   <data name="flowLayoutPanelPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 875</value>
+    <value>342, 520</value>
   </data>
   <data name="flowLayoutPanelPage2.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -1450,13 +1279,10 @@
     <value>0</value>
   </data>
   <data name="tabPageSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 34</value>
-  </data>
-  <data name="tabPageSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>4, 24</value>
   </data>
   <data name="tabPageSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 875</value>
+    <value>342, 520</value>
   </data>
   <data name="tabPageSettings.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1477,13 +1303,14 @@
     <value>1</value>
   </data>
   <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 15</value>
+    <value>9, 9</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tabControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>500, 913</value>
+    <value>350, 548</value>
   </data>
   <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1500,17 +1327,14 @@
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>10, 25</value>
+    <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>526, 983</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+    <value>368, 590</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
@@ -1523,91 +1347,5 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="gameIdInfo" xml:space="preserve">
-    <value>Enter a custom game ID for the mod.
-
-Save files are created using this game ID, enabling your mod to have a unique save file.
-
-Make sure no other GameCube or Wii game has the same ID.
-
-It is recommended to keep the first four characters the same and change only the last two.
-
-Must be 6 characters long. Leave blank for default.</value>
-  </data>
-  <data name="mergeHipsInfo" xml:space="preserve">
-    <value>Enter your mod's HIP and HOP files which should be merged into the running copy of the game instead of replacing the original ones, one per line.
-
-Assets from the mod will be imported into the destination archive, replacing any assets with the same asset ID if they exist, and assets of certain types will be merged into one (namely: Collision Table, Jaw Data Table, Level of Detail Table, Pipe Info Table, Shadow Table and Sound Info.</value>
-  </data>
-  <data name="modIdInfo" xml:space="preserve">
-    <value>The Mod ID is generated automatically from the game name, author and mod name.
-Feel free to enter your own custom ID for the mod, but make sure that it's unique!
-No other mod, by any other author or for any other game, should have the same ID as yours.
-The Mod ID cannot be changed after the mod is created.</value>
-  </data>
-  <data name="DolPatchesInfo" xml:space="preserve">
-    <value>Enter patches to be applied to the game's DOL file, in the form of
-&lt;offset&gt; &lt;value&gt;, both 4-byte hexadecimal numbers, one per line.
-You can add comments after #s.
-
-Example:
-00287D10 53494D50
-00287DB0 54455854 # This is a comment
-#another comment
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="IniValuesInfo" xml:space="preserve">
-    <value>Enter the game's configuration INI key-value pairs for this mod, in the form of
-&lt;key&gt;=&lt;value&gt;, one per line. You can add comments after #s. You only need to
-enter the lines needed by your mod.
-Example:
-
-BOOT=HB00
-ShowMenuOnBoot=0 # This is a comment
-G.BubbleBowl=1
-#another comment
-
-On an already existing mod, click on 'Import' to import the mod's
-INI into here. Only modified values will be imported and the file
-itself will be deleted.
-
-A few types of key are special because they can appear multiple times in the INI:
-- ScenePlayerMapping, ThresholdPointsRange and AlternateCostumeMapping:
-will replace values based on the stage ID name (first 4 characters of the value)
-- TaskStatus and Extra: if present, will replace ALL entries, so if you're
-replacing those, you must enter all of them.
-If you're still unsure how to use these keys, create your INI file
-manually, then use Import. The tool will import the values exactly
-as they are needed.
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="removeFilesInfo" xml:space="preserve">
-    <value>Enter the folders or files present in the original game
-which should be deleted from the mod, one per line.
-
-Example:
-boot.HIP
-hb\\hb01.HOP
-mn\\mn04.HIP
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="showCodesInfo" xml:space="preserve">
-    <value>codes to be applied by Dolphin. Format should be similar to
-Dolphin Settings: Each code starts with $&lt;code name&gt;, then each line follows
-the format &lt;offset&gt; &lt;value&gt;, both 4-byte hexadecimal numbers.
-You can add comments after *s.
-Example:
-
-$Blue Box Fix\n043CD04C 00000000
-*This is a comment
-
-$Warp Anywhere\n040BC1C8 38000001\n040BC258 38000001\n040BC300 38000001
-*another comment
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
   </data>
 </root>

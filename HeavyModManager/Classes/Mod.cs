@@ -108,7 +108,7 @@ public class Mod
     /// Writes the mod to a JSON file.
     /// </summary>
     /// <param name="isEditing"></param>
-    public void SaveModJson(bool isEditing)
+    public string SaveModJson(bool isEditing)
     {
         var modPath = ModManager.GetModPath(ModId);
 
@@ -123,10 +123,8 @@ public class Mod
             var files = Path.Combine(modPath, "files");
             if (!Directory.Exists(files))
                 Directory.CreateDirectory(files);
-
-            MessageBox.Show("Mod created at " + modPath);
-            System.Diagnostics.Process.Start("explorer.exe", modPath);
         }
+        return modPath;
     }
 
     public void RemoveRemoveFiles()

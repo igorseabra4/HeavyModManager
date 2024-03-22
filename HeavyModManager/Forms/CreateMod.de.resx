@@ -284,4 +284,10 @@ Unterstützte Spiele: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</va
   <data name="tabPageModData.Text" xml:space="preserve">
     <value>Mod Metadaten</value>
   </data>
+  <data name="modCreated" xml:space="preserve">
+    <value>Mod erstellt</value>
+  </data>
+  <data name="modCreatedAt" xml:space="preserve">
+    <value>Mod erstellt in</value>
+  </data>
 </root>

@@ -178,7 +178,14 @@ public partial class CreateMod : Form
             UpdatedAt = dateTimePickerUpdatedAt.Value,
         };
 
-        mod.SaveModJson(isEditing);
+        string modPath = mod.SaveModJson(isEditing);
+
+        MessageBox.Show(ResourceManager.GetString("modCreatedAt") + " " + modPath,
+            ResourceManager.GetString("modCreated"),
+            MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        System.Diagnostics.Process.Start("explorer.exe", modPath);
+
         Close();
     }
 
@@ -434,6 +441,7 @@ public partial class CreateMod : Form
     {
         if (!ModManager.GameBackupExists)
         {
+            // TODO: Localize!
             MessageBox.Show($"Unable to import INI: game backup not found. Please create a backup from the original game's ISO file.", "Game backup not found",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
@@ -443,6 +451,7 @@ public partial class CreateMod : Form
 
         if (!File.Exists(modIniPath))
         {
+            // TODO: Localize!
             MessageBox.Show($"Unable to import INI: INI file not found at {modIniPath}", "INI not found in files",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;

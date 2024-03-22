@@ -26,6 +26,7 @@ namespace HeavyModManager.Functions
 
                 if (updatedVersion != null && oldVersion.Version != updatedVersion.Version)
                 {
+                    // TODO: Localize!
                     string messageText = $"There is an update available: Heavy Mod Manager {updatedVersion.Version}.\n\n{updatedVersion.Description}\n\nDo you wish to download it?";
                     DialogResult d = MessageBox.Show(messageText, "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
@@ -77,6 +78,7 @@ namespace HeavyModManager.Functions
             }
             catch (Exception ex)
             {
+                // TODO: Localize!
                 MessageBox.Show("There was an error checking for updates: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 

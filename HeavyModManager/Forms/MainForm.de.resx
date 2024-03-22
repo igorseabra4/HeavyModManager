@@ -330,4 +330,10 @@ Klicke auf "Mods hinzufügen" und wähle eine Mod-Zip-Datei aus.</value>
   <data name="unsupportedFiletype" xml:space="preserve">
     <value>Nicht unterstütztes Dateiformat.</value>
   </data>
+  <data name="confirmDeleteMod" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie den Mod "{0}" von {1} löschen möchten?</value>
+  </data>
+  <data name="confirmDeleteModTitle" xml:space="preserve">
+    <value>Delete mod</value>
+  </data>
 </root>

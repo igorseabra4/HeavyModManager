@@ -11,7 +11,7 @@ namespace HeavyModManager;
 
 public partial class MainForm : Form
 {
-    private ResourceManager ResourceManager = new ResourceManager("HeavyModManager.MainForm", 
+    private ResourceManager ResourceManager = new ResourceManager("HeavyModManager.MainForm",
         typeof(Program).Assembly);
 
 
@@ -163,7 +163,7 @@ public partial class MainForm : Form
     private void ShowToolTip()
     {
         toolTip.Hide(comboBoxGame);
-        
+
         int tooltipX = 0;
         int tooltipY = 24;
         int tooltipDurationMs = 12 * 1000;
@@ -176,14 +176,14 @@ public partial class MainForm : Form
         }
         else if (string.IsNullOrEmpty(ModManager.DolphinFolderPath))
         {
-            toolTip.Show(ResourceManager.GetString("dolphinUserFolderPathNotSetTooltip"), 
+            toolTip.Show(ResourceManager.GetString("dolphinUserFolderPathNotSetTooltip"),
                 comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
         }
         else if (comboBoxGame.SelectedIndex != -1)
         {
             if (!ModManager.GameBackupExists)
                 toolTip.Show(ResourceManager.GetString("noBackupTooltip"), comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
-                //toolTip.Show("You do not have a backup for this game.\nPlease click on \"Create Backup\" and select the game's ISO file.", comboBoxGame, 0, 24, 8 * 1000);
+            //toolTip.Show("You do not have a backup for this game.\nPlease click on \"Create Backup\" and select the game's ISO file.", comboBoxGame, 0, 24, 8 * 1000);
             else if (listViewMods.Items.Count == 0)
                 toolTip.Show(ResourceManager.GetString("noModsTooltip"), comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
             //toolTip.Show("You do not have mods for this game.\nPlease click on \"Add Mods\" and select a mod ZIP file.", comboBoxGame, 0, 24, 8 * 1000);
@@ -220,7 +220,14 @@ public partial class MainForm : Form
         var mod = GetSelectedMod();
         if (mod != null)
         {
-            var dr = MessageBox.Show($"Are you sure you want to delete the mod '{mod.ModName}' by '{mod.Author}'?", "Delete Mod", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            string message = string.Format(ResourceManager.GetString("confirmDeleteMod"), mod.ModName, mod.Author);
+
+            var dr = MessageBox.Show(
+                message,
+                ResourceManager.GetString("confirmDeleteModTitle"),
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
             if (dr == DialogResult.Yes)
             {
                 ModManager.DeleteMod(mod.ModId);
@@ -247,6 +254,7 @@ public partial class MainForm : Form
             }
             catch (Exception ex)
             {
+                // TODO: Localize!
                 MessageBox.Show("There was an error creating your mod ZIP archive: " + ex.Message);
             }
         }
@@ -422,8 +430,8 @@ public partial class MainForm : Form
             }
             else
             {
-                MessageBox.Show(ResourceManager.GetString("unsupportedFiletype"), 
-                    ResourceManager.GetString("error"), 
+                MessageBox.Show(ResourceManager.GetString("unsupportedFiletype"),
+                    ResourceManager.GetString("error"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 

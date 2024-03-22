@@ -18,6 +18,7 @@ public static class ZipManager
 
         if (zMod == null)
         {
+            // TODO: Localize!
             MessageBox.Show($"Could not find mod.json on zip root of {Path.GetFileName(fileName)}. Are you sure this is a compatible mod?",
                 "Error adding mod", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
@@ -30,6 +31,7 @@ public static class ZipManager
         var mod = JsonSerializer.Deserialize<Mod>(zModString);
         if (mod == null)
         {
+            // TODO: Localize!
             MessageBox.Show($"Could not read mod.json on {Path.GetFileName(fileName)}. Are you sure this is a compatible mod?",
                 "Error adding mod", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
@@ -64,11 +66,13 @@ public static class ZipManager
 
         if (!Directory.Exists(modPath))
         {
+            // TODO: Localize!
             MessageBox.Show("Unable to zip mod: mod not found.", "Error zipping mod",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
+        // TODO: Localize!
         var saveFile = new SaveFileDialog()
         {
             Filter = "ZIP Archives|*.zip",
