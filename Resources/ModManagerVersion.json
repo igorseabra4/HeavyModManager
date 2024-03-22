@@ -1,4 +1,4 @@
 {
-  "Version": "v2023.10.17",
-  "Description": "* Adds AR and Gecko codes for mods. Codes are applied to Dolphin configuration on game launch. Mods with codes require a custom game ID - if it's not specified, Heavy Mod Manager will apply one automatically.\n* Due to the addition of AR and Gecko codes, HMM now also requires the path to the Dolphin user folder to be specified (usually located under Documents\\Dolphin Emulator). You will be prompted to select it from the Settings tab when you open the tool.\n* The tool will automatically search and load the default paths for Dolphin and the Dolphin user folder if they exist and are not defined on startup.\n* Fixes a bug in which mods which add a new folder to the game's files could not be applied.\n* Fixes a bug in which closing the Create Mod window could throw an exception."
+  "Version": "v2024.03.22",
+  "Description": "* Fixes some issues when adding mod zips that contain directories.\n* German localisation about 90% complete, will be coming soon. Thanks to sis_aneki and EnergyDrink for translation. "
 }

@@ -23,5 +23,5 @@ public class ModManagerVersion
         Description = description;
     }
 
-    public static ModManagerVersion GetCurrent() => new("v2023.10.17", "");
+    public static ModManagerVersion GetCurrent() => new("v2024.03.22", "");
 }
