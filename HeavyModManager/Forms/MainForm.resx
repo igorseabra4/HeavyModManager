@@ -926,4 +926,7 @@ Please click on "Create Backup" and select the game's ISO file.</value>
 
 Please click on "Add Mods" and select a mod ZIP file.</value>
   </data>
+  <data name="errorCreatingModZip" xml:space="preserve">
+    <value>There was an error creating your mod ZIP archive:</value>
+  </data>
 </root>

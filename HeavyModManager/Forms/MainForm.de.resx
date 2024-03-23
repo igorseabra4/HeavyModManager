@@ -336,4 +336,7 @@ Klicke auf "Mods hinzufügen" und wähle eine Mod-Zip-Datei aus.</value>
   <data name="confirmDeleteModTitle" xml:space="preserve">
     <value>Delete mod</value>
   </data>
+  <data name="errorCreatingModZip" xml:space="preserve">
+    <value />
+  </data>
 </root>

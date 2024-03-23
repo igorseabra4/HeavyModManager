@@ -123,11 +123,23 @@
   <data name="bttmName" xml:space="preserve">
     <value>Family Guy: Back to the Multiverse</value>
   </data>
+  <data name="downloadPrompt" xml:space="preserve">
+    <value>Do you wish to download it?</value>
+  </data>
+  <data name="errorCheckingForUpdates" xml:space="preserve">
+    <value>There was an error checking for updates:</value>
+  </data>
+  <data name="errorCheckingForUpdatesTitle" xml:space="preserve">
+    <value>Error Checking for Updates</value>
+  </data>
   <data name="hollywoodWorkoutName" xml:space="preserve">
     <value>Harley Pasternak's Hollywood Workout</value>
   </data>
   <data name="incrediblesName" xml:space="preserve">
     <value>The Incredibles</value>
+  </data>
+  <data name="programName" xml:space="preserve">
+    <value>Heavy Mod Manager</value>
   </data>
   <data name="ratName" xml:space="preserve">
     <value>Ratatouille</value>
@@ -149,6 +161,12 @@
   </data>
   <data name="ufcName" xml:space="preserve">
     <value>UFC Personal Trainer</value>
+  </data>
+  <data name="updateAvailable" xml:space="preserve">
+    <value>There is an update available:</value>
+  </data>
+  <data name="updateAvailableTitle" xml:space="preserve">
+    <value>Update Available</value>
   </data>
   <data name="upName" xml:space="preserve">
     <value>Up</value>

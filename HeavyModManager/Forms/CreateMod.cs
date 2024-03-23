@@ -441,8 +441,8 @@ public partial class CreateMod : Form
     {
         if (!ModManager.GameBackupExists)
         {
-            // TODO: Localize!
-            MessageBox.Show($"Unable to import INI: game backup not found. Please create a backup from the original game's ISO file.", "Game backup not found",
+            MessageBox.Show(ResourceManager.GetString("gameBackupNotFound"),
+                ResourceManager.GetString("gameBackupNotFoundTitle"),
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
@@ -451,8 +451,9 @@ public partial class CreateMod : Form
 
         if (!File.Exists(modIniPath))
         {
-            // TODO: Localize!
-            MessageBox.Show($"Unable to import INI: INI file not found at {modIniPath}", "INI not found in files",
+            MessageBox.Show(
+                string.Format(ResourceManager.GetString("iniNotFound"), modIniPath),
+                ResourceManager.GetString("iniNotFoundTitle"),
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }

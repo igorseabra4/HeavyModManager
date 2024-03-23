@@ -1462,4 +1462,16 @@ Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
   <data name="save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="gameBackupNotFound" xml:space="preserve">
+    <value>Unable to import INI: game backup not found. Please create a backup from the original game's ISO file.</value>
+  </data>
+  <data name="gameBackupNotFoundTitle" xml:space="preserve">
+    <value>Game backup not found</value>
+  </data>
+  <data name="iniNotFound" xml:space="preserve">
+    <value>Unable to import INI: INI file not found at {0}</value>
+  </data>
+  <data name="iniNotFoundTitle" xml:space="preserve">
+    <value>INI not found in files</value>
+  </data>
 </root>

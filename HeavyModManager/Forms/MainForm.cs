@@ -254,8 +254,11 @@ public partial class MainForm : Form
             }
             catch (Exception ex)
             {
-                // TODO: Localize!
-                MessageBox.Show("There was an error creating your mod ZIP archive: " + ex.Message);
+                MessageBox.Show(
+                    ResourceManager.GetString("errorCreatingModZip") + " " + ex.Message,
+                    ResourceManager.GetString("error"),
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
     }

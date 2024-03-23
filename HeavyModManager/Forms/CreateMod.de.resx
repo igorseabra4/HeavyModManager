@@ -290,4 +290,16 @@ Unterstützte Spiele: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</va
   <data name="modCreatedAt" xml:space="preserve">
     <value>Mod erstellt in</value>
   </data>
+  <data name="gameBackupNotFound" xml:space="preserve">
+    <value />
+  </data>
+  <data name="gameBackupNotFoundTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="iniNotFound" xml:space="preserve">
+    <value />
+  </data>
+  <data name="iniNotFoundTitle" xml:space="preserve">
+    <value />
+  </data>
 </root>

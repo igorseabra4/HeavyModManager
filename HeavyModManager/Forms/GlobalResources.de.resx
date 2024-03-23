@@ -129,6 +129,9 @@
   <data name="incrediblesName" xml:space="preserve">
     <value>Die Unglaublichen</value>
   </data>
+  <data name="programName" xml:space="preserve">
+    <value>Heavy Mod Manager</value>
+  </data>
   <data name="ratName" xml:space="preserve">
     <value>Ratatouille</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="ufcName" xml:space="preserve">
     <value>UFC Personal Trainer</value>
+  </data>
+  <data name="updateAvailable" xml:space="preserve">
+    <value />
   </data>
   <data name="upName" xml:space="preserve">
     <value>Oben</value>

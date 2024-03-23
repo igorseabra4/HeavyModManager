@@ -79,6 +79,33 @@ namespace HeavyModManager.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you wish to download it?.
+        /// </summary>
+        internal static string downloadPrompt {
+            get {
+                return ResourceManager.GetString("downloadPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error checking for updates:.
+        /// </summary>
+        internal static string errorCheckingForUpdates {
+            get {
+                return ResourceManager.GetString("errorCheckingForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Checking for Updates.
+        /// </summary>
+        internal static string errorCheckingForUpdatesTitle {
+            get {
+                return ResourceManager.GetString("errorCheckingForUpdatesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Harley Pasternak&apos;s Hollywood Workout.
         /// </summary>
         internal static string hollywoodWorkoutName {
@@ -93,6 +120,15 @@ namespace HeavyModManager.Forms {
         internal static string incrediblesName {
             get {
                 return ResourceManager.GetString("incrediblesName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heavy Mod Manager.
+        /// </summary>
+        internal static string programName {
+            get {
+                return ResourceManager.GetString("programName", resourceCulture);
             }
         }
         
@@ -156,6 +192,24 @@ namespace HeavyModManager.Forms {
         internal static string ufcName {
             get {
                 return ResourceManager.GetString("ufcName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is an update available:.
+        /// </summary>
+        internal static string updateAvailable {
+            get {
+                return ResourceManager.GetString("updateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Available.
+        /// </summary>
+        internal static string updateAvailableTitle {
+            get {
+                return ResourceManager.GetString("updateAvailableTitle", resourceCulture);
             }
         }
         
