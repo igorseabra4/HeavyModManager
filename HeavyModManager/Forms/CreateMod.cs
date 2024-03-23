@@ -10,7 +10,7 @@ public partial class CreateMod : Form
 
     private ResourceManager ResourceManager = new ResourceManager("HeavyModManager.Forms.CreateMod",
         typeof(Program).Assembly);
-    
+
     public CreateMod()
     {
         isEditing = false;
@@ -154,7 +154,7 @@ public partial class CreateMod : Form
             if (Directory.Exists(existingModPath))
             {
                 MessageBox.Show(ResourceManager.GetString("modIdAlreadyExists"),
-                    ResourceManager.GetString("unableToCreateMod"), 
+                    ResourceManager.GetString("unableToCreateMod"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -249,7 +249,7 @@ public partial class CreateMod : Form
     {
         // todo: show compatible games (Scooby, BFBB, Movie, Incredibles, Underminer, RatProto)
         ShowToolTip(ResourceManager.GetString("mergeHipsInfo"));
-        
+
         //ShowToolTip(
         //    "Enter your mod's HIP and HOP files which should be merged into the running\n" +
         //    "copy of the game instead of replacing the original ones, one per line.\n" +

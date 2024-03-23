@@ -32,6 +32,7 @@ namespace HeavyModManager.Functions
 
                     if (d == DialogResult.Yes)
                     {
+                        // FIXME : Hard-coded file name breaks updates if the release .zip filename is different
                         string updatedFileName = $"HeavyModManager_{updatedVersion.Version}.zip";
                         string updatedURL = $"https://github.com/igorseabra4/HeavyModManager/releases/download/{updatedVersion.Version}/{updatedFileName}";
 

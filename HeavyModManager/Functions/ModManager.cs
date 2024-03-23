@@ -429,6 +429,8 @@ public static class ModManager
 
     public static void Invalidate()
     {
+        // FIXME: Crashes when a game is not selected.
+
         CurrentGameSettings.Invalidated = true;
         SaveGameSettings();
     }

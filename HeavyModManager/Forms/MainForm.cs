@@ -462,12 +462,14 @@ public partial class MainForm : Form
     {
         ModManager.InstallMod();
         PopulateModList();
+        buttonApplyMods.Enabled = CanApplyMods;
     }
 
     private void buttonRefreshModList_Click(object sender, EventArgs e)
     {
         ModManager.RefreshModList();
         PopulateModList();
+        buttonApplyMods.Enabled = CanApplyMods;
     }
 
     private void chooseDolphinPathToolStripMenuItem_Click(object sender, EventArgs e)
@@ -554,10 +556,7 @@ public partial class MainForm : Form
             CultureInfo.CurrentCulture = new CultureInfo(tag);
             CultureInfo.CurrentUICulture = new CultureInfo(tag);
 
-            // Save the settings
             SaveSettings();
-
-            // Close the current form
             Close();
 
             // Start a new instance of the form
