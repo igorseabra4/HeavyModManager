@@ -1,4 +1,4 @@
 {
-  "Version": "v2024.03.22",
-  "Description": "* Fixes some issues when adding mod zips that contain directories.\n* German localisation about 90% complete, will be coming soon. Thanks to sis_aneki and EnergyDrink for translation. "
+  "Version": "v2024.03.23",
+  "Description": "* Add strings missing from .resx files which caused errors when deleting mods, and missing text in the UI (thanks Double H)\n* Re-add icons to the resx, fixing the Change Icon functionality"
 }
