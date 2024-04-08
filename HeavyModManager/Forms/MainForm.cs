@@ -4,8 +4,8 @@ using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
 using HeavyModManager.Functions;
 using System.Globalization;
-using System.Text.Json;
 using System.Resources;
+using System.Text.Json;
 
 namespace HeavyModManager;
 
