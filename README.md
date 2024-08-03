@@ -1,4 +1,6 @@
 # Heavy Mod Manager
+![HeavyModManager_DgMBEaWLCN](https://github.com/user-attachments/assets/1590df65-7796-4fb1-bb18-1a326c4a4760)
+
 HeavyModManager is a mod manager for GameCube and Wii games emulated on Dolphin, built with Heavy Iron Studios games in mind.
 
 It is intended for use on the following games:
