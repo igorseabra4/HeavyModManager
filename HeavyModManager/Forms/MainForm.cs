@@ -350,6 +350,9 @@ public partial class MainForm : Form
             if (!string.IsNullOrEmpty(mod.DOLPatches))
                 labelModInfo.Text += "Has DOL Patches\n";
 
+            if (!string.IsNullOrEmpty(mod.IpsPatchBase64))
+                labelModInfo.Text += "Has IPS Patch\n";
+
             if (!string.IsNullOrEmpty(mod.ArCodes))
                 labelModInfo.Text += "Has AR Codes\n";
 

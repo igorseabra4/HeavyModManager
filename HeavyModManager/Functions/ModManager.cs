@@ -496,7 +496,7 @@ public static class ModManager
                 mod.CopyFiles();
                 mod.ApplyIniPatches();
 
-                if (mod.ApplyDolPatches(ref dol))
+                if (mod.ApplyIPSPatch(ref dol) || mod.ApplyDolPatches(ref dol))
                     hasDolPatches = true;
 
                 if (!string.IsNullOrEmpty(mod.ArCodes))
