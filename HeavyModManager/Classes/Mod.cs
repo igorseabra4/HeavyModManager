@@ -1,4 +1,5 @@
-﻿using HeavyModManager.Enum;
+﻿using HeavyModManager.Classes.IPS;
+using HeavyModManager.Enum;
 using HeavyModManager.Functions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -85,6 +86,9 @@ public class Mod
     [JsonInclude]
     public DateTime UpdatedAt { get; set; }
 
+    [JsonInclude]
+    public string IpsPatchBase64 { get; set; }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Mod"/> class.
     /// </summary>
@@ -114,6 +118,9 @@ public class Mod
 
         if (!Directory.Exists(modPath))
             Directory.CreateDirectory(modPath);
+
+        if (File.Exists(IpsPatchBase64))
+            IpsPatchBase64 = Convert.ToBase64String(File.ReadAllBytes(IpsPatchBase64));
 
         var modJsonPath = ModManager.GetModJsonPath(ModId);
         File.WriteAllText(modJsonPath, JsonSerializer.Serialize(this));
@@ -187,6 +194,23 @@ public class Mod
         var ini = INIFile.FromPath(ModManager.GameGameINIPath);
         ini.ReplaceWith(INIFile.FromContents(INIReplacements));
         ini.SaveTo(ModManager.GameGameINIPath);
+    }
+
+    public bool ApplyIPSPatch(ref byte[] dol)
+    {
+        if (string.IsNullOrEmpty(IpsPatchBase64))
+            return false;
+        IPSFile ips = new IPSFile(Convert.FromBase64String(IpsPatchBase64));
+        if (ips.MaxSize > dol.Length)
+            Array.Resize(ref dol, ips.MaxSize);
+
+        foreach (var patch in ips.Patches)
+            for (int i = 0; i < patch.Data.Length; i++)
+                dol[patch.Offset + i] = patch.Data[i];
+
+        if (ips.ResizeValue != 0)
+            Array.Resize(ref dol, ips.ResizeValue);
+        return true;
     }
 
     public bool ApplyDolPatches(ref byte[] dol)

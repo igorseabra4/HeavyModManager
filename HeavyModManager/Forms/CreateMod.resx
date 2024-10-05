@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+  <!--
     Microsoft ResX Schema 
-    
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="buttonCreateMod.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -1086,6 +1086,78 @@
   <data name="&gt;&gt;groupBoxDolPatches.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="buttonOpenIpsFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>279, 21</value>
+  </data>
+  <data name="buttonOpenIpsFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 23</value>
+  </data>
+  <data name="buttonOpenIpsFile.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="buttonOpenIpsFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="&gt;&gt;buttonOpenIpsFile.Name" xml:space="preserve">
+    <value>buttonOpenIpsFile</value>
+  </data>
+  <data name="&gt;&gt;buttonOpenIpsFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonOpenIpsFile.Parent" xml:space="preserve">
+    <value>groupBoxIpsPatch</value>
+  </data>
+  <data name="&gt;&gt;buttonOpenIpsFile.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="textBoxIpsPatch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="textBoxIpsPatch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 23</value>
+  </data>
+  <data name="textBoxIpsPatch.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;textBoxIpsPatch.Name" xml:space="preserve">
+    <value>textBoxIpsPatch</value>
+  </data>
+  <data name="&gt;&gt;textBoxIpsPatch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxIpsPatch.Parent" xml:space="preserve">
+    <value>groupBoxIpsPatch</value>
+  </data>
+  <data name="&gt;&gt;textBoxIpsPatch.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBoxIpsPatch.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="groupBoxIpsPatch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 790</value>
+  </data>
+  <data name="groupBoxIpsPatch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 56</value>
+  </data>
+  <data name="groupBoxIpsPatch.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="groupBoxIpsPatch.Text" xml:space="preserve">
+    <value>IPS Patch File</value>
+  </data>
+  <data name="&gt;&gt;groupBoxIpsPatch.Name" xml:space="preserve">
+    <value>groupBoxIpsPatch</value>
+  </data>
+  <data name="&gt;&gt;groupBoxIpsPatch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxIpsPatch.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage2</value>
+  </data>
+  <data name="&gt;&gt;groupBoxIpsPatch.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
   <data name="buttonArCodesInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -1144,7 +1216,7 @@
     <value>Top</value>
   </data>
   <data name="groupBoxArCodes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 790</value>
+    <value>3, 852</value>
   </data>
   <data name="groupBoxArCodes.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 172</value>
@@ -1165,7 +1237,7 @@
     <value>flowLayoutPanelPage2</value>
   </data>
   <data name="&gt;&gt;groupBoxArCodes.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="buttonGeckoCodesInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1225,7 +1297,7 @@
     <value>Top</value>
   </data>
   <data name="groupBoxGeckoCodes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 968</value>
+    <value>3, 1030</value>
   </data>
   <data name="groupBoxGeckoCodes.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 172</value>
@@ -1246,7 +1318,7 @@
     <value>flowLayoutPanelPage2</value>
   </data>
   <data name="&gt;&gt;groupBoxGeckoCodes.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="flowLayoutPanelPage2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1305,6 +1377,7 @@
   <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 9</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tabControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
@@ -1326,9 +1399,9 @@
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>7, 15</value>
   </data>
