@@ -1,4 +1,4 @@
 {
   "Version": "v2024.10.05",
-  "Description": "* [Feature] IPS patch support! Thanks EnergyDrink\n* [Fix] Fixes the sorting arrows in the mod list\n* [Dev] Adds automated building to PRs and commits"
+  "Description": "* [Feature] IPS patch support! Thanks EnergyDrink\n* [Fix] Fixes the sorting arrows in the mod list\n* [Dev] Adds automated building to PRs and commits\n* Upgraded to .NET 8.0. Download the runtime here: https://dotnet.microsoft.com/en-us/download/dotnet/8.0"
 }
