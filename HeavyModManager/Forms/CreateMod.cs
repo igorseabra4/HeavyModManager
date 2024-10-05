@@ -53,6 +53,7 @@ public partial class CreateMod : Form
         richTextBoxMergeHips.Text = mod.MergeFiles;
         richTextBoxRemoveFiles.Text = mod.RemoveFiles;
         richTextBoxDolPatches.Text = mod.DOLPatches;
+        textBoxIpsPatch.Text = mod.IpsPatchBase64;
 
         comboBoxGame.Items.Add(new ComboBoxGameItem(mod.Game));
         comboBoxGame.SelectedIndex = 0;
@@ -176,6 +177,7 @@ public partial class CreateMod : Form
             GeckoCodes = richTextBoxGeckoCodes.Text,
             CreatedAt = dateTimePickerCreatedAt.Value,
             UpdatedAt = dateTimePickerUpdatedAt.Value,
+            IpsPatchBase64 = textBoxIpsPatch.Text,
         };
 
         string modPath = mod.SaveModJson(isEditing);
@@ -524,5 +526,19 @@ public partial class CreateMod : Form
         richTextBoxINIValues.Text = string.Join("\n", result);
 
         File.Delete(modIniPath);
+    }
+
+    private void buttonOpenIpsFile_Click(object sender, EventArgs e)
+    {
+        OpenFileDialog openFileDialog = new OpenFileDialog()
+        {
+            Filter = "IPS Patch File|*.ips|All Files (*.*)|*.*",
+            ReadOnlyChecked = true,
+        };
+
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            textBoxIpsPatch.Text = openFileDialog.FileName;
+        }
     }
 }

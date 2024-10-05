@@ -74,6 +74,9 @@ partial class CreateMod
         groupBoxGeckoCodes = new GroupBox();
         buttonGeckoCodesInfo = new Button();
         richTextBoxGeckoCodes = new RichTextBox();
+        groupBoxIpsPatch = new GroupBox();
+        textBoxIpsPatch = new TextBox();
+        buttonOpenIpsFile = new Button();
         tabControl1.SuspendLayout();
         tabPageModData.SuspendLayout();
         flowLayoutPanelPage1.SuspendLayout();
@@ -93,6 +96,7 @@ partial class CreateMod
         groupBoxDolPatches.SuspendLayout();
         groupBoxArCodes.SuspendLayout();
         groupBoxGeckoCodes.SuspendLayout();
+        groupBoxIpsPatch.SuspendLayout();
         SuspendLayout();
         // 
         // buttonCreateMod
@@ -250,6 +254,7 @@ partial class CreateMod
         flowLayoutPanelPage2.Controls.Add(groupBoxMergeHips);
         flowLayoutPanelPage2.Controls.Add(groupBoxRemoveFiles);
         flowLayoutPanelPage2.Controls.Add(groupBoxDolPatches);
+        flowLayoutPanelPage2.Controls.Add(groupBoxIpsPatch);
         flowLayoutPanelPage2.Controls.Add(groupBoxArCodes);
         flowLayoutPanelPage2.Controls.Add(groupBoxGeckoCodes);
         flowLayoutPanelPage2.Name = "flowLayoutPanelPage2";
@@ -414,6 +419,26 @@ partial class CreateMod
         richTextBoxGeckoCodes.Name = "richTextBoxGeckoCodes";
         richTextBoxGeckoCodes.TextChanged += richTextBoxGeckoCodes_TextChanged;
         // 
+        // groupBoxIpsPatch
+        // 
+        groupBoxIpsPatch.Controls.Add(buttonOpenIpsFile);
+        groupBoxIpsPatch.Controls.Add(textBoxIpsPatch);
+        resources.ApplyResources(groupBoxIpsPatch, "groupBoxIpsPatch");
+        groupBoxIpsPatch.Name = "groupBoxIpsPatch";
+        groupBoxIpsPatch.TabStop = false;
+        // 
+        // textBoxIpsPatch
+        // 
+        resources.ApplyResources(textBoxIpsPatch, "textBoxIpsPatch");
+        textBoxIpsPatch.Name = "textBoxIpsPatch";
+        // 
+        // buttonOpenIpsFile
+        // 
+        resources.ApplyResources(buttonOpenIpsFile, "buttonOpenIpsFile");
+        buttonOpenIpsFile.Name = "buttonOpenIpsFile";
+        buttonOpenIpsFile.UseVisualStyleBackColor = true;
+        buttonOpenIpsFile.Click += buttonOpenIpsFile_Click;
+        // 
         // CreateMod
         // 
         resources.ApplyResources(this, "$this");
@@ -447,6 +472,8 @@ partial class CreateMod
         groupBoxDolPatches.ResumeLayout(false);
         groupBoxArCodes.ResumeLayout(false);
         groupBoxGeckoCodes.ResumeLayout(false);
+        groupBoxIpsPatch.ResumeLayout(false);
+        groupBoxIpsPatch.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -497,4 +524,7 @@ partial class CreateMod
     private GroupBox groupBoxGeckoCodes;
     private Button buttonGeckoCodesInfo;
     private RichTextBox richTextBoxGeckoCodes;
+    private GroupBox groupBoxIpsPatch;
+    private Button buttonOpenIpsFile;
+    private TextBox textBoxIpsPatch;
 }
