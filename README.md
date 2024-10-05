@@ -19,4 +19,4 @@ It is intended for use on the following games:
 2. Extract the .zip somewhere and launch HeavyModManager.exe.
 
 ## How to Use
-Read the application's page on the [Heavy Iron Modding Wiki](https://heavyironmodding.org/wiki/Heavy_Mod_Manager) or read the video tutorial to get started (https://www.youtube.com/watch?v=ndK9nN9i-rw).
+Read the application's page on the [Heavy Iron Modding Wiki](https://heavyironmodding.org/wiki/Heavy_Mod_Manager) or watch the video tutorial to get started (https://www.youtube.com/watch?v=ndK9nN9i-rw).
