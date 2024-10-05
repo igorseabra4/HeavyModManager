@@ -524,7 +524,7 @@ public partial class MainForm : Form
 
         if (string.IsNullOrEmpty(ModManager.DolphinFolderPath))
         {
-            labelDolphin.Text = ResourceManager.GetString("dolphinPathNotSetLabel");
+            labelDolphin.Text = ResourceManager.GetString("dolphinUserFolderPathNotSetLabel");
             return;
         }
 
