@@ -79,6 +79,15 @@ namespace HeavyModManager.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dolphin user folder not found on set path..
+        /// </summary>
+        internal static string dolphinUserFolderNotFoundLabel {
+            get {
+                return ResourceManager.GetString("dolphinUserFolderNotFoundLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you wish to download it?.
         /// </summary>
         internal static string downloadPrompt {

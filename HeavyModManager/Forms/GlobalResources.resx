@@ -174,4 +174,7 @@
   <data name="wallEName" xml:space="preserve">
     <value>WALL-E</value>
   </data>
+  <data name="dolphinUserFolderNotFoundLabel" xml:space="preserve">
+    <value>Dolphin user folder not found on set path.</value>
+  </data>
 </root>
