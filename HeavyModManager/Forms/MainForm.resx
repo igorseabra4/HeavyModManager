@@ -929,4 +929,7 @@ Please click on "Add Mods" and select a mod ZIP file.</value>
   <data name="errorCreatingModZip" xml:space="preserve">
     <value>There was an error creating your mod ZIP archive:</value>
   </data>
+  <data name="dolphinUserFolderNotFoundLabel" xml:space="preserve">
+    <value>dolphinUserFolderNotFoundLabel</value>
+  </data>
 </root>
