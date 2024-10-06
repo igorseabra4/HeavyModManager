@@ -300,6 +300,7 @@ public partial class MainForm : Form
 
         item.SubItems.AddRange(new ListViewItem.ListViewSubItem[]
         {
+            new ListViewItem.ListViewSubItem(item, mod.Platform.ToString()),
             new ListViewItem.ListViewSubItem(item, mod.Author),
             new ListViewItem.ListViewSubItem(item, mod.CreatedAt.ToShortDateString()),
             new ListViewItem.ListViewSubItem(item, mod.UpdatedAt.ToShortDateString()),
@@ -341,6 +342,8 @@ public partial class MainForm : Form
             if (!string.IsNullOrWhiteSpace(mod.Description))
                 labelModInfo.Text += $"{mod.Description}\n\n";
 
+            labelModInfo.Text += $"Platform: {mod.Platform}\n\n";
+
             if (!string.IsNullOrEmpty(mod.GameId))
                 labelModInfo.Text += $"Has a custom save file: {mod.GameId}\n";
 
@@ -376,6 +379,9 @@ public partial class MainForm : Form
             zipModToolStripMenuItem.Enabled = false;
             openModFolderToolStripMenuItem.Enabled = false;
         }
+
+        // Adjust button labels
+
     }
 
     private void listViewMods_KeyDown(object sender, KeyEventArgs e)

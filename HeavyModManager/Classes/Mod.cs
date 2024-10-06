@@ -3,6 +3,7 @@ using HeavyModManager.Enum;
 using HeavyModManager.Functions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Platform = HeavyModManager.Enum.Platform;
 
 namespace HeavyModManager.Classes;
 
@@ -28,6 +29,12 @@ public class Mod
     /// </summary>
     [JsonInclude]
     public string Author { get; set; } = "";
+
+    /// <summary>
+    /// The mod platform.
+    /// </summary>
+    [JsonInclude]
+    public Platform Platform { get; set; } = Platform.Unknown;
 
     /// <summary>
     /// The mod description.

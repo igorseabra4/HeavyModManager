@@ -27,6 +27,7 @@ public partial class CreateMod : Form
         dateTimePickerUpdatedAt.Value = DateTime.Now;
 
         buttonIniImport.Enabled = false;
+        comboBoxPlatform.DataSource = System.Enum.GetValues(typeof(Platform));
     }
 
     private bool isEditing;
@@ -42,6 +43,10 @@ public partial class CreateMod : Form
         defaultBackgroundColor = textBoxGameId.BackColor;
 
         prevGame = mod.Game;
+
+        comboBoxPlatform.DataSource = System.Enum.GetValues(typeof(Platform));
+        comboBoxPlatform.SelectedItem = mod.Platform;
+
         textBoxModName.Text = mod.ModName;
         textBoxAuthor.Text = mod.Author;
         richTextBoxDescription.Text = mod.Description;
@@ -135,6 +140,7 @@ public partial class CreateMod : Form
             DolPatchesValid() &&
             IniPatchesValid() &&
             ArCodesValid() &&
+            comboBoxPlatform.SelectedIndex > -1 &&
             GeckoCodesValid();
     }
 
@@ -142,7 +148,7 @@ public partial class CreateMod : Form
     {
         var selectedGameItem = (ComboBoxGameItem)comboBoxGame.SelectedItem;
         var gameName = selectedGameItem == null ? "" : ModManager.GameToString(selectedGameItem.Game);
-        string modId = $"{gameName}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}";
+        string modId = $"{gameName}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}-{TreatString(((Platform)comboBoxPlatform.SelectedItem).ToString())}";
 
         textBoxModId.Text = modId;
     }
@@ -164,6 +170,7 @@ public partial class CreateMod : Form
         var mod = new Mod()
         {
             Game = isEditing ? prevGame : ((ComboBoxGameItem)comboBoxGame.SelectedItem).Game,
+            Platform = (Platform)comboBoxPlatform.SelectedItem,
             ModName = textBoxModName.Text,
             Author = textBoxAuthor.Text,
             Description = richTextBoxDescription.Text,
@@ -348,6 +355,13 @@ public partial class CreateMod : Form
     private void richTextBoxDolPatches_TextChanged(object sender, EventArgs e)
     {
         richTextBoxDolPatches.BackColor = DolPatchesValid() ? defaultBackgroundColor : Color.Red;
+        SetCreateModEnabled();
+    }
+
+    private void comboBoxPlatform_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (!isEditing)
+            ResetModId();
         SetCreateModEnabled();
     }
 
@@ -541,4 +555,6 @@ public partial class CreateMod : Form
             textBoxIpsPatch.Text = openFileDialog.FileName;
         }
     }
+
+
 }

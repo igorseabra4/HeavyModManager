@@ -35,6 +35,7 @@ partial class MainForm
         groupBoxMods = new GroupBox();
         listViewMods = new ListView();
         columnName = new ColumnHeader();
+        columnPlatform = new ColumnHeader();
         columnAuthor = new ColumnHeader();
         columnCreatedDate = new ColumnHeader();
         columnUpdatedDate = new ColumnHeader();
@@ -111,7 +112,7 @@ partial class MainForm
         listViewMods.AllowColumnReorder = true;
         resources.ApplyResources(listViewMods, "listViewMods");
         listViewMods.CheckBoxes = true;
-        listViewMods.Columns.AddRange(new ColumnHeader[] { columnName, columnAuthor, columnCreatedDate, columnUpdatedDate });
+        listViewMods.Columns.AddRange(new ColumnHeader[] { columnName, columnPlatform, columnAuthor, columnCreatedDate, columnUpdatedDate });
         listViewMods.Name = "listViewMods";
         listViewMods.UseCompatibleStateImageBehavior = false;
         listViewMods.View = View.Details;
@@ -122,6 +123,10 @@ partial class MainForm
         // columnName
         // 
         resources.ApplyResources(columnName, "columnName");
+        // 
+        // columnPlatform
+        // 
+        resources.ApplyResources(columnPlatform, "columnPlatform");
         // 
         // columnAuthor
         // 
@@ -375,4 +380,5 @@ partial class MainForm
     private ToolStripMenuItem languageToolStripMenuItem;
     private ToolStripMenuItem englishToolStripMenuItem;
     private ToolStripMenuItem germanToolStripMenuItem;
+    private ColumnHeader columnPlatform;
 }

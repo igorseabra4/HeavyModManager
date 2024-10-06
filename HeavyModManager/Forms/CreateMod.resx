@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
-    Microsoft ResX Schema 
+    Microsoft ResX Schema
 
     Version 2.0
 
@@ -48,7 +48,7 @@
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
@@ -130,10 +130,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonCreateMod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 558</value>
+    <value>147, 558</value>
   </data>
   <data name="buttonCreateMod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 25</value>
+    <value>114, 25</value>
   </data>
   <data name="buttonCreateMod.TabIndex" type="System.Int32, mscorlib">
     <value>72</value>
@@ -237,6 +237,57 @@
   <data name="&gt;&gt;groupBoxGame.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="comboBoxPlatform.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="comboBoxPlatform.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="comboBoxPlatform.Size" type="System.Drawing.Size, System.Drawing">
+    <value>313, 23</value>
+  </data>
+  <data name="comboBoxPlatform.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;comboBoxPlatform.Name" xml:space="preserve">
+    <value>comboBoxPlatform</value>
+  </data>
+  <data name="&gt;&gt;comboBoxPlatform.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBoxPlatform.Parent" xml:space="preserve">
+    <value>groupBoxPlatform</value>
+  </data>
+  <data name="&gt;&gt;comboBoxPlatform.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBoxPlatform.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="groupBoxPlatform.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 60</value>
+  </data>
+  <data name="groupBoxPlatform.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 51</value>
+  </data>
+  <data name="groupBoxPlatform.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="groupBoxPlatform.Text" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="&gt;&gt;groupBoxPlatform.Name" xml:space="preserve">
+    <value>groupBoxPlatform</value>
+  </data>
+  <data name="&gt;&gt;groupBoxPlatform.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxPlatform.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage1</value>
+  </data>
+  <data name="&gt;&gt;groupBoxPlatform.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="textBoxModName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -265,7 +316,7 @@
     <value>Top</value>
   </data>
   <data name="groupBoxModName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 60</value>
+    <value>3, 117</value>
   </data>
   <data name="groupBoxModName.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 51</value>
@@ -286,7 +337,7 @@
     <value>flowLayoutPanelPage1</value>
   </data>
   <data name="&gt;&gt;groupBoxModName.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="textBoxAuthor.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -316,7 +367,7 @@
     <value>Top</value>
   </data>
   <data name="groupBoxAuthor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 117</value>
+    <value>3, 174</value>
   </data>
   <data name="groupBoxAuthor.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 51</value>
@@ -337,7 +388,7 @@
     <value>flowLayoutPanelPage1</value>
   </data>
   <data name="&gt;&gt;groupBoxAuthor.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="richTextBoxDescription.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -370,7 +421,7 @@
     <value>Top</value>
   </data>
   <data name="groupBoxDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 174</value>
+    <value>3, 231</value>
   </data>
   <data name="groupBoxDescription.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 168</value>
@@ -391,7 +442,7 @@
     <value>flowLayoutPanelPage1</value>
   </data>
   <data name="&gt;&gt;groupBoxDescription.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="dateTimePickerCreatedAt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -421,7 +472,7 @@
     <value>Top</value>
   </data>
   <data name="groupBoxCreatedAt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 348</value>
+    <value>3, 405</value>
   </data>
   <data name="groupBoxCreatedAt.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 51</value>
@@ -442,7 +493,7 @@
     <value>flowLayoutPanelPage1</value>
   </data>
   <data name="&gt;&gt;groupBoxCreatedAt.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="dateTimePickerUpdatedAt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -472,7 +523,7 @@
     <value>Top</value>
   </data>
   <data name="groupBoxUpdatedAt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 405</value>
+    <value>3, 462</value>
   </data>
   <data name="groupBoxUpdatedAt.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 51</value>
@@ -493,7 +544,7 @@
     <value>flowLayoutPanelPage1</value>
   </data>
   <data name="&gt;&gt;groupBoxUpdatedAt.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="buttonModIdInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -553,7 +604,7 @@
     <value>Top</value>
   </data>
   <data name="groupBoxModId.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 462</value>
+    <value>3, 519</value>
   </data>
   <data name="groupBoxModId.Size" type="System.Drawing.Size, System.Drawing">
     <value>319, 51</value>
@@ -574,7 +625,7 @@
     <value>flowLayoutPanelPage1</value>
   </data>
   <data name="&gt;&gt;groupBoxModId.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="flowLayoutPanelPage1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1419,132 +1470,5 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="DolPatchesInfo" xml:space="preserve">
-    <value>Enter patches to be applied to the game's DOL file, in the form of
-&lt;offset&gt; &lt;value&gt;, both 4-byte hexadecimal numbers, one per line.
-You can add comments after #s.
-
-Example:
-00287D10 53494D50
-00287DB0 54455854 # This is a comment
-#another comment
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="gameIdInfo" xml:space="preserve">
-    <value>Enter a custom game ID for the mod.
-
-Save files are created using this game ID, enabling your mod to have a unique save file.
-Make sure no other GameCube or Wii game has the same ID.
-It is recommended to keep the first four characters the same and change only the last two.
-Must be 6 characters long. Leave blank for default.
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer</value>
-  </data>
-  <data name="IniValuesInfo" xml:space="preserve">
-    <value>Enter the game's configuration INI key-value pairs for this mod, in the form of
-&lt;key&gt;=&lt;value&gt;, one per line. You can add comments after #s. You only need to
-enter the lines needed by your mod.
-Example:
-
-BOOT=HB00
-ShowMenuOnBoot=0 # This is a comment
-G.BubbleBowl=1
-#another comment
-
-On an already existing mod, click on 'Import' to import the mod's
-INI into here. Only modified values will be imported and the file
-itself will be deleted.
-
-A few types of key are special because they can appear multiple times in the INI:
-- ScenePlayerMapping, ThresholdPointsRange and AlternateCostumeMapping:
-will replace values based on the stage ID name (first 4 characters of the value)
-- TaskStatus and Extra: if present, will replace ALL entries, so if you're
-replacing those, you must enter all of them.
-If you're still unsure how to use these keys, create your INI file
-manually, then use Import. The tool will import the values exactly
-as they are needed.
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="mergeHipsInfo" xml:space="preserve">
-    <value>Enter your mod's HIP and HOP files which should be merged into the running copy of the game instead of replacing the original ones, one per line.
-
-Assets from the mod will be imported into the destination archive, replacing any assets with the same asset ID if they exist.
-Assets of certain types will be merged into one (namely: Collision Table, Jaw Data Table, Level of Detail Table, Pipe Info Table, Shadow Table and Sound Info.
-
-Example:
-boot.HIP
-hb/hb01.HOP
-mn/mn04.HIP
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="modCreated" xml:space="preserve">
-    <value>Mod Created</value>
-  </data>
-  <data name="modCreatedAt" xml:space="preserve">
-    <value>Mod created at</value>
-  </data>
-  <data name="modIdAlreadyExists" xml:space="preserve">
-    <value>Unable to Create Mod: a mod with the same ID already exists.</value>
-  </data>
-  <data name="modIdInfo" xml:space="preserve">
-    <value>The Mod ID is generated automatically from the game name, author and mod name.
-Feel free to enter your own custom ID for the mod, but make sure that it's unique!
-No other mod, by any other author or for any other game, should have the same ID as yours.
-The Mod ID cannot be changed after the mod is created.</value>
-  </data>
-  <data name="removeFilesInfo" xml:space="preserve">
-    <value>Enter the folders or files present in the original game
-which should be deleted from the mod, one per line.
-
-Example:
-boot.HIP
-hb\hb01.HOP
-mn\mn04.HIP
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="showCodesInfo" xml:space="preserve">
-    <value>codes to be applied by Dolphin. Format should be similar to
-Dolphin Settings: Each code starts with &lt;code name&gt;, then each line follows
-the format &lt;offset&gt; &lt;value&gt;, both 4-byte hexadecimal numbers.
-You can add comments after *s.
-Example:
-
-$Blue Box Fix
-043CD04C 00000000
-*This is a comment
-
-$Warp Anywhere
-040BC1C8 38000001
-040BC258 38000001
-040BC300 38000001
-*another comment
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="unableToCreateMod" xml:space="preserve">
-    <value>Unable to Create Mod</value>
-  </data>
-  <data name="editMod" xml:space="preserve">
-    <value>Edit Mod</value>
-  </data>
-  <data name="save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="gameBackupNotFound" xml:space="preserve">
-    <value>Unable to import INI: game backup not found. Please create a backup from the original game's ISO file.</value>
-  </data>
-  <data name="gameBackupNotFoundTitle" xml:space="preserve">
-    <value>Game backup not found</value>
-  </data>
-  <data name="iniNotFound" xml:space="preserve">
-    <value>Unable to import INI: INI file not found at {0}</value>
-  </data>
-  <data name="iniNotFoundTitle" xml:space="preserve">
-    <value>INI not found in files</value>
   </data>
 </root>
