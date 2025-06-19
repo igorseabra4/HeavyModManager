@@ -1,16 +1,11 @@
 ﻿using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Functions;
-using System.Resources;
 
 namespace HeavyModManager.Forms;
 
 public partial class CreateMod : Form
 {
-
-    private ResourceManager ResourceManager = new ResourceManager("HeavyModManager.Forms.CreateMod",
-        typeof(Program).Assembly);
-
     public CreateMod()
     {
         isEditing = false;
@@ -80,8 +75,8 @@ public partial class CreateMod : Form
             dateTimePickerUpdatedAt.Value = DateTime.Now;
         }
 
-        Text = ResourceManager.GetString("editMod");
-        buttonCreateMod.Text = ResourceManager.GetString("save");
+        Text = GlobalResources.editMod;
+        buttonCreateMod.Text = GlobalResources.save;
     }
 
     private void buttonCancel_Click(object sender, EventArgs e)
@@ -154,8 +149,8 @@ public partial class CreateMod : Form
             var existingModPath = ModManager.GetModPath(textBoxModId.Text);
             if (Directory.Exists(existingModPath))
             {
-                MessageBox.Show(ResourceManager.GetString("modIdAlreadyExists"),
-                    ResourceManager.GetString("unableToCreateMod"),
+                MessageBox.Show(GlobalResources.modIdAlreadyExists,
+                    GlobalResources.unableToCreateMod,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -182,8 +177,8 @@ public partial class CreateMod : Form
 
         string modPath = mod.SaveModJson(isEditing);
 
-        MessageBox.Show(ResourceManager.GetString("modCreatedAt") + " " + modPath,
-            ResourceManager.GetString("modCreated"),
+        MessageBox.Show(GlobalResources.modCreatedAt + " " + modPath,
+            GlobalResources.modCreated,
             MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         System.Diagnostics.Process.Start("explorer.exe", modPath);
@@ -203,7 +198,7 @@ public partial class CreateMod : Form
 
     private void SetDefaultGameID(Game game)
     {
-        labelDefaultGameId.Text = $"{ResourceManager.GetString("labelDefaultGameId.Text")} {ModManager.GameToGameID(game)}";
+        labelDefaultGameId.Text = $"{GlobalResources.labelDefaultGameIdText}: {ModManager.GameToGameID(game)}";
     }
 
     private Color defaultBackgroundColor;
@@ -237,20 +232,20 @@ public partial class CreateMod : Form
 
     private void buttonModIdInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip(ResourceManager.GetString("modIdInfo"));
+        ShowToolTip(GlobalResources.modIdInfo);
     }
 
     private void buttonGameIdInfo_Click(object sender, EventArgs e)
     {
 
         // todo: show compatible games (Scooby, BFBB, Movie, Incredibles, Underminer)
-        ShowToolTip(ResourceManager.GetString("gameIdInfo"));
+        ShowToolTip(GlobalResources.gameIdInfo);
     }
 
     private void buttonMergeHipsInfo_Click(object sender, EventArgs e)
     {
         // todo: show compatible games (Scooby, BFBB, Movie, Incredibles, Underminer, RatProto)
-        ShowToolTip(ResourceManager.GetString("mergeHipsInfo"));
+        ShowToolTip(GlobalResources.mergeHipsInfo);
 
         //ShowToolTip(
         //    "Enter your mod's HIP and HOP files which should be merged into the running\n" +
@@ -268,7 +263,7 @@ public partial class CreateMod : Form
 
     private void buttonRemoveFilesInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip(ResourceManager.GetString("removeFilesInfo"));
+        ShowToolTip(GlobalResources.removeFilesInfo);
         //ShowToolTip(
         //    "Enter the folders or files present in the original game\n" +
         //    "which should be deleted from the mod, one per line.\n\n" +
@@ -281,7 +276,7 @@ public partial class CreateMod : Form
 
     private void buttonIniValuesInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip(ResourceManager.GetString("IniValuesInfo"));
+        ShowToolTip(GlobalResources.IniValuesInfo);
         //ShowToolTip(
         //    "Enter the game's configuration INI key-value pairs for this mod, in the form of\n" +
         //    "<key>=<value>, one per line. You can add comments after #s. You only need to\n" +
@@ -307,7 +302,7 @@ public partial class CreateMod : Form
 
     private void buttonDolPatchesInfo_Click(object sender, EventArgs e)
     {
-        ShowToolTip(ResourceManager.GetString("DolPatchesInfo"));
+        ShowToolTip(GlobalResources.DolPatchesInfo);
         //ShowToolTip(
         //    "Enter patches to be applied to the game's DOL file, in the form of\n" +
         //    "<offset> <value>, both 4-byte hexadecimal numbers, one per line.\n" +
@@ -331,7 +326,7 @@ public partial class CreateMod : Form
 
     private void ShowCodesInfo(string codeType)
     {
-        ShowToolTip(codeType + " " + ResourceManager.GetString("showCodesInfo"));
+        ShowToolTip(codeType + " " + GlobalResources.showCodesInfo);
         //ShowToolTip(
         //    "Enter " + codeType + " codes to be applied by Dolphin. Format should be similar to\n" +
         //    "Dolphin Settings: Each code starts with $<code name>, then each line follows\n" +
@@ -443,8 +438,8 @@ public partial class CreateMod : Form
     {
         if (!ModManager.GameBackupExists)
         {
-            MessageBox.Show(ResourceManager.GetString("gameBackupNotFound"),
-                ResourceManager.GetString("gameBackupNotFoundTitle"),
+            MessageBox.Show(GlobalResources.gameBackupNotFound,
+                GlobalResources.gameBackupNotFoundTitle,
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
@@ -454,8 +449,8 @@ public partial class CreateMod : Form
         if (!File.Exists(modIniPath))
         {
             MessageBox.Show(
-                string.Format(ResourceManager.GetString("iniNotFound"), modIniPath),
-                ResourceManager.GetString("iniNotFoundTitle"),
+                string.Format(GlobalResources.iniNotFound, modIniPath),
+                GlobalResources.iniNotFoundTitle,
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }

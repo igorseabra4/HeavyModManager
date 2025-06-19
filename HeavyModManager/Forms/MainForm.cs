@@ -11,14 +11,11 @@ namespace HeavyModManager;
 
 public partial class MainForm : Form
 {
-    private ResourceManager ResourceManager = new ResourceManager("HeavyModManager.MainForm",
-        typeof(Program).Assembly);
-
-
     public MainForm()
     {
         var settings = LoadSettings();
         InitializeComponent();
+        InitializeManageMenus();
         UpdateFormSize(settings);
         UpdateCurrentLanguageMenuItem();
 
@@ -50,8 +47,71 @@ public partial class MainForm : Form
         labelModInfo.MaximumSize = new Size(panelLabelModInfo.Width - SystemInformation.VerticalScrollBarWidth, 0);
         labelModInfo.Text = "";
 
+        UpdateDeveloperMode();
         UpdateDolphinLabel();
     }
+
+    private ToolStripMenuItem createModToolStripMenuItem;
+    private ToolStripMenuItem editModToolStripMenuItem;
+    private ToolStripMenuItem openModFolderToolStripMenuItem;
+    private ToolStripMenuItem zipModToolStripMenuItem;
+    private ToolStripMenuItem deleteModToolStripMenuItem;
+
+    private ToolStripMenuItem editModToolStripMenuItemContext;
+    private ToolStripMenuItem openModFolderToolStripMenuItemContext;
+    private ToolStripMenuItem zipModToolStripMenuItemContext;
+    private ToolStripMenuItem deleteModToolStripMenuItemContext;
+
+    private ContextMenuStrip manageContextMenuStrip;
+
+    private void InitializeManageMenus()
+    {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+
+        createModToolStripMenuItem = new ToolStripMenuItem();
+        editModToolStripMenuItem = new ToolStripMenuItem();
+        openModFolderToolStripMenuItem = new ToolStripMenuItem();
+        zipModToolStripMenuItem = new ToolStripMenuItem();
+        deleteModToolStripMenuItem = new ToolStripMenuItem();
+
+        createModToolStripMenuItem.Text = GlobalResources.createModText;
+        createModToolStripMenuItem.Click += createModToolStripMenuItem_Click;
+
+        editModToolStripMenuItem.Text = GlobalResources.editModText;
+        editModToolStripMenuItem.Click += editModToolStripMenuItem_Click;
+
+        openModFolderToolStripMenuItem.Text = GlobalResources.openModFolderText;
+        openModFolderToolStripMenuItem.Click += openModFolderToolStripMenuItem_Click;
+
+        zipModToolStripMenuItem.Text = GlobalResources.zipModText;
+        zipModToolStripMenuItem.Click += zipModToolStripMenuItem_Click;
+
+        deleteModToolStripMenuItem.Text = GlobalResources.deleteModText;
+        deleteModToolStripMenuItem.Click += deleteModToolStripMenuItem_Click;
+
+        manageToolStripMenuItem.DropDownItems.AddRange([createModToolStripMenuItem, editModToolStripMenuItem, openModFolderToolStripMenuItem, zipModToolStripMenuItem, deleteModToolStripMenuItem]);
+
+        editModToolStripMenuItemContext = new ToolStripMenuItem();
+        openModFolderToolStripMenuItemContext = new ToolStripMenuItem();
+        zipModToolStripMenuItemContext = new ToolStripMenuItem();
+        deleteModToolStripMenuItemContext = new ToolStripMenuItem();
+
+        editModToolStripMenuItemContext.Text = GlobalResources.editModText;
+        editModToolStripMenuItemContext.Click += editModToolStripMenuItem_Click;
+
+        openModFolderToolStripMenuItemContext.Text = GlobalResources.openModFolderText;
+        openModFolderToolStripMenuItemContext.Click += openModFolderToolStripMenuItem_Click;
+
+        zipModToolStripMenuItemContext.Text = GlobalResources.zipModText;
+        zipModToolStripMenuItemContext.Click += zipModToolStripMenuItem_Click;
+
+        deleteModToolStripMenuItemContext.Text = GlobalResources.deleteModText;
+        deleteModToolStripMenuItemContext.Click += deleteModToolStripMenuItem_Click;
+
+        manageContextMenuStrip = new ContextMenuStrip();
+        manageContextMenuStrip.Items.AddRange([editModToolStripMenuItemContext, openModFolderToolStripMenuItemContext, zipModToolStripMenuItemContext, deleteModToolStripMenuItemContext]);
+    }
+
     private void UpdateCurrentLanguageMenuItem()
     {
         foreach (ToolStripMenuItem item in languageToolStripMenuItem.DropDownItems)
@@ -137,10 +197,11 @@ public partial class MainForm : Form
 
         PopulateModList();
 
-        createModToolStripMenuItem.Enabled = true;
         groupBoxMods.Enabled = comboBoxGame.SelectedIndex != -1;
-        buttonApplyMods.Enabled = CanApplyMods;
-        buttonRunGame.Enabled = CanRunGame;
+        createModToolStripMenuItem.Enabled = true;
+        buttonRestoreBackupDev.Enabled = CanApplyMods;
+        buttonRunGameDev.Enabled = CanApplyMods;
+        buttonRunGame.Enabled = CanApplyMods;
         buttonCreateBackup.Enabled = comboBoxGame.SelectedIndex != -1;
 
         ShowToolTip();
@@ -150,11 +211,6 @@ public partial class MainForm : Form
 
     private bool CanApplyMods => comboBoxGame.SelectedIndex != -1 &&
         ModManager.GameBackupExists &&
-        !string.IsNullOrWhiteSpace(ModManager.DolphinPath) &&
-        !string.IsNullOrWhiteSpace(ModManager.DolphinFolderPath);
-
-    private bool CanRunGame => comboBoxGame.SelectedIndex != -1 &&
-        ModManager.GameExists &&
         !string.IsNullOrWhiteSpace(ModManager.DolphinPath) &&
         !string.IsNullOrWhiteSpace(ModManager.DolphinFolderPath);
 
@@ -171,21 +227,21 @@ public partial class MainForm : Form
         // Display localised strings (from MainForm.resx) in tooltips instead of hard-coded string.
         if (string.IsNullOrEmpty(ModManager.DolphinPath))
         {
-            toolTip.Show(ResourceManager.GetString("dolphinPathNotSetTooltip"),
+            toolTip.Show(GlobalResources.dolphinPathNotSetTooltip,
                 comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
         }
         else if (string.IsNullOrEmpty(ModManager.DolphinFolderPath))
         {
-            toolTip.Show(ResourceManager.GetString("dolphinUserFolderPathNotSetTooltip"),
+            toolTip.Show(GlobalResources.dolphinUserFolderPathNotSetTooltip,
                 comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
         }
         else if (comboBoxGame.SelectedIndex != -1)
         {
             if (!ModManager.GameBackupExists)
-                toolTip.Show(ResourceManager.GetString("noBackupTooltip"), comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
+                toolTip.Show(GlobalResources.noBackupTooltip, comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
             //toolTip.Show("You do not have a backup for this game.\nPlease click on \"Create Backup\" and select the game's ISO file.", comboBoxGame, 0, 24, 8 * 1000);
             else if (listViewMods.Items.Count == 0)
-                toolTip.Show(ResourceManager.GetString("noModsTooltip"), comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
+                toolTip.Show(GlobalResources.noModsTooltip, comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
             //toolTip.Show("You do not have mods for this game.\nPlease click on \"Add Mods\" and select a mod ZIP file.", comboBoxGame, 0, 24, 8 * 1000);
         }
     }
@@ -220,11 +276,11 @@ public partial class MainForm : Form
         var mod = GetSelectedMod();
         if (mod != null)
         {
-            string message = string.Format(ResourceManager.GetString("confirmDeleteMod"), mod.ModName, mod.Author);
+            string message = string.Format(GlobalResources.confirmDeleteMod, mod.ModName, mod.Author);
 
             var dr = MessageBox.Show(
                 message,
-                ResourceManager.GetString("confirmDeleteModTitle"),
+                GlobalResources.confirmDeleteModTitle,
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
 
@@ -255,8 +311,8 @@ public partial class MainForm : Form
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    ResourceManager.GetString("errorCreatingModZip") + " " + ex.Message,
-                    ResourceManager.GetString("error"),
+                    GlobalResources.errorCreatingModZip + " " + ex.Message,
+                    GlobalResources.error,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -276,6 +332,11 @@ public partial class MainForm : Form
         deleteModToolStripMenuItem.Enabled = false;
         zipModToolStripMenuItem.Enabled = false;
         openModFolderToolStripMenuItem.Enabled = false;
+
+        editModToolStripMenuItemContext.Enabled = false;
+        deleteModToolStripMenuItemContext.Enabled = false;
+        zipModToolStripMenuItemContext.Enabled = false;
+        openModFolderToolStripMenuItemContext.Enabled = false;
 
         foreach (var modId in ModManager.CurrentGameSettings.Mods)
         {
@@ -368,6 +429,11 @@ public partial class MainForm : Form
             deleteModToolStripMenuItem.Enabled = true;
             zipModToolStripMenuItem.Enabled = true;
             openModFolderToolStripMenuItem.Enabled = true;
+
+            editModToolStripMenuItemContext.Enabled = true;
+            deleteModToolStripMenuItemContext.Enabled = true;
+            zipModToolStripMenuItemContext.Enabled = true;
+            openModFolderToolStripMenuItemContext.Enabled = true;
         }
         else
         {
@@ -375,6 +441,11 @@ public partial class MainForm : Form
             deleteModToolStripMenuItem.Enabled = false;
             zipModToolStripMenuItem.Enabled = false;
             openModFolderToolStripMenuItem.Enabled = false;
+
+            editModToolStripMenuItemContext.Enabled = false;
+            deleteModToolStripMenuItemContext.Enabled = false;
+            zipModToolStripMenuItemContext.Enabled = false;
+            openModFolderToolStripMenuItemContext.Enabled = false;
         }
     }
 
@@ -418,8 +489,8 @@ public partial class MainForm : Form
     {
         var openFile = new OpenFileDialog()
         {
-            Filter = ResourceManager.GetString("isoOrMainDol") + "|*.iso;main.dol|All files(*.*)|*.*",
-            Title = ResourceManager.GetString("selectGameTitle")
+            Filter = GlobalResources.isoOrMainDol + "|*.iso;main.dol|All files(*.*)|*.*",
+            Title = GlobalResources.selectGameTitle
         };
 
         if (openFile.ShowDialog() == DialogResult.OK)
@@ -436,29 +507,38 @@ public partial class MainForm : Form
             }
             else
             {
-                MessageBox.Show(ResourceManager.GetString("unsupportedFiletype"),
-                    ResourceManager.GetString("error"),
+                MessageBox.Show(GlobalResources.unsupportedFiletype,
+                    GlobalResources.error,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             Enabled = true;
 
-            buttonApplyMods.Enabled = CanApplyMods;
-            buttonRunGame.Enabled = CanRunGame;
+            buttonRestoreBackupDev.Enabled = CanApplyMods;
+            buttonRunGameDev.Enabled = CanApplyMods;
+            buttonRunGame.Enabled = CanApplyMods;
         }
     }
 
-    private void buttonApplyMods_Click(object sender, EventArgs e)
+    private void buttonRestoreBackupDev_Click(object sender, EventArgs e)
     {
         Enabled = false;
-        ModManager.ApplyMods(true);
+        ModManager.ResetGameFromBackup();
         Enabled = true;
-        buttonRunGame.Enabled = CanRunGame;
+    }
+
+    private void buttonRunGameDev_Click(object sender, EventArgs e)
+    {
+        Enabled = false;
+        ModManager.ApplyMods();
+        Enabled = true;
+        ModManager.RunGame();
     }
 
     private void buttonRunGame_Click(object sender, EventArgs e)
     {
         Enabled = false;
+        ModManager.ResetGameFromBackup();
         ModManager.ApplyMods();
         Enabled = true;
         ModManager.RunGame();
@@ -468,14 +548,12 @@ public partial class MainForm : Form
     {
         ModManager.InstallMod();
         PopulateModList();
-        buttonApplyMods.Enabled = CanApplyMods;
     }
 
     private void buttonRefreshModList_Click(object sender, EventArgs e)
     {
         ModManager.RefreshModList();
         PopulateModList();
-        buttonApplyMods.Enabled = CanApplyMods;
     }
 
     private void chooseDolphinPathToolStripMenuItem_Click(object sender, EventArgs e)
@@ -498,8 +576,27 @@ public partial class MainForm : Form
     {
         ModManager.DeveloperMode = !ModManager.DeveloperMode;
         developerModeToolStripMenuItem.Checked = ModManager.DeveloperMode;
-        ModManager.Invalidate();
+        if (comboBoxGame.SelectedItem != null)
+            ModManager.Invalidate();
         UpdateDolphinLabel();
+        UpdateDeveloperMode();
+    }
+
+    private void UpdateDeveloperMode()
+    {
+        var rm = new ResourceManager("HeavyModManager.MainForm", typeof(Program).Assembly);
+        if (developerModeToolStripMenuItem.Checked)
+        {
+            buttonRestoreBackupDev.Visible = true;
+            buttonRunGameDev.Visible = true;
+            buttonRunGame.Visible = false;
+        }
+        else
+        {
+            buttonRestoreBackupDev.Visible = false;
+            buttonRunGameDev.Visible = false;
+            buttonRunGame.Visible = true;
+        }
     }
 
     private void checkForUpdatesOnStartupToolStripMenuItem_Click(object sender, EventArgs e)
@@ -512,32 +609,32 @@ public partial class MainForm : Form
     {
         if (string.IsNullOrEmpty(ModManager.DolphinPath))
         {
-            labelDolphin.Text = ResourceManager.GetString("dolphinPathNotSetLabel");
+            labelDolphin.Text = GlobalResources.dolphinPathNotSetLabel;
             return;
         }
 
         if (!File.Exists(ModManager.DolphinPath))
         {
-            labelDolphin.Text = ResourceManager.GetString("dolphinNotFoundLabel");
+            labelDolphin.Text = GlobalResources.dolphinNotFoundLabel;
             return;
         }
 
         if (string.IsNullOrEmpty(ModManager.DolphinFolderPath))
         {
-            labelDolphin.Text = ResourceManager.GetString("dolphinUserFolderPathNotSetLabel");
+            labelDolphin.Text = GlobalResources.dolphinUserFolderPathNotSetLabel;
             return;
         }
 
         if (!Directory.Exists(ModManager.DolphinFolderPath))
         {
-            labelDolphin.Text = ResourceManager.GetString("dolphinUserFolderNotFoundLabel");
+            labelDolphin.Text = GlobalResources.dolphinUserFolderNotFoundLabel;
             return;
         }
 
-        labelDolphin.Text = $"{ResourceManager.GetString("dolphin")} {ModManager.DolphinPath}\n{ResourceManager.GetString("dolphinUserFolder")} {ModManager.DolphinFolderPath}";
+        labelDolphin.Text = $"{GlobalResources.dolphin}: {ModManager.DolphinPath}\n{GlobalResources.dolphinUserFolder} {ModManager.DolphinFolderPath}";
 
         if (ModManager.DeveloperMode)
-            labelDolphin.Text += "\n" + ResourceManager.GetString("developerMode");
+            labelDolphin.Text += "\n" + GlobalResources.developerMode;
     }
 
     private void changeIconToolStripMenuItem_Click(object sender, EventArgs e)
@@ -570,4 +667,13 @@ public partial class MainForm : Form
         }
     }
 
+    private void listViewMods_MouseClick(object sender, MouseEventArgs e)
+    {
+        if (e.Button == MouseButtons.Right)
+        {
+            var focusedItem = listViewMods.FocusedItem;
+            if (focusedItem != null && focusedItem.Bounds.Contains(e.Location))
+                manageContextMenuStrip.Show(Cursor.Position);
+        }
+    }
 }

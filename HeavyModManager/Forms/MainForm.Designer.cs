@@ -42,15 +42,10 @@ partial class MainForm
         buttonMoveDown = new Button();
         buttonMoveUp = new Button();
         buttonAddMod = new Button();
-        buttonRunGame = new Button();
-        buttonApplyMods = new Button();
+        buttonRunGameDev = new Button();
+        buttonRestoreBackupDev = new Button();
         menuStrip1 = new MenuStrip();
         manageToolStripMenuItem = new ToolStripMenuItem();
-        createModToolStripMenuItem = new ToolStripMenuItem();
-        editModToolStripMenuItem = new ToolStripMenuItem();
-        openModFolderToolStripMenuItem = new ToolStripMenuItem();
-        zipModToolStripMenuItem = new ToolStripMenuItem();
-        deleteModToolStripMenuItem = new ToolStripMenuItem();
         settingsToolStripMenuItem = new ToolStripMenuItem();
         chooseDolphinPathToolStripMenuItem = new ToolStripMenuItem();
         chooseDolphinUserFolderPathToolStripMenuItem = new ToolStripMenuItem();
@@ -66,6 +61,7 @@ partial class MainForm
         panelLabelModInfo = new Panel();
         groupBoxModInfo = new GroupBox();
         labelDolphin = new Label();
+        buttonRunGame = new Button();
         groupBoxGame.SuspendLayout();
         groupBoxMods.SuspendLayout();
         menuStrip1.SuspendLayout();
@@ -108,8 +104,8 @@ partial class MainForm
         // 
         // listViewMods
         // 
-        listViewMods.AllowColumnReorder = true;
         resources.ApplyResources(listViewMods, "listViewMods");
+        listViewMods.AllowColumnReorder = true;
         listViewMods.CheckBoxes = true;
         listViewMods.Columns.AddRange(new ColumnHeader[] { columnName, columnAuthor, columnCreatedDate, columnUpdatedDate });
         listViewMods.Name = "listViewMods";
@@ -118,6 +114,7 @@ partial class MainForm
         listViewMods.ItemCheck += listViewMods_ItemCheck;
         listViewMods.SelectedIndexChanged += listViewMods_SelectedIndexChanged;
         listViewMods.KeyDown += listViewMods_KeyDown;
+        listViewMods.MouseClick += listViewMods_MouseClick;
         // 
         // columnName
         // 
@@ -163,19 +160,19 @@ partial class MainForm
         buttonAddMod.UseVisualStyleBackColor = true;
         buttonAddMod.Click += buttonAddMod_Click;
         // 
-        // buttonRunGame
+        // buttonRunGameDev
         // 
-        resources.ApplyResources(buttonRunGame, "buttonRunGame");
-        buttonRunGame.Name = "buttonRunGame";
-        buttonRunGame.UseVisualStyleBackColor = true;
-        buttonRunGame.Click += buttonRunGame_Click;
+        resources.ApplyResources(buttonRunGameDev, "buttonRunGameDev");
+        buttonRunGameDev.Name = "buttonRunGameDev";
+        buttonRunGameDev.UseVisualStyleBackColor = true;
+        buttonRunGameDev.Click += buttonRunGameDev_Click;
         // 
-        // buttonApplyMods
+        // buttonRestoreBackupDev
         // 
-        resources.ApplyResources(buttonApplyMods, "buttonApplyMods");
-        buttonApplyMods.Name = "buttonApplyMods";
-        buttonApplyMods.UseVisualStyleBackColor = true;
-        buttonApplyMods.Click += buttonApplyMods_Click;
+        resources.ApplyResources(buttonRestoreBackupDev, "buttonRestoreBackupDev");
+        buttonRestoreBackupDev.Name = "buttonRestoreBackupDev";
+        buttonRestoreBackupDev.UseVisualStyleBackColor = true;
+        buttonRestoreBackupDev.Click += buttonRestoreBackupDev_Click;
         // 
         // menuStrip1
         // 
@@ -185,106 +182,75 @@ partial class MainForm
         // 
         // manageToolStripMenuItem
         // 
-        manageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createModToolStripMenuItem, editModToolStripMenuItem, openModFolderToolStripMenuItem, zipModToolStripMenuItem, deleteModToolStripMenuItem });
-        manageToolStripMenuItem.Name = "manageToolStripMenuItem";
         resources.ApplyResources(manageToolStripMenuItem, "manageToolStripMenuItem");
-        // 
-        // createModToolStripMenuItem
-        // 
-        resources.ApplyResources(createModToolStripMenuItem, "createModToolStripMenuItem");
-        createModToolStripMenuItem.Name = "createModToolStripMenuItem";
-        createModToolStripMenuItem.Click += createModToolStripMenuItem_Click;
-        // 
-        // editModToolStripMenuItem
-        // 
-        resources.ApplyResources(editModToolStripMenuItem, "editModToolStripMenuItem");
-        editModToolStripMenuItem.Name = "editModToolStripMenuItem";
-        editModToolStripMenuItem.Click += editModToolStripMenuItem_Click;
-        // 
-        // openModFolderToolStripMenuItem
-        // 
-        resources.ApplyResources(openModFolderToolStripMenuItem, "openModFolderToolStripMenuItem");
-        openModFolderToolStripMenuItem.Name = "openModFolderToolStripMenuItem";
-        openModFolderToolStripMenuItem.Click += openModFolderToolStripMenuItem_Click;
-        // 
-        // zipModToolStripMenuItem
-        // 
-        resources.ApplyResources(zipModToolStripMenuItem, "zipModToolStripMenuItem");
-        zipModToolStripMenuItem.Name = "zipModToolStripMenuItem";
-        zipModToolStripMenuItem.Click += zipModToolStripMenuItem_Click;
-        // 
-        // deleteModToolStripMenuItem
-        // 
-        resources.ApplyResources(deleteModToolStripMenuItem, "deleteModToolStripMenuItem");
-        deleteModToolStripMenuItem.Name = "deleteModToolStripMenuItem";
-        deleteModToolStripMenuItem.Click += deleteModToolStripMenuItem_Click;
+        manageToolStripMenuItem.Name = "manageToolStripMenuItem";
         // 
         // settingsToolStripMenuItem
         // 
+        resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
         settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, chooseDolphinUserFolderPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem, languageToolStripMenuItem });
         settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-        resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
         // 
         // chooseDolphinPathToolStripMenuItem
         // 
-        chooseDolphinPathToolStripMenuItem.Name = "chooseDolphinPathToolStripMenuItem";
         resources.ApplyResources(chooseDolphinPathToolStripMenuItem, "chooseDolphinPathToolStripMenuItem");
+        chooseDolphinPathToolStripMenuItem.Name = "chooseDolphinPathToolStripMenuItem";
         chooseDolphinPathToolStripMenuItem.Click += chooseDolphinPathToolStripMenuItem_Click;
         // 
         // chooseDolphinUserFolderPathToolStripMenuItem
         // 
-        chooseDolphinUserFolderPathToolStripMenuItem.Name = "chooseDolphinUserFolderPathToolStripMenuItem";
         resources.ApplyResources(chooseDolphinUserFolderPathToolStripMenuItem, "chooseDolphinUserFolderPathToolStripMenuItem");
+        chooseDolphinUserFolderPathToolStripMenuItem.Name = "chooseDolphinUserFolderPathToolStripMenuItem";
         chooseDolphinUserFolderPathToolStripMenuItem.Click += chooseDolphinUserFolderPathToolStripMenuItem_Click;
         // 
         // developerModeToolStripMenuItem
         // 
-        developerModeToolStripMenuItem.Name = "developerModeToolStripMenuItem";
         resources.ApplyResources(developerModeToolStripMenuItem, "developerModeToolStripMenuItem");
+        developerModeToolStripMenuItem.Name = "developerModeToolStripMenuItem";
         developerModeToolStripMenuItem.Click += developerModeToolStripMenuItem_Click;
         // 
         // checkForUpdatesOnStartupToolStripMenuItem
         // 
-        checkForUpdatesOnStartupToolStripMenuItem.Name = "checkForUpdatesOnStartupToolStripMenuItem";
         resources.ApplyResources(checkForUpdatesOnStartupToolStripMenuItem, "checkForUpdatesOnStartupToolStripMenuItem");
+        checkForUpdatesOnStartupToolStripMenuItem.Name = "checkForUpdatesOnStartupToolStripMenuItem";
         checkForUpdatesOnStartupToolStripMenuItem.Click += checkForUpdatesOnStartupToolStripMenuItem_Click;
         // 
         // toolStripSeparator2
         // 
-        toolStripSeparator2.Name = "toolStripSeparator2";
         resources.ApplyResources(toolStripSeparator2, "toolStripSeparator2");
+        toolStripSeparator2.Name = "toolStripSeparator2";
         // 
         // aboutToolStripMenuItem
         // 
-        aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
         resources.ApplyResources(aboutToolStripMenuItem, "aboutToolStripMenuItem");
+        aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
         aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
         // 
         // changeIconToolStripMenuItem
         // 
-        changeIconToolStripMenuItem.Name = "changeIconToolStripMenuItem";
         resources.ApplyResources(changeIconToolStripMenuItem, "changeIconToolStripMenuItem");
+        changeIconToolStripMenuItem.Name = "changeIconToolStripMenuItem";
         changeIconToolStripMenuItem.Click += changeIconToolStripMenuItem_Click;
         // 
         // languageToolStripMenuItem
         // 
-        languageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { englishToolStripMenuItem, germanToolStripMenuItem });
         resources.ApplyResources(languageToolStripMenuItem, "languageToolStripMenuItem");
+        languageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { englishToolStripMenuItem, germanToolStripMenuItem });
         languageToolStripMenuItem.Name = "languageToolStripMenuItem";
         // 
         // englishToolStripMenuItem
         // 
+        resources.ApplyResources(englishToolStripMenuItem, "englishToolStripMenuItem");
         englishToolStripMenuItem.Image = Properties.Resources.us;
         englishToolStripMenuItem.Name = "englishToolStripMenuItem";
-        resources.ApplyResources(englishToolStripMenuItem, "englishToolStripMenuItem");
         englishToolStripMenuItem.Tag = "en";
         englishToolStripMenuItem.Click += changeLanguageToolStripMenuItem_Click;
         // 
         // germanToolStripMenuItem
         // 
+        resources.ApplyResources(germanToolStripMenuItem, "germanToolStripMenuItem");
         germanToolStripMenuItem.Image = Properties.Resources.de;
         germanToolStripMenuItem.Name = "germanToolStripMenuItem";
-        resources.ApplyResources(germanToolStripMenuItem, "germanToolStripMenuItem");
         germanToolStripMenuItem.Tag = "de";
         germanToolStripMenuItem.Click += changeLanguageToolStripMenuItem_Click;
         // 
@@ -311,23 +277,32 @@ partial class MainForm
         resources.ApplyResources(labelDolphin, "labelDolphin");
         labelDolphin.Name = "labelDolphin";
         // 
+        // buttonRunGame
+        // 
+        resources.ApplyResources(buttonRunGame, "buttonRunGame");
+        buttonRunGame.Name = "buttonRunGame";
+        buttonRunGame.UseVisualStyleBackColor = true;
+        buttonRunGame.Click += buttonRunGame_Click;
+        // 
         // MainForm
         // 
         resources.ApplyResources(this, "$this");
         AutoScaleMode = AutoScaleMode.Font;
         Controls.Add(labelDolphin);
         Controls.Add(groupBoxModInfo);
-        Controls.Add(buttonApplyMods);
-        Controls.Add(buttonRunGame);
+        Controls.Add(buttonRestoreBackupDev);
+        Controls.Add(buttonRunGameDev);
         Controls.Add(groupBoxMods);
         Controls.Add(groupBoxGame);
         Controls.Add(menuStrip1);
+        Controls.Add(buttonRunGame);
         MainMenuStrip = menuStrip1;
         Name = "MainForm";
         FormClosing += MainForm_FormClosing;
         Shown += MainForm_Shown;
         groupBoxGame.ResumeLayout(false);
         groupBoxMods.ResumeLayout(false);
+        groupBoxMods.PerformLayout();
         menuStrip1.ResumeLayout(false);
         menuStrip1.PerformLayout();
         panelLabelModInfo.ResumeLayout(false);
@@ -342,8 +317,8 @@ partial class MainForm
     private ComboBox comboBoxGame;
     private GroupBox groupBoxMods;
     private Button buttonAddMod;
-    private Button buttonRunGame;
-    private Button buttonApplyMods;
+    private Button buttonRunGameDev;
+    private Button buttonRestoreBackupDev;
     private MenuStrip menuStrip1;
     private ToolStripMenuItem manageToolStripMenuItem;
     private Button buttonMoveDown;
@@ -353,10 +328,6 @@ partial class MainForm
     private Button buttonCreateBackup;
     private GroupBox groupBoxModInfo;
     private Label labelDolphin;
-    private ToolStripMenuItem deleteModToolStripMenuItem;
-    private ToolStripMenuItem createModToolStripMenuItem;
-    private ToolStripMenuItem editModToolStripMenuItem;
-    private ToolStripMenuItem zipModToolStripMenuItem;
     private ToolStripMenuItem settingsToolStripMenuItem;
     private ToolStripMenuItem chooseDolphinPathToolStripMenuItem;
     private ToolStripMenuItem developerModeToolStripMenuItem;
@@ -364,7 +335,6 @@ partial class MainForm
     private Button buttonRefreshModList;
     private ToolStripSeparator toolStripSeparator2;
     private ToolStripMenuItem aboutToolStripMenuItem;
-    private ToolStripMenuItem openModFolderToolStripMenuItem;
     private ToolStripMenuItem changeIconToolStripMenuItem;
     private ListView listViewMods;
     private ColumnHeader columnName;
@@ -375,4 +345,5 @@ partial class MainForm
     private ToolStripMenuItem languageToolStripMenuItem;
     private ToolStripMenuItem englishToolStripMenuItem;
     private ToolStripMenuItem germanToolStripMenuItem;
+    private Button buttonRunGame;
 }

@@ -1,11 +1,10 @@
 ﻿using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Forms.Other;
-using HeavyModManager.Properties;
 using System.Diagnostics;
 using System.Globalization;
-using System.Text.Json;
 using System.Resources;
+using System.Text.Json;
 
 namespace HeavyModManager.Functions;
 
@@ -53,7 +52,7 @@ public static class ModManager
         // Use localised strings
         var resourceManager = new ResourceManager("HeavyModManager.Forms.GlobalResources",
             typeof(Program).Assembly);
-        
+
         return game switch
         {
             Game.Scooby => resourceManager.GetString("scoobyName") ?? "Scooby-Doo! Night of 100 Frights",
@@ -435,46 +434,47 @@ public static class ModManager
         SaveGameSettings();
     }
 
-    public static void ApplyMods(bool applyOnly = false)
+    public static bool ResetGameFromBackup()
     {
         if (!DeveloperMode && !CurrentGameSettings.Invalidated)
-            return;
-
-        CloseDolphin();
+            return true;
 
         if (!GameBackupExists)
         {
             // TODO: Localize!
             MessageBox.Show("Unable to apply mods: game backup not found. Please create the game's backup first.",
                 "Game backup not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
+            return false;
         }
 
         var fs = new Microsoft.VisualBasic.Devices.Computer().FileSystem;
 
-        if (DeveloperMode && !applyOnly)
-        {
-            if (!Directory.Exists(GameGamePath))
-            {
-                Directory.CreateDirectory(GameGamePath);
-                Directory.CreateDirectory(GameGameFilesPath);
-                Directory.CreateDirectory(GameGameSysPath);
+        if (Directory.Exists(GameGamePath))
+            Directory.Delete(GameGamePath, true);
 
-                fs.CopyDirectory(GameBackupFilesPath, GameGameFilesPath);
-                fs.CopyDirectory(GameBackupSysPath, GameGameSysPath);
-            }
+        Directory.CreateDirectory(GameGamePath);
+        Directory.CreateDirectory(GameGameFilesPath);
+        Directory.CreateDirectory(GameGameSysPath);
+
+        fs.CopyDirectory(GameBackupFilesPath, GameGameFilesPath);
+        fs.CopyDirectory(GameBackupSysPath, GameGameSysPath);
+
+        return true;
+    }
+
+    public static void ApplyMods()
+    {
+        CloseDolphin();
+
+        if (DeveloperMode)
+        {
+            if (!Directory.Exists(GameGamePath) && !ResetGameFromBackup())
+                return;
         }
         else
         {
-            if (Directory.Exists(GameGamePath))
-                Directory.Delete(GameGamePath, true);
-
-            Directory.CreateDirectory(GameGamePath);
-            Directory.CreateDirectory(GameGameFilesPath);
-            Directory.CreateDirectory(GameGameSysPath);
-
-            fs.CopyDirectory(GameBackupFilesPath, GameGameFilesPath);
-            fs.CopyDirectory(GameBackupSysPath, GameGameSysPath);
+            if (!CurrentGameSettings.Invalidated)
+                return;
         }
 
         var dol = File.ReadAllBytes(GameDolPath);

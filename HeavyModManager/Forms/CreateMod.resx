@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
+  <!-- 
     Microsoft ResX Schema 
-
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -1399,9 +1399,9 @@
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>7, 15</value>
   </data>
@@ -1420,131 +1420,7 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="DolPatchesInfo" xml:space="preserve">
-    <value>Enter patches to be applied to the game's DOL file, in the form of
-&lt;offset&gt; &lt;value&gt;, both 4-byte hexadecimal numbers, one per line.
-You can add comments after #s.
-
-Example:
-00287D10 53494D50
-00287DB0 54455854 # This is a comment
-#another comment
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="gameIdInfo" xml:space="preserve">
-    <value>Enter a custom game ID for the mod.
-
-Save files are created using this game ID, enabling your mod to have a unique save file.
-Make sure no other GameCube or Wii game has the same ID.
-It is recommended to keep the first four characters the same and change only the last two.
-Must be 6 characters long. Leave blank for default.
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer</value>
-  </data>
-  <data name="IniValuesInfo" xml:space="preserve">
-    <value>Enter the game's configuration INI key-value pairs for this mod, in the form of
-&lt;key&gt;=&lt;value&gt;, one per line. You can add comments after #s. You only need to
-enter the lines needed by your mod.
-Example:
-
-BOOT=HB00
-ShowMenuOnBoot=0 # This is a comment
-G.BubbleBowl=1
-#another comment
-
-On an already existing mod, click on 'Import' to import the mod's
-INI into here. Only modified values will be imported and the file
-itself will be deleted.
-
-A few types of key are special because they can appear multiple times in the INI:
-- ScenePlayerMapping, ThresholdPointsRange and AlternateCostumeMapping:
-will replace values based on the stage ID name (first 4 characters of the value)
-- TaskStatus and Extra: if present, will replace ALL entries, so if you're
-replacing those, you must enter all of them.
-If you're still unsure how to use these keys, create your INI file
-manually, then use Import. The tool will import the values exactly
-as they are needed.
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="mergeHipsInfo" xml:space="preserve">
-    <value>Enter your mod's HIP and HOP files which should be merged into the running copy of the game instead of replacing the original ones, one per line.
-
-Assets from the mod will be imported into the destination archive, replacing any assets with the same asset ID if they exist.
-Assets of certain types will be merged into one (namely: Collision Table, Jaw Data Table, Level of Detail Table, Pipe Info Table, Shadow Table and Sound Info.
-
-Example:
-boot.HIP
-hb/hb01.HOP
-mn/mn04.HIP
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="modCreated" xml:space="preserve">
-    <value>Mod Created</value>
-  </data>
-  <data name="modCreatedAt" xml:space="preserve">
-    <value>Mod created at</value>
-  </data>
-  <data name="modIdAlreadyExists" xml:space="preserve">
-    <value>Unable to Create Mod: a mod with the same ID already exists.</value>
-  </data>
-  <data name="modIdInfo" xml:space="preserve">
-    <value>The Mod ID is generated automatically from the game name, author and mod name.
-Feel free to enter your own custom ID for the mod, but make sure that it's unique!
-No other mod, by any other author or for any other game, should have the same ID as yours.
-The Mod ID cannot be changed after the mod is created.</value>
-  </data>
-  <data name="removeFilesInfo" xml:space="preserve">
-    <value>Enter the folders or files present in the original game
-which should be deleted from the mod, one per line.
-
-Example:
-boot.HIP
-hb\hb01.HOP
-mn\mn04.HIP
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="showCodesInfo" xml:space="preserve">
-    <value>codes to be applied by Dolphin. Format should be similar to
-Dolphin Settings: Each code starts with &lt;code name&gt;, then each line follows
-the format &lt;offset&gt; &lt;value&gt;, both 4-byte hexadecimal numbers.
-You can add comments after *s.
-Example:
-
-$Blue Box Fix
-043CD04C 00000000
-*This is a comment
-
-$Warp Anywhere
-040BC1C8 38000001
-040BC258 38000001
-040BC300 38000001
-*another comment
-
-Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
-  </data>
-  <data name="unableToCreateMod" xml:space="preserve">
-    <value>Unable to Create Mod</value>
-  </data>
-  <data name="editMod" xml:space="preserve">
-    <value>Edit Mod</value>
-  </data>
-  <data name="save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="gameBackupNotFound" xml:space="preserve">
-    <value>Unable to import INI: game backup not found. Please create a backup from the original game's ISO file.</value>
-  </data>
-  <data name="gameBackupNotFoundTitle" xml:space="preserve">
-    <value>Game backup not found</value>
-  </data>
-  <data name="iniNotFound" xml:space="preserve">
-    <value>Unable to import INI: INI file not found at {0}</value>
-  </data>
-  <data name="iniNotFoundTitle" xml:space="preserve">
-    <value>INI not found in files</value>
+  <data name="buttonIniImport.AutoSize" xml:space="preserve">
+    <value />
   </data>
 </root>

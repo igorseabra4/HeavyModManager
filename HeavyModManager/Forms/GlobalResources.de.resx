@@ -126,9 +126,6 @@
   <data name="hollywoodWorkoutName" xml:space="preserve">
     <value>Harley Pasternak's Hollywood Workout</value>
   </data>
-  <data name="incrediblesName" xml:space="preserve">
-    <value>Die Unglaublichen</value>
-  </data>
   <data name="programName" xml:space="preserve">
     <value>Heavy Mod Manager</value>
   </data>
@@ -161,5 +158,195 @@
   </data>
   <data name="wallEName" xml:space="preserve">
     <value>WALL-E: Der Letzte räumt die Erde auf</value>
+  </data>
+  <data name="confirmDeleteMod" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie den Mod "{0}" von {1} löschen möchten?</value>
+  </data>
+  <data name="confirmDeleteModTitle" xml:space="preserve">
+    <value>Delete mod</value>
+  </data>
+  <data name="developerMode" xml:space="preserve">
+    <value>Entwickler Modus</value>
+  </data>
+  <data name="dolphin" xml:space="preserve">
+    <value>Dolphin:</value>
+  </data>
+  <data name="dolphinNotFoundLabel" xml:space="preserve">
+    <value>Die ausführbare Dolphin Datei wurde im festgelegten Pfad nicht gefunden.</value>
+  </data>
+  <data name="dolphinPathNotSetLabel" xml:space="preserve">
+    <value>Der Pfad für die ausführbare Dolphin Datei ist nicht festgelegt.</value>
+  </data>
+  <data name="dolphinPathNotSetTooltip" xml:space="preserve">
+    <value>Der Pfad für die ausführbare Dolphin Datei ist nicht festgelegt.
+
+Klicke auf Einstellungen -&gt; Ausführbare Dolphin Datei auswählen...  und wähle die Dolphin.exe aus.
+Auch die Auswahl einer Verknüpfung ist möglich.</value>
+  </data>
+  <data name="dolphinUserFolder" xml:space="preserve">
+    <value>Dolphin Benutzerordner:</value>
+  </data>
+  <data name="dolphinUserFolderPathNotSetLabel" xml:space="preserve">
+    <value>Der Pfad zum Dolphin Benutzerordner ist nicht festgelegt.</value>
+  </data>
+  <data name="dolphinUserFolderPathNotSetTooltip" xml:space="preserve">
+    <value>Wählen Sie den Dolphin Benutzerordner Pfad…
+
+Klicke auf Einstellungen -&gt; Dolphin Benutzerorder auswählen...
+Es befindet sich normalerweise unter "AppData" oder "Documents\Dolphin Emulator".</value>
+  </data>
+  <data name="dolphinUserPathNotFoundLabel" xml:space="preserve">
+    <value>Der Pfad zum Dolphin Benutzerordner ist nicht festgelegt.</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="isoOrMainDol" xml:space="preserve">
+    <value>ISO oder main.dol</value>
+  </data>
+  <data name="noModsTooltip" xml:space="preserve">
+    <value>Es existieren keine Mods für dieses Spiel.
+
+Klicke auf "Mods hinzufügen" und wähle eine Mod-Zip-Datei aus.</value>
+  </data>
+  <data name="noBackupTooltip" xml:space="preserve">
+    <value>Es existiert kein Backup für dieses Spiel.
+
+Klicke auf "Backup erstellen" und wähle die ISO des Spiels.</value>
+  </data>
+  <data name="unsupportedFiletype" xml:space="preserve">
+    <value>Nicht unterstütztes Dateiformat.</value>
+  </data>
+  <data name="selectGameTitle" xml:space="preserve">
+    <value>Bitte wählen Sie die ISO Ihres Spiels oder main.dol aus einem unveränderten Dolphin-Dump aus.</value>
+  </data>
+  <data name="DolPatchesInfo" xml:space="preserve">
+    <value>Patches die auf die ausführbare DOL-Datei angewendet werden sollen.
+Diese ersetzen eine vierstellige Byte Zahl unter dem
+angegebenen Offset.
+Format: &lt;offset&gt; &lt;value&gt;, jeweils eine pro Zeile.
+Kommentare können mit einem # hinzugefügt werden.
+
+Beispiel:
+00287D10 53494D50
+00287DB0 54455854 # Dies ist ein Kommentar
+# Weiterer Kommentar
+
+Unterstützte Spiele: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
+  </data>
+  <data name="editMod" xml:space="preserve">
+    <value>Mod bearbeiten</value>
+  </data>
+  <data name="gameIdInfo" xml:space="preserve">
+    <value>Geben Sie eine benutzerdefinierte Spiel-ID für den Mod ein.
+Mit dieser Spiel-ID werden Speicherdateien erstellt, sodass Ihr Mod über eine einmalige Speicherdatei verfügt.
+Stellen Sie sicher, dass kein anderes GameCube- oder Wii-Spiel dieselbe ID hat.
+Es wird empfohlen, die ersten vier Zeichen beizubehalten und nur die letzten beiden zu ändern.
+Muss 6 Zeichen lang sein. Für die Standardeinstellung leer lassen.</value>
+  </data>
+  <data name="IniValuesInfo" xml:space="preserve">
+    <value>INI Einstellungen für diese Mod, im Format &lt;key&gt;=&lt;wert&gt;, jeweils eine pro Zeile.
+Kommentare können nach ein # hinzugefügt werden.
+Es müssen nur Einstellungen hinzugefügt werden, die von der Mod benötigt werden.
+
+Beispiel:
+BOOT=HB00
+ShowMenuOnBoot=0 # Dies ist ein Kommentar
+G.BubbleBowl=1
+# Weiterer Kommentar
+
+Bei bereits existierenden Mods, klicke auf "Importieren", um die INI-Datei der Mod
+hinzuzufügen. Nur modifizierte Einstellungen werden übernommen und die Datei selbst
+wird gelöscht. 
+
+Einige Einstellungen sind besonders: 
+- ScenePlayerMapping, ThresholdPointsRange und AlternateCostumeMapping: 
+Werte werden basierend auf deren vierstelligen Levelcode (BB01, B101 etc.) ersetzt.
+- TaskStatus und Extra: Falls angegeben, ersetzt alle vorhandenen Werte.
+Wenn du eins dieser beiden Einstellungen hinzufügst, musst du die restlichen fehlenden angeben.
+
+Falls du dir immer noch unsicher bist, erstelle die INI-Datei manuell
+und klicke auf "Importieren". Das Tool importiert die Werte automatisch.
+
+Unterstützte Spiele: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
+  </data>
+  <data name="mergeHipsInfo" xml:space="preserve">
+    <value>HIP- und HOP-Dateien der Mod, die in die Kopie des Spiels eingefügt 
+werden sollen, anstatt die Originaldateien zu ersetzen, jeweils eine pro Zeile.
+
+Assets aus dem Mod werden in das Zielarchiv importiert und ersetzen dabei 
+vorhandene Assets mit derselben Asset-ID, falls diese existieren. 
+
+Assets bestimmter Typen werden nicht ersetzt, sondern zusammengeführt: 
+Collision Table, Jaw Data Table, Level of Detail Table, Pipe Info Table, Shadow Table und Sound Info.</value>
+  </data>
+  <data name="modCreated" xml:space="preserve">
+    <value>Mod erstellt</value>
+  </data>
+  <data name="modCreatedAt" xml:space="preserve">
+    <value>Mod erstellt in</value>
+  </data>
+  <data name="modIdAlreadyExists" xml:space="preserve">
+    <value>Mod kann nicht erstellt werden: Es existiert bereits eine Mod mit derselben ID.</value>
+  </data>
+  <data name="modIdInfo" xml:space="preserve">
+    <value>Die Mod-ID wird automatisch aus dem Spielnamen, Autor und Mod-Name generiert. 
+Es ist auch möglich eine eigene benutzerdefinierte ID einzugeben, solange diese 
+nicht in Konflikt mit bereits existierenden Mods steht. Stelle also sicher, dass die Mod-ID einzigartig ist.
+Die Mod-ID kann nach der Erstellung der Mod nicht mehr geändert werden.</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="removeFilesInfo" xml:space="preserve">
+    <value>Ordner und Dateien des Originalspiels, die aus der Mod entfernt werden sollen, jeweils eine pro Zeile.
+
+Beispiel:
+boot.HIP
+hb\\hb01.HOP
+mn\\mn04.HIP
+
+Unterstützte Spiele: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
+  </data>
+  <data name="showCodesInfo" xml:space="preserve">
+    <value>codes, die in Dolphin angewendet werden sollen.
+Format ähnelt den Dolphin Einstellungen. Codes starten
+wie folgt: $&lt;code name&gt;, jede weitere Zeile folgt dem Format
+&lt;offset&gt; &lt;value&gt;, wovon beide jeweils eine vierstellige Hexadezimalzahl beinhalten.
+Kommentare können mit einem * hinzugefügt werden.
+
+Beispiel:
+$Blue Box Fix
+043CD04C 00000000
+* Dies ist ein Kommentar
+
+$Warp Anywhere
+040BC1C8 38000001
+040BC258 38000001
+040BC300 38000001
+* Weiterer Kommentar
+
+Unterstützte Spiele: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
+  </data>
+  <data name="unableToCreateMod" xml:space="preserve">
+    <value>Mod kann nicht erstellt werden</value>
+  </data>
+  <data name="incrediblesName" xml:space="preserve">
+    <value>Die Unglaublichen</value>
+  </data>
+  <data name="createModText" xml:space="preserve">
+    <value>Mod &amp;erstellen…</value>
+  </data>
+  <data name="editModText" xml:space="preserve">
+    <value>Mod &amp;bearbeiten…</value>
+  </data>
+  <data name="openModFolderText" xml:space="preserve">
+    <value>Mod &amp;Ordner öffnen…</value>
+  </data>
+  <data name="deleteModText" xml:space="preserve">
+    <value>Mod &amp;löschen…</value>
+  </data>
+  <data name="labelDefaultGameIdText" xml:space="preserve">
+    <value>Standard Game ID</value>
   </data>
 </root>

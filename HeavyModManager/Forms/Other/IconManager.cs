@@ -14,8 +14,7 @@ public static class IconManager
 
     public static void SetIcon(Form form)
     {
-        var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-        form.Icon = (Icon)resources.GetObject(GetIconName());
+        form.Icon = GetIcon();
     }
 
     public static void ChangeIcon()
@@ -25,12 +24,12 @@ public static class IconManager
             CurrentIcon = 0;
     }
 
-    public static string GetIconName() => CurrentIcon switch
+    public static Icon? GetIcon() => CurrentIcon switch
     {
-        HeavyModManagerIcon.Red => "icon_small",
-        HeavyModManagerIcon.Rainbow => "icon_rainbow_small",
-        HeavyModManagerIcon.Sock => "sock",
-        HeavyModManagerIcon.ShinyObject => "shiny_object",
-        _ => "",
+        HeavyModManagerIcon.Red => GlobalResources.icon_small,
+        HeavyModManagerIcon.Rainbow => GlobalResources.icon_rainbow_small,
+        HeavyModManagerIcon.Sock => GlobalResources.sock,
+        HeavyModManagerIcon.ShinyObject => GlobalResources.shiny_object,
+        _ => null,
     };
 }

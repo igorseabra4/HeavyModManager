@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -158,59 +158,68 @@
   <data name="buttonAddMod.Text" xml:space="preserve">
     <value>Mods hinzufügen</value>
   </data>
-  <data name="buttonRunGame.Location" type="System.Drawing.Point, System.Drawing">
-    <value>495, 376</value>
-  </data>
-  <data name="buttonRunGame.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 24</value>
-  </data>
-  <data name="buttonRunGame.Text" xml:space="preserve">
-    <value>Anwenden und Spiel starten</value>
-  </data>
-  <data name="buttonApplyMods.Location" type="System.Drawing.Point, System.Drawing">
-    <value>529, 349</value>
-  </data>
-  <data name="buttonApplyMods.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 23</value>
-  </data>
-  <data name="buttonApplyMods.Text" xml:space="preserve">
-    <value>Mods anwenden</value>
-  </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 24</value>
-  </data>
   <data name="manageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 20</value>
   </data>
   <data name="manageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Verwalten</value>
   </data>
-  <data name="createModToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+  <data name="chooseDolphinPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
   </data>
-  <data name="createModToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mod &amp;erstellen…</value>
+  <data name="chooseDolphinPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ausführbare Dolphin Datei auswählen...</value>
   </data>
-  <data name="editModToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+  <data name="chooseDolphinUserFolderPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
   </data>
-  <data name="editModToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mod &amp;bearbeiten…</value>
+  <data name="chooseDolphinUserFolderPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dolphin Benutzerordner auswählen...</value>
   </data>
-  <data name="openModFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+  <data name="developerModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
   </data>
-  <data name="openModFolderToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mod &amp;Ordner öffnen…</value>
+  <data name="developerModeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Entwickler Modus</value>
   </data>
-  <data name="zipModToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+  <data name="checkForUpdatesOnStartupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
   </data>
-  <data name="deleteModToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+  <data name="checkForUpdatesOnStartupToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Automatisch nach Updates suchen</value>
   </data>
-  <data name="deleteModToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mod &amp;löschen…</value>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 6</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Über…</value>
+  </data>
+  <data name="changeIconToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="changeIconToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Icon ändern</value>
+  </data>
+  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 22</value>
+  </data>
+  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Englisch</value>
+  </data>
+  <data name="germanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 22</value>
+  </data>
+  <data name="germanToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Deutsch</value>
+  </data>
+  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>S&amp;prache</value>
   </data>
   <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 20</value>
@@ -218,125 +227,10 @@
   <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Einstellungen</value>
   </data>
-  <data name="chooseDolphinPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 22</value>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 24</value>
   </data>
-  <data name="chooseDolphinPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ausführbare Dolphin Datei auswählen...</value>
-  </data>
-  <data name="chooseDolphinUserFolderPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 22</value>
-  </data>
-  <data name="chooseDolphinUserFolderPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Dolphin Benutzerordner auswählen...</value>
-  </data>
-  <data name="developerModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 22</value>
-  </data>
-  <data name="developerModeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Entwickler Modus</value>
-  </data>
-  <data name="checkForUpdatesOnStartupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 22</value>
-  </data>
-  <data name="checkForUpdatesOnStartupToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Automatisch nach Updates suchen</value>
-  </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>319, 6</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 22</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Über…</value>
-  </data>
-  <data name="changeIconToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 22</value>
-  </data>
-  <data name="changeIconToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Icon ändern</value>
-  </data>
-  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 22</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
-    <value>S&amp;prache</value>
-  </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Englisch</value>
-  </data>
-  <data name="germanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="germanToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Deutsch</value>
-  </data>
-  <data name="developerMode" xml:space="preserve">
-    <value>Entwickler Modus</value>
-  </data>
-  <data name="dolphin" xml:space="preserve">
-    <value>Dolphin:</value>
-  </data>
-  <data name="dolphinNotFoundLabel" xml:space="preserve">
-    <value>Die ausführbare Dolphin Datei wurde im festgelegten Pfad nicht gefunden.</value>
-  </data>
-  <data name="dolphinPathNotSetLabel" xml:space="preserve">
-    <value>Der Pfad für die ausführbare Dolphin Datei ist nicht festgelegt.</value>
-  </data>
-  <data name="dolphinPathNotSetTooltip" xml:space="preserve">
-    <value>Der Pfad für die ausführbare Dolphin Datei ist nicht festgelegt.
-
-Klicke auf Einstellungen -&gt; Ausführbare Dolphin Datei auswählen...  und wähle die Dolphin.exe aus.
-Auch die Auswahl einer Verknüpfung ist möglich.</value>
-  </data>
-  <data name="dolphinUserFolder" xml:space="preserve">
-    <value>Dolphin Benutzerordner:</value>
-  </data>
-  <data name="dolphinUserFolderPathNotSetLabel" xml:space="preserve">
-    <value>Der Pfad zum Dolphin Benutzerordner ist nicht festgelegt.</value>
-  </data>
-  <data name="dolphinUserFolderPathNotSetTooltip" xml:space="preserve">
-    <value>Wählen Sie den Dolphin Benutzerordner Pfad…
-
-Klicke auf Einstellungen -&gt; Dolphin Benutzerorder auswählen...
-Es befindet sich normalerweise unter "AppData" oder "Documents\Dolphin Emulator".</value>
-  </data>
-  <data name="dolphinUserPathNotFoundLabel" xml:space="preserve">
-    <value>Der Pfad zum Dolphin Benutzerordner ist nicht festgelegt.</value>
-  </data>
-  <data name="error" xml:space="preserve">
-    <value>Fehler</value>
-  </data>
-  <data name="isoOrMainDol" xml:space="preserve">
-    <value>ISO oder main.dol</value>
-  </data>
-  <data name="noBackupTooltip" xml:space="preserve">
-    <value>Es existiert kein Backup für dieses Spiel.
-
-Klicke auf "Backup erstellen" und wähle die ISO des Spiels.</value>
-  </data>
-  <data name="noModsTooltip" xml:space="preserve">
-    <value>Es existieren keine Mods für dieses Spiel.
-
-Klicke auf "Mods hinzufügen" und wähle eine Mod-Zip-Datei aus.</value>
-  </data>
-  <data name="selectGameTitle" xml:space="preserve">
-    <value>Bitte wählen Sie die ISO Ihres Spiels oder main.dol aus einem unveränderten Dolphin-Dump aus.</value>
-  </data>
-  <data name="unsupportedFiletype" xml:space="preserve">
-    <value>Nicht unterstütztes Dateiformat.</value>
-  </data>
-  <data name="confirmDeleteMod" xml:space="preserve">
-    <value>Sind Sie sicher, dass Sie den Mod "{0}" von {1} löschen möchten?</value>
-  </data>
-  <data name="confirmDeleteModTitle" xml:space="preserve">
-    <value>Delete mod</value>
-  </data>
-  <data name="errorCreatingModZip" xml:space="preserve">
-    <value />
+  <data name="buttonRunGame.Text" xml:space="preserve">
+    <value>Spiel starten</value>
   </data>
 </root>

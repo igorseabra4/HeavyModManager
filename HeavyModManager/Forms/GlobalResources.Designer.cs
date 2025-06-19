@@ -79,6 +79,116 @@ namespace HeavyModManager.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete &quot;{0}&quot; by {1}?.
+        /// </summary>
+        internal static string confirmDeleteMod {
+            get {
+                return ResourceManager.GetString("confirmDeleteMod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete mod.
+        /// </summary>
+        internal static string confirmDeleteModTitle {
+            get {
+                return ResourceManager.GetString("confirmDeleteModTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Create Mod....
+        /// </summary>
+        internal static string createModText {
+            get {
+                return ResourceManager.GetString("createModText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Delete Mod....
+        /// </summary>
+        internal static string deleteModText {
+            get {
+                return ResourceManager.GetString("deleteModText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Developer Mode.
+        /// </summary>
+        internal static string developerMode {
+            get {
+                return ResourceManager.GetString("developerMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter patches to be applied to the game&apos;s DOL file, in the form of
+        ///&lt;offset&gt; &lt;value&gt;, both 4-byte hexadecimal numbers, one per line.
+        ///You can add comments after #s.
+        ///
+        ///Example:
+        ///00287D10 53494D50
+        ///00287DB0 54455854 # This is a comment
+        ///#another comment
+        ///
+        ///Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto.
+        /// </summary>
+        internal static string DolPatchesInfo {
+            get {
+                return ResourceManager.GetString("DolPatchesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dolphin:.
+        /// </summary>
+        internal static string dolphin {
+            get {
+                return ResourceManager.GetString("dolphin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dolphin executable not found on set path..
+        /// </summary>
+        internal static string dolphinNotFoundLabel {
+            get {
+                return ResourceManager.GetString("dolphinNotFoundLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dolphin executable path not set..
+        /// </summary>
+        internal static string dolphinPathNotSetLabel {
+            get {
+                return ResourceManager.GetString("dolphinPathNotSetLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dolphin executable path not set.
+        ///
+        ///Please click on Settings &gt; Choose Dolphin Path... and select the Dolphin executable. Selecting a shortcut is also possible..
+        /// </summary>
+        internal static string dolphinPathNotSetTooltip {
+            get {
+                return ResourceManager.GetString("dolphinPathNotSetTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dolphin User Folder:.
+        /// </summary>
+        internal static string dolphinUserFolder {
+            get {
+                return ResourceManager.GetString("dolphinUserFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dolphin user folder not found on set path..
         /// </summary>
         internal static string dolphinUserFolderNotFoundLabel {
@@ -88,11 +198,77 @@ namespace HeavyModManager.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dolphin user folder not found on set path..
+        /// </summary>
+        internal static string dolphinUserFolderNotFoundLabel1 {
+            get {
+                return ResourceManager.GetString("dolphinUserFolderNotFoundLabel1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dolphin user folder path not set..
+        /// </summary>
+        internal static string dolphinUserFolderPathNotSetLabel {
+            get {
+                return ResourceManager.GetString("dolphinUserFolderPathNotSetLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dolphin user folder path not set.
+        ///
+        ///Please click on Settings &gt; Choose Dolphin User Folder Path... and select the Dolphin user folder.
+        ///It is usually located in &quot;AppData&quot; (for newer installs), or &quot;Documents\Dolphin Emulator&quot;. To find it, you can open Dolphin and select File &gt; Open User Folder..
+        /// </summary>
+        internal static string dolphinUserFolderPathNotSetTooltip {
+            get {
+                return ResourceManager.GetString("dolphinUserFolderPathNotSetTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dolphin user folder not found on set path..
+        /// </summary>
+        internal static string dolphinUserPathNotFoundLabel {
+            get {
+                return ResourceManager.GetString("dolphinUserPathNotFoundLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you wish to download it?.
         /// </summary>
         internal static string downloadPrompt {
             get {
                 return ResourceManager.GetString("downloadPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Mod.
+        /// </summary>
+        internal static string editMod {
+            get {
+                return ResourceManager.GetString("editMod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Edit Mod....
+        /// </summary>
+        internal static string editModText {
+            get {
+                return ResourceManager.GetString("editModText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string error {
+            get {
+                return ResourceManager.GetString("error", resourceCulture);
             }
         }
         
@@ -115,6 +291,49 @@ namespace HeavyModManager.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was an error creating your mod ZIP archive:.
+        /// </summary>
+        internal static string errorCreatingModZip {
+            get {
+                return ResourceManager.GetString("errorCreatingModZip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to import INI: game backup not found. Please create a backup from the original game&apos;s ISO file..
+        /// </summary>
+        internal static string gameBackupNotFound {
+            get {
+                return ResourceManager.GetString("gameBackupNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game backup not found.
+        /// </summary>
+        internal static string gameBackupNotFoundTitle {
+            get {
+                return ResourceManager.GetString("gameBackupNotFoundTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a custom game ID for the mod.
+        ///
+        ///Save files are created using this game ID, enabling your mod to have a unique save file.
+        ///Make sure no other GameCube or Wii game has the same ID.
+        ///It is recommended to keep the first four characters the same and change only the last two.
+        ///Must be 6 characters long. Leave blank for default.
+        ///
+        ///Supported games: Scooby, BFBB, Movie, Incredibles, Underminer.
+        /// </summary>
+        internal static string gameIdInfo {
+            get {
+                return ResourceManager.GetString("gameIdInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Harley Pasternak&apos;s Hollywood Workout.
         /// </summary>
         internal static string hollywoodWorkoutName {
@@ -124,11 +343,179 @@ namespace HeavyModManager.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon icon_rainbow_small {
+            get {
+                object obj = ResourceManager.GetObject("icon_rainbow_small", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon icon_small {
+            get {
+                object obj = ResourceManager.GetObject("icon_small", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Incredibles.
         /// </summary>
         internal static string incrediblesName {
             get {
                 return ResourceManager.GetString("incrediblesName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to import INI: INI file not found at {0}.
+        /// </summary>
+        internal static string iniNotFound {
+            get {
+                return ResourceManager.GetString("iniNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INI not found in files.
+        /// </summary>
+        internal static string iniNotFoundTitle {
+            get {
+                return ResourceManager.GetString("iniNotFoundTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the game&apos;s configuration INI key-value pairs for this mod, in the form of
+        ///&lt;key&gt;=&lt;value&gt;, one per line. You can add comments after #s. You only need to
+        ///enter the lines needed by your mod.
+        ///Example:
+        ///
+        ///BOOT=HB00
+        ///ShowMenuOnBoot=0 # This is a comment
+        ///G.BubbleBowl=1
+        ///#another comment
+        ///
+        ///On an already existing mod, click on &apos;Import&apos; to import the mod&apos;s
+        ///INI into here. Only modified values will be imported and the file
+        ///itself will be deleted.
+        ///
+        ///A few types of key are special because they can appear mul [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string IniValuesInfo {
+            get {
+                return ResourceManager.GetString("IniValuesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ISO or main.dol.
+        /// </summary>
+        internal static string isoOrMainDol {
+            get {
+                return ResourceManager.GetString("isoOrMainDol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default Game ID.
+        /// </summary>
+        internal static string labelDefaultGameIdText {
+            get {
+                return ResourceManager.GetString("labelDefaultGameIdText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your mod&apos;s HIP and HOP files which should be merged into the running copy of the game instead of replacing the original ones, one per line.
+        ///
+        ///Assets from the mod will be imported into the destination archive, replacing any assets with the same asset ID if they exist.
+        ///Assets of certain types will be merged into one (namely: Collision Table, Jaw Data Table, Level of Detail Table, Pipe Info Table, Shadow Table and Sound Info.
+        ///
+        ///Example:
+        ///boot.HIP
+        ///hb/hb01.HOP
+        ///mn/mn04.HIP
+        ///
+        ///Supported games: Scooby, B [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string mergeHipsInfo {
+            get {
+                return ResourceManager.GetString("mergeHipsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod Created.
+        /// </summary>
+        internal static string modCreated {
+            get {
+                return ResourceManager.GetString("modCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mod created at.
+        /// </summary>
+        internal static string modCreatedAt {
+            get {
+                return ResourceManager.GetString("modCreatedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to Create Mod: a mod with the same ID already exists..
+        /// </summary>
+        internal static string modIdAlreadyExists {
+            get {
+                return ResourceManager.GetString("modIdAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Mod ID is generated automatically from the game name, author and mod name.
+        ///Feel free to enter your own custom ID for the mod, but make sure that it&apos;s unique!
+        ///No other mod, by any other author or for any other game, should have the same ID as yours.
+        ///The Mod ID cannot be changed after the mod is created..
+        /// </summary>
+        internal static string modIdInfo {
+            get {
+                return ResourceManager.GetString("modIdInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have a backup for this game.
+        ///
+        ///Please click on &quot;Create Backup&quot; and select the game&apos;s ISO file..
+        /// </summary>
+        internal static string noBackupTooltip {
+            get {
+                return ResourceManager.GetString("noBackupTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have mods for this game.
+        ///
+        ///Please click on &quot;Add Mods&quot; and select a mod ZIP file..
+        /// </summary>
+        internal static string noModsTooltip {
+            get {
+                return ResourceManager.GetString("noModsTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Open Mod Folder....
+        /// </summary>
+        internal static string openModFolderText {
+            get {
+                return ResourceManager.GetString("openModFolderText", resourceCulture);
             }
         }
         
@@ -160,6 +547,23 @@ namespace HeavyModManager.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter the folders or files present in the original game
+        ///which should be deleted from the mod, one per line.
+        ///
+        ///Example:
+        ///boot.HIP
+        ///hb\hb01.HOP
+        ///mn\mn04.HIP
+        ///
+        ///Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto.
+        /// </summary>
+        internal static string removeFilesInfo {
+            get {
+                return ResourceManager.GetString("removeFilesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Incredibles: Rise of the Underminer.
         /// </summary>
         internal static string rotuName {
@@ -169,11 +573,74 @@ namespace HeavyModManager.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string save {
+            get {
+                return ResourceManager.GetString("save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Scooby-Doo: Night of 100 Frights.
         /// </summary>
         internal static string scoobyName {
             get {
                 return ResourceManager.GetString("scoobyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select your game&apos;s ISO or the main.dol from an unchanged Dolphin dump..
+        /// </summary>
+        internal static string selectGameTitle {
+            get {
+                return ResourceManager.GetString("selectGameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon shiny_object {
+            get {
+                object obj = ResourceManager.GetObject("shiny_object", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to codes to be applied by Dolphin. Format should be similar to
+        ///Dolphin Settings: Each code starts with &lt;code name&gt;, then each line follows
+        ///the format &lt;offset&gt; &lt;value&gt;, both 4-byte hexadecimal numbers.
+        ///You can add comments after *s.
+        ///Example:
+        ///
+        ///$Blue Box Fix
+        ///043CD04C 00000000
+        ///*This is a comment
+        ///
+        ///$Warp Anywhere
+        ///040BC1C8 38000001
+        ///040BC258 38000001
+        ///040BC300 38000001
+        ///*another comment
+        ///
+        ///Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto.
+        /// </summary>
+        internal static string showCodesInfo {
+            get {
+                return ResourceManager.GetString("showCodesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon sock {
+            get {
+                object obj = ResourceManager.GetObject("sock", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -201,6 +668,24 @@ namespace HeavyModManager.Forms {
         internal static string ufcName {
             get {
                 return ResourceManager.GetString("ufcName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to Create Mod.
+        /// </summary>
+        internal static string unableToCreateMod {
+            get {
+                return ResourceManager.GetString("unableToCreateMod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported file type..
+        /// </summary>
+        internal static string unsupportedFiletype {
+            get {
+                return ResourceManager.GetString("unsupportedFiletype", resourceCulture);
             }
         }
         
@@ -237,6 +722,15 @@ namespace HeavyModManager.Forms {
         internal static string wallEName {
             get {
                 return ResourceManager.GetString("wallEName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Zip Mod....
+        /// </summary>
+        internal static string zipModText {
+            get {
+                return ResourceManager.GetString("zipModText", resourceCulture);
             }
         }
     }
