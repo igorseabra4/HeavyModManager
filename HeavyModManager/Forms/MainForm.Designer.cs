@@ -57,6 +57,7 @@ partial class MainForm
         languageToolStripMenuItem = new ToolStripMenuItem();
         englishToolStripMenuItem = new ToolStripMenuItem();
         germanToolStripMenuItem = new ToolStripMenuItem();
+        portugueseToolStripMenuItem = new ToolStripMenuItem();
         labelModInfo = new Label();
         panelLabelModInfo = new Panel();
         groupBoxModInfo = new GroupBox();
@@ -235,7 +236,7 @@ partial class MainForm
         // languageToolStripMenuItem
         // 
         resources.ApplyResources(languageToolStripMenuItem, "languageToolStripMenuItem");
-        languageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { englishToolStripMenuItem, germanToolStripMenuItem });
+        languageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { englishToolStripMenuItem, germanToolStripMenuItem, portugueseToolStripMenuItem });
         languageToolStripMenuItem.Name = "languageToolStripMenuItem";
         // 
         // englishToolStripMenuItem
@@ -253,6 +254,13 @@ partial class MainForm
         germanToolStripMenuItem.Name = "germanToolStripMenuItem";
         germanToolStripMenuItem.Tag = "de";
         germanToolStripMenuItem.Click += changeLanguageToolStripMenuItem_Click;
+        // 
+        // portugueseToolStripMenuItem
+        // 
+        resources.ApplyResources(portugueseToolStripMenuItem, "portugueseToolStripMenuItem");
+        portugueseToolStripMenuItem.Name = "portugueseToolStripMenuItem";
+        portugueseToolStripMenuItem.Tag = "pt";
+        portugueseToolStripMenuItem.Click += changeLanguageToolStripMenuItem_Click;
         // 
         // labelModInfo
         // 
@@ -302,7 +310,6 @@ partial class MainForm
         Shown += MainForm_Shown;
         groupBoxGame.ResumeLayout(false);
         groupBoxMods.ResumeLayout(false);
-        groupBoxMods.PerformLayout();
         menuStrip1.ResumeLayout(false);
         menuStrip1.PerformLayout();
         panelLabelModInfo.ResumeLayout(false);
@@ -346,4 +353,5 @@ partial class MainForm
     private ToolStripMenuItem englishToolStripMenuItem;
     private ToolStripMenuItem germanToolStripMenuItem;
     private Button buttonRunGame;
+    private ToolStripMenuItem portugueseToolStripMenuItem;
 }

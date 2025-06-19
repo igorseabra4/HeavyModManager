@@ -150,9 +150,6 @@
   <data name="ufcName" xml:space="preserve">
     <value>UFC Personal Trainer</value>
   </data>
-  <data name="updateAvailable" xml:space="preserve">
-    <value />
-  </data>
   <data name="upName" xml:space="preserve">
     <value>Oben</value>
   </data>
@@ -201,6 +198,10 @@ Es befindet sich normalerweise unter "AppData" oder "Documents\Dolphin Emulator"
   <data name="error" xml:space="preserve">
     <value>Fehler</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="errorCreatingModZip" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="isoOrMainDol" xml:space="preserve">
     <value>ISO oder main.dol</value>
   </data>
@@ -216,6 +217,12 @@ Klicke auf "Backup erstellen" und wähle die ISO des Spiels.</value>
   </data>
   <data name="unsupportedFiletype" xml:space="preserve">
     <value>Nicht unterstütztes Dateiformat.</value>
+  </data>
+  <data name="downloadPrompt" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="errorCheckingForUpdates" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="selectGameTitle" xml:space="preserve">
     <value>Bitte wählen Sie die ISO Ihres Spiels oder main.dol aus einem unveränderten Dolphin-Dump aus.</value>
@@ -243,6 +250,9 @@ Mit dieser Spiel-ID werden Speicherdateien erstellt, sodass Ihr Mod über eine e
 Stellen Sie sicher, dass kein anderes GameCube- oder Wii-Spiel dieselbe ID hat.
 Es wird empfohlen, die ersten vier Zeichen beizubehalten und nur die letzten beiden zu ändern.
 Muss 6 Zeichen lang sein. Für die Standardeinstellung leer lassen.</value>
+  </data>
+  <data name="iniNotFound" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="IniValuesInfo" xml:space="preserve">
     <value>INI Einstellungen für diese Mod, im Format &lt;key&gt;=&lt;wert&gt;, jeweils eine pro Zeile.

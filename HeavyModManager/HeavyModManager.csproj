@@ -36,6 +36,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Forms\GlobalResources.pt.resx">
+      <SubType>Designer</SubType>
+      <LastGenOutput>GlobalResources - Copy.de.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Forms\GlobalResources.de.resx">
       <LastGenOutput>GlobalResources.de.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>

@@ -438,7 +438,7 @@ public partial class CreateMod : Form
     {
         if (!ModManager.GameBackupExists)
         {
-            MessageBox.Show(GlobalResources.gameBackupNotFound,
+            MessageBox.Show(GlobalResources.iniErrorGameBackupNotFound,
                 GlobalResources.gameBackupNotFoundTitle,
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;

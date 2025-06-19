@@ -188,9 +188,6 @@ Please click on Settings &gt; Choose Dolphin Path... and select the Dolphin exec
   <data name="dolphinUserFolder" xml:space="preserve">
     <value>Dolphin User Folder:</value>
   </data>
-  <data name="dolphinUserFolderNotFoundLabel1" xml:space="preserve">
-    <value>Dolphin user folder not found on set path.</value>
-  </data>
   <data name="dolphinUserFolderPathNotSetLabel" xml:space="preserve">
     <value>Dolphin user folder path not set.</value>
   </data>
@@ -265,7 +262,7 @@ Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
   <data name="editMod" xml:space="preserve">
     <value>Edit Mod</value>
   </data>
-  <data name="gameBackupNotFound" xml:space="preserve">
+  <data name="iniErrorGameBackupNotFound" xml:space="preserve">
     <value>Unable to import INI: game backup not found. Please create a backup from the original game's ISO file.</value>
   </data>
   <data name="gameBackupNotFoundTitle" xml:space="preserve">

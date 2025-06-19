@@ -117,123 +117,149 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Einstellungen</value>
+  <data name="programName" xml:space="preserve">
+    <value>Heavy Mod Manager</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 24</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ufcName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="developerModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 22</value>
+  <data name="updateAvailable" xml:space="preserve">
+    <value>Há uma atualização disponível:</value>
   </data>
-  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 22</value>
+  <data name="updateAvailableTitle" xml:space="preserve">
+    <value>Atualização Disponível</value>
   </data>
-  <data name="changeIconToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 22</value>
+  <data name="upName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="buttonRunGame.Text" xml:space="preserve">
-    <value>Spiel starten</value>
+  <data name="confirmDeleteMod" xml:space="preserve">
+    <value>Você tem certeza que quer remover o mod "{0}" por {1}?</value>
   </data>
-  <data name="buttonAddMod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 25</value>
+  <data name="confirmDeleteModTitle" xml:space="preserve">
+    <value>Remover mod</value>
   </data>
-  <data name="columnAuthor.Text" xml:space="preserve">
-    <value>Autor</value>
+  <data name="developerMode" xml:space="preserve">
+    <value>Modo Desenvolvedor</value>
   </data>
-  <data name="groupBoxGame.Text" xml:space="preserve">
-    <value>Spiel wählen</value>
+  <data name="dolphin" xml:space="preserve">
+    <value>Dolphin:</value>
   </data>
-  <data name="chooseDolphinPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 22</value>
+  <data name="dolphinNotFoundLabel" xml:space="preserve">
+    <value>Executável Dolphin não encontrado no caminho definido.</value>
   </data>
-  <data name="changeIconToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Icon ändern</value>
+  <data name="dolphinPathNotSetLabel" xml:space="preserve">
+    <value>Caminho do executável do Dolphin não definido.</value>
   </data>
-  <data name="manageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
+  <data name="dolphinPathNotSetTooltip" xml:space="preserve">
+    <value>Caminho do executável do Dolphin não definido.
+
+Clique em Configurações &gt; Escolher caminho do Dolphin... e selecione o executável do Dolphin. Também é possível selecionar um atalho.</value>
   </data>
-  <data name="manageToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Verwalten</value>
+  <data name="dolphinUserFolder" xml:space="preserve">
+    <value>Pasta de usuário do Dolphin:</value>
   </data>
-  <data name="chooseDolphinUserFolderPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Dolphin Benutzerordner auswählen...</value>
+  <data name="dolphinUserFolderPathNotSetLabel" xml:space="preserve">
+    <value>Caminho da pasta do usuário do Dolphin não definido.</value>
   </data>
-  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Englisch</value>
+  <data name="dolphinUserFolderPathNotSetTooltip" xml:space="preserve">
+    <value>Caminho da pasta de usuário do Dolphin não definido.
+
+Clique em Configurações &gt; Escolher Caminho da Pasta de Usuário do Dolphin... e selecione a pasta de usuário do Dolphin.
+Ela geralmente está localizada em "AppData" (para instalações mais recentes) ou em "Documentos\Dolphin Emulator". Para encontrá-la, abra o Dolphin e selecione Arquivo &gt; Abrir Pasta de Usuário.</value>
   </data>
-  <data name="buttonRefreshModList.Text" xml:space="preserve">
-    <value>Mods aktualisieren</value>
+  <data name="dolphinUserPathNotFoundLabel" xml:space="preserve">
+    <value>Pasta de usuário do Dolphin não encontrada no caminho definido.</value>
   </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 22</value>
+  <data name="error" xml:space="preserve">
+    <value>Erro</value>
   </data>
-  <data name="buttonAddMod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 263</value>
+  <data name="errorCreatingModZip" xml:space="preserve">
+    <value>Ocorreu um erro ao criar o arquivo ZIP do seu mod:</value>
   </data>
-  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
-    <value>S&amp;prache</value>
+  <data name="isoOrMainDol" xml:space="preserve">
+    <value>ISO ou main.dol</value>
   </data>
-  <data name="buttonCreateBackup.Text" xml:space="preserve">
-    <value>Backup erstellen</value>
+  <data name="noModsTooltip" xml:space="preserve">
+    <value>Você não possui mods para este jogo.
+
+Clique em "Adicionar Mods" e selecione um arquivo ZIP de mod.</value>
   </data>
-  <data name="checkForUpdatesOnStartupToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Automatisch nach Updates suchen</value>
+  <data name="noBackupTooltip" xml:space="preserve">
+    <value>Você não possui um backup para este jogo.
+
+Clique em "Criar Backup" e selecione o arquivo ISO do jogo.</value>
   </data>
-  <data name="buttonAddMod.Text" xml:space="preserve">
-    <value>Mods hinzufügen</value>
+  <data name="unsupportedFiletype" xml:space="preserve">
+    <value>Tipo de arquivo não suportado.</value>
   </data>
-  <data name="columnCreatedDate.Text" xml:space="preserve">
-    <value>Erstellt am</value>
+  <data name="downloadPrompt" xml:space="preserve">
+    <value>Deseja realizar o download?</value>
   </data>
-  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Über…</value>
+  <data name="errorCheckingForUpdates" xml:space="preserve">
+    <value>Ocorreu um erro ao verificar atualizações:</value>
   </data>
-  <data name="germanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 22</value>
+  <data name="errorCheckingForUpdatesTitle" xml:space="preserve">
+    <value>Erro ao verificar atualizações</value>
   </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 20</value>
+  <data name="selectGameTitle" xml:space="preserve">
+    <value>Selecione o ISO do seu jogo ou o main.dol de um dump do Dolphin inalterado.</value>
   </data>
-  <data name="checkForUpdatesOnStartupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 22</value>
+  <data name="DolPatchesInfo" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="columnUpdatedDate.Text" xml:space="preserve">
-    <value>Aktualisiert am</value>
+  <data name="editMod" xml:space="preserve">
+    <value>Editar mod</value>
   </data>
-  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 22</value>
+  <data name="iniErrorGameBackupNotFound" xml:space="preserve">
+    <value>Não foi possível importar o arquivo INI: backup do jogo não encontrado. Crie um backup do arquivo ISO original do jogo.</value>
   </data>
-  <data name="buttonRefreshModList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 262</value>
+  <data name="gameBackupNotFoundTitle" xml:space="preserve">
+    <value>Backup do jogo não encontrado</value>
   </data>
-  <data name="buttonRefreshModList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 25</value>
+  <data name="iniNotFound" xml:space="preserve">
+    <value>Não foi possível importar INI: arquivo INI não encontrado em {0}</value>
   </data>
-  <data name="chooseDolphinPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ausführbare Dolphin Datei auswählen...</value>
+  <data name="iniNotFoundTitle" xml:space="preserve">
+    <value>INI não encontrado nos arquivos</value>
   </data>
-  <data name="chooseDolphinUserFolderPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 22</value>
+  <data name="modCreated" xml:space="preserve">
+    <value>Mod criado</value>
   </data>
-  <data name="germanToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Deutsch</value>
+  <data name="modCreatedAt" xml:space="preserve">
+    <value>Mod criado em</value>
   </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 6</value>
+  <data name="modIdAlreadyExists" xml:space="preserve">
+    <value>Não foi possível criar um mod: já existe um mod com o mesmo ID.</value>
   </data>
-  <data name="developerModeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Entwickler Modus</value>
+  <data name="modIdInfo" xml:space="preserve">
+    <value>O ID do Mod é gerado automaticamente a partir do nome do jogo, autor e nome do mod.
+Sinta-se à vontade para inserir seu próprio ID personalizado para o mod, mas certifique-se de que seja único!
+Nenhum outro mod, de qualquer outro autor ou para qualquer outro jogo, deve ter o mesmo ID que o seu.
+O ID do Mod não pode ser alterado após a criação do mod.</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="buttonRefreshModList.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="save" xml:space="preserve">
+    <value>Salvar</value>
   </data>
-  <data name="buttonAddMod.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="unableToCreateMod" xml:space="preserve">
+    <value>Não é possível criar o mod</value>
   </data>
-  <data name="portugueseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Portugiesisch</value>
+  <data name="dolphinUserFolderNotFoundLabel" xml:space="preserve">
+    <value>Pasta de usuário do Dolphin não encontrada no caminho definido.</value>
+  </data>
+  <data name="createModText" xml:space="preserve">
+    <value>&amp;Criar mod...</value>
+  </data>
+  <data name="editModText" xml:space="preserve">
+    <value>&amp;Editar mod...</value>
+  </data>
+  <data name="openModFolderText" xml:space="preserve">
+    <value>&amp;Abrir pasta do mod...</value>
+  </data>
+  <data name="zipModText" xml:space="preserve">
+    <value>&amp;Zip Mod...</value>
+  </data>
+  <data name="deleteModText" xml:space="preserve">
+    <value>&amp;Remover mod...</value>
   </data>
 </root>

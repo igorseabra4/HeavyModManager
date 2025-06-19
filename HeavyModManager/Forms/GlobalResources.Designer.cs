@@ -198,15 +198,6 @@ namespace HeavyModManager.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dolphin user folder not found on set path..
-        /// </summary>
-        internal static string dolphinUserFolderNotFoundLabel1 {
-            get {
-                return ResourceManager.GetString("dolphinUserFolderNotFoundLabel1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Dolphin user folder path not set..
         /// </summary>
         internal static string dolphinUserFolderPathNotSetLabel {
@@ -300,15 +291,6 @@ namespace HeavyModManager.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to import INI: game backup not found. Please create a backup from the original game&apos;s ISO file..
-        /// </summary>
-        internal static string gameBackupNotFound {
-            get {
-                return ResourceManager.GetString("gameBackupNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Game backup not found.
         /// </summary>
         internal static string gameBackupNotFoundTitle {
@@ -368,6 +350,15 @@ namespace HeavyModManager.Forms {
         internal static string incrediblesName {
             get {
                 return ResourceManager.GetString("incrediblesName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to import INI: game backup not found. Please create a backup from the original game&apos;s ISO file..
+        /// </summary>
+        internal static string iniErrorGameBackupNotFound {
+            get {
+                return ResourceManager.GetString("iniErrorGameBackupNotFound", resourceCulture);
             }
         }
         
