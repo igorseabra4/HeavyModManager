@@ -3,13 +3,13 @@
     public class DolphinCode
     {
         public string Name { get; set; }
-        public List<(uint, uint)> Code { get; set; }
+        public List<string> Code { get; set; }
         public bool Enabled { get; set; }
 
         public DolphinCode()
         {
             Name = "";
-            Code = new List<(uint, uint)>();
+            Code = [];
             Enabled = false;
         }
     }
@@ -33,9 +33,10 @@
 
         public static DolphinGameSettings FromPath(string fileName) => new(File.Exists(fileName) ? File.ReadAllLines(fileName) : Array.Empty<string>());
 
-        public static DolphinGameSettings FromContents(string contents, DolphinSettingsReaderMode defaultMode = DolphinSettingsReaderMode.Lines) => new(contents.Split('\n'), defaultMode);
+        public static DolphinGameSettings FromContents(string contents, DolphinSettingsReaderMode defaultMode = DolphinSettingsReaderMode.Lines, bool validateCodes = false) =>
+            new(contents.Split('\n'), defaultMode, validateCodes);
 
-        private DolphinGameSettings(string[] contents, DolphinSettingsReaderMode defaultMode = DolphinSettingsReaderMode.Lines)
+        private DolphinGameSettings(string[] contents, DolphinSettingsReaderMode defaultMode = DolphinSettingsReaderMode.Lines, bool validateCodes = false)
         {
             Lines = new List<string>();
             Core = new Dictionary<string, string>();
@@ -115,10 +116,13 @@
                         }
                         else
                         {
-                            var vals = line.Split(' ', 2);
-                            if (vals.Length != 2)
-                                throw new InvalidDataException("Wrong format");
-                            currCode.Code.Add((Convert.ToUInt32(vals[0], 16), Convert.ToUInt32(vals[1], 16)));
+                            currCode.Code.Add(line);
+                            if (validateCodes)
+                            {
+                                var vals = line.Split(' ');
+                                uint offset = Convert.ToUInt32(vals[0], 16);
+                                uint value = Convert.ToUInt32(vals[1], 16);
+                            }
                         }
                         continue;
                     case DolphinSettingsReaderMode.ActionReplayEnabled:
@@ -155,7 +159,7 @@
                 {
                     writer.WriteLine($"${code.Name}");
                     foreach (var codeLine in code.Code)
-                        writer.WriteLine($"{codeLine.Item1:X8} {codeLine.Item2:X8}");
+                        writer.WriteLine(codeLine);
                 }
             }
             var arEnabled = ActionReplay.Where(code => code.Enabled).Select(code => code.Name);
@@ -172,7 +176,7 @@
                 {
                     writer.WriteLine($"${code.Name}");
                     foreach (var codeLine in code.Code)
-                        writer.WriteLine($"{codeLine.Item1:X8} {codeLine.Item2:X8}");
+                        writer.WriteLine(codeLine);
                 }
             }
             var geckoEnabled = Gecko.Where(code => code.Enabled).Select(code => code.Name);

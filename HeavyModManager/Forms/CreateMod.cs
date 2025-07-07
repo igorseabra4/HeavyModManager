@@ -402,7 +402,7 @@ public partial class CreateMod : Form
     {
         try
         {
-            var tempSettings = DolphinGameSettings.FromContents(richTextBoxArCodes.Text, DolphinSettingsReaderMode.ActionReplay);
+            var tempSettings = DolphinGameSettings.FromContents(richTextBoxArCodes.Text, DolphinSettingsReaderMode.ActionReplay, true);
             return true;
         }
         catch
@@ -415,7 +415,7 @@ public partial class CreateMod : Form
     {
         try
         {
-            var tempSettings = DolphinGameSettings.FromContents(richTextBoxGeckoCodes.Text, DolphinSettingsReaderMode.Gecko);
+            var tempSettings = DolphinGameSettings.FromContents(richTextBoxGeckoCodes.Text, DolphinSettingsReaderMode.Gecko, true);
             return true;
         }
         catch

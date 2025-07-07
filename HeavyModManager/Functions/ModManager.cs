@@ -552,6 +552,7 @@ public static class ModManager
         }
         catch
         {
+            MessageBox.Show("There was an error reading the Dolphin settings. Existing settings will not be applied to the mod.", "Error reading Dolphin settings", MessageBoxButtons.OK, MessageBoxIcon.Error);
             dolphinSettings = DolphinGameSettings.FromContents("");
         }
 
