@@ -1,4 +1,5 @@
 {
-  "Version": "v2024.10.05",
-  "Description": "* [Feature] IPS patch support! Thanks EnergyDrink\n* [Fix] Fixes the sorting arrows in the mod list\n* [Dev] Adds automated building to PRs and commits\n* Upgraded to .NET 8.0. Download the runtime here: https://dotnet.microsoft.com/en-us/download/dotnet/8.0"
+  "Version": "v2025.07.07",
+  "Description": "* [Feature] For simplicity, the main form now includes a single \"Launch Game\" button, which handles both patching (when changes were made) and launching the game with one click.\n* [Feature] In Developer Mode, two buttons are used: \"Restore Backup\" resets the game to a clean state, and \"Apply + Launch\" which always copies new changes before launching.\n* [Fix] Fixed an issue in the DOL patching function where 4-byte values were incorrectly reversed during replacement.\n* [Fix] Fixed a bug where merging Pipe Info Table assets with multiple entries referencing the same model caused some entries to be ignored.\n* [Fix] Fixed an issue where certain Dolphin config INI files couldn't be read and were ignored when using codes or a custom game ID.\n* [Fix] Dolphin config INIs in \"Sys/GameSettings\" are now copied when using codes or a custom game ID, ensuring modded games retain the correct configuration.\n* [Feature] Started Portuguese localization; it is currently incomplete.",
+  "FileName": "HeavyModManager_v2025.07.07.zip"
 }
