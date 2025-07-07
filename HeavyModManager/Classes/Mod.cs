@@ -229,7 +229,7 @@ public class Mod
         foreach (var p in patches)
             for (int i = 0; i < 4; i++)
                 if (p.Item1 + i < dol.Length)
-                    dol[p.Item1 + i] = p.Item2[i];
+                    dol[p.Item1 + i] = p.Item2[3 - i];
 
         return true;
     }
