@@ -152,7 +152,7 @@ public class Mod
 
     public void CopyFiles()
     {
-        var mergeFiles = MergeFiles.Split('\n').Select(p => p.ToLower());
+        var mergeFiles = MergeFiles.Replace('/', '\\').ToLower().Split('\n');
         var root = ModManager.GetModFilesPath(ModId);
 
         void CopyDirectory(string path)
