@@ -503,6 +503,7 @@ public static class ModManager
         if (gameId != null)
         {
             CreateCustomDolphinSettings(gameId, arCodes, geckoCodes);
+            CopyDolphinSysSettings(gameId);
 
             hasDolPatches = true;
 
@@ -541,6 +542,10 @@ public static class ModManager
 
     public static string GameDolphinSettingsPath(string gameId) => Path.Combine(DolphinFolderPath, "GameSettings", gameId + ".ini");
 
+    public static string DolphinExecutableFolderPath => Path.GetDirectoryName(DolphinPath) ?? string.Empty;
+
+    public static string GameDolphinSysSettingsPath(string gameId) => Path.Combine(DolphinExecutableFolderPath, "Sys", "GameSettings", gameId + ".ini");
+
     private static void CreateCustomDolphinSettings(string destinationGameId, List<DolphinCode> arCodes, List<DolphinCode> geckoCodes)
     {
         DolphinGameSettings dolphinSettings;
@@ -569,6 +574,13 @@ public static class ModManager
         if (!Directory.Exists(dir))
             Directory.CreateDirectory(dir);
         dolphinSettings.SaveTo(newDolphinSettingsPath);
+    }
+
+    private static void CopyDolphinSysSettings(string destinationGameId)
+    {
+        var originalFile = GameDolphinSysSettingsPath(GameToGameID(CurrentGame));
+        if (File.Exists(originalFile))
+            File.Copy(originalFile, GameDolphinSysSettingsPath(destinationGameId), true);
     }
 
     private static void ApplyGameIdOnDol(string gameId, ref byte[] dol)
