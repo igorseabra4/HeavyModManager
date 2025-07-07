@@ -13,7 +13,7 @@ public class PipeInfo
     public override bool Equals(object? obj)
     {
         if (obj != null && obj is PipeInfo entry)
-            return Model.Equals(entry.Model);
+            return Model.Equals(entry.Model) && SubObjectBits.Equals(entry.SubObjectBits);
         return false;
     }
 
@@ -68,7 +68,7 @@ public class AssetPIPT
     {
         foreach (var entry in asset.Entries)
         {
-            Entries.RemoveAll(e => e.Model == entry.Model);
+            Entries.RemoveAll(e => e.Model == entry.Model && e.SubObjectBits == entry.SubObjectBits);
             Entries.Add(entry);
         }
     }
