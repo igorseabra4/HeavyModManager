@@ -10,7 +10,7 @@ namespace HeavyModManager.Forms
         {
             InitializeComponent();
             IconManager.SetIcon(this);
-            labelProductName.Text = $"Heavy Mod Manager {ModManagerVersion.GetCurrent()}";
+            labelProductName.Text = $"Heavy Mod Manager {ModManagerVersion.GetCurrent().Version}";
             TopMost = true;
         }
 
