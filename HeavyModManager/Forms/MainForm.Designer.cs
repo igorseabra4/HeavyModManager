@@ -51,6 +51,7 @@ partial class MainForm
         chooseDolphinUserFolderPathToolStripMenuItem = new ToolStripMenuItem();
         developerModeToolStripMenuItem = new ToolStripMenuItem();
         checkForUpdatesOnStartupToolStripMenuItem = new ToolStripMenuItem();
+        checkForUpdatesNowToolStripMenuItem = new ToolStripMenuItem();
         toolStripSeparator2 = new ToolStripSeparator();
         aboutToolStripMenuItem = new ToolStripMenuItem();
         changeIconToolStripMenuItem = new ToolStripMenuItem();
@@ -63,7 +64,6 @@ partial class MainForm
         groupBoxModInfo = new GroupBox();
         labelDolphin = new Label();
         buttonRunGame = new Button();
-        checkForUpdatesNowToolStripMenuItem = new ToolStripMenuItem();
         groupBoxGame.SuspendLayout();
         groupBoxMods.SuspendLayout();
         menuStrip1.SuspendLayout();
@@ -217,6 +217,12 @@ partial class MainForm
         resources.ApplyResources(checkForUpdatesOnStartupToolStripMenuItem, "checkForUpdatesOnStartupToolStripMenuItem");
         checkForUpdatesOnStartupToolStripMenuItem.Click += checkForUpdatesOnStartupToolStripMenuItem_Click;
         // 
+        // checkForUpdatesNowToolStripMenuItem
+        // 
+        checkForUpdatesNowToolStripMenuItem.Name = "checkForUpdatesNowToolStripMenuItem";
+        resources.ApplyResources(checkForUpdatesNowToolStripMenuItem, "checkForUpdatesNowToolStripMenuItem");
+        checkForUpdatesNowToolStripMenuItem.Click += checkForUpdatesNowToolStripMenuItem_Click;
+        // 
         // toolStripSeparator2
         // 
         toolStripSeparator2.Name = "toolStripSeparator2";
@@ -258,8 +264,8 @@ partial class MainForm
         // 
         // portugueseToolStripMenuItem
         // 
-        portugueseToolStripMenuItem.Name = "portugueseToolStripMenuItem";
         resources.ApplyResources(portugueseToolStripMenuItem, "portugueseToolStripMenuItem");
+        portugueseToolStripMenuItem.Name = "portugueseToolStripMenuItem";
         portugueseToolStripMenuItem.Tag = "pt";
         portugueseToolStripMenuItem.Click += changeLanguageToolStripMenuItem_Click;
         // 
@@ -292,12 +298,6 @@ partial class MainForm
         buttonRunGame.Name = "buttonRunGame";
         buttonRunGame.UseVisualStyleBackColor = true;
         buttonRunGame.Click += buttonRunGame_Click;
-        // 
-        // checkForUpdatesNowToolStripMenuItem
-        // 
-        checkForUpdatesNowToolStripMenuItem.Name = "checkForUpdatesNowToolStripMenuItem";
-        resources.ApplyResources(checkForUpdatesNowToolStripMenuItem, "checkForUpdatesNowToolStripMenuItem");
-        checkForUpdatesNowToolStripMenuItem.Click += checkForUpdatesNowToolStripMenuItem_Click;
         // 
         // MainForm
         // 

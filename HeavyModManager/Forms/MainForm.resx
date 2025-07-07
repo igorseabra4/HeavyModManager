@@ -204,116 +204,8 @@
   <data name="groupBoxMods.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="&gt;&gt;listViewMods.Name" xml:space="preserve">
-    <value>listViewMods</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;buttonRefreshModList.Name" xml:space="preserve">
-    <value>buttonRefreshModList</value>
-  </data>
-  <data name="&gt;&gt;buttonRefreshModList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonRefreshModList.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonRefreshModList.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveDown.Name" xml:space="preserve">
-    <value>buttonMoveDown</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveDown.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveDown.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveUp.Name" xml:space="preserve">
-    <value>buttonMoveUp</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveUp.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveUp.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;buttonAddMod.Name" xml:space="preserve">
-    <value>buttonAddMod</value>
-  </data>
-  <data name="&gt;&gt;buttonAddMod.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonAddMod.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonAddMod.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="groupBoxMods.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="groupBoxMods.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 84</value>
-  </data>
-  <data name="groupBoxMods.Size" type="System.Drawing.Size, System.Drawing">
-    <value>452, 294</value>
-  </data>
-  <data name="groupBoxMods.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="groupBoxMods.Text" xml:space="preserve">
-    <value>Mods</value>
-  </data>
-  <data name="&gt;&gt;groupBoxMods.Name" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;groupBoxMods.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBoxMods.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBoxMods.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="listViewMods.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="listViewMods.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 22</value>
-  </data>
-  <data name="listViewMods.Size" type="System.Drawing.Size, System.Drawing">
-    <value>440, 238</value>
-  </data>
-  <data name="listViewMods.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Name" xml:space="preserve">
-    <value>listViewMods</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="columnName.Text" xml:space="preserve">
     <value>Mod</value>
@@ -338,6 +230,27 @@
   </data>
   <data name="columnUpdatedDate.Width" type="System.Int32, mscorlib">
     <value>70</value>
+  </data>
+  <data name="listViewMods.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="listViewMods.Size" type="System.Drawing.Size, System.Drawing">
+    <value>440, 238</value>
+  </data>
+  <data name="listViewMods.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;listViewMods.Name" xml:space="preserve">
+    <value>listViewMods</value>
+  </data>
+  <data name="&gt;&gt;listViewMods.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listViewMods.Parent" xml:space="preserve">
+    <value>groupBoxMods</value>
+  </data>
+  <data name="&gt;&gt;listViewMods.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="buttonRefreshModList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -445,6 +358,33 @@
     <value>groupBoxMods</value>
   </data>
   <data name="&gt;&gt;buttonAddMod.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="groupBoxMods.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="groupBoxMods.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 84</value>
+  </data>
+  <data name="groupBoxMods.Size" type="System.Drawing.Size, System.Drawing">
+    <value>452, 294</value>
+  </data>
+  <data name="groupBoxMods.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="groupBoxMods.Text" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMods.Name" xml:space="preserve">
+    <value>groupBoxMods</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMods.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMods.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMods.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="buttonRunGameDev.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -564,6 +504,50 @@
   <data name="changeIconToolStripMenuItem.Text" xml:space="preserve">
     <value>Change &amp;Icon</value>
   </data>
+  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 22</value>
+  </data>
+  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;English</value>
+  </data>
+  <data name="germanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 22</value>
+  </data>
+  <data name="germanToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;German</value>
+  </data>
+  <data name="portugueseToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxEAAAsRAX9kX5EAAAS2SURBVFhH7ZZrbBRVFMf/M7NpCiRNKkqJ2Br1ixWigTRR
+        yRoSHzEUH7RaY6lSwFrb0ocF1IIoIo2Shlj8QsSkMQ1WXvGF5WFXRRaFlhYLfUjlWQh9Y0kqUKjV4/9M
+        Z0ndzHYtX+1Nfvfu3J07/zPnnnPmYqyNtettASIj8yIfNfPN5WauWW4sNqqMHKPayrbqkAW/lWXtNDPN
+        sntSzNXNlrWg2ePxNk6YEOOsHlWrBqLqgfQ6w6jBuKXjvFaBVWHkG38gD2JTQF51RiWf5JJsyLRnIM2A
+        NDk0GsZFUtNkmhWNplncYFmZjZaV1ADMqvd4Zh4BvPWWlUgy6k2z5BfD8FP86mGurSOwhQrJG+RNstIZ
+        V5DlpIjof6+T1yAJ8yF/c+E10kcukDZyhvxG1KijDhS/jl4fI61E13STIQP07VTkLaLiIYSxbIiEFyFc
+        NSJ/kQGiRiqDRI0efk8vqSWwXa5C4cSXkiU04IV/P+hG+Z0cIsBiR8RNPCDsiOtWJaS5P3C0qAE1BMhh
+        p0LDxYPeOprzRVsh738O+bSSe72aLnx6yNXBD/6vqAHMBv7McoRU3MXltzIgK7+IkoIld0niwimyamOc
+        9NwxUbofgpzltv0Z6S4QDg3EgwR4hZ1mgYu4wfnKasiv2yfLAXpGF9YyC7rix8v5qbeJL3+atHxwY55Q
+        Aw4QIJOdpmJA3NlrnZu6iinUBDm/dbIMeDzS194ue3f4pOPLbdKb9aw0psZJw9f0xBPuIiOhBvxMgJfZ
+        aSoOC7RAEZq/EbKe++7/KEYOPWbJ5f4B2eY7JW3dl6R/wwbpuT1W+m6CnGL8BAuEo4f8RICX2GkqBonr
+        XE4ZA28zpLgoRs4+bEnu2v2yrPSgrP2kXr79sFj2vBsrJxmQDZuY75a7UCjUgP0EWMROy2xAXL2hBnFu
+        Dvf3QQrMy4mxi8nVjg6p9LdKbVOXdL63TrrvjJXWtyGHt0MuRrkLhUIN8BP9CIldC4LEdW48f2/x0QOb
+        I2RH2kQ5XjpXfLuPSueZdjmWd7+0PR4nbQzOFlbRQcNdKBRaiocMSGfHj0ywuF0fmKKp6yEffwUpL4+W
+        C3dHy6BpyoBlSW1KlBzZMkW6uiAn6KVggXCoAfsIwNpu1wIVDwirQTqnKcosyWYwppVC4gsjpKTwZjl3
+        b6ycXjRJWkro/m8glye5i4yEGvAjAVjb7VQMIW5nSQbkPkb6ynLIpl2shEzXljX8ArJIXYl2FwhHF9lL
+        gHmOyHDxYcJ2ligarAsh0+fyjSNYAUe558GoAT8QIJWdCoUSd4TtYCUzbqDouKEGfE+A5x2RcOIarCzD
+        M+a4P3C0dJLvCPCcIxIQDwirKAXtIB3G9ET3B44WNcBHgBR2ASH1Bs984KcWTxK6G3xjUDRAvJcfJy48
+        TdqJnmz6SfCJJxRXyDmiX8IqAlswmSThmpFk7MNTWEfxDIoncvTSgJmYjVm8TuKYGf8A1rCGV7CM1nDs
+        1XquJVVHPWLxMGqf/Y6Tk+SEc82DqH2Pup1vfmkP8NluHlhhJPNonEyHz0aUc2oeVdsF3MJ08rKopHN8
+        h2MZ83sn8TPK6xho1aSKouV84xXkEd4X6Swfa//7BvwDueYiI6i9PVwAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="portugueseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 22</value>
+  </data>
+  <data name="portugueseToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Portuguese</value>
+  </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 22</value>
   </data>
@@ -580,7 +564,7 @@
     <value>0, 0</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>251, 24</value>
+    <value>131, 24</value>
   </data>
   <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -599,24 +583,6 @@
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
-  </data>
-  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;English</value>
-  </data>
-  <data name="germanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
-  </data>
-  <data name="germanToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;German</value>
-  </data>
-  <data name="portugueseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
-  </data>
-  <data name="portugueseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Portuguese</value>
   </data>
   <data name="labelModInfo.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -842,6 +808,12 @@ Dolphin Label</value>
   <data name="&gt;&gt;checkForUpdatesOnStartupToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;checkForUpdatesNowToolStripMenuItem.Name" xml:space="preserve">
+    <value>checkForUpdatesNowToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;checkForUpdatesNowToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
     <value>toolStripSeparator2</value>
   </data>
@@ -882,12 +854,6 @@ Dolphin Label</value>
     <value>portugueseToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;portugueseToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkForUpdatesNowToolStripMenuItem.Name" xml:space="preserve">
-    <value>checkForUpdatesNowToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;checkForUpdatesNowToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
