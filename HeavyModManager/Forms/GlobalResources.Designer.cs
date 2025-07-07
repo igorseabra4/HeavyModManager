@@ -142,7 +142,7 @@ namespace HeavyModManager.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dolphin:.
+        ///   Looks up a localized string similar to Dolphin.
         /// </summary>
         internal static string dolphin {
             get {
@@ -480,6 +480,24 @@ namespace HeavyModManager.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Warning: Multiple mods which use custom save files are enabled. This might cause issues..
+        /// </summary>
+        internal static string multipleModsSaveFiles {
+            get {
+                return ResourceManager.GetString("multipleModsSaveFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple mods use custom save files.
+        /// </summary>
+        internal static string multipleModsSaveFilesTitle {
+            get {
+                return ResourceManager.GetString("multipleModsSaveFilesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You do not have a backup for this game.
         ///
         ///Please click on &quot;Create Backup&quot; and select the game&apos;s ISO file..
@@ -498,6 +516,15 @@ namespace HeavyModManager.Forms {
         internal static string noModsTooltip {
             get {
                 return ResourceManager.GetString("noModsTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No update available.
+        /// </summary>
+        internal static string noUpdateAvailable {
+            get {
+                return ResourceManager.GetString("noUpdateAvailable", resourceCulture);
             }
         }
         

@@ -4,7 +4,6 @@ using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
 using HeavyModManager.Functions;
 using System.Globalization;
-using System.Resources;
 using System.Text.Json;
 
 namespace HeavyModManager;
@@ -127,12 +126,18 @@ public partial class MainForm : Form
         return;
     }
 
-    private async void TryUpdate()
+    private async void TryUpdate(bool showMessageIfNotAvailable = false)
     {
-        if (await AutomaticUpdater.Update())
+        switch (await AutomaticUpdater.Update())
         {
-            Close();
-            System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "HeavyModManager.exe"));
+            case UpdateResult.Updated:
+                Close();
+                System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "HeavyModManager.exe"));
+                break;
+            case UpdateResult.NoUpdateAvailable:
+                if (showMessageIfNotAvailable)
+                    MessageBox.Show(GlobalResources.noUpdateAvailable, GlobalResources.noUpdateAvailable, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                break;
         }
     }
 
@@ -530,6 +535,7 @@ public partial class MainForm : Form
     private void buttonRunGameDev_Click(object sender, EventArgs e)
     {
         Enabled = false;
+        ModManager.CloseDolphin();
         ModManager.ApplyMods();
         Enabled = true;
         ModManager.RunGame();
@@ -538,8 +544,12 @@ public partial class MainForm : Form
     private void buttonRunGame_Click(object sender, EventArgs e)
     {
         Enabled = false;
-        ModManager.ResetGameFromBackup();
-        ModManager.ApplyMods();
+        ModManager.CloseDolphin();
+        if (ModManager.CurrentGameSettings.Invalidated)
+        {
+            ModManager.ResetGameFromBackup();
+            ModManager.ApplyMods();
+        }
         Enabled = true;
         ModManager.RunGame();
     }
@@ -584,7 +594,6 @@ public partial class MainForm : Form
 
     private void UpdateDeveloperMode()
     {
-        var rm = new ResourceManager("HeavyModManager.MainForm", typeof(Program).Assembly);
         if (developerModeToolStripMenuItem.Checked)
         {
             buttonRestoreBackupDev.Visible = true;
@@ -603,6 +612,11 @@ public partial class MainForm : Form
     {
         ModManager.CheckForUpdatesOnStartup = !ModManager.CheckForUpdatesOnStartup;
         checkForUpdatesOnStartupToolStripMenuItem.Checked = ModManager.CheckForUpdatesOnStartup;
+    }
+
+    private void checkForUpdatesNowToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        TryUpdate(true);
     }
 
     private void UpdateDolphinLabel()

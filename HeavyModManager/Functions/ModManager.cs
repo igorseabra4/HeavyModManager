@@ -1,9 +1,9 @@
 ﻿using HeavyModManager.Classes;
 using HeavyModManager.Enum;
+using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
 using System.Diagnostics;
 using System.Globalization;
-using System.Resources;
 using System.Text.Json;
 
 namespace HeavyModManager.Functions;
@@ -48,26 +48,21 @@ public static class ModManager
     /// <exception cref="ArgumentException">If the game specified is not a valid Heavy Iron game</exception>
     public static string GameToStringFull(Game game)
     {
-
-        // Use localised strings
-        var resourceManager = new ResourceManager("HeavyModManager.Forms.GlobalResources",
-            typeof(Program).Assembly);
-
         return game switch
         {
-            Game.Scooby => resourceManager.GetString("scoobyName") ?? "Scooby-Doo! Night of 100 Frights",
-            Game.BFBB => resourceManager.GetString("bfbbName") ?? "SpongeBob SquarePants: Battle for Bikini Bottom",
-            Game.Movie => resourceManager.GetString("tssmName") ?? "The SpongeBob SquarePants Movie",
-            Game.Incredibles => resourceManager.GetString("incrediblesName") ?? "The Incredibles",
-            Game.Underminer => resourceManager.GetString("rotuName") ?? "The Incredibles: Rise of the Underminer",
-            Game.RatProto => resourceManager.GetString("ratProtoName") ?? "Ratatouille (January 18th, 2006 Prototype)",
-            Game.Ratatouille => resourceManager.GetString("ratName") ?? "Ratatouille",
-            Game.WallE => resourceManager.GetString("wallEName") ?? "WALL-E",
-            Game.Up => resourceManager.GetString("upName") ?? "Up",
-            Game.TruthOrSquare => resourceManager.GetString("tosName") ?? "SpongeBob's Truth or Square",
-            Game.UFC => resourceManager.GetString("ufcName") ?? "UFC Personal Trainer",
-            Game.FamilyGuy => resourceManager.GetString("bttmName") ?? "Family Guy: Back to the Multiverse",
-            Game.HollywoodWorkout => resourceManager.GetString("hollywoodWorkoutName") ?? "Harley Pasternak's Hollywood Workout",
+            Game.Scooby => GlobalResources.scoobyName ?? "Scooby-Doo! Night of 100 Frights",
+            Game.BFBB => GlobalResources.bfbbName ?? "SpongeBob SquarePants: Battle for Bikini Bottom",
+            Game.Movie => GlobalResources.tssmName ?? "The SpongeBob SquarePants Movie",
+            Game.Incredibles => GlobalResources.incrediblesName ?? "The Incredibles",
+            Game.Underminer => GlobalResources.rotuName ?? "The Incredibles: Rise of the Underminer",
+            Game.RatProto => GlobalResources.ratProtoName ?? "Ratatouille (January 18th, 2006 Prototype)",
+            Game.Ratatouille => GlobalResources.ratName ?? "Ratatouille",
+            Game.WallE => GlobalResources.wallEName ?? "WALL-E",
+            Game.Up => GlobalResources.upName ?? "Up",
+            Game.TruthOrSquare => GlobalResources.tosName ?? "SpongeBob's Truth or Square",
+            Game.UFC => GlobalResources.ufcName ?? "UFC Personal Trainer",
+            Game.FamilyGuy => GlobalResources.bttmName ?? "Family Guy: Back to the Multiverse",
+            Game.HollywoodWorkout => GlobalResources.hollywoodWorkoutName ?? "Harley Pasternak's Hollywood Workout",
             _ => throw new ArgumentException("Invalid game.", nameof(game)),
         };
     }
@@ -436,13 +431,10 @@ public static class ModManager
 
     public static bool ResetGameFromBackup()
     {
-        if (!DeveloperMode && !CurrentGameSettings.Invalidated)
-            return true;
-
         if (!GameBackupExists)
         {
             // TODO: Localize!
-            MessageBox.Show("Unable to apply mods: game backup not found. Please create the game's backup first.",
+            MessageBox.Show("Unable to perform action: game backup not found. Please create the game's backup first.",
                 "Game backup not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
@@ -464,18 +456,11 @@ public static class ModManager
 
     public static void ApplyMods()
     {
-        CloseDolphin();
+        if (!Directory.Exists(GameGamePath) && !ResetGameFromBackup())
+            return;
 
-        if (DeveloperMode)
-        {
-            if (!Directory.Exists(GameGamePath) && !ResetGameFromBackup())
-                return;
-        }
-        else
-        {
-            if (!CurrentGameSettings.Invalidated)
-                return;
-        }
+        if (!DeveloperMode && !CurrentGameSettings.Invalidated)
+            return;
 
         var dol = File.ReadAllBytes(GameDolPath);
         var hasDolPatches = false;
@@ -496,7 +481,7 @@ public static class ModManager
                 mod.CopyFiles();
                 mod.ApplyIniPatches();
 
-                if (mod.ApplyIPSPatch(ref dol) || mod.ApplyDolPatches(ref dol))
+                if (mod.ApplyIPSPatch(ref dol) | mod.ApplyDolPatches(ref dol))
                     hasDolPatches = true;
 
                 if (!string.IsNullOrEmpty(mod.ArCodes))
@@ -531,10 +516,8 @@ public static class ModManager
         CurrentGameSettings.Invalidated = false;
         SaveGameSettings();
 
-        // TODO: Localize!
         if (modsUsingCustomGameId > 1)
-            MessageBox.Show("Warning: Multiple mods which use custom save files are enabled. This might cause issues.",
-                "Multiple mods use custom save files", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(GlobalResources.multipleModsSaveFiles, GlobalResources.multipleModsSaveFilesTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
     }
 
     private static void AddOrReplaceCodes(ref List<DolphinCode> codeList, List<DolphinCode> toAdd)

@@ -172,7 +172,7 @@
     <value>Developer Mode</value>
   </data>
   <data name="dolphin" xml:space="preserve">
-    <value>Dolphin:</value>
+    <value>Dolphin</value>
   </data>
   <data name="dolphinNotFoundLabel" xml:space="preserve">
     <value>Dolphin executable not found on set path.</value>
@@ -397,5 +397,14 @@ Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
   </data>
   <data name="labelDefaultGameIdText" xml:space="preserve">
     <value>Default Game ID</value>
+  </data>
+  <data name="multipleModsSaveFilesTitle" xml:space="preserve">
+    <value>Multiple mods use custom save files</value>
+  </data>
+  <data name="multipleModsSaveFiles" xml:space="preserve">
+    <value>Warning: Multiple mods which use custom save files are enabled. This might cause issues.</value>
+  </data>
+  <data name="noUpdateAvailable" xml:space="preserve">
+    <value>No update available</value>
   </data>
 </root>

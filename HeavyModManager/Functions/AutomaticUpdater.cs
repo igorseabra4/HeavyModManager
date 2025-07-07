@@ -1,12 +1,18 @@
 ﻿using HeavyModManager.Classes;
+using HeavyModManager.Forms;
 using System.IO.Compression;
 using System.Text.Json;
-using System.Resources;
-using System.ComponentModel;
-using HeavyModManager.Forms;
 
 namespace HeavyModManager.Functions
 {
+    public enum UpdateResult
+    {
+        Updated,
+        UserDeclined,
+        NoUpdateAvailable,
+        Error
+    }
+
     /// <summary>
     /// Class for updating the mod manager application.
     /// </summary>
@@ -17,12 +23,8 @@ namespace HeavyModManager.Functions
         /// Attempts to update the mod manager application.
         /// </summary>
         /// <returns>true if the update was successful, otherwise false</returns>
-        public static async Task<bool> Update()
+        public static async Task<UpdateResult> Update()
         {
-            var resourceManager = new ResourceManager("HeavyModManager.Forms.GlobalResources",
-                    typeof(Program).Assembly);
-            var globalResources = new GlobalResources();
-
             try
             {
                 string versionInfoURL = "https://raw.githubusercontent.com/igorseabra4/HeavyModManager/master/Resources/ModManagerVersion.json";
@@ -33,15 +35,15 @@ namespace HeavyModManager.Functions
                 var oldVersion = ModManagerVersion.GetCurrent();
 
                 if (updatedVersion == null || oldVersion.Version == updatedVersion.Version)
-                    return false;
-                
-                string messageText =
-                    $"{resourceManager.GetString("updateAvailable")} {resourceManager.GetString("programName")} {updatedVersion.Version}." +
-                    $"\n\n{updatedVersion.Description}\n\n{resourceManager.GetString("downloadPrompt")}";
+                    return UpdateResult.NoUpdateAvailable;
 
-                DialogResult d = MessageBox.Show(messageText, 
-                    resourceManager.GetString("updateAvailableTitle"), 
-                    MessageBoxButtons.YesNo, 
+                string messageText =
+                    $"{GlobalResources.updateAvailable} {GlobalResources.programName} {updatedVersion.Version}." +
+                    $"\n\n{updatedVersion.Description}\n\n{GlobalResources.downloadPrompt}";
+
+                DialogResult d = MessageBox.Show(messageText,
+                    GlobalResources.updateAvailableTitle,
+                    MessageBoxButtons.YesNo,
                     MessageBoxIcon.Information);
 
                 if (d == DialogResult.Yes)
@@ -87,22 +89,23 @@ namespace HeavyModManager.Functions
                     File.Delete(updatedZipFilePath);
                     Directory.Delete(tempDir);
 
-                    return true;
+                    return UpdateResult.Updated;
                 }
-                
+
+                return UpdateResult.UserDeclined;
             }
             catch (Exception ex)
             {
-                string messageText = resourceManager.GetString("errorCheckingForUpdates") + " " + ex.Message;
+                string messageText = GlobalResources.errorCheckingForUpdates + " " + ex.Message;
 
                 MessageBox.Show(
                     messageText,
-                    resourceManager.GetString("errorCheckingForUpdatesTitle"), 
-                    MessageBoxButtons.OK, 
+                    GlobalResources.errorCheckingForUpdatesTitle,
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-            }
 
-            return false;
+                return UpdateResult.Error;
+            }
         }
 
         /// <summary>

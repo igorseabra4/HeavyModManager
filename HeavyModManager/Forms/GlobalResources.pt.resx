@@ -120,18 +120,11 @@
   <data name="programName" xml:space="preserve">
     <value>Heavy Mod Manager</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ufcName" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="updateAvailable" xml:space="preserve">
     <value>Há uma atualização disponível:</value>
   </data>
   <data name="updateAvailableTitle" xml:space="preserve">
     <value>Atualização Disponível</value>
-  </data>
-  <data name="upName" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="confirmDeleteMod" xml:space="preserve">
     <value>Você tem certeza que quer remover o mod "{0}" por {1}?</value>
@@ -143,7 +136,7 @@
     <value>Modo Desenvolvedor</value>
   </data>
   <data name="dolphin" xml:space="preserve">
-    <value>Dolphin:</value>
+    <value>Dolphin</value>
   </data>
   <data name="dolphinNotFoundLabel" xml:space="preserve">
     <value>Executável Dolphin não encontrado no caminho definido.</value>
@@ -205,9 +198,6 @@ Clique em "Criar Backup" e selecione o arquivo ISO do jogo.</value>
   <data name="selectGameTitle" xml:space="preserve">
     <value>Selecione o ISO do seu jogo ou o main.dol de um dump do Dolphin inalterado.</value>
   </data>
-  <data name="DolPatchesInfo" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="editMod" xml:space="preserve">
     <value>Editar mod</value>
   </data>
@@ -257,9 +247,15 @@ O ID do Mod não pode ser alterado após a criação do mod.</value>
     <value>&amp;Abrir pasta do mod...</value>
   </data>
   <data name="zipModText" xml:space="preserve">
-    <value>&amp;Zip Mod...</value>
+    <value>Criar &amp;zip do mod...</value>
   </data>
   <data name="deleteModText" xml:space="preserve">
     <value>&amp;Remover mod...</value>
+  </data>
+  <data name="labelDefaultGameIdText" xml:space="preserve">
+    <value>Game ID Padrão</value>
+  </data>
+  <data name="noUpdateAvailable" xml:space="preserve">
+    <value>Nenhuma atualização disponível</value>
   </data>
 </root>

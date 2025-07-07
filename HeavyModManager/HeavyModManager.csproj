@@ -18,11 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Forms\GlobalResources.de.Designer.cs">
-      <DependentUpon>GlobalResources.de.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Update="Forms\GlobalResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
