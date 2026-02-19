@@ -60,7 +60,7 @@ partial class MainForm
         germanToolStripMenuItem = new ToolStripMenuItem();
         portugueseToolStripMenuItem = new ToolStripMenuItem();
         themeToolStripMenuItem = new ToolStripMenuItem();
-        classicToolStripMenuItem = new ToolStripMenuItem();
+        systemToolStripMenuItem = new ToolStripMenuItem();
         lightToolStripMenuItem = new ToolStripMenuItem();
         darkToolStripMenuItem = new ToolStripMenuItem();
         labelModInfo = new Label();
@@ -275,16 +275,16 @@ partial class MainForm
         // 
         // themeToolStripMenuItem
         // 
-        themeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { classicToolStripMenuItem, lightToolStripMenuItem, darkToolStripMenuItem });
+        themeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { systemToolStripMenuItem, lightToolStripMenuItem, darkToolStripMenuItem });
         themeToolStripMenuItem.Name = "themeToolStripMenuItem";
         resources.ApplyResources(themeToolStripMenuItem, "themeToolStripMenuItem");
         // 
-        // classicToolStripMenuItem
+        // systemToolStripMenuItem
         // 
-        classicToolStripMenuItem.Name = "classicToolStripMenuItem";
-        resources.ApplyResources(classicToolStripMenuItem, "classicToolStripMenuItem");
-        classicToolStripMenuItem.Tag = "";
-        classicToolStripMenuItem.Click += themeItemToolStripMenuItem_Click;
+        systemToolStripMenuItem.Name = "systemToolStripMenuItem";
+        resources.ApplyResources(systemToolStripMenuItem, "systemToolStripMenuItem");
+        systemToolStripMenuItem.Tag = "";
+        systemToolStripMenuItem.Click += themeItemToolStripMenuItem_Click;
         // 
         // lightToolStripMenuItem
         // 
@@ -392,7 +392,7 @@ partial class MainForm
     private ToolStripMenuItem portugueseToolStripMenuItem;
     private ToolStripMenuItem checkForUpdatesNowToolStripMenuItem;
     private ToolStripMenuItem themeToolStripMenuItem;
-    private ToolStripMenuItem classicToolStripMenuItem;
+    private ToolStripMenuItem systemToolStripMenuItem;
     private ToolStripMenuItem lightToolStripMenuItem;
     private ToolStripMenuItem darkToolStripMenuItem;
 }

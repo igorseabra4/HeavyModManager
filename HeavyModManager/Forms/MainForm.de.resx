@@ -117,39 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Einstellungen</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 24</value>
-  </data>
-  <data name="developerModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 22</value>
-  </data>
-  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 22</value>
-  </data>
-  <data name="changeIconToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 22</value>
-  </data>
-  <data name="buttonRunGame.Text" xml:space="preserve">
-    <value>Spiel starten</value>
-  </data>
-  <data name="buttonAddMod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 25</value>
-  </data>
-  <data name="columnAuthor.Text" xml:space="preserve">
-    <value>Autor</value>
+  <data name="buttonCreateBackup.Text" xml:space="preserve">
+    <value>Backup erstellen</value>
   </data>
   <data name="groupBoxGame.Text" xml:space="preserve">
     <value>Spiel wählen</value>
   </data>
-  <data name="chooseDolphinPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 22</value>
+  <data name="columnAuthor.Text" xml:space="preserve">
+    <value>Autor</value>
   </data>
-  <data name="changeIconToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Icon ändern</value>
+  <data name="columnCreatedDate.Text" xml:space="preserve">
+    <value>Erstellt am</value>
+  </data>
+  <data name="columnUpdatedDate.Text" xml:space="preserve">
+    <value>Aktualisiert am</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="buttonRefreshModList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 262</value>
+  </data>
+  <data name="buttonRefreshModList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 25</value>
+  </data>
+  <data name="buttonRefreshModList.Text" xml:space="preserve">
+    <value>Mods aktualisieren</value>
+  </data>
+  <data name="buttonAddMod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>336, 263</value>
+  </data>
+  <data name="buttonAddMod.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 25</value>
+  </data>
+  <data name="buttonAddMod.Text" xml:space="preserve">
+    <value>Mods hinzufügen</value>
   </data>
   <data name="manageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 20</value>
@@ -157,59 +157,8 @@
   <data name="manageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Verwalten</value>
   </data>
-  <data name="chooseDolphinUserFolderPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Dolphin Benutzerordner auswählen...</value>
-  </data>
-  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Englisch</value>
-  </data>
-  <data name="buttonRefreshModList.Text" xml:space="preserve">
-    <value>Mods aktualisieren</value>
-  </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 22</value>
-  </data>
-  <data name="buttonAddMod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 263</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
-    <value>S&amp;prache</value>
-  </data>
-  <data name="buttonCreateBackup.Text" xml:space="preserve">
-    <value>Backup erstellen</value>
-  </data>
-  <data name="checkForUpdatesOnStartupToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Automatisch nach Updates suchen</value>
-  </data>
-  <data name="buttonAddMod.Text" xml:space="preserve">
-    <value>Mods hinzufügen</value>
-  </data>
-  <data name="columnCreatedDate.Text" xml:space="preserve">
-    <value>Erstellt am</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Über…</value>
-  </data>
-  <data name="germanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 22</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 20</value>
-  </data>
-  <data name="checkForUpdatesOnStartupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="chooseDolphinPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>282, 22</value>
-  </data>
-  <data name="columnUpdatedDate.Text" xml:space="preserve">
-    <value>Aktualisiert am</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 22</value>
-  </data>
-  <data name="buttonRefreshModList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 262</value>
-  </data>
-  <data name="buttonRefreshModList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 25</value>
   </data>
   <data name="chooseDolphinPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Ausführbare Dolphin Datei auswählen...</value>
@@ -217,14 +166,74 @@
   <data name="chooseDolphinUserFolderPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>282, 22</value>
   </data>
-  <data name="germanToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Deutsch</value>
+  <data name="chooseDolphinUserFolderPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dolphin Benutzerordner auswählen...</value>
+  </data>
+  <data name="developerModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="developerModeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Entwickler Modus</value>
+  </data>
+  <data name="checkForUpdatesOnStartupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="checkForUpdatesOnStartupToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Automatisch nach Updates suchen</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 6</value>
   </data>
-  <data name="developerModeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Entwickler Modus</value>
+  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Über…</value>
+  </data>
+  <data name="changeIconToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="changeIconToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Icon ändern</value>
+  </data>
+  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 22</value>
+  </data>
+  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Englisch</value>
+  </data>
+  <data name="germanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 22</value>
+  </data>
+  <data name="germanToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Deutsch</value>
+  </data>
+  <data name="portugueseToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Portugiesisch</value>
+  </data>
+  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>S&amp;prache</value>
+  </data>
+  <data name="lightToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Klassisch</value>
+  </data>
+  <data name="themeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Thema</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 20</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Einstellungen</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 24</value>
+  </data>
+  <data name="buttonRunGame.Text" xml:space="preserve">
+    <value>Spiel starten</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="buttonRefreshModList.AutoSize" type="System.Boolean, mscorlib">
@@ -233,7 +242,7 @@
   <data name="buttonAddMod.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="portugueseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Portugiesisch</value>
+  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;System (Standard)</value>
   </data>
 </root>

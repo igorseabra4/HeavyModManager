@@ -554,10 +554,10 @@
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Language</value>
   </data>
-  <data name="classicToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
-  <data name="classicToolStripMenuItem.Text" xml:space="preserve">
+  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;System (Default)</value>
   </data>
   <data name="lightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -588,7 +588,7 @@
     <value>0, 0</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 24</value>
+    <value>251, 24</value>
   </data>
   <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -886,10 +886,10 @@ Dolphin Label</value>
   <data name="&gt;&gt;themeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;classicToolStripMenuItem.Name" xml:space="preserve">
-    <value>classicToolStripMenuItem</value>
+  <data name="&gt;&gt;systemToolStripMenuItem.Name" xml:space="preserve">
+    <value>systemToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;classicToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;systemToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lightToolStripMenuItem.Name" xml:space="preserve">

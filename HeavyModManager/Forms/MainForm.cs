@@ -131,7 +131,7 @@ public partial class MainForm : Form
 
     private void SetThemeDropdownValues()
     {
-        classicToolStripMenuItem.Tag = SystemColorMode.System;
+        systemToolStripMenuItem.Tag = SystemColorMode.System;
         lightToolStripMenuItem.Tag = SystemColorMode.Classic;
         darkToolStripMenuItem.Tag = SystemColorMode.Dark;
     }
