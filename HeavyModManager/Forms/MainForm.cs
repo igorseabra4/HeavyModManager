@@ -13,10 +13,13 @@ public partial class MainForm : Form
     public MainForm()
     {
         var settings = LoadSettings();
+        Application.SetColorMode(settings.Theme);
         InitializeComponent();
+        SetThemeDropdownValues(); // Must come after InitializeComponent
         InitializeManageMenus();
         UpdateFormSize(settings);
         UpdateCurrentLanguageMenuItem();
+        UpdateCurrentThemeMenuItem(settings.Theme);
 
         IconManager.SetIcon(this);
 
@@ -126,6 +129,28 @@ public partial class MainForm : Form
         return;
     }
 
+    private void SetThemeDropdownValues()
+    {
+        classicToolStripMenuItem.Tag = SystemColorMode.System;
+        lightToolStripMenuItem.Tag = SystemColorMode.Classic;
+        darkToolStripMenuItem.Tag = SystemColorMode.Dark;
+    }
+
+    private void UpdateCurrentThemeMenuItem(SystemColorMode theme)
+    {
+        foreach (ToolStripMenuItem item in themeToolStripMenuItem.DropDownItems)
+        {
+            if (item.Tag is SystemColorMode itemTheme && itemTheme == theme)
+            {
+                item.Checked = true;
+            }
+            else
+            {
+                item.Checked = false;
+            }
+        }
+    }
+
     private async void TryUpdate(bool showMessageIfNotAvailable = false)
     {
         switch (await AutomaticUpdater.Update())
@@ -164,6 +189,8 @@ public partial class MainForm : Form
             settings.ColumnIndices.Add(c.DisplayIndex);
             settings.ColumnSizes.Add(c.Width);
         }
+
+        settings.Theme = Application.ColorMode;
 
         ModManager.SaveSettings(settings);
     }
@@ -689,5 +716,26 @@ public partial class MainForm : Form
             if (focusedItem != null && focusedItem.Bounds.Contains(e.Location))
                 manageContextMenuStrip.Show(Cursor.Position);
         }
+    }
+
+    private void themeItemToolStripMenuItem_Click(object? sender, EventArgs e)
+    {
+        if (sender is not ToolStripMenuItem item)
+            return;
+
+        if (item.Tag is not SystemColorMode selectedTheme)
+            return;
+
+        Application.SetColorMode(selectedTheme);
+        SaveAndRestart();
+    }
+
+    private void SaveAndRestart()
+    {
+        SaveSettings();
+        Close();
+
+        // Start a new instance of the form
+        System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "HeavyModManager.exe"));
     }
 }

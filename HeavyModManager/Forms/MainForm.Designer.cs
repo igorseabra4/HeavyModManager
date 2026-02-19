@@ -59,6 +59,10 @@ partial class MainForm
         englishToolStripMenuItem = new ToolStripMenuItem();
         germanToolStripMenuItem = new ToolStripMenuItem();
         portugueseToolStripMenuItem = new ToolStripMenuItem();
+        themeToolStripMenuItem = new ToolStripMenuItem();
+        classicToolStripMenuItem = new ToolStripMenuItem();
+        lightToolStripMenuItem = new ToolStripMenuItem();
+        darkToolStripMenuItem = new ToolStripMenuItem();
         labelModInfo = new Label();
         panelLabelModInfo = new Panel();
         groupBoxModInfo = new GroupBox();
@@ -189,7 +193,7 @@ partial class MainForm
         // 
         // settingsToolStripMenuItem
         // 
-        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, chooseDolphinUserFolderPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem, languageToolStripMenuItem });
+        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, chooseDolphinUserFolderPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem });
         settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
         resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
         // 
@@ -268,6 +272,31 @@ partial class MainForm
         portugueseToolStripMenuItem.Name = "portugueseToolStripMenuItem";
         portugueseToolStripMenuItem.Tag = "pt";
         portugueseToolStripMenuItem.Click += changeLanguageToolStripMenuItem_Click;
+        // 
+        // themeToolStripMenuItem
+        // 
+        themeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { classicToolStripMenuItem, lightToolStripMenuItem, darkToolStripMenuItem });
+        themeToolStripMenuItem.Name = "themeToolStripMenuItem";
+        resources.ApplyResources(themeToolStripMenuItem, "themeToolStripMenuItem");
+        // 
+        // classicToolStripMenuItem
+        // 
+        classicToolStripMenuItem.Name = "classicToolStripMenuItem";
+        resources.ApplyResources(classicToolStripMenuItem, "classicToolStripMenuItem");
+        classicToolStripMenuItem.Tag = "";
+        classicToolStripMenuItem.Click += themeItemToolStripMenuItem_Click;
+        // 
+        // lightToolStripMenuItem
+        // 
+        lightToolStripMenuItem.Name = "lightToolStripMenuItem";
+        resources.ApplyResources(lightToolStripMenuItem, "lightToolStripMenuItem");
+        lightToolStripMenuItem.Click += themeItemToolStripMenuItem_Click;
+        // 
+        // darkToolStripMenuItem
+        // 
+        darkToolStripMenuItem.Name = "darkToolStripMenuItem";
+        resources.ApplyResources(darkToolStripMenuItem, "darkToolStripMenuItem");
+        darkToolStripMenuItem.Click += themeItemToolStripMenuItem_Click;
         // 
         // labelModInfo
         // 
@@ -362,4 +391,8 @@ partial class MainForm
     private Button buttonRunGame;
     private ToolStripMenuItem portugueseToolStripMenuItem;
     private ToolStripMenuItem checkForUpdatesNowToolStripMenuItem;
+    private ToolStripMenuItem themeToolStripMenuItem;
+    private ToolStripMenuItem classicToolStripMenuItem;
+    private ToolStripMenuItem lightToolStripMenuItem;
+    private ToolStripMenuItem darkToolStripMenuItem;
 }
