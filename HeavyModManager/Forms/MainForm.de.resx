@@ -217,11 +217,17 @@
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>S&amp;prache</value>
   </data>
+  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;System (Standard)</value>
+  </data>
   <data name="lightToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Klassisch</value>
   </data>
+  <data name="darkToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Dunkel</value>
+  </data>
   <data name="themeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Thema</value>
+    <value>&amp;Darstellung</value>
   </data>
   <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 20</value>
@@ -241,8 +247,5 @@
   </data>
   <data name="buttonAddMod.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;System (Standard)</value>
   </data>
 </root>
