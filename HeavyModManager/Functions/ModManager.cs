@@ -1,10 +1,12 @@
-﻿using HeavyModManager.Classes;
+﻿using GCNTools;
+using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text.Json;
+using GCNTools;
 
 namespace HeavyModManager.Functions;
 
@@ -681,5 +683,10 @@ public static class ModManager
         }
 
         Process.Start(DolphinPath, new string[] { GameDolPath });
+    }
+
+    public static void SaveISO(string path)
+    {
+        DiscImage.CreateFile(GameGamePath, path);
     }
 }

@@ -3,6 +3,7 @@ using HeavyModManager.Enum;
 using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
 using HeavyModManager.Functions;
+using System.Diagnostics;
 using System.Globalization;
 using System.Text.Json;
 
@@ -233,6 +234,7 @@ public partial class MainForm : Form
         createModToolStripMenuItem.Enabled = true;
         buttonRestoreBackupDev.Enabled = CanApplyMods;
         buttonRunGameDev.Enabled = CanApplyMods;
+        buttonSaveIso.Enabled = CanApplyMods;
         buttonRunGame.Enabled = CanApplyMods;
         buttonCreateBackup.Enabled = comboBoxGame.SelectedIndex != -1;
 
@@ -549,6 +551,7 @@ public partial class MainForm : Form
             buttonRestoreBackupDev.Enabled = CanApplyMods;
             buttonRunGameDev.Enabled = CanApplyMods;
             buttonRunGame.Enabled = CanApplyMods;
+            buttonSaveIso.Enabled = CanApplyMods;
         }
     }
 
@@ -737,5 +740,40 @@ public partial class MainForm : Form
 
         // Start a new instance of the form
         System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "HeavyModManager.exe"));
+    }
+
+    private void buttonSaveIso_Click(object sender, EventArgs e)
+    {
+        string initialFilename = "game.iso";
+
+        // Open save dialog box
+        var dialog = new SaveFileDialog
+        {
+            FileName = initialFilename,
+            Title = "Save ISO File",
+            AddExtension = true,
+            Filter = "GameCube ISO (*.iso)|*.iso|All files (*.*)|*.*"
+        };
+
+        if (dialog.ShowDialog() != DialogResult.OK)
+            return;
+
+        Enabled = false;
+        ModManager.CloseDolphin();
+        if (ModManager.CurrentGameSettings.Invalidated)
+        {
+            ModManager.ResetGameFromBackup();
+            ModManager.ApplyMods();
+        }
+
+        ModManager.SaveISO(dialog.FileName);
+        Enabled = true;
+
+        MessageBox.Show(
+            "ISO Saved to " + dialog.FileName,
+            "ISO Saved",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information
+        );
     }
 }

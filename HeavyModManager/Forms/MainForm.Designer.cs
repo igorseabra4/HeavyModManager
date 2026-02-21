@@ -68,6 +68,7 @@ partial class MainForm
         groupBoxModInfo = new GroupBox();
         labelDolphin = new Label();
         buttonRunGame = new Button();
+        buttonSaveIso = new Button();
         groupBoxGame.SuspendLayout();
         groupBoxMods.SuspendLayout();
         menuStrip1.SuspendLayout();
@@ -183,6 +184,7 @@ partial class MainForm
         // menuStrip1
         // 
         resources.ApplyResources(menuStrip1, "menuStrip1");
+        menuStrip1.ImageScalingSize = new Size(20, 20);
         menuStrip1.Items.AddRange(new ToolStripItem[] { manageToolStripMenuItem, settingsToolStripMenuItem });
         menuStrip1.Name = "menuStrip1";
         // 
@@ -328,10 +330,18 @@ partial class MainForm
         buttonRunGame.UseVisualStyleBackColor = true;
         buttonRunGame.Click += buttonRunGame_Click;
         // 
+        // buttonSaveIso
+        // 
+        resources.ApplyResources(buttonSaveIso, "buttonSaveIso");
+        buttonSaveIso.Name = "buttonSaveIso";
+        buttonSaveIso.UseVisualStyleBackColor = true;
+        buttonSaveIso.Click += buttonSaveIso_Click;
+        // 
         // MainForm
         // 
         resources.ApplyResources(this, "$this");
         AutoScaleMode = AutoScaleMode.Font;
+        Controls.Add(buttonSaveIso);
         Controls.Add(labelDolphin);
         Controls.Add(groupBoxModInfo);
         Controls.Add(buttonRestoreBackupDev);
@@ -395,4 +405,5 @@ partial class MainForm
     private ToolStripMenuItem systemToolStripMenuItem;
     private ToolStripMenuItem lightToolStripMenuItem;
     private ToolStripMenuItem darkToolStripMenuItem;
+    private Button buttonSaveIso;
 }
