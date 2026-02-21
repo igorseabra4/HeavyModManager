@@ -6,7 +6,6 @@ using HeavyModManager.Forms.Other;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text.Json;
-using GCNTools;
 
 namespace HeavyModManager.Functions;
 
