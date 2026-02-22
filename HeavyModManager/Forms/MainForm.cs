@@ -23,6 +23,7 @@ public partial class MainForm : Form
         UpdateFormSize(settings);
         UpdateCurrentLanguageMenuItem();
         UpdateCurrentThemeMenuItem(settings.Theme);
+        UpdateSaveIsoText();
 
         IconManager.SetIcon(this);
 
@@ -625,6 +626,15 @@ public partial class MainForm : Form
             ModManager.Invalidate();
         UpdateDolphinLabel();
         UpdateDeveloperMode();
+        UpdateSaveIsoText();
+    }
+
+    private void UpdateSaveIsoText()
+    {
+        if (ModManager.DeveloperMode)
+            buttonSaveIso.Text = "Apply and Save ISO...";
+        else
+            buttonSaveIso.Text = "Save ISO...";
     }
 
     private void UpdateDeveloperMode()
@@ -771,7 +781,7 @@ public partial class MainForm : Form
         };
         progressBar.Show(this);
 
-        if (ModManager.CurrentGameSettings.Invalidated)
+        if (ModManager.DeveloperMode || ModManager.CurrentGameSettings.Invalidated)
         {
             await Task.Run(() =>
             {
