@@ -742,7 +742,7 @@ public partial class MainForm : Form
         System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "HeavyModManager.exe"));
     }
 
-    private void buttonSaveIso_Click(object sender, EventArgs e)
+    private async void buttonSaveIso_Click(object sender, EventArgs e)
     {
         string initialFilename = "game.iso";
 
@@ -760,14 +760,65 @@ public partial class MainForm : Form
 
         Enabled = false;
         ModManager.CloseDolphin();
+
+        var progressBar = new HeavyModManager.Forms.ProgressBar()
+        {
+            Text = "Saving ISO..."
+        };
+        progressBar.Show(this);
+
         if (ModManager.CurrentGameSettings.Invalidated)
         {
-            ModManager.ResetGameFromBackup();
-            ModManager.ApplyMods();
+            await Task.Run(() =>
+            {
+                ModManager.ResetGameFromBackup();
+                ModManager.ApplyMods();
+            });
         }
 
-        ModManager.SaveISO(dialog.FileName);
-        Enabled = true;
+        try
+
+        {
+            // GameCube ISO size with padding.
+            // Not 100% accurate since exported ISOs don't contain padding, but good enough for now.
+            long expectedSize = 1_459_978_240; 
+
+            var creationTask = Task.Run(() =>
+            {
+                ModManager.SaveISO(dialog.FileName);
+            });
+
+            while (!creationTask.IsCompleted)
+            {
+                if (File.Exists(dialog.FileName))
+                {
+                    long currentSize = new FileInfo(dialog.FileName).Length;
+                    int percent = (int)((currentSize / (double)expectedSize) * 100);
+                    Debug.WriteLine(percent);
+                    progressBar.SetProgress(percent);
+                }
+
+                await Task.Delay(50);
+            }
+
+            await creationTask;
+            progressBar.SetProgress(100);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                this,
+                $"ISO creation failed:\n\n{ex.Message}",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            return;
+        }
+        finally
+        {
+            progressBar.Close();
+            Enabled = true;
+        }
 
         MessageBox.Show(
             "ISO Saved to " + dialog.FileName,
