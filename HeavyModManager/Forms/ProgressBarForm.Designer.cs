@@ -1,6 +1,6 @@
 ﻿namespace HeavyModManager.Forms
 {
-    partial class ProgressBar
+    partial class ProgressBarForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressBar));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressBarForm));
             progressBar1 = new System.Windows.Forms.ProgressBar();
             SuspendLayout();
             // 

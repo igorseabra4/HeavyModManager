@@ -688,4 +688,13 @@ public static class ModManager
     {
         DiscImage.CreateFile(GameGamePath, path);
     }
+
+    public static void OpenSettingsFile()
+    {
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = ModManagerSettingsPath,
+            UseShellExecute = true
+        });
+    }
 }

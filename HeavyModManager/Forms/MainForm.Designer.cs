@@ -69,6 +69,7 @@ partial class MainForm
         labelDolphin = new Label();
         buttonRunGame = new Button();
         buttonSaveIso = new Button();
+        openSettingsjsonToolStripMenuItem = new ToolStripMenuItem();
         groupBoxGame.SuspendLayout();
         groupBoxMods.SuspendLayout();
         menuStrip1.SuspendLayout();
@@ -111,8 +112,8 @@ partial class MainForm
         // 
         // listViewMods
         // 
-        resources.ApplyResources(listViewMods, "listViewMods");
         listViewMods.AllowColumnReorder = true;
+        resources.ApplyResources(listViewMods, "listViewMods");
         listViewMods.CheckBoxes = true;
         listViewMods.Columns.AddRange(new ColumnHeader[] { columnName, columnAuthor, columnCreatedDate, columnUpdatedDate });
         listViewMods.Name = "listViewMods";
@@ -190,81 +191,81 @@ partial class MainForm
         // 
         // manageToolStripMenuItem
         // 
-        resources.ApplyResources(manageToolStripMenuItem, "manageToolStripMenuItem");
         manageToolStripMenuItem.Name = "manageToolStripMenuItem";
+        resources.ApplyResources(manageToolStripMenuItem, "manageToolStripMenuItem");
         // 
         // settingsToolStripMenuItem
         // 
-        resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
-        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, chooseDolphinUserFolderPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem });
+        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, chooseDolphinUserFolderPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, openSettingsjsonToolStripMenuItem });
         settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+        resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
         // 
         // chooseDolphinPathToolStripMenuItem
         // 
-        resources.ApplyResources(chooseDolphinPathToolStripMenuItem, "chooseDolphinPathToolStripMenuItem");
         chooseDolphinPathToolStripMenuItem.Name = "chooseDolphinPathToolStripMenuItem";
+        resources.ApplyResources(chooseDolphinPathToolStripMenuItem, "chooseDolphinPathToolStripMenuItem");
         chooseDolphinPathToolStripMenuItem.Click += chooseDolphinPathToolStripMenuItem_Click;
         // 
         // chooseDolphinUserFolderPathToolStripMenuItem
         // 
-        resources.ApplyResources(chooseDolphinUserFolderPathToolStripMenuItem, "chooseDolphinUserFolderPathToolStripMenuItem");
         chooseDolphinUserFolderPathToolStripMenuItem.Name = "chooseDolphinUserFolderPathToolStripMenuItem";
+        resources.ApplyResources(chooseDolphinUserFolderPathToolStripMenuItem, "chooseDolphinUserFolderPathToolStripMenuItem");
         chooseDolphinUserFolderPathToolStripMenuItem.Click += chooseDolphinUserFolderPathToolStripMenuItem_Click;
         // 
         // developerModeToolStripMenuItem
         // 
-        resources.ApplyResources(developerModeToolStripMenuItem, "developerModeToolStripMenuItem");
         developerModeToolStripMenuItem.Name = "developerModeToolStripMenuItem";
+        resources.ApplyResources(developerModeToolStripMenuItem, "developerModeToolStripMenuItem");
         developerModeToolStripMenuItem.Click += developerModeToolStripMenuItem_Click;
         // 
         // checkForUpdatesOnStartupToolStripMenuItem
         // 
-        resources.ApplyResources(checkForUpdatesOnStartupToolStripMenuItem, "checkForUpdatesOnStartupToolStripMenuItem");
         checkForUpdatesOnStartupToolStripMenuItem.Name = "checkForUpdatesOnStartupToolStripMenuItem";
+        resources.ApplyResources(checkForUpdatesOnStartupToolStripMenuItem, "checkForUpdatesOnStartupToolStripMenuItem");
         checkForUpdatesOnStartupToolStripMenuItem.Click += checkForUpdatesOnStartupToolStripMenuItem_Click;
         // 
         // checkForUpdatesNowToolStripMenuItem
         // 
-        resources.ApplyResources(checkForUpdatesNowToolStripMenuItem, "checkForUpdatesNowToolStripMenuItem");
         checkForUpdatesNowToolStripMenuItem.Name = "checkForUpdatesNowToolStripMenuItem";
+        resources.ApplyResources(checkForUpdatesNowToolStripMenuItem, "checkForUpdatesNowToolStripMenuItem");
         checkForUpdatesNowToolStripMenuItem.Click += checkForUpdatesNowToolStripMenuItem_Click;
         // 
         // toolStripSeparator2
         // 
-        resources.ApplyResources(toolStripSeparator2, "toolStripSeparator2");
         toolStripSeparator2.Name = "toolStripSeparator2";
+        resources.ApplyResources(toolStripSeparator2, "toolStripSeparator2");
         // 
         // aboutToolStripMenuItem
         // 
-        resources.ApplyResources(aboutToolStripMenuItem, "aboutToolStripMenuItem");
         aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+        resources.ApplyResources(aboutToolStripMenuItem, "aboutToolStripMenuItem");
         aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
         // 
         // changeIconToolStripMenuItem
         // 
-        resources.ApplyResources(changeIconToolStripMenuItem, "changeIconToolStripMenuItem");
         changeIconToolStripMenuItem.Name = "changeIconToolStripMenuItem";
+        resources.ApplyResources(changeIconToolStripMenuItem, "changeIconToolStripMenuItem");
         changeIconToolStripMenuItem.Click += changeIconToolStripMenuItem_Click;
         // 
         // languageToolStripMenuItem
         // 
-        resources.ApplyResources(languageToolStripMenuItem, "languageToolStripMenuItem");
         languageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { englishToolStripMenuItem, germanToolStripMenuItem, portugueseToolStripMenuItem });
         languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+        resources.ApplyResources(languageToolStripMenuItem, "languageToolStripMenuItem");
         // 
         // englishToolStripMenuItem
         // 
-        resources.ApplyResources(englishToolStripMenuItem, "englishToolStripMenuItem");
         englishToolStripMenuItem.Image = Properties.Resources.us;
         englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+        resources.ApplyResources(englishToolStripMenuItem, "englishToolStripMenuItem");
         englishToolStripMenuItem.Tag = "en";
         englishToolStripMenuItem.Click += changeLanguageToolStripMenuItem_Click;
         // 
         // germanToolStripMenuItem
         // 
-        resources.ApplyResources(germanToolStripMenuItem, "germanToolStripMenuItem");
         germanToolStripMenuItem.Image = Properties.Resources.de;
         germanToolStripMenuItem.Name = "germanToolStripMenuItem";
+        resources.ApplyResources(germanToolStripMenuItem, "germanToolStripMenuItem");
         germanToolStripMenuItem.Tag = "de";
         germanToolStripMenuItem.Click += changeLanguageToolStripMenuItem_Click;
         // 
@@ -277,27 +278,27 @@ partial class MainForm
         // 
         // themeToolStripMenuItem
         // 
-        resources.ApplyResources(themeToolStripMenuItem, "themeToolStripMenuItem");
         themeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { systemToolStripMenuItem, lightToolStripMenuItem, darkToolStripMenuItem });
         themeToolStripMenuItem.Name = "themeToolStripMenuItem";
+        resources.ApplyResources(themeToolStripMenuItem, "themeToolStripMenuItem");
         // 
         // systemToolStripMenuItem
         // 
-        resources.ApplyResources(systemToolStripMenuItem, "systemToolStripMenuItem");
         systemToolStripMenuItem.Name = "systemToolStripMenuItem";
+        resources.ApplyResources(systemToolStripMenuItem, "systemToolStripMenuItem");
         systemToolStripMenuItem.Tag = "";
         systemToolStripMenuItem.Click += themeItemToolStripMenuItem_Click;
         // 
         // lightToolStripMenuItem
         // 
-        resources.ApplyResources(lightToolStripMenuItem, "lightToolStripMenuItem");
         lightToolStripMenuItem.Name = "lightToolStripMenuItem";
+        resources.ApplyResources(lightToolStripMenuItem, "lightToolStripMenuItem");
         lightToolStripMenuItem.Click += themeItemToolStripMenuItem_Click;
         // 
         // darkToolStripMenuItem
         // 
-        resources.ApplyResources(darkToolStripMenuItem, "darkToolStripMenuItem");
         darkToolStripMenuItem.Name = "darkToolStripMenuItem";
+        resources.ApplyResources(darkToolStripMenuItem, "darkToolStripMenuItem");
         darkToolStripMenuItem.Click += themeItemToolStripMenuItem_Click;
         // 
         // labelModInfo
@@ -336,6 +337,12 @@ partial class MainForm
         buttonSaveIso.Name = "buttonSaveIso";
         buttonSaveIso.UseVisualStyleBackColor = true;
         buttonSaveIso.Click += buttonSaveIso_Click;
+        // 
+        // openSettingsjsonToolStripMenuItem
+        // 
+        openSettingsjsonToolStripMenuItem.Name = "openSettingsjsonToolStripMenuItem";
+        resources.ApplyResources(openSettingsjsonToolStripMenuItem, "openSettingsjsonToolStripMenuItem");
+        openSettingsjsonToolStripMenuItem.Click += openSettingsjsonToolStripMenuItem_Click;
         // 
         // MainForm
         // 
@@ -406,4 +413,5 @@ partial class MainForm
     private ToolStripMenuItem lightToolStripMenuItem;
     private ToolStripMenuItem darkToolStripMenuItem;
     private Button buttonSaveIso;
+    private ToolStripMenuItem openSettingsjsonToolStripMenuItem;
 }

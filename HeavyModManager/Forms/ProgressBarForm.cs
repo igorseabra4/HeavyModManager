@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace HeavyModManager.Forms
 {
-    public partial class ProgressBar : Form
+    public partial class ProgressBarForm : Form
     {
-        public ProgressBar()
+        public ProgressBarForm()
         {
             InitializeComponent();
         }

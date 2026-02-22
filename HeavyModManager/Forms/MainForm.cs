@@ -14,7 +14,9 @@ public partial class MainForm : Form
     public MainForm()
     {
         var settings = LoadSettings();
+        // Set theme e.g. Classic/Dark
         Application.SetColorMode(settings.Theme);
+
         InitializeComponent();
         SetThemeDropdownValues(); // Must come after InitializeComponent
         InitializeManageMenus();
@@ -234,7 +236,7 @@ public partial class MainForm : Form
         createModToolStripMenuItem.Enabled = true;
         buttonRestoreBackupDev.Enabled = CanApplyMods;
         buttonRunGameDev.Enabled = CanApplyMods;
-        buttonSaveIso.Enabled = CanApplyMods;
+        buttonSaveIso.Enabled = CanSaveIso;
         buttonRunGame.Enabled = CanApplyMods;
         buttonCreateBackup.Enabled = comboBoxGame.SelectedIndex != -1;
 
@@ -247,6 +249,9 @@ public partial class MainForm : Form
         ModManager.GameBackupExists &&
         !string.IsNullOrWhiteSpace(ModManager.DolphinPath) &&
         !string.IsNullOrWhiteSpace(ModManager.DolphinFolderPath);
+
+    private bool CanSaveIso => comboBoxGame.SelectedIndex != -1 &&
+        ModManager.GameBackupExists;
 
     private readonly ToolTip toolTip;
 
@@ -551,7 +556,7 @@ public partial class MainForm : Form
             buttonRestoreBackupDev.Enabled = CanApplyMods;
             buttonRunGameDev.Enabled = CanApplyMods;
             buttonRunGame.Enabled = CanApplyMods;
-            buttonSaveIso.Enabled = CanApplyMods;
+            buttonSaveIso.Enabled = CanSaveIso;
         }
     }
 
@@ -759,9 +764,8 @@ public partial class MainForm : Form
             return;
 
         Enabled = false;
-        ModManager.CloseDolphin();
 
-        var progressBar = new HeavyModManager.Forms.ProgressBar()
+        var progressBar = new ProgressBarForm()
         {
             Text = "Saving ISO..."
         };
@@ -781,7 +785,7 @@ public partial class MainForm : Form
         {
             // GameCube ISO size with padding.
             // Not 100% accurate since exported ISOs don't contain padding, but good enough for now.
-            long expectedSize = 1_459_978_240; 
+            long expectedSize = 1_459_978_240;
 
             var creationTask = Task.Run(() =>
             {
@@ -826,5 +830,25 @@ public partial class MainForm : Form
             MessageBoxButtons.OK,
             MessageBoxIcon.Information
         );
+    }
+
+    private void openSettingsjsonToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (!File.Exists(ModManager.ModManagerSettingsPath))
+            {
+                MessageBox.Show("Settings file not found.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            ModManager.OpenSettingsFile();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Failed to open settings file:\n{ex.Message}",
+                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }
