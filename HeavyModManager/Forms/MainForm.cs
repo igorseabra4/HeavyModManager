@@ -632,9 +632,9 @@ public partial class MainForm : Form
     private void UpdateSaveIsoText()
     {
         if (ModManager.DeveloperMode)
-            buttonSaveIso.Text = "Apply and Save ISO...";
+            buttonSaveIso.Text = GlobalResources.applyAndSaveIso;
         else
-            buttonSaveIso.Text = "Save ISO...";
+            buttonSaveIso.Text = GlobalResources.saveIso;
     }
 
     private void UpdateDeveloperMode()
