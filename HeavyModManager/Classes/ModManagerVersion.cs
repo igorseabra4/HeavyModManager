@@ -28,5 +28,5 @@ public class ModManagerVersion
         FileName = fileName;
     }
 
-    public static ModManagerVersion GetCurrent() => new("v2025.07.07", "", "HeavyModManager_v2025.07.07.zip");
+    public static ModManagerVersion GetCurrent() => new("v2026.02.24", "", "HeavyModManager_v2026.02.24.zip");
 }

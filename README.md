@@ -13,7 +13,7 @@ It is intended for use on the following games:
 
 ## Installation
 > [!IMPORTANT]
-> Heavy Mod Manager is compatible with **Windows** only (Windows 10 version 1607 or later), and requires [.NET 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0).
+> Heavy Mod Manager is compatible with **Windows** only (Windows 10 version 1607 or later), and requires [.NET 10.0](https://dotnet.microsoft.com/en-us/download/dotnet/10.0).
 
 1. Download the [latest version](https://github.com/igorseabra4/HeavyModManager/releases/latest) from releases.
 2. Extract the .zip somewhere and launch HeavyModManager.exe.
