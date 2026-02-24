@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -145,11 +145,20 @@
   <data name="buttonAddMod.Text" xml:space="preserve">
     <value>Adicionar mods</value>
   </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 24</value>
+  </data>
   <data name="manageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 20</value>
   </data>
   <data name="manageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Gerenciar</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 20</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Configurações</value>
   </data>
   <data name="chooseDolphinPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>328, 22</value>
@@ -175,6 +184,9 @@
   <data name="checkForUpdatesOnStartupToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Buscar atualizações ao iniciar</value>
   </data>
+  <data name="checkForUpdatesNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>328, 22</value>
+  </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>325, 6</value>
   </data>
@@ -190,43 +202,84 @@
   <data name="changeIconToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Mudar ícone</value>
   </data>
-  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Inglês</value>
-  </data>
-  <data name="germanToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Alemão</value>
-  </data>
-  <data name="portugueseToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Português</value>
-  </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>328, 22</value>
   </data>
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Idioma</value>
   </data>
-  <data name="lightToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Clássico</value>
+  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 22</value>
   </data>
-  <data name="darkToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Escuro</value>
+  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Inglês</value>
+  </data>
+  <data name="germanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 22</value>
+  </data>
+  <data name="germanToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Alemão</value>
+  </data>
+  <data name="portugueseToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAABKZJREFUWEftlntMVmUcxz/nPcyhbmxkicuwVf9EupqOrXI0ty5rAqZotrwhmhEi
+        YKgleMlIls45tX9ctrnGzLzNLoaXeFMETUGwFwEV75cJChpu5hWtb3vOe95i78st/s1n++7snPc9z+dz
+        nvM8v/PAw/awBVoK4eGZ4a97sjy5ngxPgTXDKrLSrTJ7ul1JGqV2mr3dk+pZ+9xYT95R2045GhYWV9O7
+        d1RwN11pZRDhg8mVllVOz9k94+yZ9nory/qDTORkJuJD92iShchATEeDxqCjoFo3NZZ1vcayyms9nvU1
+        Hk9+tW2n1th2UjUM84WFDa2COJ9tx/tse5rP41n2m2WV+uDuYVAlCAeUjZiLmI9Y4B7nIXIROe5vHyM+
+        QrHJ6C/QPdAN0DVQPegc6IQrdcRNVauY8+Og8+49Tf8ImKczkIUuvB0wc/yJnYREx/kT1OJKmjzAL936
+        P82gCkfADLkBdQafjZiFYieGAruT30GHHIEZLqQteADsws2rip0Q2ll3YgTKHYF0F9QaHvTUkTkoZxNa
+        shV9U4hO5KHmkf6hDu64qzECZY5Amgsy8DaG/PH5qPC7CM2c9Yzip/TXojUDdPWpPmp6BV1YgO6Hh3be
+        lZiJeNAR+MBdBW3ArWxUWIaObemnA3P9N1Yko8aYXro08Al5swapbkX3RsIIHHAEUt01H4C779pcG7gI
+        VdWiS5v6qSUsTDcaGlS8zavL329Wc9rbqhk3QNU/oguJoYDOYgR+dQTedwtNq4kWKELJa9Cqraj0yygd
+        esPWrTst2uw9o/qmm7qzerWuPhmtG4+gM7mhgM5yFbTfEXjPrX5BcHMtfS1asgHl50Tpwqu2Mpbu05yV
+        B7X0a59+/iJfuz6L1uk8VL0O3bNDIR3FCOxzBKa6ZTYAN6NhhDJQwgr0ch4anx7lFJO7ly+rsPS8Kmob
+        deXz5Wp6OlrnP0GHt6DrEaGQjmIESh2BFOTUgiC4udYrE230ovwNPbRtQh+dXDlK3p1HdOVcg45nvqj6
+        Nweofi6qW4geWKGQjmJKsV9gsv8jEwx36kMaGrcKffUDKiiI1LVnI/XA41GLbatibISqNvZXYyM6lRcK
+        6CxGoMQRmOQHOfAA2AiZa2aJpqLpa9CElSgmu4eWZT+qi89H6+zUvqpbhg7/hG71DQV0FiOw1xGY6Ie0
+        B3dWyTT0Qi5aUIDW7UAn5qC6xejcfHQ7MrTzrqQRVOwIjHchreGtwM4qMTGTdQoaPArd6oHu/8d3Hhwj
+        sMcRGOeC2oO7YGeypqAh3Sg6bcUI7HYE3nUhncHNZE1GQxJCO+tOroB+cQTecSEBeABsoMnImaStMjg+
+        tLPuxAh4HYGxrUBmNMYgRiJGIBIRCYj4fxMTh46BzoIa3J3NnTZ2PO3lNuii+yUscgQMcDQiiXtWklXC
+        WyxnBNNIJJ4RxJHAUIYzjESSGE5qzEss3g/r90H5fmg29dyUVHM0W6xqd+93EnQadMo997n/McPuhZu7
+        4NudEIc12ipnNCkMJyJ4+9yVtgMeK4a4EphcDJ+WwNq9sH0vlO6Byt1QthuKvFBQBPOK4LViCA/u52H7
+        /7a/AbnmIiMMC5x4AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="portugueseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 22</value>
+  </data>
+  <data name="portugueseToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Português</value>
+  </data>
+  <data name="themeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>328, 22</value>
   </data>
   <data name="themeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Tema</value>
   </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 20</value>
+  <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 22</value>
   </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Configurações</value>
+  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Sistema (Padrão)</value>
   </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 24</value>
+  <data name="lightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 22</value>
+  </data>
+  <data name="lightToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Clássico</value>
+  </data>
+  <data name="darkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 22</value>
+  </data>
+  <data name="darkToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Escuro</value>
   </data>
   <data name="buttonRunGame.Text" xml:space="preserve">
     <value>Iniciar jogo</value>
   </data>
-  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Sistema (Padrão)</value>
+  <data name="buttonSaveIso.Text" xml:space="preserve">
+    <value>Guardar ISO...</value>
   </data>
 </root>

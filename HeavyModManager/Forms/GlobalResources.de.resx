@@ -352,4 +352,10 @@ Unterstützte Spiele: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</va
   <data name="labelDefaultGameIdText" xml:space="preserve">
     <value>Standard Game ID</value>
   </data>
+  <data name="applyAndSaveIso" xml:space="preserve">
+    <value>ISO anwenden und speichern...</value>
+  </data>
+  <data name="saveIso" xml:space="preserve">
+    <value>ISO speichern...</value>
+  </data>
 </root>

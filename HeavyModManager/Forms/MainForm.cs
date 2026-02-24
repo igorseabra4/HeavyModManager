@@ -3,6 +3,7 @@ using HeavyModManager.Enum;
 using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
 using HeavyModManager.Functions;
+using System.Diagnostics;
 using System.Globalization;
 using System.Text.Json;
 
@@ -13,13 +14,16 @@ public partial class MainForm : Form
     public MainForm()
     {
         var settings = LoadSettings();
+        // Set theme e.g. Classic/Dark
         Application.SetColorMode(settings.Theme);
+
         InitializeComponent();
         SetThemeDropdownValues(); // Must come after InitializeComponent
         InitializeManageMenus();
         UpdateFormSize(settings);
         UpdateCurrentLanguageMenuItem();
         UpdateCurrentThemeMenuItem(settings.Theme);
+        UpdateSaveIsoText();
 
         IconManager.SetIcon(this);
 
@@ -233,6 +237,7 @@ public partial class MainForm : Form
         createModToolStripMenuItem.Enabled = true;
         buttonRestoreBackupDev.Enabled = CanApplyMods;
         buttonRunGameDev.Enabled = CanApplyMods;
+        buttonSaveIso.Enabled = CanSaveIso;
         buttonRunGame.Enabled = CanApplyMods;
         buttonCreateBackup.Enabled = comboBoxGame.SelectedIndex != -1;
 
@@ -245,6 +250,9 @@ public partial class MainForm : Form
         ModManager.GameBackupExists &&
         !string.IsNullOrWhiteSpace(ModManager.DolphinPath) &&
         !string.IsNullOrWhiteSpace(ModManager.DolphinFolderPath);
+
+    private bool CanSaveIso => comboBoxGame.SelectedIndex != -1 &&
+        ModManager.GameBackupExists;
 
     private readonly ToolTip toolTip;
 
@@ -549,6 +557,7 @@ public partial class MainForm : Form
             buttonRestoreBackupDev.Enabled = CanApplyMods;
             buttonRunGameDev.Enabled = CanApplyMods;
             buttonRunGame.Enabled = CanApplyMods;
+            buttonSaveIso.Enabled = CanSaveIso;
         }
     }
 
@@ -617,6 +626,15 @@ public partial class MainForm : Form
             ModManager.Invalidate();
         UpdateDolphinLabel();
         UpdateDeveloperMode();
+        UpdateSaveIsoText();
+    }
+
+    private void UpdateSaveIsoText()
+    {
+        if (ModManager.DeveloperMode)
+            buttonSaveIso.Text = GlobalResources.applyAndSaveIso;
+        else
+            buttonSaveIso.Text = GlobalResources.saveIso;
     }
 
     private void UpdateDeveloperMode()
@@ -737,5 +755,110 @@ public partial class MainForm : Form
 
         // Start a new instance of the form
         System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "HeavyModManager.exe"));
+    }
+
+    private async void buttonSaveIso_Click(object sender, EventArgs e)
+    {
+        string initialFilename = "game.iso";
+
+        // Open save dialog box
+        var dialog = new SaveFileDialog
+        {
+            FileName = initialFilename,
+            Title = "Save ISO File",
+            AddExtension = true,
+            Filter = "GameCube ISO (*.iso)|*.iso|All files (*.*)|*.*"
+        };
+
+        if (dialog.ShowDialog() != DialogResult.OK)
+            return;
+
+        Enabled = false;
+
+        var progressBar = new ProgressBarForm()
+        {
+            Text = "Saving ISO..."
+        };
+        progressBar.Show(this);
+
+        if (ModManager.DeveloperMode || ModManager.CurrentGameSettings.Invalidated)
+        {
+            await Task.Run(() =>
+            {
+                ModManager.ResetGameFromBackup();
+                ModManager.ApplyMods();
+            });
+        }
+
+        try
+
+        {
+            // GameCube ISO size with padding.
+            // Not 100% accurate since exported ISOs don't contain padding, but good enough for now.
+            long expectedSize = 1_459_978_240;
+
+            var creationTask = Task.Run(() =>
+            {
+                ModManager.SaveISO(dialog.FileName);
+            });
+
+            while (!creationTask.IsCompleted)
+            {
+                if (File.Exists(dialog.FileName))
+                {
+                    long currentSize = new FileInfo(dialog.FileName).Length;
+                    int percent = (int)((currentSize / (double)expectedSize) * 100);
+                    Debug.WriteLine(percent);
+                    progressBar.SetProgress(percent);
+                }
+
+                await Task.Delay(50);
+            }
+
+            await creationTask;
+            progressBar.SetProgress(100);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                this,
+                $"ISO creation failed:\n\n{ex.Message}",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            return;
+        }
+        finally
+        {
+            progressBar.Close();
+            Enabled = true;
+        }
+
+        MessageBox.Show(
+            "ISO Saved to " + dialog.FileName,
+            "ISO Saved",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information
+        );
+    }
+
+    private void openSettingsjsonToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (!File.Exists(ModManager.ModManagerSettingsPath))
+            {
+                MessageBox.Show("Settings file not found.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            ModManager.OpenSettingsFile();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Failed to open settings file:\n{ex.Message}",
+                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }
