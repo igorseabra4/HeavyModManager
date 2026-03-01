@@ -43,6 +43,12 @@ public partial class CreateMod : Form
 
         defaultBackgroundColor = textBoxGameId.BackColor;
 
+        foreach (GamePlatform value in System.Enum.GetValues(typeof(GamePlatform)))
+        {
+            comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(value));
+        }
+        comboBoxPlatform.SelectedIndex = comboBoxPlatform.Items.Cast<ComboBoxPlatformItem>().ToList().FindIndex(i => i.Platform == mod.Platform);
+
         prevGame = mod.Game;
         textBoxModName.Text = mod.ModName;
         textBoxAuthor.Text = mod.Author;
@@ -145,7 +151,10 @@ public partial class CreateMod : Form
     {
         var selectedGameItem = (ComboBoxGameItem)comboBoxGame.SelectedItem;
         var gameName = selectedGameItem == null ? "" : ModManager.GameToString(selectedGameItem.Game);
-        string modId = $"{gameName}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}";
+        var platformText = ModManager.PlatformToShortString(((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform);
+        var version = TreatString(textBoxVersion.Text.Replace('.', '_'));
+
+        string modId = $"{gameName}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}-{platformText}-{version}";
 
         textBoxModId.Text = modId;
     }
@@ -162,6 +171,12 @@ public partial class CreateMod : Form
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        var platform = GamePlatform.Unknown;
+        if (comboBoxGame.SelectedItem != null)
+        {
+            platform = ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform;
         }
 
         var mod = new Mod()
@@ -181,6 +196,8 @@ public partial class CreateMod : Form
             CreatedAt = dateTimePickerCreatedAt.Value,
             UpdatedAt = dateTimePickerUpdatedAt.Value,
             IpsPatchBase64 = textBoxIpsPatch.Text,
+            Version = textBoxVersion.Text,
+            Platform = platform,
         };
 
         string modPath = mod.SaveModJson(isEditing);
@@ -543,5 +560,16 @@ public partial class CreateMod : Form
         {
             textBoxIpsPatch.Text = openFileDialog.FileName;
         }
+    }
+
+    private void comboBoxPlatform_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        SetCreateModEnabled();
+        ResetModId();
+    }
+
+    private void textBoxVersion_TextChanged(object sender, EventArgs e)
+    {
+        ResetModId();
     }
 }

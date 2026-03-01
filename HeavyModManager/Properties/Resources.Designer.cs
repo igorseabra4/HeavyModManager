@@ -83,6 +83,16 @@ namespace HeavyModManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap image_placeholder {
+            get {
+                object obj = ResourceManager.GetObject("image_placeholder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap uk {
             get {
                 object obj = ResourceManager.GetObject("uk", resourceCulture);

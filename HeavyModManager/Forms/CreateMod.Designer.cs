@@ -48,6 +48,8 @@ partial class CreateMod
         dateTimePickerCreatedAt = new DateTimePicker();
         groupBoxUpdatedAt = new GroupBox();
         dateTimePickerUpdatedAt = new DateTimePicker();
+        groupBoxVersion = new GroupBox();
+        textBoxVersion = new TextBox();
         groupBoxModId = new GroupBox();
         buttonModIdInfo = new Button();
         textBoxModId = new TextBox();
@@ -89,6 +91,7 @@ partial class CreateMod
         groupBoxDescription.SuspendLayout();
         groupBoxCreatedAt.SuspendLayout();
         groupBoxUpdatedAt.SuspendLayout();
+        groupBoxVersion.SuspendLayout();
         groupBoxModId.SuspendLayout();
         tabPageSettings.SuspendLayout();
         flowLayoutPanelPage2.SuspendLayout();
@@ -142,6 +145,7 @@ partial class CreateMod
         flowLayoutPanelPage1.Controls.Add(groupBoxDescription);
         flowLayoutPanelPage1.Controls.Add(groupBoxCreatedAt);
         flowLayoutPanelPage1.Controls.Add(groupBoxUpdatedAt);
+        flowLayoutPanelPage1.Controls.Add(groupBoxVersion);
         flowLayoutPanelPage1.Controls.Add(groupBoxModId);
         flowLayoutPanelPage1.Name = "flowLayoutPanelPage1";
         flowLayoutPanelPage1.Resize += flowLayoutPanelPage1_Resize;
@@ -202,6 +206,7 @@ partial class CreateMod
         resources.ApplyResources(comboBoxPlatform, "comboBoxPlatform");
         comboBoxPlatform.FormattingEnabled = true;
         comboBoxPlatform.Name = "comboBoxPlatform";
+        comboBoxPlatform.SelectedIndexChanged += comboBoxPlatform_SelectedIndexChanged;
         // 
         // groupBoxDescription
         // 
@@ -238,6 +243,19 @@ partial class CreateMod
         // 
         resources.ApplyResources(dateTimePickerUpdatedAt, "dateTimePickerUpdatedAt");
         dateTimePickerUpdatedAt.Name = "dateTimePickerUpdatedAt";
+        // 
+        // groupBoxVersion
+        // 
+        groupBoxVersion.Controls.Add(textBoxVersion);
+        resources.ApplyResources(groupBoxVersion, "groupBoxVersion");
+        groupBoxVersion.Name = "groupBoxVersion";
+        groupBoxVersion.TabStop = false;
+        // 
+        // textBoxVersion
+        // 
+        resources.ApplyResources(textBoxVersion, "textBoxVersion");
+        textBoxVersion.Name = "textBoxVersion";
+        textBoxVersion.TextChanged += textBoxVersion_TextChanged;
         // 
         // groupBoxModId
         // 
@@ -468,6 +486,7 @@ partial class CreateMod
         Controls.Add(tabControl1);
         Controls.Add(buttonCancel);
         Controls.Add(buttonCreateMod);
+        MaximizeBox = false;
         Name = "CreateMod";
         ShowIcon = false;
         tabControl1.ResumeLayout(false);
@@ -482,6 +501,8 @@ partial class CreateMod
         groupBoxDescription.ResumeLayout(false);
         groupBoxCreatedAt.ResumeLayout(false);
         groupBoxUpdatedAt.ResumeLayout(false);
+        groupBoxVersion.ResumeLayout(false);
+        groupBoxVersion.PerformLayout();
         groupBoxModId.ResumeLayout(false);
         groupBoxModId.PerformLayout();
         tabPageSettings.ResumeLayout(false);
@@ -551,4 +572,6 @@ partial class CreateMod
     private TextBox textBoxIpsPatch;
     private GroupBox groupBoxPlatform;
     private ComboBox comboBoxPlatform;
+    private GroupBox groupBoxVersion;
+    private TextBox textBoxVersion;
 }

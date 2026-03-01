@@ -116,6 +116,8 @@ partial class MainForm
         pictureBoxMod.BackColor = SystemColors.Control;
         pictureBoxMod.BackgroundImage = Properties.Resources.dark;
         resources.ApplyResources(pictureBoxMod, "pictureBoxMod");
+        pictureBoxMod.Image = Properties.Resources.image_placeholder;
+        pictureBoxMod.InitialImage = Properties.Resources.image_placeholder;
         pictureBoxMod.Name = "pictureBoxMod";
         pictureBoxMod.TabStop = false;
         // 

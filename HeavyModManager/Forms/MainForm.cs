@@ -3,6 +3,7 @@ using HeavyModManager.Enum;
 using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
 using HeavyModManager.Functions;
+using HeavyModManager.Properties;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text.Json;
@@ -18,6 +19,8 @@ public partial class MainForm : Form
         Application.SetColorMode(settings.Theme);
 
         InitializeComponent();
+
+        labelStatus.Text = "0 mods selected";
         SetThemeDropdownValues(); // Must come after InitializeComponent
         InitializeManageMenus();
         UpdateFormSize(settings);
@@ -399,7 +402,7 @@ public partial class MainForm : Form
     private void PopulateModList(string selectedModId = "")
     {
         programChangingData = true;
-        pictureBoxMod.Image = null;
+        pictureBoxMod.Image = Resources.image_placeholder;
 
         labelModInfo.Text = "";
         listViewMods.Items.Clear();
@@ -470,7 +473,21 @@ public partial class MainForm : Form
         else
             ModManager.CurrentGameSettings.DeactivateMod(mod.ModId);
 
+        // Deactive mods that don't have the active platform
+        var platform = ModManager.ActivePlatform;
+        
+        foreach ( var item in ModManager.CurrentGameSettings.ActiveMods.ToList() )
+        {
+            var m = JsonSerializer.Deserialize<Mod>(File.ReadAllText(ModManager.GetModJsonPath(item)));
+            if (m.Platform != platform && m.Platform != GamePlatform.Unknown)
+                ModManager.CurrentGameSettings.DeactivateMod(m.ModId);
+        }
+
         ModManager.SaveGameSettings();
+
+        int numModsSelected = ModManager.CurrentGameSettings.ActiveMods.Count;
+        bool addPluralS = numModsSelected != 1;
+        labelStatus.Text = $"{numModsSelected} mod{(addPluralS ? "s" : "")} selected";
     }
 
     private void listViewMods_SelectedIndexChanged(object sender, EventArgs e)
@@ -485,8 +502,7 @@ public partial class MainForm : Form
             if (ModManager.ModHasImage(mod))
                 pictureBoxMod.Image = ModManager.GetModImage(mod);
             else
-                pictureBoxMod.Image = null;
-
+                pictureBoxMod.Image = Resources.image_placeholder;
 
             if (!string.IsNullOrWhiteSpace(mod.Description))
                 labelModInfo.Text += $"{mod.Description}\n\n";
@@ -513,6 +529,11 @@ public partial class MainForm : Form
                 labelModInfo.Text += "\n";
 
             labelModInfo.Text += $"Mod ID:\n{mod.ModId}\n\n";
+
+            long size = ModManager.GetDirectorySize(ModManager.GetModPath(mod.ModId));
+            string sizeString = ModManager.GetFormattedSize(size);
+
+            labelModInfo.Text += $"Size on disk: {sizeString}";
 
             editModToolStripMenuItem.Enabled = true;
             deleteModToolStripMenuItem.Enabled = true;
@@ -715,10 +736,14 @@ public partial class MainForm : Form
 
     private void UpdateStatusLabel()
     {
+        int numModsSelected = ModManager.CurrentGameSettings.ActiveMods.Count;
+        bool addPluralS = numModsSelected != 1;
+        string text = $"{numModsSelected} mod{(addPluralS ? "s" : "")} selected";
+
         if (ModManager.DeveloperMode)
-            labelStatus.Text = GlobalResources.developerMode;
-        else
-            labelStatus.Text = "";
+            text += " - " + GlobalResources.developerMode;
+
+        labelStatus.Text = text;
     }
 
     private void changeIconToolStripMenuItem_Click(object sender, EventArgs e)
@@ -785,6 +810,7 @@ public partial class MainForm : Form
     private async void buttonSaveIso_Click(object sender, EventArgs e)
     {
         string initialFilename = "game.iso";
+        string platform = ModManager.PlatformToStringFull(ModManager.ActivePlatform);
 
         // Open save dialog box
         var dialog = new SaveFileDialog
@@ -792,7 +818,7 @@ public partial class MainForm : Form
             FileName = initialFilename,
             Title = "Save ISO File",
             AddExtension = true,
-            Filter = "GameCube ISO (*.iso)|*.iso|All files (*.*)|*.*"
+            Filter = $"{platform} ISO (*.iso)|*.iso|All files (*.*)|*.*"
         };
 
         if (dialog.ShowDialog() != DialogResult.OK)

@@ -3,6 +3,7 @@ using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
+using Ps2IsoTools.UDF;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text.Json;
@@ -38,6 +39,17 @@ public static class ModManager
             Game.FamilyGuy => "familyguy",
             Game.HollywoodWorkout => "hollywoodworkout",
             _ => throw new ArgumentException("Invalid game.", nameof(game)),
+        };
+    }
+
+    public static string PlatformToShortString(GamePlatform platform)
+    {
+        return platform switch
+        {
+            GamePlatform.GameCube => "gc",
+            GamePlatform.PlayStation2 => "ps2",
+            GamePlatform.Xbox => "xbox",
+            _ => "",
         };
     }
 
@@ -182,17 +194,29 @@ public static class ModManager
     public static string GetModJsonPath(string modId) => Path.Combine(GetModPath(modId), "mod.json");
     public static string GetModFilesPath(string modId) => Path.Combine(GetModPath(modId), "files");
 
-    public static string GameFolderPath => Path.Combine(Application.StartupPath, "Games", "gc", GameToString(CurrentGame));
+    public static string GameFolderPath => Path.Combine(Application.StartupPath, "Games",
+        PlatformToShortString(ActivePlatform),
+        GameToString(CurrentGame));
     public static string GameSettingsPath => Path.Combine(GameFolderPath, "game.json");
 
     public static string GameBackupPath => Path.Combine(GameFolderPath, "backup");
-    public static string GameBackupFilesPath => Path.Combine(GameBackupPath, "files");
+
+    /** Gamecube-Specific */
+    public static string GameBackupFilesPath => ActivePlatform == GamePlatform.GameCube
+        ? Path.Combine(GameBackupPath, "files")
+        : GameBackupPath;
     public static string GameBackupSysPath => Path.Combine(GameBackupPath, "sys");
 
     public static string GameGamePath => Path.Combine(GameFolderPath, "game");
-    public static string GameGameFilesPath => Path.Combine(GameGamePath, "files");
+
+    /** Gamecube-Specific */
+    public static string GameGameFilesPath => ActivePlatform == GamePlatform.GameCube
+        ? Path.Combine(GameGamePath, "files")
+        : GameGamePath;
+
     public static string GameGameSysPath => Path.Combine(GameGamePath, "sys");
     public static string GameDolPath => Path.Combine(GameGameSysPath, "main.dol");
+
     public static string GameGameINIPath => Path.Combine(GameGameFilesPath, GameIniFileName(CurrentGame));
 
     public static bool CheckForUpdatesOnStartup { get; set; }
@@ -722,7 +746,7 @@ public static class ModManager
         File.WriteAllBytes(bootBinPath, bootBin);
     }
 
-    public static bool GameBackupExists => Directory.Exists(GameBackupFilesPath) && Directory.Exists(GameBackupSysPath);
+    public static bool GameBackupExists => Directory.Exists(GameBackupFilesPath); // && Directory.Exists(GameBackupSysPath);
     public static bool GameExists => Directory.Exists(GameGameFilesPath) && Directory.Exists(GameGameSysPath) && File.Exists(GameDolPath);
 
     public static void CloseDolphin()
@@ -765,7 +789,46 @@ public static class ModManager
 
     public static void SaveISO(string path)
     {
-        DiscImage.CreateFile(GameGamePath, path);
+        switch (ActivePlatform)
+        {
+            case GamePlatform.GameCube:
+                DiscImage.CreateFile(GameGamePath, path);
+                break;
+            case GamePlatform.PlayStation2:
+                var builder = new UdfBuilder();
+                // TODO change per-game.
+                builder.VolumeIdentifier = "SLUS-20904";
+
+                AddDirectoryToIso(builder, GameGamePath, "");
+
+                builder.Build(path);
+                break;
+            case GamePlatform.Xbox:
+                throw new NotImplementedException("XBOX iso not yet implemented.");
+        }
+        return;
+    }
+
+    private static void AddDirectoryToIso(UdfBuilder builder, string sourcePath, string isoPath)
+    {
+        // Add files in this directory
+        foreach (var file in Directory.GetFiles(sourcePath))
+        {
+            var fileName = Path.GetFileName(file);
+            var isoFilePath = Path.Combine(isoPath, fileName);
+
+            builder.AddFile(isoFilePath, file);
+        }
+
+        // Recurse into subdirectories
+        foreach (var directory in Directory.GetDirectories(sourcePath))
+        {
+            var dirName = Path.GetFileName(directory);
+            var newIsoPath = Path.Combine(isoPath, dirName);
+
+            builder.AddDirectory(newIsoPath);
+            AddDirectoryToIso(builder, directory, newIsoPath);
+        }
     }
 
     public static void OpenSettingsFile()
@@ -795,5 +858,18 @@ public static class ModManager
                     return 0L;
                 }
             });
+    }
+
+    public static string GetFormattedSize(long bytes)
+    {
+        string[] sizes = { "B", "kiB", "MiB", "GiB", "TiB" };
+        double len = bytes;
+        int order = 0;
+        while (len >= 1024 && order < sizes.Length - 1)
+        {
+            order++;
+            len /= 1024;
+        }
+        return $"{len:0.##} {sizes[order]}";
     }
 }

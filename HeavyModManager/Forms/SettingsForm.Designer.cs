@@ -38,6 +38,9 @@
             textBoxXemuPath = new TextBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            button1 = new Button();
+            label7 = new Label();
+            textBox1 = new TextBox();
             linkLabelDolphinArgsRef = new LinkLabel();
             buttonPickDolphinPath = new Button();
             textBoxDolphinArgs = new TextBox();
@@ -51,9 +54,6 @@
             label5 = new Label();
             textBoxPCSX2Path = new TextBox();
             label6 = new Label();
-            textBox1 = new TextBox();
-            label7 = new Label();
-            button1 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -169,6 +169,32 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Nintendo GameCube";
             // 
+            // button1
+            // 
+            button1.Location = new Point(465, 45);
+            button1.Name = "button1";
+            button1.Size = new Size(40, 23);
+            button1.TabIndex = 9;
+            button1.Text = "...";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(6, 48);
+            label7.Name = "label7";
+            label7.Size = new Size(138, 15);
+            label7.TabIndex = 8;
+            label7.Text = "Dolphin User Folder Path";
+            // 
+            // textBox1
+            // 
+            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBox1.Location = new Point(171, 45);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(289, 23);
+            textBox1.TabIndex = 7;
+            // 
             // linkLabelDolphinArgsRef
             // 
             linkLabelDolphinArgsRef.AutoSize = true;
@@ -238,7 +264,7 @@
             groupBox3.Size = new Size(511, 77);
             groupBox3.TabIndex = 6;
             groupBox3.TabStop = false;
-            groupBox3.Text = "PlayStation 2";
+            groupBox3.Text = "Sony PlayStation 2";
             // 
             // linkLabelPCSX2ArgsRef
             // 
@@ -294,32 +320,6 @@
             label6.Size = new Size(127, 15);
             label6.TabIndex = 2;
             label6.Text = "PCSX2 Executable Path";
-            // 
-            // textBox1
-            // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(171, 45);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(289, 23);
-            textBox1.TabIndex = 7;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(6, 48);
-            label7.Name = "label7";
-            label7.Size = new Size(138, 15);
-            label7.TabIndex = 8;
-            label7.Text = "Dolphin User Folder Path";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(465, 45);
-            button1.Name = "button1";
-            button1.Size = new Size(40, 23);
-            button1.TabIndex = 9;
-            button1.Text = "...";
-            button1.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
