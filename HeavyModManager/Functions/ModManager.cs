@@ -210,6 +210,8 @@ public static class ModManager
 
     public static string PCSX2CommandLineArgs { get; set; }
 
+    public static bool OpenIsoAfterExport { get; set; }
+
     public static Game CurrentGame { get; set; }
     public static GameSettings? CurrentGameSettings { get; private set; } = null;
 
@@ -231,6 +233,7 @@ public static class ModManager
         settings.DeveloperMode = DeveloperMode;
         settings.Icon = IconManager.CurrentIcon;
         settings.Language = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+        settings.OpenIsoAfterExport = OpenIsoAfterExport;
 
         File.WriteAllText(ModManagerSettingsPath, JsonSerializer.Serialize(settings));
     }
@@ -254,6 +257,7 @@ public static class ModManager
         DolphinCommandLineArgs = settings.DolphinCommandLineArgs;
         XemuCommandLineArgs = settings.XemuCommandLineArgs;
         PCSX2CommandLineArgs = settings.PCSX2CommandLineArgs;
+        OpenIsoAfterExport = settings.OpenIsoAfterExport;
 
         var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         var defaultDolphinFolderPath = Path.Combine(documents, "Dolphin Emulator");

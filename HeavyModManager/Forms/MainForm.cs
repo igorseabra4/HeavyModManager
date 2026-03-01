@@ -24,6 +24,7 @@ public partial class MainForm : Form
         UpdateCurrentLanguageMenuItem();
         UpdateCurrentThemeMenuItem(settings.Theme);
         UpdateSaveIsoText();
+        showISOAfterSavingToolStripMenuItem.Checked = ModManager.OpenIsoAfterExport;
 
         IconManager.SetIcon(this);
 
@@ -850,6 +851,12 @@ public partial class MainForm : Form
             MessageBoxButtons.OK,
             MessageBoxIcon.Information
         );
+
+        // Open folder containing ISO
+        if (ModManager.OpenIsoAfterExport)
+        {
+            Process.Start("explorer.exe", "/select,\"" + dialog.FileName + "\"");
+        }
     }
 
     private void openSettingsjsonToolStripMenuItem_Click(object sender, EventArgs e)
@@ -885,7 +892,8 @@ public partial class MainForm : Form
     {
         string text = "Launch Game";
 
-        switch (platform) {
+        switch (platform)
+        {
             case GamePlatform.GameCube:
                 text += " in Dolphin";
                 break;
@@ -893,7 +901,7 @@ public partial class MainForm : Form
                 text += " in xemu";
                 break;
             case GamePlatform.PlayStation2:
-                text += " in PCSX2" ;
+                text += " in PCSX2";
                 break;
         }
 
@@ -914,5 +922,11 @@ public partial class MainForm : Form
     private void comboBoxPlatform_Leave(object sender, EventArgs e)
     {
 
+    }
+
+    private void showISOAfterSavingToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        ModManager.OpenIsoAfterExport = !ModManager.OpenIsoAfterExport;
+        showISOAfterSavingToolStripMenuItem.Checked = ModManager.OpenIsoAfterExport;
     }
 }

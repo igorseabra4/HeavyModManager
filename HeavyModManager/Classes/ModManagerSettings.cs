@@ -46,6 +46,9 @@ public class ModManagerSettings
     [JsonInclude]
     public string PCSX2CommandLineArgs { get; set; }
 
+    [JsonInclude]
+    public bool OpenIsoAfterExport { get; set; }
+
     /// <summary>
     /// Whether the application checks for updates on startup.
     /// </summary>
@@ -97,6 +100,7 @@ public class ModManagerSettings
         XemuCommandLineArgs = "";
         PCSX2CommandLineArgs = "";
 
+        OpenIsoAfterExport = true;
         CheckForUpdatesOnStartup = true;
         DeveloperMode = false;
         Icon = HeavyModManagerIcon.Rainbow;
