@@ -51,6 +51,9 @@
             label5 = new Label();
             textBoxPCSX2Path = new TextBox();
             label6 = new Label();
+            textBox1 = new TextBox();
+            label7 = new Label();
+            button1 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -58,7 +61,7 @@
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(297, 261);
+            buttonSave.Location = new Point(297, 298);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(114, 23);
             buttonSave.TabIndex = 0;
@@ -68,7 +71,7 @@
             // 
             // buttonCancel
             // 
-            buttonCancel.Location = new Point(417, 261);
+            buttonCancel.Location = new Point(417, 298);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(106, 23);
             buttonCancel.TabIndex = 1;
@@ -85,7 +88,7 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(textBoxXemuPath);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(12, 95);
+            groupBox1.Location = new Point(12, 132);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(511, 77);
             groupBox1.TabIndex = 4;
@@ -150,6 +153,9 @@
             // groupBox2
             // 
             groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox2.Controls.Add(button1);
+            groupBox2.Controls.Add(label7);
+            groupBox2.Controls.Add(textBox1);
             groupBox2.Controls.Add(linkLabelDolphinArgsRef);
             groupBox2.Controls.Add(buttonPickDolphinPath);
             groupBox2.Controls.Add(textBoxDolphinArgs);
@@ -158,7 +164,7 @@
             groupBox2.Controls.Add(label4);
             groupBox2.Location = new Point(12, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(511, 77);
+            groupBox2.Size = new Size(511, 114);
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             groupBox2.Text = "Nintendo GameCube";
@@ -166,7 +172,7 @@
             // linkLabelDolphinArgsRef
             // 
             linkLabelDolphinArgsRef.AutoSize = true;
-            linkLabelDolphinArgsRef.Location = new Point(106, 48);
+            linkLabelDolphinArgsRef.Location = new Point(106, 77);
             linkLabelDolphinArgsRef.Name = "linkLabelDolphinArgsRef";
             linkLabelDolphinArgsRef.Size = new Size(59, 15);
             linkLabelDolphinArgsRef.TabIndex = 7;
@@ -187,7 +193,7 @@
             // textBoxDolphinArgs
             // 
             textBoxDolphinArgs.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxDolphinArgs.Location = new Point(171, 45);
+            textBoxDolphinArgs.Location = new Point(171, 74);
             textBoxDolphinArgs.Name = "textBoxDolphinArgs";
             textBoxDolphinArgs.Size = new Size(334, 23);
             textBoxDolphinArgs.TabIndex = 5;
@@ -195,7 +201,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(6, 48);
+            label2.Location = new Point(6, 77);
             label2.Name = "label2";
             label2.Size = new Size(66, 15);
             label2.TabIndex = 4;
@@ -227,7 +233,7 @@
             groupBox3.Controls.Add(label5);
             groupBox3.Controls.Add(textBoxPCSX2Path);
             groupBox3.Controls.Add(label6);
-            groupBox3.Location = new Point(12, 178);
+            groupBox3.Location = new Point(12, 215);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(511, 77);
             groupBox3.TabIndex = 6;
@@ -289,13 +295,39 @@
             label6.TabIndex = 2;
             label6.Text = "PCSX2 Executable Path";
             // 
+            // textBox1
+            // 
+            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBox1.Location = new Point(171, 45);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(289, 23);
+            textBox1.TabIndex = 7;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(6, 48);
+            label7.Name = "label7";
+            label7.Size = new Size(138, 15);
+            label7.TabIndex = 8;
+            label7.Text = "Dolphin User Folder Path";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(465, 45);
+            button1.Name = "button1";
+            button1.Size = new Size(40, 23);
+            button1.TabIndex = 9;
+            button1.Text = "...";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             AcceptButton = buttonSave;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = buttonCancel;
-            ClientSize = new Size(535, 296);
+            ClientSize = new Size(535, 333);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -340,5 +372,8 @@
         private LinkLabel linkLabelDolphinArgsRef;
         private LinkLabel linkLabelXemuArgsRef;
         private LinkLabel linkLabelPCSX2ArgsRef;
+        private Label label7;
+        private TextBox textBox1;
+        private Button button1;
     }
 }
