@@ -399,6 +399,7 @@ public partial class MainForm : Form
     private void PopulateModList(string selectedModId = "")
     {
         programChangingData = true;
+        pictureBoxMod.Image = null;
 
         labelModInfo.Text = "";
         listViewMods.Items.Clear();
@@ -480,6 +481,13 @@ public partial class MainForm : Form
 
         if (mod != null)
         {
+            // Update image
+            if (ModManager.ModHasImage(mod))
+                pictureBoxMod.Image = ModManager.GetModImage(mod);
+            else
+                pictureBoxMod.Image = null;
+
+
             if (!string.IsNullOrWhiteSpace(mod.Description))
                 labelModInfo.Text += $"{mod.Description}\n\n";
 

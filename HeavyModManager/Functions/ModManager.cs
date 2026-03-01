@@ -217,6 +217,24 @@ public static class ModManager
 
     public static GamePlatform ActivePlatform { get; set; } = GamePlatform.Unknown;
 
+    public static bool ModHasImage(Mod mod)
+    {
+
+        var path = GetModPath(mod.ModId);
+        path += "\\mod.png";
+
+        return File.Exists(path);
+    }
+
+    public static Bitmap? GetModImage(Mod mod)
+    {
+        var path = GetModPath(mod.ModId);
+        path += "\\mod.png";
+        if (File.Exists(path))
+            return new Bitmap(path);
+        return null;
+    }
+
     public static void SaveSettings(ModManagerSettings settings)
     {
         settings.CurrentGame = CurrentGame;

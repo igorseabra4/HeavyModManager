@@ -32,6 +32,7 @@ partial class MainForm
         groupBoxGame = new GroupBox();
         buttonCreateBackup = new Button();
         comboBoxGame = new ComboBox();
+        pictureBoxMod = new PictureBox();
         groupBoxMods = new GroupBox();
         listViewMods = new ListView();
         columnName = new ColumnHeader();
@@ -76,6 +77,7 @@ partial class MainForm
         statusStrip1 = new StatusStrip();
         labelStatus = new ToolStripStatusLabel();
         groupBoxGame.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)pictureBoxMod).BeginInit();
         groupBoxMods.SuspendLayout();
         menuStrip1.SuspendLayout();
         panelLabelModInfo.SuspendLayout();
@@ -108,6 +110,14 @@ partial class MainForm
         comboBoxGame.Name = "comboBoxGame";
         comboBoxGame.SelectedIndexChanged += comboBoxGame_SelectedIndexChanged;
         comboBoxGame.Leave += comboBoxGame_Leave;
+        // 
+        // pictureBoxMod
+        // 
+        pictureBoxMod.BackColor = SystemColors.Control;
+        pictureBoxMod.BackgroundImage = Properties.Resources.dark;
+        resources.ApplyResources(pictureBoxMod, "pictureBoxMod");
+        pictureBoxMod.Name = "pictureBoxMod";
+        pictureBoxMod.TabStop = false;
         // 
         // groupBoxMods
         // 
@@ -335,6 +345,7 @@ partial class MainForm
         // panelLabelModInfo
         // 
         resources.ApplyResources(panelLabelModInfo, "panelLabelModInfo");
+        panelLabelModInfo.Controls.Add(pictureBoxMod);
         panelLabelModInfo.Controls.Add(labelModInfo);
         panelLabelModInfo.Name = "panelLabelModInfo";
         // 
@@ -406,6 +417,7 @@ partial class MainForm
         FormClosing += MainForm_FormClosing;
         Shown += MainForm_Shown;
         groupBoxGame.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)pictureBoxMod).EndInit();
         groupBoxMods.ResumeLayout(false);
         menuStrip1.ResumeLayout(false);
         menuStrip1.PerformLayout();
@@ -466,4 +478,5 @@ partial class MainForm
     private ToolStripMenuItem showISOAfterSavingToolStripMenuItem;
     private ColumnHeader columnPlatform;
     private ColumnHeader columnVersion;
+    private PictureBox pictureBoxMod;
 }
