@@ -18,6 +18,13 @@ public partial class CreateMod : Form
         foreach (Game game in ModManager.EvilEngineGames)
             comboBoxGame.Items.Add(new ComboBoxGameItem(game));
 
+        foreach (GamePlatform value in System.Enum.GetValues(typeof(GamePlatform)))
+        {
+            if (value != GamePlatform.Unknown)
+                comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(value));
+        }
+        comboBoxPlatform.SelectedIndex = 0;
+
         dateTimePickerCreatedAt.Value = DateTime.Now;
         dateTimePickerUpdatedAt.Value = DateTime.Now;
 
@@ -123,6 +130,7 @@ public partial class CreateMod : Form
     private void SetCreateModEnabled()
     {
         buttonCreateMod.Enabled = (isEditing || comboBoxGame.SelectedIndex > -1) &&
+            comboBoxPlatform.SelectedIndex > -1 &&
             TreatString(textBoxAuthor.Text).Length > 0 &&
             TreatString(textBoxModName.Text).Length > 0 &&
             textBoxModId.Text.Length > 0 &&
