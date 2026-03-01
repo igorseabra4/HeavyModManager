@@ -413,11 +413,15 @@ public partial class MainForm : Form
         zipModToolStripMenuItemContext.Enabled = false;
         openModFolderToolStripMenuItemContext.Enabled = false;
 
+        var activePlatform = ModManager.ActivePlatform;
+
         foreach (var modId in ModManager.CurrentGameSettings.Mods)
         {
             var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(ModManager.GetModJsonPath(modId)));
             bool active = ModManager.CurrentGameSettings.ActiveMods.Contains(mod.ModId);
-            listViewMods.Items.Add(ListViewItemFromMod(mod, active, selectedModId == mod.ModId));
+
+            if (mod.Platform == activePlatform || mod.Platform == GamePlatform.Unknown)
+                listViewMods.Items.Add(ListViewItemFromMod(mod, active, selectedModId == mod.ModId));
         }
 
         UpdateStatusLabel();
@@ -437,6 +441,8 @@ public partial class MainForm : Form
         item.SubItems.AddRange(new ListViewItem.ListViewSubItem[]
         {
             new ListViewItem.ListViewSubItem(item, mod.Author),
+            new ListViewItem.ListViewSubItem(item, ModManager.PlatformToStringFull(mod.Platform)),
+            new ListViewItem.ListViewSubItem(item, mod.Version),
             new ListViewItem.ListViewSubItem(item, mod.CreatedAt.ToShortDateString()),
             new ListViewItem.ListViewSubItem(item, mod.UpdatedAt.ToShortDateString()),
         });
@@ -886,6 +892,7 @@ public partial class MainForm : Form
             ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform;
 
         buttonRunGame.Text = GetPlayButtonText(ModManager.ActivePlatform);
+        PopulateModList();
     }
 
     private string GetPlayButtonText(GamePlatform platform)

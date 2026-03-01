@@ -36,6 +36,8 @@ partial class MainForm
         listViewMods = new ListView();
         columnName = new ColumnHeader();
         columnAuthor = new ColumnHeader();
+        columnPlatform = new ColumnHeader();
+        columnVersion = new ColumnHeader();
         columnCreatedDate = new ColumnHeader();
         columnUpdatedDate = new ColumnHeader();
         buttonRefreshModList = new Button();
@@ -62,6 +64,7 @@ partial class MainForm
         systemToolStripMenuItem = new ToolStripMenuItem();
         lightToolStripMenuItem = new ToolStripMenuItem();
         darkToolStripMenuItem = new ToolStripMenuItem();
+        showISOAfterSavingToolStripMenuItem = new ToolStripMenuItem();
         openSettingsjsonToolStripMenuItem = new ToolStripMenuItem();
         labelModInfo = new Label();
         panelLabelModInfo = new Panel();
@@ -72,7 +75,6 @@ partial class MainForm
         comboBoxPlatform = new ComboBox();
         statusStrip1 = new StatusStrip();
         labelStatus = new ToolStripStatusLabel();
-        showISOAfterSavingToolStripMenuItem = new ToolStripMenuItem();
         groupBoxGame.SuspendLayout();
         groupBoxMods.SuspendLayout();
         menuStrip1.SuspendLayout();
@@ -123,7 +125,7 @@ partial class MainForm
         listViewMods.AllowColumnReorder = true;
         resources.ApplyResources(listViewMods, "listViewMods");
         listViewMods.CheckBoxes = true;
-        listViewMods.Columns.AddRange(new ColumnHeader[] { columnName, columnAuthor, columnCreatedDate, columnUpdatedDate });
+        listViewMods.Columns.AddRange(new ColumnHeader[] { columnName, columnAuthor, columnPlatform, columnVersion, columnCreatedDate, columnUpdatedDate });
         listViewMods.Name = "listViewMods";
         listViewMods.UseCompatibleStateImageBehavior = false;
         listViewMods.View = View.Details;
@@ -139,6 +141,14 @@ partial class MainForm
         // columnAuthor
         // 
         resources.ApplyResources(columnAuthor, "columnAuthor");
+        // 
+        // columnPlatform
+        // 
+        resources.ApplyResources(columnPlatform, "columnPlatform");
+        // 
+        // columnVersion
+        // 
+        resources.ApplyResources(columnVersion, "columnVersion");
         // 
         // columnCreatedDate
         // 
@@ -303,6 +313,14 @@ partial class MainForm
         resources.ApplyResources(darkToolStripMenuItem, "darkToolStripMenuItem");
         darkToolStripMenuItem.Click += themeItemToolStripMenuItem_Click;
         // 
+        // showISOAfterSavingToolStripMenuItem
+        // 
+        showISOAfterSavingToolStripMenuItem.Checked = true;
+        showISOAfterSavingToolStripMenuItem.CheckState = CheckState.Checked;
+        showISOAfterSavingToolStripMenuItem.Name = "showISOAfterSavingToolStripMenuItem";
+        resources.ApplyResources(showISOAfterSavingToolStripMenuItem, "showISOAfterSavingToolStripMenuItem");
+        showISOAfterSavingToolStripMenuItem.Click += showISOAfterSavingToolStripMenuItem_Click;
+        // 
         // openSettingsjsonToolStripMenuItem
         // 
         openSettingsjsonToolStripMenuItem.Name = "openSettingsjsonToolStripMenuItem";
@@ -368,14 +386,6 @@ partial class MainForm
         // 
         labelStatus.Name = "labelStatus";
         resources.ApplyResources(labelStatus, "labelStatus");
-        // 
-        // showISOAfterSavingToolStripMenuItem
-        // 
-        showISOAfterSavingToolStripMenuItem.Checked = true;
-        showISOAfterSavingToolStripMenuItem.CheckState = CheckState.Checked;
-        showISOAfterSavingToolStripMenuItem.Name = "showISOAfterSavingToolStripMenuItem";
-        resources.ApplyResources(showISOAfterSavingToolStripMenuItem, "showISOAfterSavingToolStripMenuItem");
-        showISOAfterSavingToolStripMenuItem.Click += showISOAfterSavingToolStripMenuItem_Click;
         // 
         // MainForm
         // 
@@ -454,4 +464,6 @@ partial class MainForm
     private StatusStrip statusStrip1;
     private ToolStripStatusLabel labelStatus;
     private ToolStripMenuItem showISOAfterSavingToolStripMenuItem;
+    private ColumnHeader columnPlatform;
+    private ColumnHeader columnVersion;
 }

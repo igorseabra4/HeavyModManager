@@ -103,7 +103,7 @@ public class Mod
     {
         CreatedAt = DateTime.Now.ToUniversalTime().Date;
         UpdatedAt = DateTime.Now.ToUniversalTime().Date;
-        Version = "1.0";
+        Version = "";
     }
 
     /// <summary>
