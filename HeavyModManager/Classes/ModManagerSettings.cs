@@ -29,7 +29,22 @@ public class ModManagerSettings
     public string DolphinPath { get; set; }
 
     [JsonInclude]
+    public string XemuPath { get; set; }
+
+    [JsonInclude]
+    public string PCSX2Path { get; set; }
+
+    [JsonInclude]
     public string DolphinFolderPath { get; set; }
+
+    [JsonInclude]
+    public string DolphinCommandLineArgs { get; set; }
+
+    [JsonInclude]
+    public string XemuCommandLineArgs { get; set; }
+
+    [JsonInclude]
+    public string PCSX2CommandLineArgs { get; set; }
 
     /// <summary>
     /// Whether the application checks for updates on startup.
@@ -72,8 +87,16 @@ public class ModManagerSettings
     {
         Version = 3;
         CurrentGame = Game.Null;
+
         DolphinPath = "";
         DolphinFolderPath = "";
+        XemuPath = "";
+        PCSX2Path = "";
+
+        DolphinCommandLineArgs = "";
+        XemuCommandLineArgs = "";
+        PCSX2CommandLineArgs = "";
+
         CheckForUpdatesOnStartup = true;
         DeveloperMode = false;
         Icon = HeavyModManagerIcon.Rainbow;

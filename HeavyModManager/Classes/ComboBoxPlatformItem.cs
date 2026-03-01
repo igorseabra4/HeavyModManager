@@ -6,26 +6,26 @@ namespace HeavyModManager.Classes;
 /// <summary>
 /// Represents a Heavy Iron game as it appears in a combo box.
 /// </summary>
-public class ComboBoxGameItem
-{  
+public class ComboBoxPlatformItem
+{
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ComboBoxGameItem"/> class.
+    /// Initializes a new instance of the <see cref="ComboBoxPlatformItem"/> class.
     /// </summary>
     /// <param name="game">The game</param>
-    public ComboBoxGameItem(Game game)
+    public ComboBoxPlatformItem(GamePlatform platform)
     {
-        Game = game;
+        Platform = platform;
     }
 
     /// <summary>
-    /// The Heavy Iron game.
+    /// The game platform.
     /// </summary>
-    public Game Game { get; set; }
+    public GamePlatform Platform { get; set; }
 
     /// <summary>
     /// Returns the long name of the game.
     /// </summary>
     /// <returns></returns>
-    public override string ToString() => ModManager.GameToStringFull(Game);
+    public override string ToString() => ModManager.PlatformToStringFull(Platform);
 }

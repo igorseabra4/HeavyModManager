@@ -39,22 +39,26 @@ public partial class MainForm : Form
         if (ModManager.CheckForUpdatesOnStartup)
             TryUpdate();
 
+        comboBoxPlatform.Items.Clear();
         if (ModManager.CurrentGame == Game.Null)
             comboBoxGame.SelectedIndex = -1;
         else
+        {
             for (int i = 0; i < comboBoxGame.Items.Count; i++)
                 if (((ComboBoxGameItem)comboBoxGame.Items[i]).Game == ModManager.CurrentGame)
                 {
                     comboBoxGame.SelectedIndex = i;
                     break;
                 }
+        }
+
 
         labelModInfo.AutoSize = true;
         labelModInfo.MaximumSize = new Size(panelLabelModInfo.Width - SystemInformation.VerticalScrollBarWidth, 0);
         labelModInfo.Text = "";
 
         UpdateDeveloperMode();
-        UpdateDolphinLabel();
+        UpdateStatusLabel();
     }
 
     private ToolStripMenuItem createModToolStripMenuItem;
@@ -172,7 +176,7 @@ public partial class MainForm : Form
 
     private void MainForm_Shown(object sender, EventArgs e)
     {
-        ShowToolTip();
+        //ShowToolTip();
     }
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -241,7 +245,37 @@ public partial class MainForm : Form
         buttonRunGame.Enabled = CanApplyMods;
         buttonCreateBackup.Enabled = comboBoxGame.SelectedIndex != -1;
 
-        ShowToolTip();
+        // Update platforms
+        var platforms = ModManager.SupportedPlatformsForGame(ModManager.CurrentGame);
+        // Update comboBoxPlatform with supported platforms
+
+        // Get selected platform if one is selected
+        int selected = comboBoxPlatform.SelectedIndex;
+
+        comboBoxPlatform.Items.Clear();
+
+        foreach (var plat in platforms)
+        {
+            bool exists = false;
+            foreach (ComboBoxPlatformItem item in comboBoxPlatform.Items)
+            {
+                if (item.Platform == plat)
+                {
+                    exists = true;
+                    break;
+                }
+            }
+            if (!exists)
+                comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(plat));
+        }
+
+        // If the previously selected platform is still valid, keep it selected. Otherwise select the first one.
+        if (selected != -1 && selected < comboBoxPlatform.Items.Count)
+            comboBoxPlatform.SelectedIndex = selected;
+        else if (comboBoxPlatform.Items.Count > 0)
+            comboBoxPlatform.SelectedIndex = 0;
+
+        //ShowToolTip();
 
         SaveSettings();
     }
@@ -385,7 +419,7 @@ public partial class MainForm : Form
             listViewMods.Items.Add(ListViewItemFromMod(mod, active, selectedModId == mod.ModId));
         }
 
-        UpdateDolphinLabel();
+        UpdateStatusLabel();
 
         programChangingData = false;
     }
@@ -602,21 +636,21 @@ public partial class MainForm : Form
         PopulateModList();
     }
 
-    private void chooseDolphinPathToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        ModManager.SetDolphinPath();
-        SaveSettings();
-        UpdateDolphinLabel();
-        ShowToolTip();
-    }
+    //private void chooseDolphinPathToolStripMenuItem_Click(object sender, EventArgs e)
+    //{
+    //    ModManager.SetDolphinPath();
+    //    SaveSettings();
+    //    UpdateStatusLabel();
+    //    ShowToolTip();
+    //}
 
-    private void chooseDolphinUserFolderPathToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        ModManager.SetDolphinFolderPath();
-        SaveSettings();
-        UpdateDolphinLabel();
-        ShowToolTip();
-    }
+    //private void chooseDolphinUserFolderPathToolStripMenuItem_Click(object sender, EventArgs e)
+    //{
+    //    ModManager.SetDolphinFolderPath();
+    //    SaveSettings();
+    //    UpdateStatusLabel();
+    //    ShowToolTip();
+    //}
 
     private void developerModeToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -624,7 +658,7 @@ public partial class MainForm : Form
         developerModeToolStripMenuItem.Checked = ModManager.DeveloperMode;
         if (comboBoxGame.SelectedItem != null)
             ModManager.Invalidate();
-        UpdateDolphinLabel();
+        UpdateStatusLabel();
         UpdateDeveloperMode();
         UpdateSaveIsoText();
     }
@@ -664,36 +698,12 @@ public partial class MainForm : Form
         TryUpdate(true);
     }
 
-    private void UpdateDolphinLabel()
+    private void UpdateStatusLabel()
     {
-        if (string.IsNullOrEmpty(ModManager.DolphinPath))
-        {
-            labelDolphin.Text = GlobalResources.dolphinPathNotSetLabel;
-            return;
-        }
-
-        if (!File.Exists(ModManager.DolphinPath))
-        {
-            labelDolphin.Text = GlobalResources.dolphinNotFoundLabel;
-            return;
-        }
-
-        if (string.IsNullOrEmpty(ModManager.DolphinFolderPath))
-        {
-            labelDolphin.Text = GlobalResources.dolphinUserFolderPathNotSetLabel;
-            return;
-        }
-
-        if (!Directory.Exists(ModManager.DolphinFolderPath))
-        {
-            labelDolphin.Text = GlobalResources.dolphinUserFolderNotFoundLabel;
-            return;
-        }
-
-        labelDolphin.Text = $"{GlobalResources.dolphin}: {ModManager.DolphinPath}\n{GlobalResources.dolphinUserFolder} {ModManager.DolphinFolderPath}";
-
         if (ModManager.DeveloperMode)
-            labelDolphin.Text += "\n" + GlobalResources.developerMode;
+            labelStatus.Text = GlobalResources.developerMode;
+        else
+            labelStatus.Text = "";
     }
 
     private void changeIconToolStripMenuItem_Click(object sender, EventArgs e)
@@ -779,6 +789,7 @@ public partial class MainForm : Form
         {
             Text = "Saving ISO..."
         };
+        progressBar.SetDetails("Applying mods...");
         progressBar.Show(this);
 
         if (ModManager.DeveloperMode || ModManager.CurrentGameSettings.Invalidated)
@@ -790,12 +801,11 @@ public partial class MainForm : Form
             });
         }
 
+        progressBar.SetDetails("Saving to file...");
         try
 
         {
-            // GameCube ISO size with padding.
-            // Not 100% accurate since exported ISOs don't contain padding, but good enough for now.
-            long expectedSize = 1_459_978_240;
+            long expectedSize = ModManager.GetDirectorySize(ModManager.GameGamePath);
 
             var creationTask = Task.Run(() =>
             {
@@ -860,5 +870,49 @@ public partial class MainForm : Form
             MessageBox.Show($"Failed to open settings file:\n{ex.Message}",
                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+    }
+
+    private void comboBoxPlatform_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        ModManager.ActivePlatform = comboBoxPlatform.SelectedIndex == -1 ?
+            GamePlatform.Unknown :
+            ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform;
+
+        buttonRunGame.Text = GetPlayButtonText(ModManager.ActivePlatform);
+    }
+
+    private string GetPlayButtonText(GamePlatform platform)
+    {
+        string text = "Launch Game";
+
+        switch (platform) {
+            case GamePlatform.GameCube:
+                text += " in Dolphin";
+                break;
+            case GamePlatform.Xbox:
+                text += " in xemu";
+                break;
+            case GamePlatform.PlayStation2:
+                text += " in PCSX2" ;
+                break;
+        }
+
+        return text;
+    }
+
+    private void emulatorSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        var settingsForm = new SettingsForm();
+        settingsForm.ShowDialog(this);
+    }
+
+    private void comboBoxGame_Leave(object sender, EventArgs e)
+    {
+
+    }
+
+    private void comboBoxPlatform_Leave(object sender, EventArgs e)
+    {
+
     }
 }

@@ -55,6 +55,7 @@
 
   <ItemGroup>
     <PackageReference Include="GCNTools" Version="1.0.2" />
+    <PackageReference Include="Ps2IsoTools" Version="1.1.2" />
   </ItemGroup>
 
 </Project>

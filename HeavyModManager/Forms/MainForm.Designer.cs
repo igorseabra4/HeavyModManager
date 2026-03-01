@@ -47,8 +47,7 @@ partial class MainForm
         menuStrip1 = new MenuStrip();
         manageToolStripMenuItem = new ToolStripMenuItem();
         settingsToolStripMenuItem = new ToolStripMenuItem();
-        chooseDolphinPathToolStripMenuItem = new ToolStripMenuItem();
-        chooseDolphinUserFolderPathToolStripMenuItem = new ToolStripMenuItem();
+        emulatorSettingsToolStripMenuItem = new ToolStripMenuItem();
         developerModeToolStripMenuItem = new ToolStripMenuItem();
         checkForUpdatesOnStartupToolStripMenuItem = new ToolStripMenuItem();
         checkForUpdatesNowToolStripMenuItem = new ToolStripMenuItem();
@@ -63,18 +62,23 @@ partial class MainForm
         systemToolStripMenuItem = new ToolStripMenuItem();
         lightToolStripMenuItem = new ToolStripMenuItem();
         darkToolStripMenuItem = new ToolStripMenuItem();
+        openSettingsjsonToolStripMenuItem = new ToolStripMenuItem();
         labelModInfo = new Label();
         panelLabelModInfo = new Panel();
         groupBoxModInfo = new GroupBox();
-        labelDolphin = new Label();
         buttonRunGame = new Button();
         buttonSaveIso = new Button();
-        openSettingsjsonToolStripMenuItem = new ToolStripMenuItem();
+        groupBox1 = new GroupBox();
+        comboBoxPlatform = new ComboBox();
+        statusStrip1 = new StatusStrip();
+        labelStatus = new ToolStripStatusLabel();
         groupBoxGame.SuspendLayout();
         groupBoxMods.SuspendLayout();
         menuStrip1.SuspendLayout();
         panelLabelModInfo.SuspendLayout();
         groupBoxModInfo.SuspendLayout();
+        groupBox1.SuspendLayout();
+        statusStrip1.SuspendLayout();
         SuspendLayout();
         // 
         // groupBoxGame
@@ -95,9 +99,12 @@ partial class MainForm
         // comboBoxGame
         // 
         resources.ApplyResources(comboBoxGame, "comboBoxGame");
+        comboBoxGame.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        comboBoxGame.AutoCompleteSource = AutoCompleteSource.ListItems;
         comboBoxGame.FormattingEnabled = true;
         comboBoxGame.Name = "comboBoxGame";
         comboBoxGame.SelectedIndexChanged += comboBoxGame_SelectedIndexChanged;
+        comboBoxGame.Leave += comboBoxGame_Leave;
         // 
         // groupBoxMods
         // 
@@ -196,21 +203,15 @@ partial class MainForm
         // 
         // settingsToolStripMenuItem
         // 
-        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chooseDolphinPathToolStripMenuItem, chooseDolphinUserFolderPathToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, openSettingsjsonToolStripMenuItem });
+        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { emulatorSettingsToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, openSettingsjsonToolStripMenuItem });
         settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
         resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
         // 
-        // chooseDolphinPathToolStripMenuItem
+        // emulatorSettingsToolStripMenuItem
         // 
-        chooseDolphinPathToolStripMenuItem.Name = "chooseDolphinPathToolStripMenuItem";
-        resources.ApplyResources(chooseDolphinPathToolStripMenuItem, "chooseDolphinPathToolStripMenuItem");
-        chooseDolphinPathToolStripMenuItem.Click += chooseDolphinPathToolStripMenuItem_Click;
-        // 
-        // chooseDolphinUserFolderPathToolStripMenuItem
-        // 
-        chooseDolphinUserFolderPathToolStripMenuItem.Name = "chooseDolphinUserFolderPathToolStripMenuItem";
-        resources.ApplyResources(chooseDolphinUserFolderPathToolStripMenuItem, "chooseDolphinUserFolderPathToolStripMenuItem");
-        chooseDolphinUserFolderPathToolStripMenuItem.Click += chooseDolphinUserFolderPathToolStripMenuItem_Click;
+        emulatorSettingsToolStripMenuItem.Name = "emulatorSettingsToolStripMenuItem";
+        resources.ApplyResources(emulatorSettingsToolStripMenuItem, "emulatorSettingsToolStripMenuItem");
+        emulatorSettingsToolStripMenuItem.Click += emulatorSettingsToolStripMenuItem_Click;
         // 
         // developerModeToolStripMenuItem
         // 
@@ -301,6 +302,12 @@ partial class MainForm
         resources.ApplyResources(darkToolStripMenuItem, "darkToolStripMenuItem");
         darkToolStripMenuItem.Click += themeItemToolStripMenuItem_Click;
         // 
+        // openSettingsjsonToolStripMenuItem
+        // 
+        openSettingsjsonToolStripMenuItem.Name = "openSettingsjsonToolStripMenuItem";
+        resources.ApplyResources(openSettingsjsonToolStripMenuItem, "openSettingsjsonToolStripMenuItem");
+        openSettingsjsonToolStripMenuItem.Click += openSettingsjsonToolStripMenuItem_Click;
+        // 
         // labelModInfo
         // 
         resources.ApplyResources(labelModInfo, "labelModInfo");
@@ -319,11 +326,6 @@ partial class MainForm
         groupBoxModInfo.Name = "groupBoxModInfo";
         groupBoxModInfo.TabStop = false;
         // 
-        // labelDolphin
-        // 
-        resources.ApplyResources(labelDolphin, "labelDolphin");
-        labelDolphin.Name = "labelDolphin";
-        // 
         // buttonRunGame
         // 
         resources.ApplyResources(buttonRunGame, "buttonRunGame");
@@ -338,18 +340,41 @@ partial class MainForm
         buttonSaveIso.UseVisualStyleBackColor = true;
         buttonSaveIso.Click += buttonSaveIso_Click;
         // 
-        // openSettingsjsonToolStripMenuItem
+        // groupBox1
         // 
-        openSettingsjsonToolStripMenuItem.Name = "openSettingsjsonToolStripMenuItem";
-        resources.ApplyResources(openSettingsjsonToolStripMenuItem, "openSettingsjsonToolStripMenuItem");
-        openSettingsjsonToolStripMenuItem.Click += openSettingsjsonToolStripMenuItem_Click;
+        resources.ApplyResources(groupBox1, "groupBox1");
+        groupBox1.Controls.Add(comboBoxPlatform);
+        groupBox1.Name = "groupBox1";
+        groupBox1.TabStop = false;
+        // 
+        // comboBoxPlatform
+        // 
+        resources.ApplyResources(comboBoxPlatform, "comboBoxPlatform");
+        comboBoxPlatform.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        comboBoxPlatform.AutoCompleteSource = AutoCompleteSource.ListItems;
+        comboBoxPlatform.FormattingEnabled = true;
+        comboBoxPlatform.Name = "comboBoxPlatform";
+        comboBoxPlatform.SelectedIndexChanged += comboBoxPlatform_SelectedIndexChanged;
+        comboBoxPlatform.Leave += comboBoxPlatform_Leave;
+        // 
+        // statusStrip1
+        // 
+        statusStrip1.Items.AddRange(new ToolStripItem[] { labelStatus });
+        resources.ApplyResources(statusStrip1, "statusStrip1");
+        statusStrip1.Name = "statusStrip1";
+        // 
+        // labelStatus
+        // 
+        labelStatus.Name = "labelStatus";
+        resources.ApplyResources(labelStatus, "labelStatus");
         // 
         // MainForm
         // 
         resources.ApplyResources(this, "$this");
         AutoScaleMode = AutoScaleMode.Font;
+        Controls.Add(statusStrip1);
+        Controls.Add(groupBox1);
         Controls.Add(buttonSaveIso);
-        Controls.Add(labelDolphin);
         Controls.Add(groupBoxModInfo);
         Controls.Add(buttonRestoreBackupDev);
         Controls.Add(buttonRunGameDev);
@@ -367,6 +392,9 @@ partial class MainForm
         menuStrip1.PerformLayout();
         panelLabelModInfo.ResumeLayout(false);
         groupBoxModInfo.ResumeLayout(false);
+        groupBox1.ResumeLayout(false);
+        statusStrip1.ResumeLayout(false);
+        statusStrip1.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -387,9 +415,7 @@ partial class MainForm
     private Panel panelLabelModInfo;
     private Button buttonCreateBackup;
     private GroupBox groupBoxModInfo;
-    private Label labelDolphin;
     private ToolStripMenuItem settingsToolStripMenuItem;
-    private ToolStripMenuItem chooseDolphinPathToolStripMenuItem;
     private ToolStripMenuItem developerModeToolStripMenuItem;
     private ToolStripMenuItem checkForUpdatesOnStartupToolStripMenuItem;
     private Button buttonRefreshModList;
@@ -401,7 +427,6 @@ partial class MainForm
     private ColumnHeader columnAuthor;
     private ColumnHeader columnCreatedDate;
     private ColumnHeader columnUpdatedDate;
-    private ToolStripMenuItem chooseDolphinUserFolderPathToolStripMenuItem;
     private ToolStripMenuItem languageToolStripMenuItem;
     private ToolStripMenuItem englishToolStripMenuItem;
     private ToolStripMenuItem germanToolStripMenuItem;
@@ -414,4 +439,9 @@ partial class MainForm
     private ToolStripMenuItem darkToolStripMenuItem;
     private Button buttonSaveIso;
     private ToolStripMenuItem openSettingsjsonToolStripMenuItem;
+    private GroupBox groupBox1;
+    private ComboBox comboBoxPlatform;
+    private ToolStripMenuItem emulatorSettingsToolStripMenuItem;
+    private StatusStrip statusStrip1;
+    private ToolStripStatusLabel labelStatus;
 }

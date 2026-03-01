@@ -88,6 +88,12 @@ public class Mod
 
     [JsonInclude]
     public string IpsPatchBase64 { get; set; }
+    
+    [JsonInclude]
+    public GamePlatform Platform { get; set; } = GamePlatform.Unknown;
+
+    [JsonInclude]
+    public string Version { get; set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Mod"/> class.
@@ -97,6 +103,7 @@ public class Mod
     {
         CreatedAt = DateTime.Now.ToUniversalTime().Date;
         UpdatedAt = DateTime.Now.ToUniversalTime().Date;
+        Version = "1.0";
     }
 
     /// <summary>

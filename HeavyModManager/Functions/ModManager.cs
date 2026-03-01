@@ -41,6 +41,26 @@ public static class ModManager
         };
     }
 
+    public static List<GamePlatform> SupportedPlatformsForGame(Game game)
+    {
+        switch (game)
+        {
+            case Game.Scooby:
+                return new List<GamePlatform> { GamePlatform.GameCube, GamePlatform.PlayStation2, GamePlatform.Xbox };
+            case Game.BFBB:
+                return new List<GamePlatform> { GamePlatform.GameCube, GamePlatform.PlayStation2, GamePlatform.Xbox };
+            case Game.Movie:
+                return new List<GamePlatform> { GamePlatform.GameCube, GamePlatform.PlayStation2, GamePlatform.Xbox };
+            case Game.Incredibles:
+                return new List<GamePlatform> { GamePlatform.GameCube, GamePlatform.PlayStation2, GamePlatform.Xbox };
+            case Game.Underminer:
+                return new List<GamePlatform> { GamePlatform.GameCube, GamePlatform.PlayStation2, GamePlatform.Xbox };
+            case Game.RatProto:
+                return new List<GamePlatform> { GamePlatform.GameCube };
+        }
+        return new List<GamePlatform>();
+    }
+
     /// <summary>
     /// Returns the long name of a Heavy Iron game.
     /// </summary>
@@ -65,6 +85,17 @@ public static class ModManager
             Game.FamilyGuy => GlobalResources.bttmName ?? "Family Guy: Back to the Multiverse",
             Game.HollywoodWorkout => GlobalResources.hollywoodWorkoutName ?? "Harley Pasternak's Hollywood Workout",
             _ => throw new ArgumentException("Invalid game.", nameof(game)),
+        };
+    }
+
+    public static string PlatformToStringFull(GamePlatform platform)
+    {
+        return platform switch
+        {
+            GamePlatform.GameCube => "GameCube",
+            GamePlatform.PlayStation2 => "PlayStation 2",
+            GamePlatform.Xbox => "Xbox",
+            _ => "Unknown",
         };
     }
 
@@ -166,16 +197,36 @@ public static class ModManager
 
     public static bool CheckForUpdatesOnStartup { get; set; }
     public static bool DeveloperMode { get; set; }
-    public static string DolphinPath { get; private set; }
-    public static string DolphinFolderPath { get; private set; }
-    public static Game CurrentGame { get; private set; }
+    public static string DolphinPath { get; set; }
+    public static string DolphinFolderPath { get; set; }
+
+    public static string XemuPath { get; set; }
+
+    public static string PCSX2Path { get; set; }
+
+    public static string DolphinCommandLineArgs { get; set; }
+
+    public static string XemuCommandLineArgs { get; set; }
+
+    public static string PCSX2CommandLineArgs { get; set; }
+
+    public static Game CurrentGame { get; set; }
     public static GameSettings? CurrentGameSettings { get; private set; } = null;
+
+    public static GamePlatform ActivePlatform { get; set; } = GamePlatform.Unknown;
 
     public static void SaveSettings(ModManagerSettings settings)
     {
         settings.CurrentGame = CurrentGame;
         settings.DolphinPath = DolphinPath;
         settings.DolphinFolderPath = DolphinFolderPath;
+        settings.XemuPath = XemuPath;
+        settings.PCSX2Path = PCSX2Path;
+
+        settings.DolphinCommandLineArgs = DolphinCommandLineArgs;
+        settings.XemuCommandLineArgs = XemuCommandLineArgs;
+        settings.PCSX2CommandLineArgs = PCSX2CommandLineArgs;
+
         settings.CheckForUpdatesOnStartup = CheckForUpdatesOnStartup;
         settings.DeveloperMode = DeveloperMode;
         settings.Icon = IconManager.CurrentIcon;
@@ -197,6 +248,12 @@ public static class ModManager
         var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
         var defaultDolphinPath = Path.Combine(programFiles, "Dolphin-x64", "Dolphin.exe");
         DolphinPath = (string.IsNullOrWhiteSpace(settings.DolphinPath) && File.Exists(defaultDolphinPath)) ? defaultDolphinPath : settings.DolphinPath;
+        XemuPath = settings.XemuPath;
+        PCSX2Path = settings.PCSX2Path;
+
+        DolphinCommandLineArgs = settings.DolphinCommandLineArgs;
+        XemuCommandLineArgs = settings.XemuCommandLineArgs;
+        PCSX2CommandLineArgs = settings.PCSX2CommandLineArgs;
 
         var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         var defaultDolphinFolderPath = Path.Combine(documents, "Dolphin Emulator");
@@ -696,5 +753,25 @@ public static class ModManager
             FileName = ModManagerSettingsPath,
             UseShellExecute = true
         });
+    }
+
+    public static long GetDirectorySize(string path)
+    {
+        if (!Directory.Exists(path))
+            throw new DirectoryNotFoundException($"Directory not found: {path}");
+
+        return Directory
+            .EnumerateFiles(path, "*", SearchOption.AllDirectories)
+            .Sum(file =>
+            {
+                try
+                {
+                    return new FileInfo(file).Length;
+                }
+                catch
+                {
+                    return 0L;
+                }
+            });
     }
 }
