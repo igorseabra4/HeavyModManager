@@ -98,6 +98,7 @@
             // linkLabelXemuArgsRef
             // 
             linkLabelXemuArgsRef.AutoSize = true;
+            linkLabelXemuArgsRef.LinkColor = Color.FromArgb(0, 122, 245);
             linkLabelXemuArgsRef.Location = new Point(106, 48);
             linkLabelXemuArgsRef.Name = "linkLabelXemuArgsRef";
             linkLabelXemuArgsRef.Size = new Size(59, 15);
@@ -198,6 +199,7 @@
             // linkLabelDolphinArgsRef
             // 
             linkLabelDolphinArgsRef.AutoSize = true;
+            linkLabelDolphinArgsRef.LinkColor = Color.FromArgb(0, 122, 245);
             linkLabelDolphinArgsRef.Location = new Point(106, 77);
             linkLabelDolphinArgsRef.Name = "linkLabelDolphinArgsRef";
             linkLabelDolphinArgsRef.Size = new Size(59, 15);
@@ -269,6 +271,7 @@
             // linkLabelPCSX2ArgsRef
             // 
             linkLabelPCSX2ArgsRef.AutoSize = true;
+            linkLabelPCSX2ArgsRef.LinkColor = Color.FromArgb(0, 122, 245);
             linkLabelPCSX2ArgsRef.Location = new Point(106, 48);
             linkLabelPCSX2ArgsRef.Name = "linkLabelPCSX2ArgsRef";
             linkLabelPCSX2ArgsRef.Size = new Size(59, 15);
