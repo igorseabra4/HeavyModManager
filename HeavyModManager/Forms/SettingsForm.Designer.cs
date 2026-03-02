@@ -38,9 +38,9 @@
             textBoxXemuPath = new TextBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
-            button1 = new Button();
+            buttonPickDolphinUserFolderPath = new Button();
             label7 = new Label();
-            textBox1 = new TextBox();
+            textBoxDolphinUserFolderPath = new TextBox();
             linkLabelDolphinArgsRef = new LinkLabel();
             buttonPickDolphinPath = new Button();
             textBoxDolphinArgs = new TextBox();
@@ -154,9 +154,9 @@
             // groupBox2
             // 
             groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox2.Controls.Add(button1);
+            groupBox2.Controls.Add(buttonPickDolphinUserFolderPath);
             groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(textBox1);
+            groupBox2.Controls.Add(textBoxDolphinUserFolderPath);
             groupBox2.Controls.Add(linkLabelDolphinArgsRef);
             groupBox2.Controls.Add(buttonPickDolphinPath);
             groupBox2.Controls.Add(textBoxDolphinArgs);
@@ -170,14 +170,15 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Nintendo GameCube";
             // 
-            // button1
+            // buttonPickDolphinUserFolderPath
             // 
-            button1.Location = new Point(465, 45);
-            button1.Name = "button1";
-            button1.Size = new Size(40, 23);
-            button1.TabIndex = 9;
-            button1.Text = "...";
-            button1.UseVisualStyleBackColor = true;
+            buttonPickDolphinUserFolderPath.Location = new Point(465, 45);
+            buttonPickDolphinUserFolderPath.Name = "buttonPickDolphinUserFolderPath";
+            buttonPickDolphinUserFolderPath.Size = new Size(40, 23);
+            buttonPickDolphinUserFolderPath.TabIndex = 9;
+            buttonPickDolphinUserFolderPath.Text = "...";
+            buttonPickDolphinUserFolderPath.UseVisualStyleBackColor = true;
+            buttonPickDolphinUserFolderPath.Click += buttonPickDolphinUserFolderPath_Click;
             // 
             // label7
             // 
@@ -188,13 +189,13 @@
             label7.TabIndex = 8;
             label7.Text = "Dolphin User Folder Path";
             // 
-            // textBox1
+            // textBoxDolphinUserFolderPath
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(171, 45);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(289, 23);
-            textBox1.TabIndex = 7;
+            textBoxDolphinUserFolderPath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxDolphinUserFolderPath.Location = new Point(171, 45);
+            textBoxDolphinUserFolderPath.Name = "textBoxDolphinUserFolderPath";
+            textBoxDolphinUserFolderPath.Size = new Size(289, 23);
+            textBoxDolphinUserFolderPath.TabIndex = 7;
             // 
             // linkLabelDolphinArgsRef
             // 
@@ -376,7 +377,7 @@
         private LinkLabel linkLabelXemuArgsRef;
         private LinkLabel linkLabelPCSX2ArgsRef;
         private Label label7;
-        private TextBox textBox1;
-        private Button button1;
+        private TextBox textBoxDolphinUserFolderPath;
+        private Button buttonPickDolphinUserFolderPath;
     }
 }

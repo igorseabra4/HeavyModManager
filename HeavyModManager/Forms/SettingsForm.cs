@@ -30,6 +30,8 @@ namespace HeavyModManager.Forms
             textBoxDolphinArgs.Text = ModManager.DolphinCommandLineArgs;
             textBoxXemuArgs.Text = ModManager.XemuCommandLineArgs;
             textBoxPCSX2Args.Text = ModManager.PCSX2CommandLineArgs;
+
+            textBoxDolphinUserFolderPath.Text = ModManager.DolphinFolderPath;
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -52,6 +54,8 @@ namespace HeavyModManager.Forms
             ModManager.DolphinCommandLineArgs = textBoxDolphinArgs.Text;
             ModManager.XemuCommandLineArgs = textBoxXemuArgs.Text;
             ModManager.PCSX2CommandLineArgs = textBoxPCSX2Args.Text;
+
+            ModManager.DolphinFolderPath = textBoxDolphinUserFolderPath.Text;
         }
 
         private void linkLabelDolphinArgsRef_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -103,6 +107,20 @@ namespace HeavyModManager.Forms
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     targetTextBox.Text = ofd.FileName;
+                }
+            }
+        }
+
+        private void buttonPickDolphinUserFolderPath_Click(object sender, EventArgs e)
+        {
+            // Prompt user to pick dolphin user folder.
+
+            using (var fbd = new FolderBrowserDialog())
+            {
+                fbd.Description = "Select Dolphin User Folder";
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    textBoxDolphinUserFolderPath.Text = fbd.SelectedPath;
                 }
             }
         }
