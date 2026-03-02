@@ -241,21 +241,36 @@ public static class ModManager
 
     public static GamePlatform ActivePlatform { get; set; } = GamePlatform.Unknown;
 
+    private static string[] ValidThumbnailExtensions = [".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tiff", ".tif"];
+
     public static bool ModHasImage(Mod mod)
     {
 
-        var path = GetModPath(mod.ModId);
-        path += "\\mod.png";
+        string modPath = GetModPath(mod.ModId);
 
-        return File.Exists(path);
+        foreach (var ext in ValidThumbnailExtensions)
+        {
+            string filePath = Path.Combine(modPath, $"mod{ext}");
+
+            if (File.Exists(filePath))
+                return true;
+        }
+
+        return false;
     }
 
     public static Bitmap? GetModImage(Mod mod)
     {
-        var path = GetModPath(mod.ModId);
-        path += "\\mod.png";
-        if (File.Exists(path))
-            return new Bitmap(path);
+        string modPath = GetModPath(mod.ModId);
+
+        foreach (var ext in ValidThumbnailExtensions)
+        {
+            string filePath = Path.Combine(modPath, $"mod{ext}");
+
+            if (File.Exists(filePath))
+                return new Bitmap(filePath);
+        }
+
         return null;
     }
 
