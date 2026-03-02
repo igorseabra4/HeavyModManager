@@ -484,10 +484,7 @@ public partial class MainForm : Form
         }
 
         ModManager.SaveGameSettings();
-
-        int numModsSelected = ModManager.CurrentGameSettings.ActiveMods.Count;
-        bool addPluralS = numModsSelected != 1;
-        labelStatus.Text = $"{numModsSelected} mod{(addPluralS ? "s" : "")} selected";
+        UpdateStatusLabel();
     }
 
     private void listViewMods_SelectedIndexChanged(object sender, EventArgs e)
