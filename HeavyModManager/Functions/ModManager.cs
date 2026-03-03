@@ -764,7 +764,7 @@ public static class ModManager
     public static bool GameBackupExists => Directory.Exists(GameBackupFilesPath); // && Directory.Exists(GameBackupSysPath);
     public static bool GameExists => Directory.Exists(GameGameFilesPath) && Directory.Exists(GameGameSysPath) && File.Exists(GameDolPath);
 
-    public static void CloseDolphin()
+    public static void CloseEmulator()
     {
         // TODO handle other emulators
         foreach (var p in Process.GetProcessesByName("Dolphin"))
