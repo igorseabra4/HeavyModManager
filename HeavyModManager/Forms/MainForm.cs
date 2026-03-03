@@ -638,7 +638,7 @@ public partial class MainForm : Form
     private void buttonRunGameDev_Click(object sender, EventArgs e)
     {
         Enabled = false;
-        ModManager.CloseDolphin();
+        ModManager.CloseEmulator();
         ModManager.ApplyMods();
         Enabled = true;
         ModManager.RunGame();
@@ -647,7 +647,7 @@ public partial class MainForm : Form
     private void buttonRunGame_Click(object sender, EventArgs e)
     {
         Enabled = false;
-        ModManager.CloseDolphin();
+        ModManager.CloseEmulator();
         if (ModManager.CurrentGameSettings.Invalidated)
         {
             ModManager.ResetGameFromBackup();

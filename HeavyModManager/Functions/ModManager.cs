@@ -766,6 +766,7 @@ public static class ModManager
 
     public static void CloseDolphin()
     {
+        // TODO handle other emulators
         foreach (var p in Process.GetProcessesByName("Dolphin"))
             if (!p.HasExited)
             {
