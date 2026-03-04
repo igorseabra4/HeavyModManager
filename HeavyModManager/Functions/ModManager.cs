@@ -875,12 +875,46 @@ public static class ModManager
             SaveISO(runPath, game, platform);
         }
         
-        Process.Start(emulatorPath, [runPath]);
+        string extraArgs = GetCommandLineArguments(platform); // may be empty
+
+        var startInfo = new ProcessStartInfo
+        {
+            FileName = emulatorPath,
+            UseShellExecute = false // required if you want to redirect output or avoid shell quoting issues
+        };
+
+        // Add extra arguments if any
+        if (!string.IsNullOrWhiteSpace(extraArgs))
+        {
+            foreach (var arg in extraArgs.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+                startInfo.ArgumentList.Add(arg);
+        }
+
+        // Always add the game path last
+        startInfo.ArgumentList.Add(runPath);
+
+        // Start the emulator
+        Process.Start(startInfo);
+    }
+
+    private static string GetCommandLineArguments(GamePlatform platform)
+    {
+        switch (platform)
+        {
+            case GamePlatform.GameCube:
+                return DolphinCommandLineArgs;
+            case GamePlatform.PlayStation2:
+                return PCSX2CommandLineArgs;
+            case GamePlatform.Xbox:
+                return XemuCommandLineArgs;
+            default:
+                return "";
+        }
     }
 
     public static void SaveISO(string path, Game game, GamePlatform platform)
     {
-        switch (CurrentPlatform)
+        switch (platform)
         {
             case GamePlatform.GameCube:
                 DiscImage.CreateFile(GameGamePath(game, platform), path);

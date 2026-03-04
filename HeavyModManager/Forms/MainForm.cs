@@ -682,15 +682,27 @@ public partial class MainForm : Form
         ModManager.RunGame(ModManager.CurrentGame, ModManager.CurrentPlatform);
     }
 
-    private void buttonRunGame_Click(object sender, EventArgs e)
+    private async void buttonRunGame_Click(object sender, EventArgs e)
     {
         Enabled = false;
         ModManager.CloseEmulator();
+        var progressBar = new ProgressBarForm()
+        {
+            Text = "Running game..."
+        };
+        progressBar.SetDetails("Applying mods...");
+        progressBar.Show(this);
+
         if (ModManager.CurrentGameSettings.Invalidated)
         {
-            ModManager.ResetGameFromBackup(ModManager.CurrentGame, ModManager.CurrentPlatform);
-            ModManager.ApplyMods(ModManager.CurrentGame, ModManager.CurrentPlatform);
+            await Task.Run(() =>
+            {
+                ModManager.ResetGameFromBackup(ModManager.CurrentGame, ModManager.CurrentPlatform);
+                ModManager.ApplyMods(ModManager.CurrentGame, ModManager.CurrentPlatform);
+            });
         }
+        
+        progressBar.Close();
         Enabled = true;
         ModManager.RunGame(ModManager.CurrentGame, ModManager.CurrentPlatform);
     }
