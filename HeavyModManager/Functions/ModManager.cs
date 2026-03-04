@@ -206,7 +206,6 @@ public static class ModManager
     public static string GetModJsonPath(string modId) => Path.Combine(GetModPath(modId), "mod.json");
     public static string GetModFilesPath(string modId) => Path.Combine(GetModPath(modId), "files");
 
-    public static string GameFolderPath => Path.Combine(Application.StartupPath, "Games",
     /// <summary>
     /// Path to game folder path for a given platform
     /// e.g. /Games/gc/bfbb/
