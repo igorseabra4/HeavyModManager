@@ -61,8 +61,10 @@ public partial class MainForm : Form
         labelModInfo.MaximumSize = new Size(panelLabelModInfo.Width - SystemInformation.VerticalScrollBarWidth, 0);
         labelModInfo.Text = "";
 
+        ModManager.CurrentPlatform = GamePlatform.GameCube;
         UpdateDeveloperMode();
         UpdateStatusLabel();
+        ShowToolTip();
     }
 
     private ToolStripMenuItem createModToolStripMenuItem;
@@ -279,18 +281,18 @@ public partial class MainForm : Form
         else if (comboBoxPlatform.Items.Count > 0)
             comboBoxPlatform.SelectedIndex = 0;
 
-        //ShowToolTip();
+        ShowToolTip();
 
         SaveSettings();
     }
 
-    private bool CanApplyMods => comboBoxGame.SelectedIndex != -1 &&
-        ModManager.GameBackupExists &&
-        !string.IsNullOrWhiteSpace(ModManager.DolphinPath) &&
-        !string.IsNullOrWhiteSpace(ModManager.DolphinFolderPath);
+    private bool CanApplyMods => comboBoxGame.SelectedIndex != -1 && 
+                                 ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform) &&
+                                 ModManager.EmulatorPathIsSet(ModManager.CurrentPlatform);
+        
 
     private bool CanSaveIso => comboBoxGame.SelectedIndex != -1 &&
-        ModManager.GameBackupExists;
+        ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform);
 
     private readonly ToolTip toolTip;
 
@@ -303,19 +305,20 @@ public partial class MainForm : Form
         int tooltipDurationMs = 12 * 1000;
 
         // Display localised strings (from MainForm.resx) in tooltips instead of hard-coded string.
-        if (string.IsNullOrEmpty(ModManager.DolphinPath))
+        // if (string.IsNullOrEmpty(ModManager.DolphinPath))
+        // {
+        //     toolTip.Show(GlobalResources.dolphinPathNotSetTooltip,
+        //         comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
+        // }
+        // else if (string.IsNullOrEmpty(ModManager.DolphinFolderPath))
+        // {
+        //     toolTip.Show(GlobalResources.dolphinUserFolderPathNotSetTooltip,
+        //         comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
+        // }
+        
+        if (comboBoxGame.SelectedIndex != -1)
         {
-            toolTip.Show(GlobalResources.dolphinPathNotSetTooltip,
-                comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
-        }
-        else if (string.IsNullOrEmpty(ModManager.DolphinFolderPath))
-        {
-            toolTip.Show(GlobalResources.dolphinUserFolderPathNotSetTooltip,
-                comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
-        }
-        else if (comboBoxGame.SelectedIndex != -1)
-        {
-            if (!ModManager.GameBackupExists)
+            if (!ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform))
                 toolTip.Show(GlobalResources.noBackupTooltip, comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
             //toolTip.Show("You do not have a backup for this game.\nPlease click on \"Create Backup\" and select the game's ISO file.", comboBoxGame, 0, 24, 8 * 1000);
             else if (listViewMods.Items.Count == 0)
@@ -417,7 +420,7 @@ public partial class MainForm : Form
         zipModToolStripMenuItemContext.Enabled = false;
         openModFolderToolStripMenuItemContext.Enabled = false;
 
-        var activePlatform = ModManager.ActivePlatform;
+        var activePlatform = ModManager.CurrentPlatform;
 
         foreach (var modId in ModManager.CurrentGameSettings.Mods)
         {
@@ -474,7 +477,7 @@ public partial class MainForm : Form
             ModManager.CurrentGameSettings.DeactivateMod(mod.ModId);
 
         // Deactive mods that don't have the active platform
-        var platform = ModManager.ActivePlatform;
+        var platform = ModManager.CurrentPlatform;
         
         foreach ( var item in ModManager.CurrentGameSettings.ActiveMods.ToList() )
         {
@@ -483,7 +486,7 @@ public partial class MainForm : Form
                 ModManager.CurrentGameSettings.DeactivateMod(m.ModId);
         }
 
-        ModManager.SaveGameSettings();
+        ModManager.SaveGameSettings(ModManager.CurrentGame, ModManager.CurrentPlatform);
         UpdateStatusLabel();
     }
 
@@ -594,29 +597,64 @@ public partial class MainForm : Form
 
     private void buttonRestoreBackup_Click(object sender, EventArgs e)
     {
+        string platform = ModManager.PlatformToStringFull(ModManager.CurrentPlatform);
+        string executableType = ModManager.PlatformToExecutable(ModManager.CurrentPlatform);
+        string title = $"Select {platform} ISO";
+
+        if (ModManager.CurrentPlatform != GamePlatform.PlayStation2)
+            title += $" or {executableType}";
+        else
+            title += " or ELF executable";
+
         var openFile = new OpenFileDialog()
         {
-            Filter = GlobalResources.isoOrMainDol + "|*.iso;main.dol|All files(*.*)|*.*",
-            Title = GlobalResources.selectGameTitle
+            // TODO Localise strings
+            Filter = "ISO or main executable" + $"|*.iso;{executableType}|All files(*.*)|*.*",
+            Title = title
         };
 
         if (openFile.ShowDialog() == DialogResult.OK)
         {
             Enabled = false;
+            bool result = false;
 
+            // Extract game from ISO (platform-dependent)
             if (Path.GetExtension(openFile.FileName).ToLower().Equals(".iso"))
             {
-                ModManager.RestoreBackupIso(openFile.FileName);
+                ModManager.RestoreBackupIso(openFile.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
             }
-            else if (Path.GetExtension(openFile.FileName).ToLower().Equals(".dol"))
-            {
-                ModManager.RestoreBackupDol(Path.GetDirectoryName(Path.GetDirectoryName(openFile.FileName)));
-            }
+            //else if (Path.GetExtension(openFile.FileName).ToLower().Equals(".dol"))
             else
             {
-                MessageBox.Show(GlobalResources.unsupportedFiletype,
-                    GlobalResources.error,
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                result = ModManager.RestoreBackupFromFolder(
+                    Path.GetDirectoryName(openFile.FileName),
+                    ModManager.CurrentGame,
+                    ModManager.CurrentPlatform
+                    );
+            }
+            //else
+            //{
+            //    MessageBox.Show(GlobalResources.unsupportedFiletype,
+            //        GlobalResources.error,
+            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+
+            if (result)
+            {
+                MessageBox.Show(
+                    $"Game backup for {ModManager.GameToStringFull(ModManager.CurrentGame)} succesfully created. You can apply mods now.",
+                    "Backup successful",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+            } else
+            {
+                MessageBox.Show(
+                    $"Failed to create game backup for {ModManager.GameToStringFull(ModManager.CurrentGame)}.",
+                    "Backup failed",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
             }
 
             Enabled = true;
@@ -631,7 +669,7 @@ public partial class MainForm : Form
     private void buttonRestoreBackupDev_Click(object sender, EventArgs e)
     {
         Enabled = false;
-        ModManager.ResetGameFromBackup();
+        ModManager.ResetGameFromBackup(ModManager.CurrentGame, ModManager.CurrentPlatform);
         Enabled = true;
     }
 
@@ -639,9 +677,9 @@ public partial class MainForm : Form
     {
         Enabled = false;
         ModManager.CloseEmulator();
-        ModManager.ApplyMods();
+        ModManager.ApplyMods(ModManager.CurrentGame, ModManager.CurrentPlatform);
         Enabled = true;
-        ModManager.RunGame();
+        ModManager.RunGame(ModManager.CurrentGame, ModManager.CurrentPlatform);
     }
 
     private void buttonRunGame_Click(object sender, EventArgs e)
@@ -650,11 +688,11 @@ public partial class MainForm : Form
         ModManager.CloseEmulator();
         if (ModManager.CurrentGameSettings.Invalidated)
         {
-            ModManager.ResetGameFromBackup();
-            ModManager.ApplyMods();
+            ModManager.ResetGameFromBackup(ModManager.CurrentGame, ModManager.CurrentPlatform);
+            ModManager.ApplyMods(ModManager.CurrentGame, ModManager.CurrentPlatform);
         }
         Enabled = true;
-        ModManager.RunGame();
+        ModManager.RunGame(ModManager.CurrentGame, ModManager.CurrentPlatform);
     }
 
     private void buttonAddMod_Click(object sender, EventArgs e)
@@ -733,14 +771,17 @@ public partial class MainForm : Form
 
     private void UpdateStatusLabel()
     {
-        int numModsSelected = ModManager.CurrentGameSettings.ActiveMods.Count;
-        bool addPluralS = numModsSelected != 1;
-        string text = $"{numModsSelected} mod{(addPluralS ? "s" : "")} selected";
+        if (ModManager.CurrentGameSettings != null)
+        {
+            int numModsSelected = ModManager.CurrentGameSettings.ActiveMods.Count;
+            bool addPluralS = numModsSelected != 1;
+            string text = $"{numModsSelected} mod{(addPluralS ? "s" : "")} selected";
 
-        if (ModManager.DeveloperMode)
-            text += " - " + GlobalResources.developerMode;
+            if (ModManager.DeveloperMode)
+                text += " - " + GlobalResources.developerMode;
 
-        labelStatus.Text = text;
+            labelStatus.Text = text;
+        }
     }
 
     private void changeIconToolStripMenuItem_Click(object sender, EventArgs e)
@@ -807,7 +848,7 @@ public partial class MainForm : Form
     private async void buttonSaveIso_Click(object sender, EventArgs e)
     {
         string initialFilename = "game.iso";
-        string platform = ModManager.PlatformToStringFull(ModManager.ActivePlatform);
+        string platform = ModManager.PlatformToStringFull(ModManager.CurrentPlatform);
 
         // Open save dialog box
         var dialog = new SaveFileDialog
@@ -834,8 +875,8 @@ public partial class MainForm : Form
         {
             await Task.Run(() =>
             {
-                ModManager.ResetGameFromBackup();
-                ModManager.ApplyMods();
+                ModManager.ResetGameFromBackup(ModManager.CurrentGame, ModManager.CurrentPlatform);
+                ModManager.ApplyMods(ModManager.CurrentGame, ModManager.CurrentPlatform);
             });
         }
 
@@ -843,11 +884,12 @@ public partial class MainForm : Form
         try
 
         {
-            long expectedSize = ModManager.GetDirectorySize(ModManager.GameGamePath);
+            long expectedSize = ModManager.GetDirectorySize(
+                ModManager.GameGamePath(ModManager.CurrentGame, ModManager.CurrentPlatform));
 
             var creationTask = Task.Run(() =>
             {
-                ModManager.SaveISO(dialog.FileName);
+                ModManager.SaveISO(dialog.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
             });
 
             while (!creationTask.IsCompleted)
@@ -918,12 +960,18 @@ public partial class MainForm : Form
 
     private void comboBoxPlatform_SelectedIndexChanged(object sender, EventArgs e)
     {
-        ModManager.ActivePlatform = comboBoxPlatform.SelectedIndex == -1 ?
+        ModManager.CurrentPlatform = comboBoxPlatform.SelectedIndex == -1 ?
             GamePlatform.Unknown :
             ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform;
 
-        buttonRunGame.Text = GetPlayButtonText(ModManager.ActivePlatform);
+        buttonRunGame.Text = GetPlayButtonText(ModManager.CurrentPlatform);
         PopulateModList();
+        ShowToolTip();
+        
+        buttonRunGame.Enabled = CanApplyMods;
+        buttonRestoreBackupDev.Enabled = CanApplyMods;
+        buttonRunGameDev.Enabled = CanApplyMods;
+        buttonSaveIso.Enabled = CanSaveIso;
     }
 
     private string GetPlayButtonText(GamePlatform platform)
@@ -950,6 +998,10 @@ public partial class MainForm : Form
     {
         var settingsForm = new SettingsForm();
         settingsForm.ShowDialog(this);
+
+        buttonRunGame.Enabled = CanApplyMods;
+        buttonRunGameDev.Enabled = CanApplyMods;
+        buttonRestoreBackupDev.Enabled = CanApplyMods;
     }
 
     private void comboBoxGame_Leave(object sender, EventArgs e)

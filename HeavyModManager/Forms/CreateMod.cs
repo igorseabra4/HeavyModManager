@@ -461,91 +461,91 @@ public partial class CreateMod : Form
 
     private void buttonIniImport_Click(object sender, EventArgs e)
     {
-        if (!ModManager.GameBackupExists)
-        {
-            MessageBox.Show(GlobalResources.iniErrorGameBackupNotFound,
-                GlobalResources.gameBackupNotFoundTitle,
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        var modIniPath = Path.Combine(ModManager.GetModFilesPath(textBoxModId.Text), ModManager.GameIniFileName(prevGame));
-
-        if (!File.Exists(modIniPath))
-        {
-            MessageBox.Show(
-                string.Format(GlobalResources.iniNotFound, modIniPath),
-                GlobalResources.iniNotFoundTitle,
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        var iniFile = INIFile.FromPath(modIniPath);
-        var ogIniFile = INIFile.FromPath(Path.Combine(ModManager.GameBackupFilesPath, ModManager.GameIniFileName(prevGame)));
-        var result = new List<string>();
-
-        if (!string.IsNullOrWhiteSpace(richTextBoxINIValues.Text))
-            result.Add(richTextBoxINIValues.Text);
-
-        foreach ((string key, string value) in iniFile.Properties)
-            if (!ogIniFile.Properties.ContainsKey(key) || ogIniFile.Properties[key] != value)
-                result.Add($"{key}={value}");
-
-        foreach ((string key, string value) in iniFile.ScenePlayerMapping)
-            if (!ogIniFile.ScenePlayerMapping.ContainsKey(key) || ogIniFile.ScenePlayerMapping[key] != value)
-                result.Add($"ScenePlayerMapping={key} {value}");
-
-        foreach ((string key, string value) in iniFile.ThresholdPointsRange)
-            if (!ogIniFile.ThresholdPointsRange.ContainsKey(key) || ogIniFile.ThresholdPointsRange[key] != value)
-                result.Add($"ThresholdPointsRange={key} {value}");
-
-        foreach ((string key, string value) in iniFile.AlternateCostumeMapping)
-            if (!ogIniFile.AlternateCostumeMapping.ContainsKey(key) || ogIniFile.AlternateCostumeMapping[key] != value)
-                result.Add($"AlternateCostumeMapping={key} {value}");
-
-        bool shouldAddTaskStatus = false;
-        if (iniFile.TaskStatus.Count != ogIniFile.TaskStatus.Count)
-        {
-            shouldAddTaskStatus = true;
-        }
-        else
-        {
-            for (int i = 0; i < iniFile.TaskStatus.Count; i++)
-            {
-                if (iniFile.TaskStatus[i] != ogIniFile.TaskStatus[i])
-                {
-                    shouldAddTaskStatus = true;
-                    break;
-                }
-            }
-        }
-        if (shouldAddTaskStatus)
-            foreach (string value in iniFile.TaskStatus)
-                result.Add($"TaskStatus={value}");
-
-        bool shouldAddExtra = false;
-        if (iniFile.Extra.Count != ogIniFile.Extra.Count)
-        {
-            shouldAddExtra = true;
-        }
-        else
-        {
-            for (int i = 0; i < iniFile.Extra.Count; i++)
-            {
-                if (iniFile.Extra[i] != ogIniFile.Extra[i])
-                {
-                    shouldAddExtra = true;
-                    break;
-                }
-            }
-        }
-        if (shouldAddExtra)
-            foreach (string value in iniFile.Extra)
-                result.Add($"Extra={value}");
-
-        richTextBoxINIValues.Text = string.Join("\n", result);
-
-        File.Delete(modIniPath);
+        // if (!ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform))
+        // {
+        //     MessageBox.Show(GlobalResources.iniErrorGameBackupNotFound,
+        //         GlobalResources.gameBackupNotFoundTitle,
+        //         MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //     return;
+        // }
+        //
+        // var modIniPath = Path.Combine(ModManager.GetModFilesPath(textBoxModId.Text), ModManager.GameIniFileName(prevGame));
+        //
+        // if (!File.Exists(modIniPath))
+        // {
+        //     MessageBox.Show(
+        //         string.Format(GlobalResources.iniNotFound, modIniPath),
+        //         GlobalResources.iniNotFoundTitle,
+        //         MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //     return;
+        // }
+        //
+        // var iniFile = INIFile.FromPath(modIniPath);
+        // var ogIniFile = INIFile.FromPath(Path.Combine(ModManager.GameBackupFilesPath, ModManager.GameIniFileName(prevGame)));
+        // var result = new List<string>();
+        //
+        // if (!string.IsNullOrWhiteSpace(richTextBoxINIValues.Text))
+        //     result.Add(richTextBoxINIValues.Text);
+        //
+        // foreach ((string key, string value) in iniFile.Properties)
+        //     if (!ogIniFile.Properties.ContainsKey(key) || ogIniFile.Properties[key] != value)
+        //         result.Add($"{key}={value}");
+        //
+        // foreach ((string key, string value) in iniFile.ScenePlayerMapping)
+        //     if (!ogIniFile.ScenePlayerMapping.ContainsKey(key) || ogIniFile.ScenePlayerMapping[key] != value)
+        //         result.Add($"ScenePlayerMapping={key} {value}");
+        //
+        // foreach ((string key, string value) in iniFile.ThresholdPointsRange)
+        //     if (!ogIniFile.ThresholdPointsRange.ContainsKey(key) || ogIniFile.ThresholdPointsRange[key] != value)
+        //         result.Add($"ThresholdPointsRange={key} {value}");
+        //
+        // foreach ((string key, string value) in iniFile.AlternateCostumeMapping)
+        //     if (!ogIniFile.AlternateCostumeMapping.ContainsKey(key) || ogIniFile.AlternateCostumeMapping[key] != value)
+        //         result.Add($"AlternateCostumeMapping={key} {value}");
+        //
+        // bool shouldAddTaskStatus = false;
+        // if (iniFile.TaskStatus.Count != ogIniFile.TaskStatus.Count)
+        // {
+        //     shouldAddTaskStatus = true;
+        // }
+        // else
+        // {
+        //     for (int i = 0; i < iniFile.TaskStatus.Count; i++)
+        //     {
+        //         if (iniFile.TaskStatus[i] != ogIniFile.TaskStatus[i])
+        //         {
+        //             shouldAddTaskStatus = true;
+        //             break;
+        //         }
+        //     }
+        // }
+        // if (shouldAddTaskStatus)
+        //     foreach (string value in iniFile.TaskStatus)
+        //         result.Add($"TaskStatus={value}");
+        //
+        // bool shouldAddExtra = false;
+        // if (iniFile.Extra.Count != ogIniFile.Extra.Count)
+        // {
+        //     shouldAddExtra = true;
+        // }
+        // else
+        // {
+        //     for (int i = 0; i < iniFile.Extra.Count; i++)
+        //     {
+        //         if (iniFile.Extra[i] != ogIniFile.Extra[i])
+        //         {
+        //             shouldAddExtra = true;
+        //             break;
+        //         }
+        //     }
+        // }
+        // if (shouldAddExtra)
+        //     foreach (string value in iniFile.Extra)
+        //         result.Add($"Extra={value}");
+        //
+        // richTextBoxINIValues.Text = string.Join("\n", result);
+        //
+        // File.Delete(modIniPath);
     }
 
     private void buttonOpenIpsFile_Click(object sender, EventArgs e)

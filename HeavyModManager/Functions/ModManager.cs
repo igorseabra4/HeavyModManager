@@ -42,6 +42,18 @@ public static class ModManager
         };
     }
 
+    public static string PlatformToExecutable(GamePlatform platform)
+    {
+        return platform switch
+        {
+            GamePlatform.GameCube => "main.dol",
+            // PS2 ELF has varying names depending on game and version (region dependent)
+            GamePlatform.PlayStation2 => "*.elf;*.??",
+            GamePlatform.Xbox => "DEFAULT.XBE",
+            _ => "",
+        };
+    }
+
     public static string PlatformToShortString(GamePlatform platform)
     {
         return platform switch
@@ -195,29 +207,63 @@ public static class ModManager
     public static string GetModFilesPath(string modId) => Path.Combine(GetModPath(modId), "files");
 
     public static string GameFolderPath => Path.Combine(Application.StartupPath, "Games",
-        PlatformToShortString(ActivePlatform),
-        GameToString(CurrentGame));
-    public static string GameSettingsPath => Path.Combine(GameFolderPath, "game.json");
+    /// <summary>
+    /// Path to game folder path for a given platform
+    /// e.g. /Games/gc/bfbb/
+    /// </summary>
+    public static string GameFolderPath(Game game, GamePlatform platform) =>
+        Path.Combine(Application.StartupPath, "Games", 
+            PlatformToShortString(platform), 
+            GameToString(game));
+    
+    /// <summary>
+    /// Path to game settings file
+    /// e.g. /Games/gc/bfbb/game.json
+    /// </summary>
+    public static string GameSettingsPath(Game game, GamePlatform platform) =>
+        Path.Combine(GameFolderPath(game, platform), "game.json");
 
-    public static string GameBackupPath => Path.Combine(GameFolderPath, "backup");
+    /// <summary>
+    /// Path to directory to unmodified game files
+    /// e.g. /Games/gc/bfbb/backup/
+    /// </summary>
+    public static string GameBackupPath(Game game, GamePlatform platform) =>
+        Path.Combine(GameFolderPath(game, platform), "backup");
+    
+    /// <summary>
+    /// Path to directory containing patched game
+    /// e.g. /Games/gc/bfbb/game/
+    /// </summary>
+    public static string GameGamePath(Game game, GamePlatform platform) =>
+        Path.Combine(GameFolderPath(game, platform), "game");
 
-    /** Gamecube-Specific */
-    public static string GameBackupFilesPath => ActivePlatform == GamePlatform.GameCube
-        ? Path.Combine(GameBackupPath, "files")
-        : GameBackupPath;
-    public static string GameBackupSysPath => Path.Combine(GameBackupPath, "sys");
+    public static string GameGameFilesPath(Game game, GamePlatform platform)
+    {
+        return Path.Combine(GameGamePath(game, platform), platform == GamePlatform.GameCube ? "files" : "");
+    }
+    
+    public static string GameBuildPath(Game game, GamePlatform platform) =>
+        Path.Combine(GameFolderPath(game, platform), "iso");
 
-    public static string GameGamePath => Path.Combine(GameFolderPath, "game");
+    public static string GameGameINIPath(Game game, GamePlatform platform)
+    {
+        return Path.Combine(GameGamePath(game, platform), GameIniFileName(game));
+    }
 
-    /** Gamecube-Specific */
-    public static string GameGameFilesPath => ActivePlatform == GamePlatform.GameCube
-        ? Path.Combine(GameGamePath, "files")
-        : GameGamePath;
-
-    public static string GameGameSysPath => Path.Combine(GameGamePath, "sys");
-    public static string GameDolPath => Path.Combine(GameGameSysPath, "main.dol");
-
-    public static string GameGameINIPath => Path.Combine(GameGameFilesPath, GameIniFileName(CurrentGame));
+    public static bool EmulatorPathIsSet(GamePlatform platform)
+    {
+        switch (platform)
+        {
+            case GamePlatform.GameCube:
+                return !string.IsNullOrWhiteSpace(DolphinPath);
+            case GamePlatform.PlayStation2:
+                return !string.IsNullOrWhiteSpace(PCSX2Path);
+            case GamePlatform.Xbox:
+                return !string.IsNullOrWhiteSpace(XemuPath);
+            default:
+                return false;
+        }
+    }
 
     public static bool CheckForUpdatesOnStartup { get; set; }
     public static bool DeveloperMode { get; set; }
@@ -239,7 +285,7 @@ public static class ModManager
     public static Game CurrentGame { get; set; }
     public static GameSettings? CurrentGameSettings { get; private set; } = null;
 
-    public static GamePlatform ActivePlatform { get; set; } = GamePlatform.Unknown;
+    public static GamePlatform CurrentPlatform { get; set; } = GamePlatform.Unknown;
 
     private static string[] ValidThumbnailExtensions = [".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tiff", ".tif"];
 
@@ -367,26 +413,27 @@ public static class ModManager
 
     public static void SetCurrentGame(Game game)
     {
-        SaveGameSettings();
+        SaveGameSettings(CurrentGame, CurrentPlatform);
         CurrentGame = game;
-        RefreshGameSettings();
+        RefreshGameSettings(CurrentGame, CurrentPlatform);
     }
 
-    public static void SaveGameSettings()
+    public static void SaveGameSettings(Game game, GamePlatform platform)
     {
-        if (CurrentGame != Game.Null && CurrentGameSettings != null)
+        if (CurrentGame != Game.Null && CurrentGameSettings != null && platform != GamePlatform.Unknown)
         {
-            if (!Directory.Exists(GameFolderPath))
-                Directory.CreateDirectory(GameFolderPath);
+            if (!Directory.Exists(GameFolderPath(game, platform)))
+                Directory.CreateDirectory(GameFolderPath(game, platform));
 
-            File.WriteAllText(GameSettingsPath, JsonSerializer.Serialize(CurrentGameSettings));
+            File.WriteAllText(GameSettingsPath(game, platform), 
+                JsonSerializer.Serialize(CurrentGameSettings));
         }
     }
 
-    public static void RefreshGameSettings()
+    public static void RefreshGameSettings(Game game, GamePlatform platform)
     {
-        CurrentGameSettings = File.Exists(GameSettingsPath) ?
-            JsonSerializer.Deserialize<GameSettings>(File.ReadAllText(GameSettingsPath)) :
+        CurrentGameSettings = File.Exists(GameSettingsPath(game, platform)) ?
+            JsonSerializer.Deserialize<GameSettings>(File.ReadAllText(GameSettingsPath(game, platform))) :
             new GameSettings();
 
         RefreshModList();
@@ -458,11 +505,12 @@ public static class ModManager
             Directory.Delete(path, true);
     }
 
-    public static bool RestoreBackupIso(string isoPath)
+    public static bool RestoreBackupIso(string isoPath, Game game, GamePlatform platform)
     {
-        if (Directory.Exists(GameBackupPath))
-            Directory.Delete(GameBackupPath, true);
+        if (Directory.Exists(GameBackupPath(game, platform)))
+            Directory.Delete(GameBackupPath(game, platform), true);
 
+        // TODO DON'T ASSUME GAMECUBE IMAGE!!
         GameCubeImage image;
 
         try
@@ -478,66 +526,69 @@ public static class ModManager
             return false;
         }
 
-        Directory.CreateDirectory(GameBackupPath);
-        Directory.CreateDirectory(GameBackupFilesPath);
-        Directory.CreateDirectory(GameBackupSysPath);
+        Directory.CreateDirectory(GameBackupPath(game, platform));
 
         try
         {
-            image.Dump(GameBackupFilesPath, GameBackupSysPath);
+            //image.Dump(GameBackupFilesPath(game, platform), GameBackupSysPath);
+            throw new NotImplementedException("wehhh");
         }
         catch (Exception ex)
         {
             // TODO: Localize!
             MessageBox.Show("Unable to create backup from ISO: " + ex.Message, "Backup failed",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-            Directory.Delete(GameBackupPath, true);
+            Directory.Delete(GameBackupPath(game, platform), true);
             return false;
         }
 
-        // TODO: Localize!
-        MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.",
+        MessageBox.Show($"Game backup for {GameToStringFull(game)} succesfully created. You can apply mods now.",
             "Backup successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         return true;
     }
 
-    public static void RestoreBackupDol(string rootPath)
+    public static bool RestoreBackupFromFolder(string rootPath, Game game, GamePlatform platform)
     {
-        var files = Path.Combine(rootPath, "files");
-
-        if (!Directory.Exists(files))
-        {
-            // TODO: Localize!
-            MessageBox.Show("Unable to create backup: 'files' directory not found. Are you sure you are using a proper ISO dump?",
-                "Backup failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        var sys = Path.Combine(rootPath, "sys");
-
-        if (!Directory.Exists(sys))
-        {
-            // TODO: Localize!
-            MessageBox.Show("Unable to create backup: 'sys' directory not found. Are you sure you are using a proper ISO dump?",
-                "Backup failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        if (Directory.Exists(GameBackupPath))
-            Directory.Delete(GameBackupPath, true);
-
-        Directory.CreateDirectory(GameBackupPath);
-        Directory.CreateDirectory(GameBackupFilesPath);
-        Directory.CreateDirectory(GameBackupSysPath);
-
         var fs = new Microsoft.VisualBasic.Devices.Computer().FileSystem;
 
-        fs.CopyDirectory(files, GameBackupFilesPath);
-        fs.CopyDirectory(sys, GameBackupSysPath);
+        if (Directory.Exists(GameBackupPath(game, platform)))
+            Directory.Delete(GameBackupPath(game, platform), true);
 
-        // TODO: Localize!
-        MessageBox.Show($"Game backup for {GameToStringFull(CurrentGame)} succesfully created. You can apply mods now.",
-            "Backup successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        // Create backup directory
+        Directory.CreateDirectory(GameBackupPath(game, platform));
+
+        // We only care about these paths if it's a GC backup
+        if (platform == GamePlatform.GameCube)
+        {
+            var files = Path.Combine(rootPath, "files");
+            var sys = Path.Combine(rootPath, "sys");
+
+            if (!Directory.Exists(files))
+            {
+                return false;
+            }
+            
+            if (!Directory.Exists(sys))
+            {
+                return false;
+            }
+
+            // Create files and sys folders
+            string destFilesPath = Path.Combine(GameBackupPath(game, platform), "files");
+            string destSysPath = Path.Combine(GameBackupPath(game, platform), "sys");
+
+            Directory.CreateDirectory(destFilesPath);
+            Directory.CreateDirectory(destSysPath);
+
+            fs.CopyDirectory(files, destFilesPath);
+            fs.CopyDirectory(sys, destSysPath);
+        }
+        else
+        {
+            fs.CopyDirectory(rootPath, GameBackupPath(game, platform));
+        }
+
+        return true;
     }
 
     public static void Invalidate()
@@ -545,12 +596,12 @@ public static class ModManager
         // FIXME: Crashes when a game is not selected.
 
         CurrentGameSettings.Invalidated = true;
-        SaveGameSettings();
+        SaveGameSettings(CurrentGame, CurrentPlatform);
     }
 
-    public static bool ResetGameFromBackup()
+    public static bool ResetGameFromBackup(Game game, GamePlatform platform)
     {
-        if (!GameBackupExists)
+        if (!GameBackupExists(game, platform))
         {
             // TODO: Localize!
             MessageBox.Show("Unable to perform action: game backup not found. Please create the game's backup first.",
@@ -560,28 +611,24 @@ public static class ModManager
 
         var fs = new Microsoft.VisualBasic.Devices.Computer().FileSystem;
 
-        if (Directory.Exists(GameGamePath))
-            Directory.Delete(GameGamePath, true);
+        if (Directory.Exists(GameGamePath(game, platform)))
+            Directory.Delete(GameGamePath(game, platform), true);
 
-        Directory.CreateDirectory(GameGamePath);
-        Directory.CreateDirectory(GameGameFilesPath);
-        Directory.CreateDirectory(GameGameSysPath);
-
-        fs.CopyDirectory(GameBackupFilesPath, GameGameFilesPath);
-        fs.CopyDirectory(GameBackupSysPath, GameGameSysPath);
+        Directory.CreateDirectory(GameGamePath(game, platform));
+        fs.CopyDirectory(GameBackupPath(game, platform), GameGamePath(game, platform));
 
         return true;
     }
 
-    public static void ApplyMods()
+    public static void ApplyMods(Game game, GamePlatform platform)
     {
-        if (!Directory.Exists(GameGamePath) && !ResetGameFromBackup())
+        if (!Directory.Exists(GameGamePath(game, platform)) && !ResetGameFromBackup(game, platform))
             return;
 
         if (!DeveloperMode && !CurrentGameSettings.Invalidated)
             return;
 
-        var dol = File.ReadAllBytes(GameDolPath);
+        // var dol = File.ReadAllBytes(GameDolPath);
         var hasDolPatches = false;
 
         var arCodes = new List<DolphinCode>();
@@ -600,8 +647,8 @@ public static class ModManager
                 mod.CopyFiles();
                 mod.ApplyIniPatches();
 
-                if (mod.ApplyIPSPatch(ref dol) | mod.ApplyDolPatches(ref dol))
-                    hasDolPatches = true;
+                // if (mod.ApplyIPSPatch(ref dol) | mod.ApplyDolPatches(ref dol))
+                //     hasDolPatches = true;
 
                 if (!string.IsNullOrEmpty(mod.ArCodes))
                     AddOrReplaceCodes(ref arCodes, mod.GetArCodes());
@@ -626,15 +673,15 @@ public static class ModManager
 
             hasDolPatches = true;
 
-            ApplyGameIdOnDol(gameId, ref dol);
-            ApplyGameIdOnBootBin(gameId);
+            // ApplyGameIdOnDol(gameId, ref dol);
+            //ApplyGameIdOnBootBin(gameId);
         }
 
         if (hasDolPatches)
-            File.WriteAllBytes(GameDolPath, dol);
+            // File.WriteAllBytes(GameDolPath, dol);
 
         CurrentGameSettings.Invalidated = false;
-        SaveGameSettings();
+        SaveGameSettings(game, platform);
 
         if (modsUsingCustomGameId > 1)
             MessageBox.Show(GlobalResources.multipleModsSaveFiles, GlobalResources.multipleModsSaveFilesTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -746,23 +793,36 @@ public static class ModManager
             dol[startOffset + i] = (byte)gameId[i];
     }
 
-    private static void ApplyGameIdOnBootBin(string gameId)
+    // private static void ApplyGameIdOnBootBin(string gameId)
+    // {
+    //     var bootBinPath = Path.Combine(GameGameSysPath, "boot.bin");
+    //     var bootBin = File.ReadAllBytes(bootBinPath);
+    //
+    //     bootBin[0] = (byte)gameId[0];
+    //     bootBin[1] = (byte)gameId[1];
+    //     bootBin[2] = (byte)gameId[2];
+    //     bootBin[3] = (byte)gameId[3];
+    //     bootBin[4] = (byte)gameId[4];
+    //     bootBin[5] = (byte)gameId[5];
+    //
+    //     File.WriteAllBytes(bootBinPath, bootBin);
+    // }
+
+    public static bool GameBackupExists(Game game, GamePlatform platform)
     {
-        var bootBinPath = Path.Combine(GameGameSysPath, "boot.bin");
-        var bootBin = File.ReadAllBytes(bootBinPath);
+        var path = GameBackupPath(game, platform);
 
-        bootBin[0] = (byte)gameId[0];
-        bootBin[1] = (byte)gameId[1];
-        bootBin[2] = (byte)gameId[2];
-        bootBin[3] = (byte)gameId[3];
-        bootBin[4] = (byte)gameId[4];
-        bootBin[5] = (byte)gameId[5];
-
-        File.WriteAllBytes(bootBinPath, bootBin);
+        return Directory.Exists(path) &&
+               Directory.EnumerateFileSystemEntries(path).Any();
     }
+    
+    public static bool GameExists(Game game, GamePlatform platform)
+    {
+        var path = GameGamePath(game, platform);
 
-    public static bool GameBackupExists => Directory.Exists(GameBackupFilesPath); // && Directory.Exists(GameBackupSysPath);
-    public static bool GameExists => Directory.Exists(GameGameFilesPath) && Directory.Exists(GameGameSysPath) && File.Exists(GameDolPath);
+        return Directory.Exists(path) &&
+               Directory.EnumerateFileSystemEntries(path).Any();
+    }
 
     public static void CloseEmulator()
     {
@@ -774,49 +834,63 @@ public static class ModManager
             }
     }
 
-    public static void RunGame()
+    /// <summary>
+    /// Runs the current patched game with the emulator
+    /// </summary>
+    public static void RunGame(Game game, GamePlatform platform)
     {
-        // TODO: Localize!
-        if (string.IsNullOrEmpty(DolphinPath))
-        {
-            MessageBox.Show("Unable to launch game: Dolphin executable path not set.", "Error launching game",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        // TODO: Localize!
-        if (!File.Exists(DolphinPath))
-        {
-            MessageBox.Show("Unable to launch game: Dolphin executable not found on set path.", "Error launching game",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        // TODO: Localize!
-        if (!GameExists)
-        {
-            MessageBox.Show("Unable to launch game: game executable not found.", "Error launching game",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        Process.Start(DolphinPath, new string[] { GameDolPath });
-    }
-
-    public static void SaveISO(string path)
-    {
-        switch (ActivePlatform)
+        string emulatorPath = "";
+        
+        switch (platform)
         {
             case GamePlatform.GameCube:
-                DiscImage.CreateFile(GameGamePath, path);
+                emulatorPath = DolphinPath;
+                break;
+            case GamePlatform.PlayStation2:
+                emulatorPath = PCSX2Path;
+                break;
+            case GamePlatform.Xbox:
+                emulatorPath = XemuPath;
+                break;
+        }
+
+        if (String.IsNullOrEmpty(emulatorPath))
+        {
+            return;
+        }
+        
+        string runPath = GameGamePath(game, platform);
+
+        if (platform != GamePlatform.GameCube)
+        {
+            // Need to build iso
+            if (!Path.Exists(GameBuildPath(game, platform)))
+                Directory.CreateDirectory(GameBuildPath(game, platform));
+                
+            runPath = Path.Combine(GameBuildPath(game, platform), "game.iso");
+            
+            // If iso exists already, delete it
+            if (File.Exists(runPath))
+                File.Delete(runPath);
+            
+            SaveISO(runPath, game, platform);
+        }
+        
+        Process.Start(emulatorPath, [runPath]);
+    }
+
+    public static void SaveISO(string path, Game game, GamePlatform platform)
+    {
+        switch (CurrentPlatform)
+        {
+            case GamePlatform.GameCube:
+                DiscImage.CreateFile(GameGamePath(game, platform), path);
                 break;
             case GamePlatform.PlayStation2:
                 var builder = new UdfBuilder();
                 // TODO change per-game.
                 builder.VolumeIdentifier = "SLUS-20904";
-
-                AddDirectoryToIso(builder, GameGamePath, "");
-
+                AddDirectoryToPS2Iso(builder, GameGamePath(game, platform), "");
                 builder.Build(path);
                 break;
             case GamePlatform.Xbox:
@@ -825,7 +899,7 @@ public static class ModManager
         return;
     }
 
-    private static void AddDirectoryToIso(UdfBuilder builder, string sourcePath, string isoPath)
+    private static void AddDirectoryToPS2Iso(UdfBuilder builder, string sourcePath, string isoPath)
     {
         // Add files in this directory
         foreach (var file in Directory.GetFiles(sourcePath))
@@ -843,10 +917,13 @@ public static class ModManager
             var newIsoPath = Path.Combine(isoPath, dirName);
 
             builder.AddDirectory(newIsoPath);
-            AddDirectoryToIso(builder, directory, newIsoPath);
+            AddDirectoryToPS2Iso(builder, directory, newIsoPath);
         }
     }
 
+    /// <summary>
+    /// Opens the settings.json file in the default text editor.
+    /// </summary>
     public static void OpenSettingsFile()
     {
         Process.Start(new ProcessStartInfo
@@ -856,6 +933,9 @@ public static class ModManager
         });
     }
 
+    /// <summary>
+    /// Gets the size of a directory and all its subdirectories.
+    /// </summary>
     public static long GetDirectorySize(string path)
     {
         if (!Directory.Exists(path))
@@ -876,6 +956,9 @@ public static class ModManager
             });
     }
 
+    /// <summary>
+    /// Formats a file size in bytes into a human-readable string in kibibytes, mebibytes, etc.
+    /// </summary>
     public static string GetFormattedSize(long bytes)
     {
         string[] sizes = { "B", "kiB", "MiB", "GiB", "TiB" };
