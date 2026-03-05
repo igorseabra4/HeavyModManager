@@ -4,8 +4,10 @@ using HeavyModManager.Enum;
 using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
 using Ps2IsoTools.UDF;
+using System.CodeDom;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO.Compression;
 using System.Text.Json;
 
 namespace HeavyModManager.Functions;
@@ -205,6 +207,9 @@ public static class ModManager
     public static string GetModPath(string modId) => Path.Combine(ModsFolderPath, modId);
     public static string GetModJsonPath(string modId) => Path.Combine(GetModPath(modId), "mod.json");
     public static string GetModFilesPath(string modId) => Path.Combine(GetModPath(modId), "files");
+
+    public static string XdvdfsPath => Path.Combine(Application.StartupPath, "External", "xdvdfs", "xdvdfs.exe");
+    public static bool XdvdfsIsDownloaded => File.Exists(XdvdfsPath);
 
     /// <summary>
     /// Path to game folder path for a given platform
@@ -836,7 +841,7 @@ public static class ModManager
     /// <summary>
     /// Runs the current patched game with the emulator
     /// </summary>
-    public static void RunGame(Game game, GamePlatform platform)
+    public static SaveIsoResult RunGame(Game game, GamePlatform platform)
     {
         string emulatorPath = "";
         
@@ -855,7 +860,7 @@ public static class ModManager
 
         if (String.IsNullOrEmpty(emulatorPath))
         {
-            return;
+            return SaveIsoResult.EmulatorNotFound;
         }
         
         string runPath = GameGamePath(game, platform);
@@ -872,7 +877,10 @@ public static class ModManager
             if (File.Exists(runPath))
                 File.Delete(runPath);
             
-            SaveISO(runPath, game, platform);
+            var result = SaveISO(runPath, game, platform);
+
+            if (result == SaveIsoResult.MissingXdvdfs)
+                return SaveIsoResult.MissingXdvdfs;
         }
         
         string extraArgs = GetCommandLineArguments(platform); // may be empty
@@ -891,10 +899,22 @@ public static class ModManager
         }
 
         // Always add the game path last
-        startInfo.ArgumentList.Add(runPath);
+        // Add platform-specific arguments
+        if (platform == GamePlatform.Xbox)
+        {
+            startInfo.ArgumentList.Add("-dvd_path");
+            startInfo.ArgumentList.Add(runPath);
+        }
+        else
+        {
+            // Other platforms just pass the game path
+            startInfo.ArgumentList.Add(runPath);
+        }
 
         // Start the emulator
         Process.Start(startInfo);
+
+        return SaveIsoResult.Success;
     }
 
     private static string GetCommandLineArguments(GamePlatform platform)
@@ -912,7 +932,14 @@ public static class ModManager
         }
     }
 
-    public static void SaveISO(string path, Game game, GamePlatform platform)
+    public enum SaveIsoResult
+    {
+        Success,
+        MissingXdvdfs,
+        EmulatorNotFound
+    }
+
+    public static SaveIsoResult SaveISO(string path, Game game, GamePlatform platform)
     {
         switch (platform)
         {
@@ -927,9 +954,37 @@ public static class ModManager
                 builder.Build(path);
                 break;
             case GamePlatform.Xbox:
-                throw new NotImplementedException("XBOX iso not yet implemented.");
+            {
+                if (!XdvdfsIsDownloaded)
+                    return SaveIsoResult.MissingXdvdfs;
+
+                var psi = new ProcessStartInfo
+                {
+                    FileName = XdvdfsPath,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    CreateNoWindow = true
+                };
+
+                psi.ArgumentList.Add("pack");
+                psi.ArgumentList.Add(GameGamePath(game, platform)); // in
+                psi.ArgumentList.Add(path); // out
+
+                using var process = Process.Start(psi);
+
+                string output = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
+
+                process.WaitForExit();
+
+                if (!string.IsNullOrEmpty(error))
+                    throw new Exception("Error creating Xbox ISO: " + error);
+
+                break;
+            }
         }
-        return;
+        return SaveIsoResult.Success;
     }
 
     private static void AddDirectoryToPS2Iso(UdfBuilder builder, string sourcePath, string isoPath)
@@ -1003,5 +1058,66 @@ public static class ModManager
             len /= 1024;
         }
         return $"{len:0.##} {sizes[order]}";
+    }
+
+    public static async Task DownloadLatestXdvdfsAsync()
+    {
+        string apiUrl = "https://api.github.com/repos/antangelo/xdvdfs/releases/latest";
+
+        using HttpClient client = new HttpClient();
+        client.DefaultRequestHeaders.UserAgent.ParseAdd("HeavyModManager");
+
+        // Get release metadata
+        string json = await client.GetStringAsync(apiUrl);
+        using JsonDocument doc = JsonDocument.Parse(json);
+
+        var assets = doc.RootElement.GetProperty("assets");
+
+        string downloadUrl = null;
+
+        foreach (var asset in assets.EnumerateArray())
+        {
+            string name = asset.GetProperty("name").GetString();
+
+            if (name.StartsWith("xdvdfs-windows") && name.EndsWith(".zip"))
+            {
+                downloadUrl = asset.GetProperty("browser_download_url").GetString();
+                break;
+            }
+        }
+
+        if (downloadUrl == null)
+            throw new Exception("Could not find Windows xdvdfs release.");
+
+        string exePath = XdvdfsPath;
+        string dir = Path.GetDirectoryName(exePath);
+
+        Directory.CreateDirectory(dir);
+
+        string zipPath = Path.Combine(dir, "xdvdfs.zip");
+
+        // Download zip
+        using (var response = await client.GetAsync(downloadUrl))
+        {
+            response.EnsureSuccessStatusCode();
+
+            using var fs = new FileStream(zipPath, FileMode.Create, FileAccess.Write);
+            await response.Content.CopyToAsync(fs);
+        }
+
+        // Extract zip
+        using (var archive = ZipFile.OpenRead(zipPath))
+        {
+            foreach (var entry in archive.Entries)
+            {
+                if (entry.Name.Equals("xdvdfs.exe", StringComparison.OrdinalIgnoreCase))
+                {
+                    entry.ExtractToFile(exePath, true);
+                    break;
+                }
+            }
+        }
+
+        File.Delete(zipPath);
     }
 }

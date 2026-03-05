@@ -286,10 +286,10 @@ public partial class MainForm : Form
         SaveSettings();
     }
 
-    private bool CanApplyMods => comboBoxGame.SelectedIndex != -1 && 
+    private bool CanApplyMods => comboBoxGame.SelectedIndex != -1 &&
                                  ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform) &&
                                  ModManager.EmulatorPathIsSet(ModManager.CurrentPlatform);
-        
+
 
     private bool CanSaveIso => comboBoxGame.SelectedIndex != -1 &&
         ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform);
@@ -315,7 +315,7 @@ public partial class MainForm : Form
         //     toolTip.Show(GlobalResources.dolphinUserFolderPathNotSetTooltip,
         //         comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
         // }
-        
+
         if (comboBoxGame.SelectedIndex != -1)
         {
             if (!ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform))
@@ -478,8 +478,8 @@ public partial class MainForm : Form
 
         // Deactive mods that don't have the active platform
         var platform = ModManager.CurrentPlatform;
-        
-        foreach ( var item in ModManager.CurrentGameSettings.ActiveMods.ToList() )
+
+        foreach (var item in ModManager.CurrentGameSettings.ActiveMods.ToList())
         {
             var m = JsonSerializer.Deserialize<Mod>(File.ReadAllText(ModManager.GetModJsonPath(item)));
             if (m.Platform != platform && m.Platform != GamePlatform.Unknown)
@@ -647,7 +647,8 @@ public partial class MainForm : Form
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                     );
-            } else
+            }
+            else
             {
                 MessageBox.Show(
                     $"Failed to create game backup for {ModManager.GameToStringFull(ModManager.CurrentGame)}.",
@@ -679,7 +680,31 @@ public partial class MainForm : Form
         ModManager.CloseEmulator();
         ModManager.ApplyMods(ModManager.CurrentGame, ModManager.CurrentPlatform);
         Enabled = true;
-        ModManager.RunGame(ModManager.CurrentGame, ModManager.CurrentPlatform);
+        RunGame();
+    }
+
+    private async void RunGame()
+    {
+        var result = ModManager.RunGame(ModManager.CurrentGame, ModManager.CurrentPlatform);
+
+        if (result == ModManager.SaveIsoResult.EmulatorNotFound)
+        {
+            // warn user
+            MessageBox.Show(
+                $"Emulator not found. Please set the emulator path for {ModManager.PlatformToStringFull(ModManager.CurrentPlatform)} in the settings.",
+                "Emulator not found",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        } else if (result == ModManager.SaveIsoResult.MissingXdvdfs)
+        {
+            bool downloaded = await PromptToDownloadXdvdfs();
+
+            if (downloaded)
+            {
+                // Try running the game again
+                RunGame();
+            }
+        }
     }
 
     private async void buttonRunGame_Click(object sender, EventArgs e)
@@ -701,10 +726,10 @@ public partial class MainForm : Form
                 ModManager.ApplyMods(ModManager.CurrentGame, ModManager.CurrentPlatform);
             });
         }
-        
+
         progressBar.Close();
         Enabled = true;
-        ModManager.RunGame(ModManager.CurrentGame, ModManager.CurrentPlatform);
+        RunGame();
     }
 
     private void buttonAddMod_Click(object sender, EventArgs e)
@@ -894,31 +919,49 @@ public partial class MainForm : Form
 
         progressBar.SetDetails("Saving to file...");
         try
-
         {
-            long expectedSize = ModManager.GetDirectorySize(
-                ModManager.GameGamePath(ModManager.CurrentGame, ModManager.CurrentPlatform));
-
-            var creationTask = Task.Run(() =>
+            while (true)
             {
-                ModManager.SaveISO(dialog.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
-            });
+                long expectedSize = ModManager.GetDirectorySize(
+                    ModManager.GameGamePath(ModManager.CurrentGame, ModManager.CurrentPlatform));
 
-            while (!creationTask.IsCompleted)
-            {
-                if (File.Exists(dialog.FileName))
+                var creationTask = Task.Run(() =>
                 {
-                    long currentSize = new FileInfo(dialog.FileName).Length;
-                    int percent = (int)((currentSize / (double)expectedSize) * 100);
-                    Debug.WriteLine(percent);
-                    progressBar.SetProgress(percent);
+                    return ModManager.SaveISO(dialog.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
+                });
+
+                while (!creationTask.IsCompleted)
+                {
+                    if (File.Exists(dialog.FileName))
+                    {
+                        long currentSize = new FileInfo(dialog.FileName).Length;
+                        int percent = (int)((currentSize / (double)expectedSize) * 100);
+                        Debug.WriteLine(percent);
+                        progressBar.SetProgress(percent);
+                    }
+
+                    await Task.Delay(50);
                 }
 
-                await Task.Delay(50);
-            }
+                var result = await creationTask;
 
-            await creationTask;
-            progressBar.SetProgress(100);
+                if (result == ModManager.SaveIsoResult.MissingXdvdfs)
+                {
+                    bool downloaded = await PromptToDownloadXdvdfs();
+
+                    if (downloaded)
+                    {
+                        continue; // retry SaveISO
+                    }
+                    else
+                    {
+                        return; // user cancelled or failed
+                    }
+                }
+
+                progressBar.SetProgress(100);
+                break;
+            }
         }
         catch (Exception ex)
         {
@@ -979,7 +1022,7 @@ public partial class MainForm : Form
         buttonRunGame.Text = GetPlayButtonText(ModManager.CurrentPlatform);
         PopulateModList();
         ShowToolTip();
-        
+
         buttonRunGame.Enabled = CanApplyMods;
         buttonRestoreBackupDev.Enabled = CanApplyMods;
         buttonRunGameDev.Enabled = CanApplyMods;
@@ -1030,5 +1073,36 @@ public partial class MainForm : Form
     {
         ModManager.OpenIsoAfterExport = !ModManager.OpenIsoAfterExport;
         showISOAfterSavingToolStripMenuItem.Checked = ModManager.OpenIsoAfterExport;
+    }
+
+    private void downloadXdvdfsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        // Prompt the user if they want to download.
+        PromptToDownloadXdvdfs();
+    }
+
+    private async Task<bool> PromptToDownloadXdvdfs()
+    {
+        var result = MessageBox.Show(
+            "This will download the XDVDFS tool, which is required to extract and build Xbox game ISOs. Do you want to proceed?",
+            "Download XDVDFS",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question);
+
+        if (result == DialogResult.Yes)
+        {
+            try
+            {
+                await ModManager.DownloadLatestXdvdfsAsync();
+                MessageBox.Show("XDVDFS downloaded successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to download XDVDFS:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        return false;
     }
 }

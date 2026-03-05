@@ -76,6 +76,7 @@ partial class MainForm
         comboBoxPlatform = new ComboBox();
         statusStrip1 = new StatusStrip();
         labelStatus = new ToolStripStatusLabel();
+        downloadXdvdfsToolStripMenuItem = new ToolStripMenuItem();
         groupBoxGame.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBoxMod).BeginInit();
         groupBoxMods.SuspendLayout();
@@ -226,7 +227,7 @@ partial class MainForm
         // 
         // settingsToolStripMenuItem
         // 
-        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { emulatorSettingsToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, showISOAfterSavingToolStripMenuItem, openSettingsjsonToolStripMenuItem });
+        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { emulatorSettingsToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, downloadXdvdfsToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, showISOAfterSavingToolStripMenuItem, openSettingsjsonToolStripMenuItem });
         settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
         resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
         // 
@@ -400,6 +401,12 @@ partial class MainForm
         labelStatus.Name = "labelStatus";
         resources.ApplyResources(labelStatus, "labelStatus");
         // 
+        // downloadXdvdfsToolStripMenuItem
+        // 
+        downloadXdvdfsToolStripMenuItem.Name = "downloadXdvdfsToolStripMenuItem";
+        resources.ApplyResources(downloadXdvdfsToolStripMenuItem, "downloadXdvdfsToolStripMenuItem");
+        downloadXdvdfsToolStripMenuItem.Click += downloadXdvdfsToolStripMenuItem_Click;
+        // 
         // MainForm
         // 
         resources.ApplyResources(this, "$this");
@@ -481,4 +488,5 @@ partial class MainForm
     private ColumnHeader columnPlatform;
     private ColumnHeader columnVersion;
     private PictureBox pictureBoxMod;
+    private ToolStripMenuItem downloadXdvdfsToolStripMenuItem;
 }

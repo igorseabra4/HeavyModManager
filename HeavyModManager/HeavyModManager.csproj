@@ -54,6 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DiscUtils.Udf" Version="0.16.13" />
     <PackageReference Include="GCNTools" Version="1.0.2" />
     <PackageReference Include="Ps2IsoTools" Version="1.1.2" />
   </ItemGroup>
