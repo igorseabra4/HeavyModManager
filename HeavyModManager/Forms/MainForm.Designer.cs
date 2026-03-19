@@ -54,8 +54,8 @@ partial class MainForm
         developerModeToolStripMenuItem = new ToolStripMenuItem();
         checkForUpdatesOnStartupToolStripMenuItem = new ToolStripMenuItem();
         checkForUpdatesNowToolStripMenuItem = new ToolStripMenuItem();
+        downloadXdvdfsToolStripMenuItem = new ToolStripMenuItem();
         toolStripSeparator2 = new ToolStripSeparator();
-        aboutToolStripMenuItem = new ToolStripMenuItem();
         changeIconToolStripMenuItem = new ToolStripMenuItem();
         languageToolStripMenuItem = new ToolStripMenuItem();
         englishToolStripMenuItem = new ToolStripMenuItem();
@@ -67,16 +67,18 @@ partial class MainForm
         darkToolStripMenuItem = new ToolStripMenuItem();
         showISOAfterSavingToolStripMenuItem = new ToolStripMenuItem();
         openSettingsjsonToolStripMenuItem = new ToolStripMenuItem();
+        helpToolStripMenuItem = new ToolStripMenuItem();
+        aboutToolStripMenuItem = new ToolStripMenuItem();
         labelModInfo = new Label();
         panelLabelModInfo = new Panel();
         groupBoxModInfo = new GroupBox();
         buttonRunGame = new Button();
         buttonSaveIso = new Button();
         groupBox1 = new GroupBox();
+        pictureBoxPlatform = new PictureBox();
         comboBoxPlatform = new ComboBox();
         statusStrip1 = new StatusStrip();
         labelStatus = new ToolStripStatusLabel();
-        downloadXdvdfsToolStripMenuItem = new ToolStripMenuItem();
         groupBoxGame.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBoxMod).BeginInit();
         groupBoxMods.SuspendLayout();
@@ -84,6 +86,7 @@ partial class MainForm
         panelLabelModInfo.SuspendLayout();
         groupBoxModInfo.SuspendLayout();
         groupBox1.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)pictureBoxPlatform).BeginInit();
         statusStrip1.SuspendLayout();
         SuspendLayout();
         // 
@@ -217,7 +220,7 @@ partial class MainForm
         // 
         resources.ApplyResources(menuStrip1, "menuStrip1");
         menuStrip1.ImageScalingSize = new Size(20, 20);
-        menuStrip1.Items.AddRange(new ToolStripItem[] { manageToolStripMenuItem, settingsToolStripMenuItem });
+        menuStrip1.Items.AddRange(new ToolStripItem[] { manageToolStripMenuItem, settingsToolStripMenuItem, helpToolStripMenuItem });
         menuStrip1.Name = "menuStrip1";
         // 
         // manageToolStripMenuItem
@@ -227,7 +230,7 @@ partial class MainForm
         // 
         // settingsToolStripMenuItem
         // 
-        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { emulatorSettingsToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, downloadXdvdfsToolStripMenuItem, toolStripSeparator2, aboutToolStripMenuItem, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, showISOAfterSavingToolStripMenuItem, openSettingsjsonToolStripMenuItem });
+        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { emulatorSettingsToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, downloadXdvdfsToolStripMenuItem, toolStripSeparator2, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, showISOAfterSavingToolStripMenuItem, openSettingsjsonToolStripMenuItem });
         settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
         resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
         // 
@@ -255,16 +258,16 @@ partial class MainForm
         resources.ApplyResources(checkForUpdatesNowToolStripMenuItem, "checkForUpdatesNowToolStripMenuItem");
         checkForUpdatesNowToolStripMenuItem.Click += checkForUpdatesNowToolStripMenuItem_Click;
         // 
+        // downloadXdvdfsToolStripMenuItem
+        // 
+        downloadXdvdfsToolStripMenuItem.Name = "downloadXdvdfsToolStripMenuItem";
+        resources.ApplyResources(downloadXdvdfsToolStripMenuItem, "downloadXdvdfsToolStripMenuItem");
+        downloadXdvdfsToolStripMenuItem.Click += downloadXdvdfsToolStripMenuItem_Click;
+        // 
         // toolStripSeparator2
         // 
         toolStripSeparator2.Name = "toolStripSeparator2";
         resources.ApplyResources(toolStripSeparator2, "toolStripSeparator2");
-        // 
-        // aboutToolStripMenuItem
-        // 
-        aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-        resources.ApplyResources(aboutToolStripMenuItem, "aboutToolStripMenuItem");
-        aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
         // 
         // changeIconToolStripMenuItem
         // 
@@ -340,6 +343,18 @@ partial class MainForm
         resources.ApplyResources(openSettingsjsonToolStripMenuItem, "openSettingsjsonToolStripMenuItem");
         openSettingsjsonToolStripMenuItem.Click += openSettingsjsonToolStripMenuItem_Click;
         // 
+        // helpToolStripMenuItem
+        // 
+        helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
+        helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+        resources.ApplyResources(helpToolStripMenuItem, "helpToolStripMenuItem");
+        // 
+        // aboutToolStripMenuItem
+        // 
+        aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+        resources.ApplyResources(aboutToolStripMenuItem, "aboutToolStripMenuItem");
+        aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
+        // 
         // labelModInfo
         // 
         resources.ApplyResources(labelModInfo, "labelModInfo");
@@ -376,9 +391,17 @@ partial class MainForm
         // groupBox1
         // 
         resources.ApplyResources(groupBox1, "groupBox1");
+        groupBox1.Controls.Add(pictureBoxPlatform);
         groupBox1.Controls.Add(comboBoxPlatform);
         groupBox1.Name = "groupBox1";
         groupBox1.TabStop = false;
+        // 
+        // pictureBoxPlatform
+        // 
+        resources.ApplyResources(pictureBoxPlatform, "pictureBoxPlatform");
+        pictureBoxPlatform.InitialImage = Properties.Resources.gamecube;
+        pictureBoxPlatform.Name = "pictureBoxPlatform";
+        pictureBoxPlatform.TabStop = false;
         // 
         // comboBoxPlatform
         // 
@@ -400,12 +423,6 @@ partial class MainForm
         // 
         labelStatus.Name = "labelStatus";
         resources.ApplyResources(labelStatus, "labelStatus");
-        // 
-        // downloadXdvdfsToolStripMenuItem
-        // 
-        downloadXdvdfsToolStripMenuItem.Name = "downloadXdvdfsToolStripMenuItem";
-        resources.ApplyResources(downloadXdvdfsToolStripMenuItem, "downloadXdvdfsToolStripMenuItem");
-        downloadXdvdfsToolStripMenuItem.Click += downloadXdvdfsToolStripMenuItem_Click;
         // 
         // MainForm
         // 
@@ -433,6 +450,7 @@ partial class MainForm
         panelLabelModInfo.ResumeLayout(false);
         groupBoxModInfo.ResumeLayout(false);
         groupBox1.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)pictureBoxPlatform).EndInit();
         statusStrip1.ResumeLayout(false);
         statusStrip1.PerformLayout();
         ResumeLayout(false);
@@ -460,7 +478,6 @@ partial class MainForm
     private ToolStripMenuItem checkForUpdatesOnStartupToolStripMenuItem;
     private Button buttonRefreshModList;
     private ToolStripSeparator toolStripSeparator2;
-    private ToolStripMenuItem aboutToolStripMenuItem;
     private ToolStripMenuItem changeIconToolStripMenuItem;
     private ListView listViewMods;
     private ColumnHeader columnName;
@@ -489,4 +506,7 @@ partial class MainForm
     private ColumnHeader columnVersion;
     private PictureBox pictureBoxMod;
     private ToolStripMenuItem downloadXdvdfsToolStripMenuItem;
+    private PictureBox pictureBoxPlatform;
+    private ToolStripMenuItem helpToolStripMenuItem;
+    private ToolStripMenuItem aboutToolStripMenuItem;
 }

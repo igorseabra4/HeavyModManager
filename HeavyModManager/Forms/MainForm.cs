@@ -31,6 +31,8 @@ public partial class MainForm : Form
 
         IconManager.SetIcon(this);
 
+        CheckForLegacyMods();
+
         toolTip = new ToolTip();
         aboutBox = new AboutBox();
 
@@ -61,11 +63,14 @@ public partial class MainForm : Form
         labelModInfo.MaximumSize = new Size(panelLabelModInfo.Width - SystemInformation.VerticalScrollBarWidth, 0);
         labelModInfo.Text = "";
 
-        ModManager.CurrentPlatform = GamePlatform.GameCube;
+        ModManager.CurrentPlatform = DefaultPlatform;
         UpdateDeveloperMode();
         UpdateStatusLabel();
         ShowToolTip();
+        UpdatePlatformIcon();
     }
+
+    private readonly GamePlatform DefaultPlatform = GamePlatform.GameCube;
 
     private ToolStripMenuItem createModToolStripMenuItem;
     private ToolStripMenuItem editModToolStripMenuItem;
@@ -79,6 +84,35 @@ public partial class MainForm : Form
     private ToolStripMenuItem deleteModToolStripMenuItemContext;
 
     private ContextMenuStrip manageContextMenuStrip;
+
+    private void CheckForLegacyMods()
+    {
+        var legacyModDirectories = ModManager.GetLegacyModDirectories();
+        int numLegacyMods = legacyModDirectories.Count;
+
+        if (numLegacyMods == 0)
+            return;
+
+        var result = MessageBox.Show(
+            $"It looks like you have {numLegacyMods} mod(s) created with an older version of Heavy Mod Manager. Would you like to migrate them? They will be marked as GameCube mods.",
+            "Legacy mods detected",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning
+        );
+
+        if (result != DialogResult.Yes)
+            return;
+
+        // Update legacy mods.
+        int numMigrated = ModManager.MigrateLegacyMods(legacyModDirectories);
+
+        MessageBox.Show(
+            $"Successfully migrated {numMigrated} mod(s).",
+            "Migration complete",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information
+        );
+    }
 
     private void InitializeManageMenus()
     {
@@ -695,7 +729,8 @@ public partial class MainForm : Form
                 "Emulator not found",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
-        } else if (result == ModManager.SaveIsoResult.MissingXdvdfs)
+        }
+        else if (result == ModManager.SaveIsoResult.MissingXdvdfs)
         {
             bool downloaded = await PromptToDownloadXdvdfs();
 
@@ -1027,6 +1062,28 @@ public partial class MainForm : Form
         buttonRestoreBackupDev.Enabled = CanApplyMods;
         buttonRunGameDev.Enabled = CanApplyMods;
         buttonSaveIso.Enabled = CanSaveIso;
+
+        // Update icon
+        UpdatePlatformIcon();
+    }
+
+    private void UpdatePlatformIcon()
+    {
+        switch (ModManager.CurrentPlatform)
+        {
+            case GamePlatform.GameCube:
+                pictureBoxPlatform.Image = Resources.gamecube;
+                break;
+            case GamePlatform.PlayStation2:
+                pictureBoxPlatform.Image = Resources.ps2;
+                break;
+            case GamePlatform.Xbox:
+                pictureBoxPlatform.Image = Resources.xbox;
+                break;
+            default:
+                pictureBoxPlatform.Image = null;
+                break;
+        }
     }
 
     private string GetPlayButtonText(GamePlatform platform)

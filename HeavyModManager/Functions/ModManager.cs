@@ -5,6 +5,7 @@ using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
 using Ps2IsoTools.UDF;
 using System.CodeDom;
+using System.Collections;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO.Compression;
@@ -1119,5 +1120,79 @@ public static class ModManager
         }
 
         File.Delete(zipPath);
+    }
+
+    public static int MigrateLegacyMods(List<string> modDirectories)
+    {
+        int numMigrated = 0;
+
+        foreach(var modDirectory in modDirectories)
+        {
+            bool result = MigrateLegacyMod(modDirectory);
+
+            if (result)
+                numMigrated++;
+        }
+
+        return numMigrated;
+    }
+
+    private static bool MigrateLegacyMod(string modDirectory, GamePlatform platform = GamePlatform.GameCube)
+    {
+        // To migrate a legacy mod, do the following:
+        // Deserialize mod.json, set its Platform to the platform parameter (default to GameCube), then serialize the mod.json back.
+
+        string modJsonPath = Path.Combine(modDirectory, "mod.json");
+
+        // If mod.json doesn't exist, return false
+        if (!File.Exists(modJsonPath))
+            return false;
+
+        var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
+
+        mod.Platform = platform;
+
+        // Serialize
+        mod.SaveModJson(false);
+
+        return true;
+    }
+
+    public static List<string> GetLegacyModDirectories()
+    {
+        // On startup, check for mods in old format (don't contain a Platform in mod.json)
+
+        string modsDir = ModsFolderPath;
+
+        // Check every folder in modsDir
+        // Check if mod.json exists. If it does, check if it contains a Platform property. If it doesn't, it's a legacy mod.
+
+        if (!Directory.Exists(modsDir))
+            return [];
+
+        var modDirectories = new List<string>();
+
+        foreach (var modFolder in Directory.GetDirectories(modsDir))
+        {
+            var modJsonPath = Path.Combine(modFolder, "mod.json");
+            if (File.Exists(modJsonPath))
+            {
+                try
+                {
+                    var json = File.ReadAllText(modJsonPath);
+                    using var doc = JsonDocument.Parse(json);
+                    if (!doc.RootElement.TryGetProperty("Platform", out _))
+                    {
+                        modDirectories.Add(modFolder);
+                    }
+                }
+                catch
+                {
+                    // If there's an error reading/parsing the file, ignore it and move on to the next
+                }
+            }
+        }
+
+        return modDirectories;
     }
 }

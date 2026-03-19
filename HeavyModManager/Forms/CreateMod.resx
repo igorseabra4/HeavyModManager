@@ -130,7 +130,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonCreateMod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 676</value>
+    <value>148, 730</value>
   </data>
   <data name="buttonCreateMod.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 25</value>
@@ -160,7 +160,7 @@
     <value>True</value>
   </data>
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 676</value>
+    <value>266, 730</value>
   </data>
   <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 25</value>
@@ -694,7 +694,7 @@
     <value>0, 0</value>
   </data>
   <data name="flowLayoutPanelPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>342, 638</value>
+    <value>342, 692</value>
   </data>
   <data name="flowLayoutPanelPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -718,7 +718,7 @@
     <value>4, 24</value>
   </data>
   <data name="tabPageModData.Size" type="System.Drawing.Size, System.Drawing">
-    <value>342, 638</value>
+    <value>342, 692</value>
   </data>
   <data name="tabPageModData.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1438,7 +1438,7 @@
     <value>0, 0</value>
   </data>
   <data name="flowLayoutPanelPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>342, 638</value>
+    <value>342, 692</value>
   </data>
   <data name="flowLayoutPanelPage2.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -1462,7 +1462,7 @@
     <value>4, 24</value>
   </data>
   <data name="tabPageSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>342, 638</value>
+    <value>342, 692</value>
   </data>
   <data name="tabPageSettings.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1490,7 +1490,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>350, 666</value>
+    <value>350, 720</value>
   </data>
   <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1514,7 +1514,7 @@
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>368, 708</value>
+    <value>368, 762</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>

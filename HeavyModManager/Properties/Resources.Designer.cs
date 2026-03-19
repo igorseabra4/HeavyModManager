@@ -83,9 +83,29 @@ namespace HeavyModManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gamecube {
+            get {
+                object obj = ResourceManager.GetObject("gamecube", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap image_placeholder {
             get {
                 object obj = ResourceManager.GetObject("image_placeholder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ps2 {
+            get {
+                object obj = ResourceManager.GetObject("ps2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -106,6 +126,16 @@ namespace HeavyModManager.Properties {
         internal static System.Drawing.Bitmap us {
             get {
                 object obj = ResourceManager.GetObject("us", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap xbox {
+            get {
+                object obj = ResourceManager.GetObject("xbox", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
