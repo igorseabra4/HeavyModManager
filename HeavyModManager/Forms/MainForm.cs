@@ -1013,13 +1013,14 @@ public partial class MainForm : Form
             progressBar.Close();
             Enabled = true;
         }
-
+        TaskbarFlasher.Flash(this.Handle);
         MessageBox.Show(
             "ISO Saved to " + dialog.FileName,
             "ISO Saved",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information
         );
+        TaskbarFlasher.Stop(this.Handle);
 
         // Open folder containing ISO
         if (ModManager.OpenIsoAfterExport)
