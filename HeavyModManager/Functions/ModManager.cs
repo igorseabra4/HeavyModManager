@@ -3,12 +3,12 @@ using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
-using Ps2IsoTools.UDF;
-using System.CodeDom;
-using System.Collections;
+using SharpCompress.Archives;
+using SharpCompress.Archives.Rar;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO.Compression;
+using System.Net;
 using System.Text.Json;
 
 namespace HeavyModManager.Functions;
@@ -210,7 +210,11 @@ public static class ModManager
     public static string GetModFilesPath(string modId) => Path.Combine(GetModPath(modId), "files");
 
     public static string XdvdfsPath => Path.Combine(Application.StartupPath, "External", "xdvdfs", "xdvdfs.exe");
+
+    public static string MkisofsPath => Path.Combine(Application.StartupPath, "External", "mkisofs", "mkisofs.exe");
     public static bool XdvdfsIsDownloaded => File.Exists(XdvdfsPath);
+
+    public static bool MkisofsIsDownloaded => File.Exists(MkisofsPath);
 
     /// <summary>
     /// Path to game folder path for a given platform
@@ -882,6 +886,9 @@ public static class ModManager
 
             if (result == SaveIsoResult.MissingXdvdfs)
                 return SaveIsoResult.MissingXdvdfs;
+
+            if (result == SaveIsoResult.MissingMkisofs)
+                return SaveIsoResult.MissingMkisofs;
         }
         
         string extraArgs = GetCommandLineArguments(platform); // may be empty
@@ -937,6 +944,7 @@ public static class ModManager
     {
         Success,
         MissingXdvdfs,
+        MissingMkisofs,
         EmulatorNotFound
     }
 
@@ -948,66 +956,68 @@ public static class ModManager
                 DiscImage.CreateFile(GameGamePath(game, platform), path);
                 break;
             case GamePlatform.PlayStation2:
-                var builder = new UdfBuilder();
-                // TODO change per-game.
-                builder.VolumeIdentifier = "SLUS-20904";
-                AddDirectoryToPS2Iso(builder, GameGamePath(game, platform), "");
-                builder.Build(path);
-                break;
-            case GamePlatform.Xbox:
-            {
-                if (!XdvdfsIsDownloaded)
-                    return SaveIsoResult.MissingXdvdfs;
+                if (!MkisofsIsDownloaded)
+                    return SaveIsoResult.MissingMkisofs;
 
-                var psi = new ProcessStartInfo
+                var psiPs2 = new ProcessStartInfo
                 {
-                    FileName = XdvdfsPath,
+                    FileName = MkisofsPath,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     CreateNoWindow = true
                 };
 
-                psi.ArgumentList.Add("pack");
-                psi.ArgumentList.Add(GameGamePath(game, platform)); // in
-                psi.ArgumentList.Add(path); // out
+                psiPs2.ArgumentList.Add("-udf");
+                psiPs2.ArgumentList.Add(GameGamePath(game, platform)); // input folder
+                psiPs2.ArgumentList.Add("-o");
+                psiPs2.ArgumentList.Add(path); // output ISO
 
-                using var process = Process.Start(psi);
+                var processPs2 = Process.Start(psiPs2)!;
 
-                string output = process.StandardOutput.ReadToEnd();
-                string error = process.StandardError.ReadToEnd();
+                // Wait for completion and read outputs
+                string outputPs2 = processPs2.StandardOutput.ReadToEnd();
+                string errorPs2 = processPs2.StandardError.ReadToEnd();
 
-                process.WaitForExit();
+                processPs2.WaitForExit();
+                processPs2.Dispose();
 
-                if (!string.IsNullOrEmpty(error))
-                    throw new Exception("Error creating Xbox ISO: " + error);
+                if (!string.IsNullOrEmpty(errorPs2))
+                    throw new Exception("Error creating PS2 ISO: " + errorPs2);
 
                 break;
-            }
+            case GamePlatform.Xbox:
+                {
+                    if (!XdvdfsIsDownloaded)
+                        return SaveIsoResult.MissingXdvdfs;
+
+                    var psi = new ProcessStartInfo
+                    {
+                        FileName = XdvdfsPath,
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        CreateNoWindow = true
+                    };
+
+                    psi.ArgumentList.Add("pack");
+                    psi.ArgumentList.Add(GameGamePath(game, platform)); // in
+                    psi.ArgumentList.Add(path); // out
+
+                    using var process = Process.Start(psi);
+
+                    string output = process.StandardOutput.ReadToEnd();
+                    string error = process.StandardError.ReadToEnd();
+
+                    process.WaitForExit();
+
+                    if (!string.IsNullOrEmpty(error))
+                        throw new Exception("Error creating Xbox ISO: " + error);
+
+                    break;
+                }
         }
         return SaveIsoResult.Success;
-    }
-
-    private static void AddDirectoryToPS2Iso(UdfBuilder builder, string sourcePath, string isoPath)
-    {
-        // Add files in this directory
-        foreach (var file in Directory.GetFiles(sourcePath))
-        {
-            var fileName = Path.GetFileName(file);
-            var isoFilePath = Path.Combine(isoPath, fileName);
-
-            builder.AddFile(isoFilePath, file);
-        }
-
-        // Recurse into subdirectories
-        foreach (var directory in Directory.GetDirectories(sourcePath))
-        {
-            var dirName = Path.GetFileName(directory);
-            var newIsoPath = Path.Combine(isoPath, dirName);
-
-            builder.AddDirectory(newIsoPath);
-            AddDirectoryToPS2Iso(builder, directory, newIsoPath);
-        }
     }
 
     /// <summary>
@@ -1059,6 +1069,73 @@ public static class ModManager
             len /= 1024;
         }
         return $"{len:0.##} {sizes[order]}";
+    }
+
+    public static async Task DownloadAndExtractMkisofs()
+    {
+        string baseDir = Path.Combine(Application.StartupPath, "External", "mkisofs");
+        Directory.CreateDirectory(baseDir);
+
+        string rarPath = Path.Combine(baseDir, "cdrtools.rar");
+
+        string url = "https://sourceforge.net/projects/cdrtfe/files/tools/binaries/cdrtools/cdrtools-3.02a10-bin-win32-patched.rar/download";
+
+        // 1. Download with manual redirect handling (like curl -L)
+        while (true)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "GET";
+            request.AllowAutoRedirect = false; // IMPORTANT
+            request.Accept = "*/*";
+            request.KeepAlive = true;
+
+            using var response = (HttpWebResponse)await request.GetResponseAsync();
+
+            // Handle redirect manually
+            if ((int)response.StatusCode >= 300 && (int)response.StatusCode < 400)
+            {
+                string? location = response.Headers["Location"];
+                if (string.IsNullOrEmpty(location))
+                    throw new Exception("Redirect with no location");
+
+                // Handle relative redirects
+                if (!location.StartsWith("http"))
+                {
+                    var baseUri = new Uri(url);
+                    location = new Uri(baseUri, location).ToString();
+                }
+
+                url = location;
+                continue;
+            }
+
+            // Final response → save file
+            using (var responseStream = response.GetResponseStream())
+            using (var fileStream = new FileStream(rarPath, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                await responseStream.CopyToAsync(fileStream);
+            }
+
+            break;
+        }
+
+        // 2. Extract using SharpCompress
+        using (var archive = RarArchive.OpenArchive(rarPath))
+        {
+            var entry = archive.Entries
+                .FirstOrDefault(e => !e.IsDirectory &&
+                                     e.Key.EndsWith("mkisofs.exe", StringComparison.OrdinalIgnoreCase));
+
+            if (entry == null)
+                throw new FileNotFoundException("mkisofs.exe not found in archive");
+
+            Directory.CreateDirectory(Path.GetDirectoryName(MkisofsPath)!);
+
+            entry.WriteToFile(MkisofsPath);
+        }
+
+        // 3. Cleanup
+        try { File.Delete(rarPath); } catch { }
     }
 
     public static async Task DownloadLatestXdvdfsAsync()

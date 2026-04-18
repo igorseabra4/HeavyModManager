@@ -719,26 +719,47 @@ public partial class MainForm : Form
 
     private async void RunGame()
     {
-        var result = ModManager.RunGame(ModManager.CurrentGame, ModManager.CurrentPlatform);
-
-        if (result == ModManager.SaveIsoResult.EmulatorNotFound)
+        try
         {
-            // warn user
-            MessageBox.Show(
-                $"Emulator not found. Please set the emulator path for {ModManager.PlatformToStringFull(ModManager.CurrentPlatform)} in the settings.",
-                "Emulator not found",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-        }
-        else if (result == ModManager.SaveIsoResult.MissingXdvdfs)
-        {
-            bool downloaded = await PromptToDownloadXdvdfs();
+            var result = ModManager.RunGame(ModManager.CurrentGame, ModManager.CurrentPlatform);
 
-            if (downloaded)
+            if (result == ModManager.SaveIsoResult.EmulatorNotFound)
             {
-                // Try running the game again
-                RunGame();
+                // warn user
+                MessageBox.Show(
+                    $"Emulator not found. Please set the emulator path for {ModManager.PlatformToStringFull(ModManager.CurrentPlatform)} in the settings.",
+                    "Emulator not found",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
+            else if (result == ModManager.SaveIsoResult.MissingXdvdfs)
+            {
+                bool downloaded = await PromptToDownloadXdvdfs();
+
+                if (downloaded)
+                {
+                    // Try running the game again
+                    RunGame();
+                }
+            } else if (result == ModManager.SaveIsoResult.MissingMkisofs)
+            {
+                bool downloaded = await PromptToDownloadMkisofs();
+
+                if (downloaded)
+                {
+                    // Try running the game again
+                    RunGame();
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(
+                "There was an error running the game.\n\n" + e.Message,
+                "Error running game",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
         }
     }
 
@@ -1158,6 +1179,31 @@ public partial class MainForm : Form
             catch (Exception ex)
             {
                 MessageBox.Show($"Failed to download XDVDFS:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        return false;
+    }
+
+    private async Task<bool> PromptToDownloadMkisofs()
+    {
+        var result = MessageBox.Show(
+            "This will download the mkisofs tool, which is required to extract and build Playstation 2 ISOs. Do you want to proceed?",
+            "Download mkisofs",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question);
+
+        if (result == DialogResult.Yes)
+        {
+            try
+            {
+                await ModManager.DownloadAndExtractMkisofs();
+                MessageBox.Show("mkisofs downloaded successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to download mkisofs:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
