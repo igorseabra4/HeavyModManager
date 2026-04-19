@@ -10,6 +10,7 @@ using System.Globalization;
 using System.IO.Compression;
 using System.Net;
 using System.Text.Json;
+using SharpCompress.Common;
 
 namespace HeavyModManager.Functions;
 
@@ -1131,7 +1132,12 @@ public static class ModManager
 
             Directory.CreateDirectory(Path.GetDirectoryName(MkisofsPath)!);
 
-            entry.WriteToFile(MkisofsPath);
+            var options = new ExtractionOptions()
+            {
+                Overwrite = true
+            };
+            
+            entry.WriteToFile(MkisofsPath, options);
         }
 
         // 3. Cleanup
