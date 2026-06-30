@@ -130,7 +130,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonCreateBackup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>376, 22</value>
+    <value>370, 22</value>
   </data>
   <data name="buttonCreateBackup.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 23</value>
@@ -160,7 +160,7 @@
     <value>6, 22</value>
   </data>
   <data name="comboBoxGame.Size" type="System.Drawing.Size, System.Drawing">
-    <value>364, 23</value>
+    <value>358, 23</value>
   </data>
   <data name="comboBoxGame.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -181,7 +181,7 @@
     <value>12, 27</value>
   </data>
   <data name="groupBoxGame.Size" type="System.Drawing.Size, System.Drawing">
-    <value>514, 51</value>
+    <value>508, 51</value>
   </data>
   <data name="groupBoxGame.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -212,7 +212,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="pictureBoxMod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 176</value>
+    <value>240, 180</value>
   </data>
   <data name="pictureBoxMod.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
@@ -275,7 +275,7 @@
     <value>6, 22</value>
   </data>
   <data name="listViewMods.Size" type="System.Drawing.Size, System.Drawing">
-    <value>502, 386</value>
+    <value>496, 386</value>
   </data>
   <data name="listViewMods.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -383,7 +383,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="buttonAddMod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>408, 412</value>
+    <value>402, 412</value>
   </data>
   <data name="buttonAddMod.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -413,7 +413,7 @@
     <value>12, 84</value>
   </data>
   <data name="groupBoxMods.Size" type="System.Drawing.Size, System.Drawing">
-    <value>514, 442</value>
+    <value>508, 442</value>
   </data>
   <data name="groupBoxMods.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -637,7 +637,7 @@
     <value>&amp;Settings</value>
   </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>116, 22</value>
   </data>
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;About...</value>
@@ -679,7 +679,7 @@
     <value>3, 179</value>
   </data>
   <data name="labelModInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 183</value>
+    <value>234, 183</value>
   </data>
   <data name="labelModInfo.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -709,7 +709,7 @@
     <value>3, 19</value>
   </data>
   <data name="panelLabelModInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 362</value>
+    <value>240, 362</value>
   </data>
   <data name="panelLabelModInfo.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -730,10 +730,10 @@
     <value>Top, Bottom, Right</value>
   </data>
   <data name="groupBoxModInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>532, 84</value>
+    <value>526, 84</value>
   </data>
   <data name="groupBoxModInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 384</value>
+    <value>246, 384</value>
   </data>
   <data name="groupBoxModInfo.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -832,7 +832,7 @@
     <value>8, 21</value>
   </data>
   <data name="pictureBoxPlatform.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 23</value>
+    <value>29, 23</value>
   </data>
   <data name="pictureBoxPlatform.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
@@ -859,7 +859,7 @@
     <value>37, 21</value>
   </data>
   <data name="comboBoxPlatform.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 23</value>
+    <value>203, 23</value>
   </data>
   <data name="comboBoxPlatform.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -877,10 +877,10 @@
     <value>1</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>532, 27</value>
+    <value>526, 27</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 51</value>
+    <value>246, 51</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
