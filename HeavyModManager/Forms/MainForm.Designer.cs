@@ -145,6 +145,7 @@ partial class MainForm
         listViewMods.Name = "listViewMods";
         listViewMods.UseCompatibleStateImageBehavior = false;
         listViewMods.View = View.Details;
+        listViewMods.ColumnClick += listViewMods_ColumnClick;
         listViewMods.ItemCheck += listViewMods_ItemCheck;
         listViewMods.SelectedIndexChanged += listViewMods_SelectedIndexChanged;
         listViewMods.KeyDown += listViewMods_KeyDown;

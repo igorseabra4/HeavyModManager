@@ -45,6 +45,8 @@ public partial class MainForm : Form
         if (ModManager.CheckForUpdatesOnStartup)
             TryUpdate();
 
+        ModManager.CurrentPlatform = DefaultPlatform;
+
         comboBoxPlatform.Items.Clear();
         if (ModManager.CurrentGame == Game.Null)
             comboBoxGame.SelectedIndex = -1;
@@ -63,7 +65,6 @@ public partial class MainForm : Form
         labelModInfo.MaximumSize = new Size(panelLabelModInfo.Width - SystemInformation.VerticalScrollBarWidth, 0);
         labelModInfo.Text = "";
 
-        ModManager.CurrentPlatform = DefaultPlatform;
         UpdateDeveloperMode();
         UpdateStatusLabel();
         ShowToolTip();
@@ -435,6 +436,8 @@ public partial class MainForm : Form
     }
 
     private bool programChangingData = false;
+    private int _sortColumn = -1;
+    private bool _sortAscending = true;
 
     private void PopulateModList(string selectedModId = "")
     {
@@ -602,31 +605,108 @@ public partial class MainForm : Form
     private void buttonMoveUp_Click(object sender, EventArgs e)
     {
         var mod = GetSelectedMod();
-        if (mod != null)
+        if (mod == null) return;
+
+        int visualIndex = listViewMods.SelectedIndices[0];
+        if (visualIndex > 0)
         {
-            int previndex = listViewMods.SelectedIndices[0];
-            if (previndex > 0)
-            {
-                (ModManager.CurrentGameSettings.Mods[previndex], ModManager.CurrentGameSettings.Mods[previndex - 1]) = (ModManager.CurrentGameSettings.Mods[previndex - 1], ModManager.CurrentGameSettings.Mods[previndex]);
-                ModManager.Invalidate();
-            }
-            PopulateModList(mod.ModId);
+            var displayedIndices = GetDisplayedModIndices();
+            var allMods = ModManager.CurrentGameSettings.Mods;
+            (allMods[displayedIndices[visualIndex]], allMods[displayedIndices[visualIndex - 1]]) =
+                (allMods[displayedIndices[visualIndex - 1]], allMods[displayedIndices[visualIndex]]);
+            ModManager.Invalidate();
         }
+        PopulateModList(mod.ModId);
     }
 
     private void buttonMoveDown_Click(object sender, EventArgs e)
     {
         var mod = GetSelectedMod();
-        if (mod != null)
+        if (mod == null) return;
+
+        int visualIndex = listViewMods.SelectedIndices[0];
+        var displayedIndices = GetDisplayedModIndices();
+        if (visualIndex < displayedIndices.Count - 1)
         {
-            int previndex = listViewMods.SelectedIndices[0];
-            if (previndex < listViewMods.Items.Count - 1)
-            {
-                (ModManager.CurrentGameSettings.Mods[previndex], ModManager.CurrentGameSettings.Mods[previndex + 1]) = (ModManager.CurrentGameSettings.Mods[previndex + 1], ModManager.CurrentGameSettings.Mods[previndex]);
-                ModManager.Invalidate();
-            }
-            PopulateModList(mod.ModId);
+            var allMods = ModManager.CurrentGameSettings.Mods;
+            (allMods[displayedIndices[visualIndex]], allMods[displayedIndices[visualIndex + 1]]) =
+                (allMods[displayedIndices[visualIndex + 1]], allMods[displayedIndices[visualIndex]]);
+            ModManager.Invalidate();
         }
+        PopulateModList(mod.ModId);
+    }
+
+    private List<int> GetDisplayedModIndices()
+    {
+        var activePlatform = ModManager.CurrentPlatform;
+        var allMods = ModManager.CurrentGameSettings.Mods;
+        var indices = new List<int>();
+
+        for (int i = 0; i < allMods.Count; i++)
+        {
+            var modJsonPath = ModManager.GetModJsonPath(allMods[i]);
+            if (!File.Exists(modJsonPath)) continue;
+            var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
+            if (mod.Platform == activePlatform || mod.Platform == GamePlatform.Unknown)
+                indices.Add(i);
+        }
+
+        return indices;
+    }
+
+    private void listViewMods_ColumnClick(object sender, ColumnClickEventArgs e)
+    {
+        if (_sortColumn == e.Column)
+            _sortAscending = !_sortAscending;
+        else
+        {
+            _sortColumn = e.Column;
+            _sortAscending = true;
+        }
+
+        SortModsByColumn(_sortColumn, _sortAscending);
+    }
+
+    private void SortModsByColumn(int column, bool ascending)
+    {
+        var activePlatform = ModManager.CurrentPlatform;
+        var allMods = ModManager.CurrentGameSettings.Mods;
+
+        var platformModIndices = new List<int>();
+        var platformMods = new List<Mod>();
+
+        for (int i = 0; i < allMods.Count; i++)
+        {
+            var modJsonPath = ModManager.GetModJsonPath(allMods[i]);
+            if (!File.Exists(modJsonPath)) continue;
+            var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
+            if (mod.Platform == activePlatform || mod.Platform == GamePlatform.Unknown)
+            {
+                platformModIndices.Add(i);
+                platformMods.Add(mod);
+            }
+        }
+
+        platformMods.Sort((a, b) =>
+        {
+            int cmp = column switch
+            {
+                0 => string.Compare(a.ModName, b.ModName, StringComparison.OrdinalIgnoreCase),
+                1 => string.Compare(a.Author, b.Author, StringComparison.OrdinalIgnoreCase),
+                2 => string.Compare(ModManager.PlatformToStringFull(a.Platform), ModManager.PlatformToStringFull(b.Platform), StringComparison.OrdinalIgnoreCase),
+                3 => string.Compare(a.Version, b.Version, StringComparison.OrdinalIgnoreCase),
+                4 => a.CreatedAt.CompareTo(b.CreatedAt),
+                5 => a.UpdatedAt.CompareTo(b.UpdatedAt),
+                _ => 0
+            };
+            return ascending ? cmp : -cmp;
+        });
+
+        for (int i = 0; i < platformModIndices.Count; i++)
+            allMods[platformModIndices[i]] = platformMods[i].ModId;
+
+        ModManager.Invalidate();
+        PopulateModList();
     }
 
     private void buttonRestoreBackup_Click(object sender, EventArgs e)
@@ -721,7 +801,7 @@ public partial class MainForm : Form
     {
         try
         {
-            var result = ModManager.RunGame(ModManager.CurrentGame, ModManager.CurrentPlatform);
+            var result = await ModManager.RunGameAsync(ModManager.CurrentGame, ModManager.CurrentPlatform);
 
             if (result == ModManager.SaveIsoResult.EmulatorNotFound)
             {
@@ -983,7 +1063,7 @@ public partial class MainForm : Form
 
                 var creationTask = Task.Run(() =>
                 {
-                    return ModManager.SaveISO(dialog.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
+                    return ModManager.SaveISOAsync(dialog.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
                 });
 
                 while (!creationTask.IsCompleted)
