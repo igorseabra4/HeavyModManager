@@ -1156,6 +1156,9 @@ public partial class MainForm : Form
             GamePlatform.Unknown :
             ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform;
 
+        if (comboBoxGame.SelectedIndex != -1 && ModManager.CurrentPlatform != GamePlatform.Unknown)
+            ModManager.RefreshGameSettings(ModManager.CurrentGame, ModManager.CurrentPlatform);
+
         buttonRunGame.Text = GetPlayButtonText(ModManager.CurrentPlatform);
         PopulateModList();
         ShowToolTip();
@@ -1165,7 +1168,6 @@ public partial class MainForm : Form
         buttonRunGameDev.Enabled = CanApplyMods;
         buttonSaveIso.Enabled = CanSaveIso;
 
-        // Update icon
         UpdatePlatformIcon();
     }
 
