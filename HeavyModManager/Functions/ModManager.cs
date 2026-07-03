@@ -11,6 +11,8 @@ using System.IO.Compression;
 using System.Net;
 using System.Text.Json;
 using SharpCompress.Common;
+using SharpCompress.Readers;
+using SevenZipLib;
 
 namespace HeavyModManager.Functions;
 
@@ -847,7 +849,7 @@ public static class ModManager
     /// <summary>
     /// Runs the current patched game with the emulator
     /// </summary>
-    public static SaveIsoResult RunGame(Game game, GamePlatform platform)
+    public static async Task<SaveIsoResult> RunGameAsync(Game game, GamePlatform platform)
     {
         string emulatorPath = "";
         
@@ -883,7 +885,7 @@ public static class ModManager
             if (File.Exists(runPath))
                 File.Delete(runPath);
             
-            var result = SaveISO(runPath, game, platform);
+            var result = await SaveISOAsync(runPath, game, platform);
 
             if (result == SaveIsoResult.MissingXdvdfs)
                 return SaveIsoResult.MissingXdvdfs;
@@ -949,7 +951,7 @@ public static class ModManager
         EmulatorNotFound
     }
 
-    public static SaveIsoResult SaveISO(string path, Game game, GamePlatform platform)
+    public static async Task<SaveIsoResult> SaveISOAsync(string path, Game game, GamePlatform platform)
     {
         switch (platform)
         {
@@ -957,36 +959,39 @@ public static class ModManager
                 DiscImage.CreateFile(GameGamePath(game, platform), path);
                 break;
             case GamePlatform.PlayStation2:
-                if (!MkisofsIsDownloaded)
-                    return SaveIsoResult.MissingMkisofs;
-
-                var psiPs2 = new ProcessStartInfo
                 {
-                    FileName = MkisofsPath,
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    CreateNoWindow = true
-                };
+                    if (!MkisofsIsDownloaded)
+                        return SaveIsoResult.MissingMkisofs;
 
-                psiPs2.ArgumentList.Add("-udf");
-                psiPs2.ArgumentList.Add(GameGamePath(game, platform)); // input folder
-                psiPs2.ArgumentList.Add("-o");
-                psiPs2.ArgumentList.Add(path); // output ISO
+                    var psiPs2 = new ProcessStartInfo
+                    {
+                        FileName = MkisofsPath,
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        CreateNoWindow = true
+                    };
 
-                var processPs2 = Process.Start(psiPs2)!;
+                    psiPs2.ArgumentList.Add("-udf");
+                    psiPs2.ArgumentList.Add("-o");
+                    psiPs2.ArgumentList.Add(path);
+                    psiPs2.ArgumentList.Add(GameGamePath(game, platform));
 
-                // Wait for completion and read outputs
-                string outputPs2 = processPs2.StandardOutput.ReadToEnd();
-                string errorPs2 = processPs2.StandardError.ReadToEnd();
+                    using var processPs2 = Process.Start(psiPs2)!;
 
-                processPs2.WaitForExit();
-                processPs2.Dispose();
+                    Task<string> outputTask = processPs2.StandardOutput.ReadToEndAsync();
+                    Task<string> errorTask = processPs2.StandardError.ReadToEndAsync();
 
-                if (!string.IsNullOrEmpty(errorPs2))
-                    throw new Exception("Error creating PS2 ISO: " + errorPs2);
+                    await processPs2.WaitForExitAsync();
 
-                break;
+                    string outputPs2 = await outputTask;
+                    string errorPs2 = await errorTask;
+
+                    if (processPs2.ExitCode != 0)
+                        throw new Exception($"Error creating PS2 ISO (exit code {processPs2.ExitCode}): {errorPs2}");
+
+                    break;
+                }
             case GamePlatform.Xbox:
                 {
                     if (!XdvdfsIsDownloaded)
@@ -1061,7 +1066,7 @@ public static class ModManager
     /// </summary>
     public static string GetFormattedSize(long bytes)
     {
-        string[] sizes = { "B", "kiB", "MiB", "GiB", "TiB" };
+        string[] sizes = { "B", "KiB", "MiB", "GiB", "TiB" };
         double len = bytes;
         int order = 0;
         while (len >= 1024 && order < sizes.Length - 1)
@@ -1120,28 +1125,30 @@ public static class ModManager
             break;
         }
 
-        // 2. Extract using SharpCompress
-        using (var archive = RarArchive.OpenArchive(rarPath))
+        // 2. Extract
+        SevenZipLib.SevenZip.ExtractToDir(rarPath, Path.GetDirectoryName(MkisofsPath));
+
+        if (File.Exists(MkisofsPath))
         {
-            var entry = archive.Entries
-                .FirstOrDefault(e => !e.IsDirectory &&
-                                     e.Key.EndsWith("mkisofs.exe", StringComparison.OrdinalIgnoreCase));
-
-            if (entry == null)
-                throw new FileNotFoundException("mkisofs.exe not found in archive");
-
-            Directory.CreateDirectory(Path.GetDirectoryName(MkisofsPath)!);
-
-            var options = new ExtractionOptions()
+            // Delete other files except mkisofs.exe
+            foreach (var file in Directory.GetFiles(Path.GetDirectoryName(MkisofsPath)))
             {
-                Overwrite = true
-            };
-            
-            entry.WriteToFile(MkisofsPath, options);
+                if (!file.EndsWith("mkisofs.exe", StringComparison.OrdinalIgnoreCase))
+                {
+                    File.Delete(file);
+                }
+            }
         }
 
-        // 3. Cleanup
-        try { File.Delete(rarPath); } catch { }
+        // Download cygwin1.dll
+        var cygwinDllUrl = "https://raw.githubusercontent.com/FormLink/cygwin-files/master/cygwin1.dll";
+        // Download and put in same folder as mkisofs
+
+        string outputPath = Path.Combine(Path.GetDirectoryName(MkisofsPath), "cygwin1.dll");
+
+        using HttpClient client = new HttpClient();
+        byte[] fileBytes = await client.GetByteArrayAsync(cygwinDllUrl);
+        await File.WriteAllBytesAsync(outputPath, fileBytes);
     }
 
     public static async Task DownloadLatestXdvdfsAsync()
