@@ -23,6 +23,12 @@ public class ModManagerSettings
     public Game CurrentGame { get; set; }
 
     /// <summary>
+    /// The currently selected platform.
+    /// </summary>
+    [JsonInclude]
+    public GamePlatform CurrentPlatform { get; set; }
+
+    /// <summary>
     /// The path to the Dolphin executable.
     /// </summary>
     [JsonInclude]

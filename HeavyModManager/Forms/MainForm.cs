@@ -45,7 +45,8 @@ public partial class MainForm : Form
         if (ModManager.CheckForUpdatesOnStartup)
             TryUpdate();
 
-        ModManager.CurrentPlatform = DefaultPlatform;
+        if (ModManager.CurrentPlatform == GamePlatform.Unknown)
+            ModManager.CurrentPlatform = DefaultPlatform;
 
         comboBoxPlatform.Items.Clear();
         if (ModManager.CurrentGame == Game.Null)
@@ -312,9 +313,26 @@ public partial class MainForm : Form
 
         // If the previously selected platform is still valid, keep it selected. Otherwise select the first one.
         if (selected != -1 && selected < comboBoxPlatform.Items.Count)
+        {
             comboBoxPlatform.SelectedIndex = selected;
-        else if (comboBoxPlatform.Items.Count > 0)
-            comboBoxPlatform.SelectedIndex = 0;
+        }
+        else
+        {
+            int savedIndex = -1;
+            for (int i = 0; i < comboBoxPlatform.Items.Count; i++)
+            {
+                if (((ComboBoxPlatformItem)comboBoxPlatform.Items[i]).Platform == ModManager.CurrentPlatform)
+                {
+                    savedIndex = i;
+                    break;
+                }
+            }
+
+            if (savedIndex != -1)
+                comboBoxPlatform.SelectedIndex = savedIndex;
+            else if (comboBoxPlatform.Items.Count > 0)
+                comboBoxPlatform.SelectedIndex = 0;
+        }
 
         ShowToolTip();
 

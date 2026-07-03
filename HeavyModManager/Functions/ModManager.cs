@@ -335,6 +335,7 @@ public static class ModManager
     public static void SaveSettings(ModManagerSettings settings)
     {
         settings.CurrentGame = CurrentGame;
+        settings.CurrentPlatform = CurrentPlatform;
         settings.DolphinPath = DolphinPath;
         settings.DolphinFolderPath = DolphinFolderPath;
         settings.XemuPath = XemuPath;
@@ -362,6 +363,7 @@ public static class ModManager
         settings ??= new ModManagerSettings();
 
         CurrentGame = settings.CurrentGame;
+        CurrentPlatform = settings.CurrentPlatform;
 
         var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
         var defaultDolphinPath = Path.Combine(programFiles, "Dolphin-x64", "Dolphin.exe");
