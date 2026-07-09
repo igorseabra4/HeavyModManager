@@ -114,7 +114,7 @@ public class ModManagerSettings
         ColumnIndices = new List<int>();
         ColumnSizes = new List<int>();
         MainFormWidth = 1024;
-        MainFormHeight = 768;
+        MainFormHeight = 576;
         Theme = SystemColorMode.System;
     }
 }
