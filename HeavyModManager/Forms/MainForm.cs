@@ -839,7 +839,8 @@ public partial class MainForm : Form
                     // Try running the game again
                     RunGame();
                 }
-            } else if (result == ModManager.SaveIsoResult.MissingMkisofs)
+            }
+            else if (result == ModManager.SaveIsoResult.MissingMkisofs)
             {
                 bool downloaded = await PromptToDownloadMkisofs();
 
@@ -1263,7 +1264,7 @@ public partial class MainForm : Form
     private async Task<bool> PromptToDownloadXdvdfs()
     {
         var result = MessageBox.Show(
-            "This will download the XDVDFS tool, which is required to extract and build Xbox game ISOs. Do you want to proceed?",
+            "This will download the XDVDFS tool, which is required to extract and build Xbox game ISOs.\nEstimated size on disk: 3.45MB.\n\nDo you want to proceed?",
             "Download XDVDFS",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question);
@@ -1288,7 +1289,7 @@ public partial class MainForm : Form
     private async Task<bool> PromptToDownloadMkisofs()
     {
         var result = MessageBox.Show(
-            "This will download the mkisofs tool, which is required to extract and build Playstation 2 ISOs. Do you want to proceed?",
+            "This will download the mkisofs tool and cygwin, which is required to extract and build Playstation 2 ISOs.\nEstimated size on disk: 4.64MB.\n\nDo you want to proceed?",
             "Download mkisofs",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question);
@@ -1308,5 +1309,10 @@ public partial class MainForm : Form
         }
 
         return false;
+    }
+
+    private void downloadMkisofsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        PromptToDownloadMkisofs();
     }
 }

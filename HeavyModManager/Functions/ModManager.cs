@@ -1079,6 +1079,24 @@ public static class ModManager
         return $"{len:0.##} {sizes[order]}";
     }
 
+    private static void ForceDeleteDirectory(string path)
+    {
+        var dirInfo = new DirectoryInfo(path);
+        ClearAttributesRecursive(dirInfo);
+        Directory.Delete(path, true);
+    }
+
+    private static void ClearAttributesRecursive(DirectoryInfo dir)
+    {
+        dir.Attributes = FileAttributes.Normal;
+
+        foreach (var subDir in dir.GetDirectories())
+            ClearAttributesRecursive(subDir);
+
+        foreach (var file in dir.GetFiles())
+            file.Attributes = FileAttributes.Normal;
+    }
+
     public static async Task DownloadAndExtractMkisofs()
     {
         string baseDir = Path.Combine(Application.StartupPath, "External", "mkisofs");
@@ -1139,6 +1157,11 @@ public static class ModManager
                 {
                     File.Delete(file);
                 }
+            }
+            // Delete folders
+            foreach (var dir in Directory.GetDirectories(Path.GetDirectoryName(MkisofsPath)))
+            {
+                ForceDeleteDirectory(dir);
             }
         }
 

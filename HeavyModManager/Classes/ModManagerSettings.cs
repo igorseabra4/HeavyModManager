@@ -95,7 +95,8 @@ public class ModManagerSettings
     public ModManagerSettings()
     {
         Version = 3;
-        CurrentGame = Game.Null;
+        CurrentGame = Game.BFBB;
+        CurrentPlatform = GamePlatform.GameCube;
 
         DolphinPath = "";
         DolphinFolderPath = "";
@@ -112,8 +113,8 @@ public class ModManagerSettings
         Icon = HeavyModManagerIcon.Rainbow;
         ColumnIndices = new List<int>();
         ColumnSizes = new List<int>();
-        MainFormWidth = 738;
-        MainFormHeight = 474;
+        MainFormWidth = 1024;
+        MainFormHeight = 768;
         Theme = SystemColorMode.System;
     }
 }

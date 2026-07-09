@@ -79,6 +79,7 @@ partial class MainForm
         comboBoxPlatform = new ComboBox();
         statusStrip1 = new StatusStrip();
         labelStatus = new ToolStripStatusLabel();
+        downloadMkisofsToolStripMenuItem = new ToolStripMenuItem();
         groupBoxGame.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBoxMod).BeginInit();
         groupBoxMods.SuspendLayout();
@@ -231,7 +232,7 @@ partial class MainForm
         // 
         // settingsToolStripMenuItem
         // 
-        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { emulatorSettingsToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, downloadXdvdfsToolStripMenuItem, toolStripSeparator2, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, showISOAfterSavingToolStripMenuItem, openSettingsjsonToolStripMenuItem });
+        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { emulatorSettingsToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, downloadXdvdfsToolStripMenuItem, downloadMkisofsToolStripMenuItem, toolStripSeparator2, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, showISOAfterSavingToolStripMenuItem, openSettingsjsonToolStripMenuItem });
         settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
         resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
         // 
@@ -425,6 +426,12 @@ partial class MainForm
         labelStatus.Name = "labelStatus";
         resources.ApplyResources(labelStatus, "labelStatus");
         // 
+        // downloadMkisofsToolStripMenuItem
+        // 
+        downloadMkisofsToolStripMenuItem.Name = "downloadMkisofsToolStripMenuItem";
+        resources.ApplyResources(downloadMkisofsToolStripMenuItem, "downloadMkisofsToolStripMenuItem");
+        downloadMkisofsToolStripMenuItem.Click += downloadMkisofsToolStripMenuItem_Click;
+        // 
         // MainForm
         // 
         resources.ApplyResources(this, "$this");
@@ -510,4 +517,5 @@ partial class MainForm
     private PictureBox pictureBoxPlatform;
     private ToolStripMenuItem helpToolStripMenuItem;
     private ToolStripMenuItem aboutToolStripMenuItem;
+    private ToolStripMenuItem downloadMkisofsToolStripMenuItem;
 }
