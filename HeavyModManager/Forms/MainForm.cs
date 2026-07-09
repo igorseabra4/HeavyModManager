@@ -14,6 +14,7 @@ public partial class MainForm : Form
 {
     public MainForm()
     {
+        showOnboarding = !File.Exists(ModManager.ModManagerSettingsPath);
         var settings = LoadSettings();
         // Set theme e.g. Classic/Dark
         Application.SetColorMode(settings.Theme);
@@ -71,6 +72,8 @@ public partial class MainForm : Form
         ShowToolTip();
         UpdatePlatformIcon();
     }
+
+    private bool showOnboarding = false;
 
     private readonly GamePlatform DefaultPlatform = GamePlatform.GameCube;
 
@@ -218,7 +221,18 @@ public partial class MainForm : Form
 
     private void MainForm_Shown(object sender, EventArgs e)
     {
-        //ShowToolTip();
+        if (showOnboarding)
+        {
+            MessageBox.Show(
+                "It looks like your first time running Heavy Mod Manager.\n\n" +
+                "You can find instructions at heavyironmodding.org.\n" +
+                "Feel free to ask for help in the Heavy Iron Modding Discord, under Help > About.",
+                "Welcome",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
+        ShowToolTip();
     }
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
