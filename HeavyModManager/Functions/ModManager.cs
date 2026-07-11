@@ -574,6 +574,12 @@ public static class ModManager
         // We only care about these paths if it's a GC backup
         if (platform == GamePlatform.GameCube)
         {
+            // If rootpath folder name is sys, go one folder up.
+            if (Path.GetFileName(rootPath).Equals("sys", StringComparison.OrdinalIgnoreCase))
+            {
+                rootPath = Path.GetDirectoryName(rootPath) ?? rootPath;
+            }
+
             var files = Path.Combine(rootPath, "files");
             var sys = Path.Combine(rootPath, "sys");
 

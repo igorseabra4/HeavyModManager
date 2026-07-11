@@ -769,7 +769,6 @@ public partial class MainForm : Form
             {
                 ModManager.RestoreBackupIso(openFile.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
             }
-            //else if (Path.GetExtension(openFile.FileName).ToLower().Equals(".dol"))
             else
             {
                 result = ModManager.RestoreBackupFromFolder(
@@ -778,12 +777,6 @@ public partial class MainForm : Form
                     ModManager.CurrentPlatform
                     );
             }
-            //else
-            //{
-            //    MessageBox.Show(GlobalResources.unsupportedFiletype,
-            //        GlobalResources.error,
-            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
 
             if (result)
             {
