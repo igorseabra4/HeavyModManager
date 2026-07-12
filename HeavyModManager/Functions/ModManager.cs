@@ -524,40 +524,55 @@ public static class ModManager
         if (Directory.Exists(GameBackupPath(game, platform)))
             Directory.Delete(GameBackupPath(game, platform), true);
 
-        // TODO DON'T ASSUME GAMECUBE IMAGE!!
-        GameCubeImage image;
-
-        try
+        switch (platform)
         {
-            image = new GameCubeImage(isoPath);
-        }
-        catch (Exception ex)
-        {
-            // TODO: Localize!
-            MessageBox.Show("Unable to read ISO: " + ex.Message, "Error reading ISO",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            case GamePlatform.GameCube:
+                GameCubeImage image;
+                
+                try
+                {
+                    image = new GameCubeImage(isoPath);
+                }
+                catch (Exception ex)
+                {
+                    // TODO: Localize!
+                    MessageBox.Show("Unable to read ISO: " + ex.Message, "Error reading ISO",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            return false;
+                    return false;
+                }
+
+                Directory.CreateDirectory(GameBackupPath(game, platform));
+
+                string destFilesPath = Path.Combine(GameBackupPath(game, platform), "files");
+                string destSysPath = Path.Combine(GameBackupPath(game, platform), "sys");
+
+                Directory.CreateDirectory(destFilesPath);
+                Directory.CreateDirectory(destSysPath);
+
+                try
+                {
+                    image.Dump(destFilesPath, destSysPath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Unable to create backup from ISO: " + ex.Message, "Backup failed",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Directory.Delete(GameBackupPath(game, platform), true);
+                    return false;
+                }
+                break;
+            case GamePlatform.PlayStation2:
+                SevenZipLib.SevenZip.ExtractToDir(isoPath, GameBackupPath(game, platform));
+
+                break;
+            case GamePlatform.Xbox:
+                throw new NotImplementedException("gulp");
+                break;
+            default:
+                throw new NotImplementedException("Backup restore for this platform is not implemented yet.");
         }
 
-        Directory.CreateDirectory(GameBackupPath(game, platform));
-
-        try
-        {
-            //image.Dump(GameBackupFilesPath(game, platform), GameBackupSysPath);
-            throw new NotImplementedException("wehhh");
-        }
-        catch (Exception ex)
-        {
-            // TODO: Localize!
-            MessageBox.Show("Unable to create backup from ISO: " + ex.Message, "Backup failed",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            Directory.Delete(GameBackupPath(game, platform), true);
-            return false;
-        }
-
-        MessageBox.Show($"Game backup for {GameToStringFull(game)} succesfully created. You can apply mods now.",
-            "Backup successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         return true;
     }
 

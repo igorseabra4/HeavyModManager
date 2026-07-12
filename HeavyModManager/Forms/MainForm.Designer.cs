@@ -34,6 +34,7 @@ partial class MainForm
         comboBoxGame = new ComboBox();
         pictureBoxMod = new PictureBox();
         groupBoxMods = new GroupBox();
+        buttonBrowseMods = new Button();
         listViewMods = new ListView();
         columnName = new ColumnHeader();
         columnAuthor = new ColumnHeader();
@@ -55,6 +56,7 @@ partial class MainForm
         checkForUpdatesOnStartupToolStripMenuItem = new ToolStripMenuItem();
         checkForUpdatesNowToolStripMenuItem = new ToolStripMenuItem();
         downloadXdvdfsToolStripMenuItem = new ToolStripMenuItem();
+        downloadMkisofsToolStripMenuItem = new ToolStripMenuItem();
         toolStripSeparator2 = new ToolStripSeparator();
         changeIconToolStripMenuItem = new ToolStripMenuItem();
         languageToolStripMenuItem = new ToolStripMenuItem();
@@ -79,7 +81,6 @@ partial class MainForm
         comboBoxPlatform = new ComboBox();
         statusStrip1 = new StatusStrip();
         labelStatus = new ToolStripStatusLabel();
-        downloadMkisofsToolStripMenuItem = new ToolStripMenuItem();
         groupBoxGame.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBoxMod).BeginInit();
         groupBoxMods.SuspendLayout();
@@ -129,6 +130,7 @@ partial class MainForm
         // groupBoxMods
         // 
         resources.ApplyResources(groupBoxMods, "groupBoxMods");
+        groupBoxMods.Controls.Add(buttonBrowseMods);
         groupBoxMods.Controls.Add(listViewMods);
         groupBoxMods.Controls.Add(buttonRefreshModList);
         groupBoxMods.Controls.Add(buttonMoveDown);
@@ -136,6 +138,13 @@ partial class MainForm
         groupBoxMods.Controls.Add(buttonAddMod);
         groupBoxMods.Name = "groupBoxMods";
         groupBoxMods.TabStop = false;
+        // 
+        // buttonBrowseMods
+        // 
+        resources.ApplyResources(buttonBrowseMods, "buttonBrowseMods");
+        buttonBrowseMods.Name = "buttonBrowseMods";
+        buttonBrowseMods.UseVisualStyleBackColor = true;
+        buttonBrowseMods.Click += buttonBrowseMods_Click;
         // 
         // listViewMods
         // 
@@ -265,6 +274,12 @@ partial class MainForm
         downloadXdvdfsToolStripMenuItem.Name = "downloadXdvdfsToolStripMenuItem";
         resources.ApplyResources(downloadXdvdfsToolStripMenuItem, "downloadXdvdfsToolStripMenuItem");
         downloadXdvdfsToolStripMenuItem.Click += downloadXdvdfsToolStripMenuItem_Click;
+        // 
+        // downloadMkisofsToolStripMenuItem
+        // 
+        downloadMkisofsToolStripMenuItem.Name = "downloadMkisofsToolStripMenuItem";
+        resources.ApplyResources(downloadMkisofsToolStripMenuItem, "downloadMkisofsToolStripMenuItem");
+        downloadMkisofsToolStripMenuItem.Click += downloadMkisofsToolStripMenuItem_Click;
         // 
         // toolStripSeparator2
         // 
@@ -426,12 +441,6 @@ partial class MainForm
         labelStatus.Name = "labelStatus";
         resources.ApplyResources(labelStatus, "labelStatus");
         // 
-        // downloadMkisofsToolStripMenuItem
-        // 
-        downloadMkisofsToolStripMenuItem.Name = "downloadMkisofsToolStripMenuItem";
-        resources.ApplyResources(downloadMkisofsToolStripMenuItem, "downloadMkisofsToolStripMenuItem");
-        downloadMkisofsToolStripMenuItem.Click += downloadMkisofsToolStripMenuItem_Click;
-        // 
         // MainForm
         // 
         resources.ApplyResources(this, "$this");
@@ -518,4 +527,5 @@ partial class MainForm
     private ToolStripMenuItem helpToolStripMenuItem;
     private ToolStripMenuItem aboutToolStripMenuItem;
     private ToolStripMenuItem downloadMkisofsToolStripMenuItem;
+    private Button buttonBrowseMods;
 }

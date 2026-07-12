@@ -767,7 +767,7 @@ public partial class MainForm : Form
             // Extract game from ISO (platform-dependent)
             if (Path.GetExtension(openFile.FileName).ToLower().Equals(".iso"))
             {
-                ModManager.RestoreBackupIso(openFile.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
+                result = ModManager.RestoreBackupIso(openFile.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
             }
             else
             {
@@ -1321,5 +1321,24 @@ public partial class MainForm : Form
     private void downloadMkisofsToolStripMenuItem_Click(object sender, EventArgs e)
     {
         PromptToDownloadMkisofs();
+    }
+
+    private void buttonBrowseMods_Click(object sender, EventArgs e)
+    {
+        // Open url in browser
+        string url = "https://heavyironmodding.org/wiki/Mods";
+
+        try
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = url,
+                UseShellExecute = true
+            });
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Failed to open browser:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }
