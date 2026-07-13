@@ -961,9 +961,13 @@ public static class ModManager
             startInfo.ArgumentList.Add("-dvd_path");
             startInfo.ArgumentList.Add(runPath);
         }
-        else
+        else if (platform == GamePlatform.GameCube)
         {
-            // Other platforms just pass the game path
+            // Add path to main.dol
+            runPath = Path.Combine(runPath, "sys", "main.dol");
+            startInfo.ArgumentList.Add(runPath);
+        } else
+        {
             startInfo.ArgumentList.Add(runPath);
         }
 
