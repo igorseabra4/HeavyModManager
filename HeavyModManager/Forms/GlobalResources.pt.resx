@@ -258,4 +258,10 @@ O ID do Mod não pode ser alterado após a criação do mod.</value>
   <data name="noUpdateAvailable" xml:space="preserve">
     <value>Nenhuma atualização disponível</value>
   </data>
+  <data name="applyAndSaveIso" xml:space="preserve">
+    <value>Aplicar e guardar ISO...</value>
+  </data>
+  <data name="saveIso" xml:space="preserve">
+    <value>Guardar ISO...</value>
+  </data>
 </root>

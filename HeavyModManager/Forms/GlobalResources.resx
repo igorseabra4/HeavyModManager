@@ -407,4 +407,10 @@ Supported games: Scooby, BFBB, Movie, Incredibles, Underminer, RatProto</value>
   <data name="noUpdateAvailable" xml:space="preserve">
     <value>No update available</value>
   </data>
+  <data name="applyAndSaveIso" xml:space="preserve">
+    <value>Apply and Save ISO...</value>
+  </data>
+  <data name="saveIso" xml:space="preserve">
+    <value>Save ISO...</value>
+  </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿using HeavyModManager.Enum;
 using HeavyModManager.Forms.Other;
 using System.Text.Json.Serialization;
+using System.Windows.Forms.Design;
 
 namespace HeavyModManager.Classes;
 
@@ -60,6 +61,9 @@ public class ModManagerSettings
     [JsonInclude]
     public string Language { get; set; }
 
+    [JsonInclude]
+    public SystemColorMode Theme { get; set; }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ModManagerSettings"/> class.
     /// </summary>
@@ -77,5 +81,6 @@ public class ModManagerSettings
         ColumnSizes = new List<int>();
         MainFormWidth = 738;
         MainFormHeight = 474;
+        Theme = SystemColorMode.System;
     }
 }

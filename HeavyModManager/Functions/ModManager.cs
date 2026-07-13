@@ -1,4 +1,5 @@
-﻿using HeavyModManager.Classes;
+﻿using GCNTools;
+using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
@@ -681,5 +682,19 @@ public static class ModManager
         }
 
         Process.Start(DolphinPath, new string[] { GameDolPath });
+    }
+
+    public static void SaveISO(string path)
+    {
+        DiscImage.CreateFile(GameGamePath, path);
+    }
+
+    public static void OpenSettingsFile()
+    {
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = ModManagerSettingsPath,
+            UseShellExecute = true
+        });
     }
 }
