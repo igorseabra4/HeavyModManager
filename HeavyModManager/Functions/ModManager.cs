@@ -3,15 +3,11 @@ using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
-using SharpCompress.Archives;
-using SharpCompress.Archives.Rar;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO.Compression;
 using System.Net;
 using System.Text.Json;
-using SharpCompress.Common;
-using SharpCompress.Readers;
 using SevenZipLib;
 
 namespace HeavyModManager.Functions;
@@ -519,7 +515,7 @@ public static class ModManager
             Directory.Delete(path, true);
     }
 
-    public static bool RestoreBackupIso(string isoPath, Game game, GamePlatform platform)
+    public static Result RestoreBackupIso(string isoPath, Game game, GamePlatform platform)
     {
         if (Directory.Exists(GameBackupPath(game, platform)))
             Directory.Delete(GameBackupPath(game, platform), true);
@@ -535,11 +531,10 @@ public static class ModManager
                 }
                 catch (Exception ex)
                 {
-                    // TODO: Localize!
                     MessageBox.Show("Unable to read ISO: " + ex.Message, "Error reading ISO",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    return false;
+                    return Result.Error;
                 }
 
                 Directory.CreateDirectory(GameBackupPath(game, platform));
@@ -559,24 +554,51 @@ public static class ModManager
                     MessageBox.Show("Unable to create backup from ISO: " + ex.Message, "Backup failed",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Directory.Delete(GameBackupPath(game, platform), true);
-                    return false;
+                    return Result.Error;
                 }
                 break;
             case GamePlatform.PlayStation2:
-                SevenZipLib.SevenZip.ExtractToDir(isoPath, GameBackupPath(game, platform));
+                SevenZip.ExtractToDir(isoPath, GameBackupPath(game, platform));
 
                 break;
             case GamePlatform.Xbox:
-                throw new NotImplementedException("gulp");
-                break;
+                {
+                    if (!XdvdfsIsDownloaded)
+                        return Result.MissingXdvdfs;
+
+                    var psi = new ProcessStartInfo
+                    {
+                        FileName = XdvdfsPath,
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        CreateNoWindow = true
+                    };
+
+                    psi.ArgumentList.Add("unpack");
+                    psi.ArgumentList.Add(isoPath); // in
+                    psi.ArgumentList.Add(GameGamePath(game, platform)); // out
+
+                    using var process = Process.Start(psi);
+
+                    string output = process.StandardOutput.ReadToEnd();
+                    string error = process.StandardError.ReadToEnd();
+
+                    process.WaitForExit();
+
+                    if (!string.IsNullOrEmpty(error))
+                        throw new Exception("Error extracting Xbox ISO: " + error);
+
+                    break;
+                }
             default:
                 throw new NotImplementedException("Backup restore for this platform is not implemented yet.");
         }
 
-        return true;
+        return Result.Success;
     }
 
-    public static bool RestoreBackupFromFolder(string rootPath, Game game, GamePlatform platform)
+    public static Result RestoreBackupFromFolder(string rootPath, Game game, GamePlatform platform)
     {
         var fs = new Microsoft.VisualBasic.Devices.Computer().FileSystem;
 
@@ -600,12 +622,12 @@ public static class ModManager
 
             if (!Directory.Exists(files))
             {
-                return false;
+                return Result.Error;
             }
             
             if (!Directory.Exists(sys))
             {
-                return false;
+                return Result.Error;
             }
 
             // Create files and sys folders
@@ -623,7 +645,7 @@ public static class ModManager
             fs.CopyDirectory(rootPath, GameBackupPath(game, platform));
         }
 
-        return true;
+        return Result.Success;
     }
 
     public static void Invalidate()
@@ -872,7 +894,7 @@ public static class ModManager
     /// <summary>
     /// Runs the current patched game with the emulator
     /// </summary>
-    public static async Task<SaveIsoResult> RunGameAsync(Game game, GamePlatform platform)
+    public static async Task<Result> RunGameAsync(Game game, GamePlatform platform)
     {
         string emulatorPath = "";
         
@@ -891,7 +913,7 @@ public static class ModManager
 
         if (String.IsNullOrEmpty(emulatorPath))
         {
-            return SaveIsoResult.EmulatorNotFound;
+            return Result.EmulatorNotFound;
         }
         
         string runPath = GameGamePath(game, platform);
@@ -910,11 +932,11 @@ public static class ModManager
             
             var result = await SaveISOAsync(runPath, game, platform);
 
-            if (result == SaveIsoResult.MissingXdvdfs)
-                return SaveIsoResult.MissingXdvdfs;
+            if (result == Result.MissingXdvdfs)
+                return Result.MissingXdvdfs;
 
-            if (result == SaveIsoResult.MissingMkisofs)
-                return SaveIsoResult.MissingMkisofs;
+            if (result == Result.MissingMkisofs)
+                return Result.MissingMkisofs;
         }
         
         string extraArgs = GetCommandLineArguments(platform); // may be empty
@@ -948,7 +970,7 @@ public static class ModManager
         // Start the emulator
         Process.Start(startInfo);
 
-        return SaveIsoResult.Success;
+        return Result.Success;
     }
 
     private static string GetCommandLineArguments(GamePlatform platform)
@@ -966,15 +988,16 @@ public static class ModManager
         }
     }
 
-    public enum SaveIsoResult
+    public enum Result
     {
         Success,
         MissingXdvdfs,
         MissingMkisofs,
-        EmulatorNotFound
+        EmulatorNotFound,
+        Error
     }
 
-    public static async Task<SaveIsoResult> SaveISOAsync(string path, Game game, GamePlatform platform)
+    public static async Task<Result> SaveISOAsync(string path, Game game, GamePlatform platform)
     {
         switch (platform)
         {
@@ -984,7 +1007,7 @@ public static class ModManager
             case GamePlatform.PlayStation2:
                 {
                     if (!MkisofsIsDownloaded)
-                        return SaveIsoResult.MissingMkisofs;
+                        return Result.MissingMkisofs;
 
                     var psiPs2 = new ProcessStartInfo
                     {
@@ -1018,7 +1041,7 @@ public static class ModManager
             case GamePlatform.Xbox:
                 {
                     if (!XdvdfsIsDownloaded)
-                        return SaveIsoResult.MissingXdvdfs;
+                        return Result.MissingXdvdfs;
 
                     var psi = new ProcessStartInfo
                     {
@@ -1046,7 +1069,7 @@ public static class ModManager
                     break;
                 }
         }
-        return SaveIsoResult.Success;
+        return Result.Success;
     }
 
     /// <summary>

@@ -741,7 +741,7 @@ public partial class MainForm : Form
         PopulateModList();
     }
 
-    private void buttonRestoreBackup_Click(object sender, EventArgs e)
+    private async void buttonRestoreBackup_Click(object sender, EventArgs e)
     {
         string platform = ModManager.PlatformToStringFull(ModManager.CurrentPlatform);
         string executableType = ModManager.PlatformToExecutable(ModManager.CurrentPlatform);
@@ -761,40 +761,58 @@ public partial class MainForm : Form
 
         if (openFile.ShowDialog() == DialogResult.OK)
         {
-            Enabled = false;
-            bool result = false;
+            bool done = false;
+            while (!done)
+            {
+                Enabled = false;
+                ModManager.Result result = ModManager.Result.Error;
 
-            // Extract game from ISO (platform-dependent)
-            if (Path.GetExtension(openFile.FileName).ToLower().Equals(".iso"))
-            {
-                result = ModManager.RestoreBackupIso(openFile.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
-            }
-            else
-            {
-                result = ModManager.RestoreBackupFromFolder(
-                    Path.GetDirectoryName(openFile.FileName),
-                    ModManager.CurrentGame,
-                    ModManager.CurrentPlatform
-                    );
-            }
+                // Extract game from ISO (platform-dependent)
+                if (Path.GetExtension(openFile.FileName).ToLower().Equals(".iso"))
+                {
+                    try
+                    {
+                        result = ModManager.RestoreBackupIso(openFile.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
+                    } catch (Exception ex)
+                    {
+                        MessageBox.Show("Error occurred while restoring backup from ISO: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    result = ModManager.RestoreBackupFromFolder(
+                        Path.GetDirectoryName(openFile.FileName),
+                        ModManager.CurrentGame,
+                        ModManager.CurrentPlatform
+                        );
+                }
 
-            if (result)
-            {
-                MessageBox.Show(
-                    $"Game backup for {ModManager.GameToStringFull(ModManager.CurrentGame)} succesfully created. You can apply mods now.",
-                    "Backup successful",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                    );
-            }
-            else
-            {
-                MessageBox.Show(
-                    $"Failed to create game backup for {ModManager.GameToStringFull(ModManager.CurrentGame)}.",
-                    "Backup failed",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                    );
+                if (result == ModManager.Result.Success)
+                {
+                    done = true;
+                    TaskbarFlasher.Flash(this.Handle);
+                    MessageBox.Show(
+                        $"Game backup for {ModManager.GameToStringFull(ModManager.CurrentGame)} succesfully created. You can apply mods now.",
+                        "Backup successful",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                        );
+                    TaskbarFlasher.Stop(this.Handle);
+                }
+                else if (result == ModManager.Result.MissingXdvdfs)
+                {
+                    bool downloaded = await PromptToDownloadXdvdfs();
+                }
+                else
+                {
+                    done = true;
+                    MessageBox.Show(
+                        $"Failed to create game backup for {ModManager.GameToStringFull(ModManager.CurrentGame)}.",
+                        "Backup failed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                        );
+                }
             }
 
             Enabled = true;
@@ -828,7 +846,7 @@ public partial class MainForm : Form
         {
             var result = await ModManager.RunGameAsync(ModManager.CurrentGame, ModManager.CurrentPlatform);
 
-            if (result == ModManager.SaveIsoResult.EmulatorNotFound)
+            if (result == ModManager.Result.EmulatorNotFound)
             {
                 // warn user
                 MessageBox.Show(
@@ -837,7 +855,7 @@ public partial class MainForm : Form
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-            else if (result == ModManager.SaveIsoResult.MissingXdvdfs)
+            else if (result == ModManager.Result.MissingXdvdfs)
             {
                 bool downloaded = await PromptToDownloadXdvdfs();
 
@@ -847,7 +865,7 @@ public partial class MainForm : Form
                     RunGame();
                 }
             }
-            else if (result == ModManager.SaveIsoResult.MissingMkisofs)
+            else if (result == ModManager.Result.MissingMkisofs)
             {
                 bool downloaded = await PromptToDownloadMkisofs();
 
@@ -1107,7 +1125,7 @@ public partial class MainForm : Form
 
                 var result = await creationTask;
 
-                if (result == ModManager.SaveIsoResult.MissingXdvdfs)
+                if (result == ModManager.Result.MissingXdvdfs)
                 {
                     bool downloaded = await PromptToDownloadXdvdfs();
 
@@ -1281,7 +1299,9 @@ public partial class MainForm : Form
             try
             {
                 await ModManager.DownloadLatestXdvdfsAsync();
+                TaskbarFlasher.Flash(this.Handle);
                 MessageBox.Show("XDVDFS downloaded successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TaskbarFlasher.Stop(this.Handle);
                 return true;
             }
             catch (Exception ex)
@@ -1296,7 +1316,7 @@ public partial class MainForm : Form
     private async Task<bool> PromptToDownloadMkisofs()
     {
         var result = MessageBox.Show(
-            "This will download the mkisofs tool and cygwin, which is required to extract and build Playstation 2 ISOs.\nEstimated size on disk: 4.64MB.\n\nDo you want to proceed?",
+            "This will download the mkisofs tool and cygwin, which is required to build Playstation 2 ISOs.\nEstimated size on disk: 4.64MB.\n\nDo you want to proceed?",
             "Download mkisofs",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question);
@@ -1306,7 +1326,9 @@ public partial class MainForm : Form
             try
             {
                 await ModManager.DownloadAndExtractMkisofs();
+                TaskbarFlasher.Flash(this.Handle);
                 MessageBox.Show("mkisofs downloaded successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                TaskbarFlasher.Stop(this.Handle);
                 return true;
             }
             catch (Exception ex)
