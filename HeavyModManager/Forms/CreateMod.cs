@@ -177,11 +177,14 @@ public partial class CreateMod : Form
 
         string modPath = mod.SaveModJson(isEditing);
 
-        MessageBox.Show(GlobalResources.modCreatedAt + " " + modPath,
-            GlobalResources.modCreated,
-            MessageBoxButtons.OK, MessageBoxIcon.Information);
+        if (!isEditing)
+        {
+            MessageBox.Show(GlobalResources.modCreatedAt + " " + modPath,
+                GlobalResources.modCreated,
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-        System.Diagnostics.Process.Start("explorer.exe", modPath);
+            System.Diagnostics.Process.Start("explorer.exe", modPath);
+        }
 
         Close();
     }
