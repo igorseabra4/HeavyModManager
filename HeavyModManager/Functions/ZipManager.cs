@@ -37,6 +37,15 @@ public static class ZipManager
             return;
         }
 
+        // Migrate old mods that don't have a platform set to GameCube by default.
+        // Older versions of HMM didn't support non-GameCube platforms
+        bool needToUpdateModJson = false;
+        if (mod.Platform == GamePlatform.Unknown)
+        {
+            needToUpdateModJson = true;
+            mod.Platform = GamePlatform.GameCube;
+        }
+
         var modPath = ModManager.GetModPath(mod.ModId);
 
         ModManager.DeleteMod(mod.ModId);
@@ -57,6 +66,12 @@ public static class ZipManager
                 Directory.CreateDirectory(destFolder);
 
             entry.ExtractToFile(destinationPath, true);
+        }
+        // Update mod.json with the correct platform in case it was migrated
+
+        if (needToUpdateModJson)
+        {
+            mod.SaveModJson(false);
         }
     }
 
