@@ -81,7 +81,7 @@ namespace HeavyModManager.Functions
                     {
                         var oldFilePath = Path.Combine(Application.StartupPath, file);
                         if (File.Exists(oldFilePath))
-                            File.Move(oldFilePath, Path.Combine(oldDirPath, file));
+                            File.Move(oldFilePath, Path.Combine(oldDirPath, file), true);
                     }
 
                     ZipFile.ExtractToDirectory(updatedZipFilePath, Application.StartupPath);
