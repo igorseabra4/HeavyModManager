@@ -42,6 +42,11 @@ partial class CreateMod
         textBoxAuthor = new TextBox();
         groupBoxPlatform = new GroupBox();
         comboBoxPlatform = new ComboBox();
+        groupBoxModImage = new GroupBox();
+        pictureBoxThumbnail = new PictureBox();
+        buttonPickImage = new Button();
+        labelResolution = new Label();
+        textBoxImagePath = new TextBox();
         groupBoxDescription = new GroupBox();
         richTextBoxDescription = new RichTextBox();
         groupBoxCreatedAt = new GroupBox();
@@ -88,6 +93,8 @@ partial class CreateMod
         groupBoxModName.SuspendLayout();
         groupBoxAuthor.SuspendLayout();
         groupBoxPlatform.SuspendLayout();
+        groupBoxModImage.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)pictureBoxThumbnail).BeginInit();
         groupBoxDescription.SuspendLayout();
         groupBoxCreatedAt.SuspendLayout();
         groupBoxUpdatedAt.SuspendLayout();
@@ -142,6 +149,7 @@ partial class CreateMod
         flowLayoutPanelPage1.Controls.Add(groupBoxModName);
         flowLayoutPanelPage1.Controls.Add(groupBoxAuthor);
         flowLayoutPanelPage1.Controls.Add(groupBoxPlatform);
+        flowLayoutPanelPage1.Controls.Add(groupBoxModImage);
         flowLayoutPanelPage1.Controls.Add(groupBoxDescription);
         flowLayoutPanelPage1.Controls.Add(groupBoxCreatedAt);
         flowLayoutPanelPage1.Controls.Add(groupBoxUpdatedAt);
@@ -207,6 +215,41 @@ partial class CreateMod
         comboBoxPlatform.FormattingEnabled = true;
         comboBoxPlatform.Name = "comboBoxPlatform";
         comboBoxPlatform.SelectedIndexChanged += comboBoxPlatform_SelectedIndexChanged;
+        // 
+        // groupBoxModImage
+        // 
+        groupBoxModImage.Controls.Add(pictureBoxThumbnail);
+        groupBoxModImage.Controls.Add(buttonPickImage);
+        groupBoxModImage.Controls.Add(labelResolution);
+        groupBoxModImage.Controls.Add(textBoxImagePath);
+        resources.ApplyResources(groupBoxModImage, "groupBoxModImage");
+        groupBoxModImage.Name = "groupBoxModImage";
+        groupBoxModImage.TabStop = false;
+        // 
+        // pictureBoxThumbnail
+        // 
+        pictureBoxThumbnail.BackColor = SystemColors.Control;
+        resources.ApplyResources(pictureBoxThumbnail, "pictureBoxThumbnail");
+        pictureBoxThumbnail.InitialImage = Properties.Resources.image_placeholder;
+        pictureBoxThumbnail.Name = "pictureBoxThumbnail";
+        pictureBoxThumbnail.TabStop = false;
+        // 
+        // buttonPickImage
+        // 
+        resources.ApplyResources(buttonPickImage, "buttonPickImage");
+        buttonPickImage.Name = "buttonPickImage";
+        buttonPickImage.UseVisualStyleBackColor = true;
+        buttonPickImage.Click += buttonPickImage_Click;
+        // 
+        // labelResolution
+        // 
+        resources.ApplyResources(labelResolution, "labelResolution");
+        labelResolution.Name = "labelResolution";
+        // 
+        // textBoxImagePath
+        // 
+        resources.ApplyResources(textBoxImagePath, "textBoxImagePath");
+        textBoxImagePath.Name = "textBoxImagePath";
         // 
         // groupBoxDescription
         // 
@@ -498,6 +541,9 @@ partial class CreateMod
         groupBoxAuthor.ResumeLayout(false);
         groupBoxAuthor.PerformLayout();
         groupBoxPlatform.ResumeLayout(false);
+        groupBoxModImage.ResumeLayout(false);
+        groupBoxModImage.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)pictureBoxThumbnail).EndInit();
         groupBoxDescription.ResumeLayout(false);
         groupBoxCreatedAt.ResumeLayout(false);
         groupBoxUpdatedAt.ResumeLayout(false);
@@ -574,4 +620,9 @@ partial class CreateMod
     private ComboBox comboBoxPlatform;
     private GroupBox groupBoxVersion;
     private TextBox textBoxVersion;
+    private GroupBox groupBoxModImage;
+    private TextBox textBoxImagePath;
+    private Label labelResolution;
+    private Button buttonPickImage;
+    private PictureBox pictureBoxThumbnail;
 }

@@ -206,6 +206,21 @@ public partial class CreateMod : Form
             GlobalResources.modCreated,
             MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+        // Copy image to mod folder if it exists
+        if (!string.IsNullOrWhiteSpace(textBoxImagePath.Text) && File.Exists(textBoxImagePath.Text))
+        {
+            try
+            {
+                string imageExtension = Path.GetExtension(textBoxImagePath.Text);
+                string destImagePath = Path.Combine(modPath, "mod" + imageExtension);
+                File.Copy(textBoxImagePath.Text, destImagePath, true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error copying thumbnail image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         System.Diagnostics.Process.Start("explorer.exe", modPath);
 
         Close();
@@ -571,5 +586,32 @@ public partial class CreateMod : Form
     private void textBoxVersion_TextChanged(object sender, EventArgs e)
     {
         ResetModId();
+    }
+
+    private void buttonPickImage_Click(object sender, EventArgs e)
+    {
+        // Select an image file for the mod's thumbnail
+
+        OpenFileDialog openFileDialog = new OpenFileDialog()
+        {
+            Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif|All Files (*.*)|*.*",
+            Title = "Select a mod thumbnail image"
+        };
+
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            // Load the selected image into the picture box
+            try
+            {
+                pictureBoxThumbnail.Image = Image.FromFile(openFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Update the path textbox
+        textBoxImagePath.Text = openFileDialog.FileName;
     }
 }

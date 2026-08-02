@@ -130,7 +130,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonCreateMod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 730</value>
+    <value>169, 749</value>
   </data>
   <data name="buttonCreateMod.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 25</value>
@@ -160,7 +160,7 @@
     <value>True</value>
   </data>
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>266, 730</value>
+    <value>287, 749</value>
   </data>
   <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 25</value>
@@ -196,7 +196,7 @@
     <value>3, 19</value>
   </data>
   <data name="comboBoxGame.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 23</value>
+    <value>351, 23</value>
   </data>
   <data name="comboBoxGame.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -217,7 +217,7 @@
     <value>3, 3</value>
   </data>
   <data name="groupBoxGame.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 51</value>
+    <value>357, 51</value>
   </data>
   <data name="groupBoxGame.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -244,7 +244,7 @@
     <value>3, 19</value>
   </data>
   <data name="textBoxModName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 23</value>
+    <value>351, 23</value>
   </data>
   <data name="textBoxModName.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -268,7 +268,7 @@
     <value>3, 60</value>
   </data>
   <data name="groupBoxModName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 51</value>
+    <value>357, 51</value>
   </data>
   <data name="groupBoxModName.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -295,7 +295,7 @@
     <value>3, 19</value>
   </data>
   <data name="textBoxAuthor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 23</value>
+    <value>351, 23</value>
   </data>
   <data name="textBoxAuthor.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -319,7 +319,7 @@
     <value>3, 117</value>
   </data>
   <data name="groupBoxAuthor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 51</value>
+    <value>357, 51</value>
   </data>
   <data name="groupBoxAuthor.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -346,7 +346,7 @@
     <value>3, 19</value>
   </data>
   <data name="comboBoxPlatform.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 23</value>
+    <value>351, 23</value>
   </data>
   <data name="comboBoxPlatform.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -370,7 +370,7 @@
     <value>3, 174</value>
   </data>
   <data name="groupBoxPlatform.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 51</value>
+    <value>357, 51</value>
   </data>
   <data name="groupBoxPlatform.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -390,6 +390,138 @@
   <data name="&gt;&gt;groupBoxPlatform.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="pictureBoxThumbnail.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="pictureBoxThumbnail.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="pictureBoxThumbnail.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 41</value>
+  </data>
+  <data name="pictureBoxThumbnail.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="pictureBoxThumbnail.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxThumbnail.Name" xml:space="preserve">
+    <value>pictureBoxThumbnail</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxThumbnail.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxThumbnail.Parent" xml:space="preserve">
+    <value>groupBoxModImage</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxThumbnail.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonPickImage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="buttonPickImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>316, 19</value>
+  </data>
+  <data name="buttonPickImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 23</value>
+  </data>
+  <data name="buttonPickImage.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="buttonPickImage.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="&gt;&gt;buttonPickImage.Name" xml:space="preserve">
+    <value>buttonPickImage</value>
+  </data>
+  <data name="&gt;&gt;buttonPickImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonPickImage.Parent" xml:space="preserve">
+    <value>groupBoxModImage</value>
+  </data>
+  <data name="&gt;&gt;buttonPickImage.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labelResolution.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelResolution.Location" type="System.Drawing.Point, System.Drawing">
+    <value>67, 45</value>
+  </data>
+  <data name="labelResolution.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 15</value>
+  </data>
+  <data name="labelResolution.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="labelResolution.Text" xml:space="preserve">
+    <value>480×360 recommended</value>
+  </data>
+  <data name="&gt;&gt;labelResolution.Name" xml:space="preserve">
+    <value>labelResolution</value>
+  </data>
+  <data name="&gt;&gt;labelResolution.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelResolution.Parent" xml:space="preserve">
+    <value>groupBoxModImage</value>
+  </data>
+  <data name="&gt;&gt;labelResolution.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="textBoxImagePath.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="textBoxImagePath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>67, 19</value>
+  </data>
+  <data name="textBoxImagePath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 23</value>
+  </data>
+  <data name="textBoxImagePath.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;textBoxImagePath.Name" xml:space="preserve">
+    <value>textBoxImagePath</value>
+  </data>
+  <data name="&gt;&gt;textBoxImagePath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxImagePath.Parent" xml:space="preserve">
+    <value>groupBoxModImage</value>
+  </data>
+  <data name="&gt;&gt;textBoxImagePath.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBoxModImage.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="groupBoxModImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 231</value>
+  </data>
+  <data name="groupBoxModImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>357, 70</value>
+  </data>
+  <data name="groupBoxModImage.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="groupBoxModImage.Text" xml:space="preserve">
+    <value>Mod Image</value>
+  </data>
+  <data name="&gt;&gt;groupBoxModImage.Name" xml:space="preserve">
+    <value>groupBoxModImage</value>
+  </data>
+  <data name="&gt;&gt;groupBoxModImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxModImage.Parent" xml:space="preserve">
+    <value>flowLayoutPanelPage1</value>
+  </data>
+  <data name="&gt;&gt;groupBoxModImage.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="richTextBoxDescription.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -397,7 +529,7 @@
     <value>3, 19</value>
   </data>
   <data name="richTextBoxDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 146</value>
+    <value>351, 146</value>
   </data>
   <data name="richTextBoxDescription.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -421,10 +553,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 231</value>
+    <value>3, 307</value>
   </data>
   <data name="groupBoxDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 168</value>
+    <value>357, 168</value>
   </data>
   <data name="groupBoxDescription.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -442,7 +574,7 @@
     <value>flowLayoutPanelPage1</value>
   </data>
   <data name="&gt;&gt;groupBoxDescription.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="dateTimePickerCreatedAt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -451,7 +583,7 @@
     <value>3, 19</value>
   </data>
   <data name="dateTimePickerCreatedAt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 23</value>
+    <value>351, 23</value>
   </data>
   <data name="dateTimePickerCreatedAt.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -472,10 +604,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxCreatedAt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 405</value>
+    <value>3, 481</value>
   </data>
   <data name="groupBoxCreatedAt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 51</value>
+    <value>357, 51</value>
   </data>
   <data name="groupBoxCreatedAt.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -493,7 +625,7 @@
     <value>flowLayoutPanelPage1</value>
   </data>
   <data name="&gt;&gt;groupBoxCreatedAt.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="dateTimePickerUpdatedAt.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -502,7 +634,7 @@
     <value>3, 19</value>
   </data>
   <data name="dateTimePickerUpdatedAt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 23</value>
+    <value>351, 23</value>
   </data>
   <data name="dateTimePickerUpdatedAt.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -523,10 +655,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxUpdatedAt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 462</value>
+    <value>3, 538</value>
   </data>
   <data name="groupBoxUpdatedAt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 51</value>
+    <value>357, 51</value>
   </data>
   <data name="groupBoxUpdatedAt.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -544,7 +676,7 @@
     <value>flowLayoutPanelPage1</value>
   </data>
   <data name="&gt;&gt;groupBoxUpdatedAt.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="textBoxVersion.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -556,7 +688,7 @@
     <value>e.g. 1.0</value>
   </data>
   <data name="textBoxVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 23</value>
+    <value>351, 23</value>
   </data>
   <data name="textBoxVersion.TabIndex" type="System.Int32, mscorlib">
     <value>74</value>
@@ -580,10 +712,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxVersion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 519</value>
+    <value>3, 595</value>
   </data>
   <data name="groupBoxVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 51</value>
+    <value>357, 51</value>
   </data>
   <data name="groupBoxVersion.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -601,13 +733,13 @@
     <value>flowLayoutPanelPage1</value>
   </data>
   <data name="&gt;&gt;groupBoxVersion.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="buttonModIdInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="buttonModIdInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>285, -1</value>
+    <value>306, -1</value>
   </data>
   <data name="buttonModIdInfo.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 23</value>
@@ -640,7 +772,7 @@
     <value>3, 19</value>
   </data>
   <data name="textBoxModId.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 22</value>
+    <value>348, 22</value>
   </data>
   <data name="textBoxModId.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -661,10 +793,10 @@
     <value>Top</value>
   </data>
   <data name="groupBoxModId.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 576</value>
+    <value>3, 652</value>
   </data>
   <data name="groupBoxModId.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 51</value>
+    <value>357, 51</value>
   </data>
   <data name="groupBoxModId.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -682,7 +814,7 @@
     <value>flowLayoutPanelPage1</value>
   </data>
   <data name="&gt;&gt;groupBoxModId.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="flowLayoutPanelPage1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -694,7 +826,7 @@
     <value>0, 0</value>
   </data>
   <data name="flowLayoutPanelPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>342, 692</value>
+    <value>363, 711</value>
   </data>
   <data name="flowLayoutPanelPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -718,7 +850,7 @@
     <value>4, 24</value>
   </data>
   <data name="tabPageModData.Size" type="System.Drawing.Size, System.Drawing">
-    <value>342, 692</value>
+    <value>363, 711</value>
   </data>
   <data name="tabPageModData.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1438,7 +1570,7 @@
     <value>0, 0</value>
   </data>
   <data name="flowLayoutPanelPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>342, 692</value>
+    <value>363, 711</value>
   </data>
   <data name="flowLayoutPanelPage2.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -1462,7 +1594,7 @@
     <value>4, 24</value>
   </data>
   <data name="tabPageSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>342, 692</value>
+    <value>363, 711</value>
   </data>
   <data name="tabPageSettings.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1490,7 +1622,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>350, 720</value>
+    <value>371, 739</value>
   </data>
   <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1514,7 +1646,7 @@
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>368, 762</value>
+    <value>389, 781</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
