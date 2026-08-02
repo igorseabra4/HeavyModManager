@@ -268,6 +268,39 @@
   <data name="listViewMods.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="columnName.Text" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="columnName.Width" type="System.Int32, mscorlib">
+    <value>200</value>
+  </data>
+  <data name="columnAuthor.Text" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="columnAuthor.Width" type="System.Int32, mscorlib">
+    <value>120</value>
+  </data>
+  <data name="columnPlatform.Text" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="columnPlatform.Width" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="columnVersion.Text" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="columnCreatedDate.Text" xml:space="preserve">
+    <value>Created At</value>
+  </data>
+  <data name="columnCreatedDate.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="columnUpdatedDate.Text" xml:space="preserve">
+    <value>Updated At</value>
+  </data>
+  <data name="columnUpdatedDate.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
   <data name="listViewMods.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 22</value>
   </data>
@@ -296,7 +329,7 @@
     <value>66, 580</value>
   </data>
   <data name="buttonRefreshModList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 23</value>
+    <value>115, 23</value>
   </data>
   <data name="buttonRefreshModList.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -430,39 +463,6 @@
   <data name="&gt;&gt;groupBoxMods.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="columnName.Text" xml:space="preserve">
-    <value>Mod</value>
-  </data>
-  <data name="columnName.Width" type="System.Int32, mscorlib">
-    <value>200</value>
-  </data>
-  <data name="columnAuthor.Text" xml:space="preserve">
-    <value>Author</value>
-  </data>
-  <data name="columnAuthor.Width" type="System.Int32, mscorlib">
-    <value>120</value>
-  </data>
-  <data name="columnPlatform.Text" xml:space="preserve">
-    <value>Platform</value>
-  </data>
-  <data name="columnPlatform.Width" type="System.Int32, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="columnVersion.Text" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="columnCreatedDate.Text" xml:space="preserve">
-    <value>Created At</value>
-  </data>
-  <data name="columnCreatedDate.Width" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="columnUpdatedDate.Text" xml:space="preserve">
-    <value>Updated At</value>
-  </data>
-  <data name="columnUpdatedDate.Width" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
   <data name="buttonRunGameDev.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -529,41 +529,11 @@
   <data name="menuStrip1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 24</value>
-  </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="manageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 20</value>
   </data>
   <data name="manageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Manage</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Settings</value>
   </data>
   <data name="emulatorSettingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
@@ -610,12 +580,6 @@
   <data name="changeIconToolStripMenuItem.Text" xml:space="preserve">
     <value>Change &amp;Icon</value>
   </data>
-  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 22</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Language</value>
-  </data>
   <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 22</value>
   </data>
@@ -660,11 +624,11 @@
   <data name="portugueseToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Portuguese</value>
   </data>
-  <data name="themeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
   </data>
-  <data name="themeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Theme</value>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Language</value>
   </data>
   <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
@@ -684,6 +648,12 @@
   <data name="darkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Dark</value>
   </data>
+  <data name="themeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="themeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Theme</value>
+  </data>
   <data name="showISOAfterSavingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
   </data>
@@ -696,17 +666,47 @@
   <data name="openSettingsjsonToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Open settings.json</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
   </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Help</value>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Settings</value>
   </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 22</value>
   </data>
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;About...</value>
+  </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 24</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="labelModInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -861,54 +861,6 @@
   <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="&gt;&gt;pictureBoxPlatform.Name" xml:space="preserve">
-    <value>pictureBoxPlatform</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxPlatform.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxPlatform.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxPlatform.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPlatform.Name" xml:space="preserve">
-    <value>comboBoxPlatform</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPlatform.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPlatform.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPlatform.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>750, 27</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 51</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Choose Platform</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="pictureBoxPlatform.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -960,9 +912,36 @@
   <data name="&gt;&gt;comboBoxPlatform.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>750, 27</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 51</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Choose Platform</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>132, 17</value>
   </metadata>
+  <data name="labelStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 707</value>
   </data>
@@ -987,9 +966,6 @@
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="labelStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 17</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1000,7 +976,7 @@
     <value>1008, 729</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>580, 248</value>
+    <value>750, 248</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

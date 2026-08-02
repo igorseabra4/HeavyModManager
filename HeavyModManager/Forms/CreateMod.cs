@@ -594,7 +594,7 @@ public partial class CreateMod : Form
 
         OpenFileDialog openFileDialog = new OpenFileDialog()
         {
-            Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif|All Files (*.*)|*.*",
+            Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tiff;*.tif|All Files (*.*)|*.*",
             Title = "Select a mod thumbnail image"
         };
 

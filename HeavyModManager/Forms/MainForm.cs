@@ -454,7 +454,19 @@ public partial class MainForm : Form
                         s = s.Replace($"{c}", "");
                     return s;
                 }
-                ZipManager.ZipMod(mod.ModId, TreatToFilename($"{ModManager.GameToStringFull(mod.Game)} - {mod.Author} - {mod.ModName}"));
+                string name = $"{ModManager.GameToStringFull(mod.Game)} - {mod.Author} - {mod.ModName}";
+
+                if (mod.Platform != GamePlatform.Unknown)
+                {
+                    name += $" ({ModManager.PlatformToShortString(mod.Platform).ToUpper()})";
+                }
+
+                if (mod.Version != null && mod.Version != String.Empty)
+                {
+                    name += $" v{mod.Version}";
+                }
+
+                ZipManager.ZipMod(mod.ModId, TreatToFilename(name));
             }
             catch (Exception ex)
             {
