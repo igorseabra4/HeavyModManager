@@ -103,6 +103,29 @@ public partial class CreateMod : Form
         SetDefaultGameID(((ComboBoxGameItem)comboBoxGame.SelectedItem).Game);
         if (!isEditing)
             ResetModId();
+        // Update platforms - only show platforms that are compatible with the selected game
+        var selectedGameItem = (ComboBoxGameItem)comboBoxGame.SelectedItem;
+
+        var prevPlatform = comboBoxPlatform.SelectedItem != null ? ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform : GamePlatform.Unknown;
+
+        if (selectedGameItem != null)
+        {
+            var compatiblePlatforms = ModManager.SupportedPlatformsForGame(selectedGameItem.Game);
+            comboBoxPlatform.Items.Clear();
+            foreach (var platform in compatiblePlatforms)
+            {
+                comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(platform));
+            }
+            // Re-select the platform, or select the first valid platform.
+            if (prevPlatform != GamePlatform.Unknown && compatiblePlatforms.Contains(prevPlatform))
+            {
+                comboBoxPlatform.SelectedItem = comboBoxPlatform.Items.Cast<ComboBoxPlatformItem>().FirstOrDefault(i => i.Platform == prevPlatform);
+            }
+            else if (comboBoxPlatform.Items.Count > 0)
+            {
+                comboBoxPlatform.SelectedIndex = 0;
+            }
+        }
     }
 
     private void textBoxModName_TextChanged(object sender, EventArgs e)
@@ -151,7 +174,16 @@ public partial class CreateMod : Form
     {
         var selectedGameItem = (ComboBoxGameItem)comboBoxGame.SelectedItem;
         var gameName = selectedGameItem == null ? "" : ModManager.GameToString(selectedGameItem.Game);
-        var platformText = ModManager.PlatformToShortString(((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform);
+        var platformText = "";
+        if (comboBoxPlatform.SelectedItem != null)
+        {
+            platformText = ModManager.PlatformToShortString(((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform);
+        }
+        else
+        {
+            platformText = "";
+        }
+
         var version = TreatString(textBoxVersion.Text.Replace('.', '_'));
 
         string modId = $"{gameName}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}-{platformText}-{version}";
