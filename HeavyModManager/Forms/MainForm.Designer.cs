@@ -67,6 +67,12 @@ partial class MainForm
         systemToolStripMenuItem = new ToolStripMenuItem();
         lightToolStripMenuItem = new ToolStripMenuItem();
         darkToolStripMenuItem = new ToolStripMenuItem();
+        listColumnsToolStripMenuItem = new ToolStripMenuItem();
+        modToolStripMenuItem = new ToolStripMenuItem();
+        modToolStripMenuItem1 = new ToolStripMenuItem();
+        versionToolStripMenuItem = new ToolStripMenuItem();
+        createdAtToolStripMenuItem = new ToolStripMenuItem();
+        updatedAtToolStripMenuItem = new ToolStripMenuItem();
         showISOAfterSavingToolStripMenuItem = new ToolStripMenuItem();
         openSettingsjsonToolStripMenuItem = new ToolStripMenuItem();
         helpToolStripMenuItem = new ToolStripMenuItem();
@@ -156,6 +162,7 @@ partial class MainForm
         listViewMods.UseCompatibleStateImageBehavior = false;
         listViewMods.View = View.Details;
         listViewMods.ColumnClick += listViewMods_ColumnClick;
+        listViewMods.ColumnWidthChanged += listViewMods_ColumnWidthChanged;
         listViewMods.ItemCheck += listViewMods_ItemCheck;
         listViewMods.SelectedIndexChanged += listViewMods_SelectedIndexChanged;
         listViewMods.KeyDown += listViewMods_KeyDown;
@@ -163,26 +170,32 @@ partial class MainForm
         // 
         // columnName
         // 
+        columnName.Tag = "name";
         resources.ApplyResources(columnName, "columnName");
         // 
         // columnAuthor
         // 
+        columnAuthor.Tag = "author";
         resources.ApplyResources(columnAuthor, "columnAuthor");
         // 
         // columnPlatform
         // 
+        columnPlatform.Tag = "platform";
         resources.ApplyResources(columnPlatform, "columnPlatform");
         // 
         // columnVersion
         // 
+        columnVersion.Tag = "version";
         resources.ApplyResources(columnVersion, "columnVersion");
         // 
         // columnCreatedDate
         // 
+        columnCreatedDate.Tag = "createdAt";
         resources.ApplyResources(columnCreatedDate, "columnCreatedDate");
         // 
         // columnUpdatedDate
         // 
+        columnUpdatedDate.Tag = "updatedAt";
         resources.ApplyResources(columnUpdatedDate, "columnUpdatedDate");
         // 
         // buttonRefreshModList
@@ -241,7 +254,7 @@ partial class MainForm
         // 
         // settingsToolStripMenuItem
         // 
-        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { emulatorSettingsToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, downloadXdvdfsToolStripMenuItem, downloadMkisofsToolStripMenuItem, toolStripSeparator2, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, showISOAfterSavingToolStripMenuItem, openSettingsjsonToolStripMenuItem });
+        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { emulatorSettingsToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, downloadXdvdfsToolStripMenuItem, downloadMkisofsToolStripMenuItem, toolStripSeparator2, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, listColumnsToolStripMenuItem, showISOAfterSavingToolStripMenuItem, openSettingsjsonToolStripMenuItem });
         settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
         resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
         // 
@@ -345,6 +358,57 @@ partial class MainForm
         darkToolStripMenuItem.Name = "darkToolStripMenuItem";
         resources.ApplyResources(darkToolStripMenuItem, "darkToolStripMenuItem");
         darkToolStripMenuItem.Click += themeItemToolStripMenuItem_Click;
+        // 
+        // listColumnsToolStripMenuItem
+        // 
+        listColumnsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { modToolStripMenuItem, modToolStripMenuItem1, versionToolStripMenuItem, createdAtToolStripMenuItem, updatedAtToolStripMenuItem });
+        listColumnsToolStripMenuItem.Name = "listColumnsToolStripMenuItem";
+        resources.ApplyResources(listColumnsToolStripMenuItem, "listColumnsToolStripMenuItem");
+        // 
+        // modToolStripMenuItem
+        // 
+        modToolStripMenuItem.Checked = true;
+        modToolStripMenuItem.CheckState = CheckState.Checked;
+        modToolStripMenuItem.Name = "modToolStripMenuItem";
+        resources.ApplyResources(modToolStripMenuItem, "modToolStripMenuItem");
+        modToolStripMenuItem.Tag = "author";
+        modToolStripMenuItem.Click += toggleColumnStripMenuItem_Click;
+        // 
+        // modToolStripMenuItem1
+        // 
+        modToolStripMenuItem1.Checked = true;
+        modToolStripMenuItem1.CheckState = CheckState.Checked;
+        modToolStripMenuItem1.Name = "modToolStripMenuItem1";
+        resources.ApplyResources(modToolStripMenuItem1, "modToolStripMenuItem1");
+        modToolStripMenuItem1.Tag = "platform";
+        modToolStripMenuItem1.Click += toggleColumnStripMenuItem_Click;
+        // 
+        // versionToolStripMenuItem
+        // 
+        versionToolStripMenuItem.Checked = true;
+        versionToolStripMenuItem.CheckState = CheckState.Checked;
+        versionToolStripMenuItem.Name = "versionToolStripMenuItem";
+        resources.ApplyResources(versionToolStripMenuItem, "versionToolStripMenuItem");
+        versionToolStripMenuItem.Tag = "version";
+        versionToolStripMenuItem.Click += toggleColumnStripMenuItem_Click;
+        // 
+        // createdAtToolStripMenuItem
+        // 
+        createdAtToolStripMenuItem.Checked = true;
+        createdAtToolStripMenuItem.CheckState = CheckState.Checked;
+        createdAtToolStripMenuItem.Name = "createdAtToolStripMenuItem";
+        resources.ApplyResources(createdAtToolStripMenuItem, "createdAtToolStripMenuItem");
+        createdAtToolStripMenuItem.Tag = "createdAt";
+        createdAtToolStripMenuItem.Click += toggleColumnStripMenuItem_Click;
+        // 
+        // updatedAtToolStripMenuItem
+        // 
+        updatedAtToolStripMenuItem.Checked = true;
+        updatedAtToolStripMenuItem.CheckState = CheckState.Checked;
+        updatedAtToolStripMenuItem.Name = "updatedAtToolStripMenuItem";
+        resources.ApplyResources(updatedAtToolStripMenuItem, "updatedAtToolStripMenuItem");
+        updatedAtToolStripMenuItem.Tag = "updatedAt";
+        updatedAtToolStripMenuItem.Click += toggleColumnStripMenuItem_Click;
         // 
         // showISOAfterSavingToolStripMenuItem
         // 
@@ -528,4 +592,10 @@ partial class MainForm
     private ToolStripMenuItem aboutToolStripMenuItem;
     private ToolStripMenuItem downloadMkisofsToolStripMenuItem;
     private Button buttonBrowseMods;
+    private ToolStripMenuItem listColumnsToolStripMenuItem;
+    private ToolStripMenuItem modToolStripMenuItem;
+    private ToolStripMenuItem modToolStripMenuItem1;
+    private ToolStripMenuItem versionToolStripMenuItem;
+    private ToolStripMenuItem createdAtToolStripMenuItem;
+    private ToolStripMenuItem updatedAtToolStripMenuItem;
 }

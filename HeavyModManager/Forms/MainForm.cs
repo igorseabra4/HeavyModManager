@@ -71,6 +71,22 @@ public partial class MainForm : Form
         UpdateStatusLabel();
         ShowToolTip();
         UpdatePlatformIcon();
+        UpdateColumnToggles();
+    }
+
+    private void UpdateColumnToggles()
+    {
+        foreach (ToolStripMenuItem item in listColumnsToolStripMenuItem.DropDownItems)
+        {
+            if (item.Tag is string columnTag)
+            {
+                var column = listViewMods.Columns.Cast<ColumnHeader>().FirstOrDefault(c => c.Tag as string == columnTag);
+                if (column != null)
+                {
+                    item.Checked = column.Width > 0;
+                }
+            }
+        }
     }
 
     private bool showOnboarding = false;
@@ -276,7 +292,7 @@ public partial class MainForm : Form
             for (int i = 0; i < listViewMods.Columns.Count; i++)
             {
                 listViewMods.Columns[i].DisplayIndex = settings.ColumnIndices[i];
-                listViewMods.Columns[i].Width = Math.Max(settings.ColumnSizes[i], 32);
+                listViewMods.Columns[i].Width = settings.ColumnSizes[i];
             }
     }
 
@@ -785,7 +801,8 @@ public partial class MainForm : Form
                     try
                     {
                         result = ModManager.RestoreBackupIso(openFile.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
-                    } catch (Exception ex)
+                    }
+                    catch (Exception ex)
                     {
                         MessageBox.Show("Error occurred while restoring backup from ISO: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -1374,5 +1391,31 @@ public partial class MainForm : Form
         {
             MessageBox.Show($"Failed to open browser:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+    }
+
+    private void toggleColumnStripMenuItem_Click(object sender, EventArgs e)
+    {
+        var iteme = (ToolStripItem)sender;
+
+        // Get the tag of the menu strip item that was clicked. The listview column has the same name as the tag.
+        if (sender is ToolStripMenuItem item && item.Tag is string columnName)
+        {
+            // Find the column in the listview with the same name as the tag
+            var column = listViewMods.Columns.Cast<ColumnHeader>().FirstOrDefault(c => c.Tag.ToString() == columnName);
+
+            if (column != null)
+            {
+                // Toggle the visibility of the column
+                column.Width = column.Width == 0 ? -2 : 0;
+
+                // Update the checked state of the menu strip item
+                item.Checked = column.Width != 0;
+            }
+        }
+    }
+
+    private void listViewMods_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+    {
+        UpdateColumnToggles();
     }
 }

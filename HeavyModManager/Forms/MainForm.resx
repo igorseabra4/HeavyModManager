@@ -654,6 +654,42 @@
   <data name="themeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Theme</value>
   </data>
+  <data name="modToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 22</value>
+  </data>
+  <data name="modToolStripMenuItem.Text" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="modToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 22</value>
+  </data>
+  <data name="modToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="versionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 22</value>
+  </data>
+  <data name="versionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="createdAtToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 22</value>
+  </data>
+  <data name="createdAtToolStripMenuItem.Text" xml:space="preserve">
+    <value>Created At</value>
+  </data>
+  <data name="updatedAtToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 22</value>
+  </data>
+  <data name="updatedAtToolStripMenuItem.Text" xml:space="preserve">
+    <value>Updated At</value>
+  </data>
+  <data name="listColumnsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="listColumnsToolStripMenuItem.Text" xml:space="preserve">
+    <value>L&amp;ist Columns</value>
+  </data>
   <data name="showISOAfterSavingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 22</value>
   </data>
@@ -1126,6 +1162,42 @@
     <value>darkToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;darkToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listColumnsToolStripMenuItem.Name" xml:space="preserve">
+    <value>listColumnsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;listColumnsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modToolStripMenuItem.Name" xml:space="preserve">
+    <value>modToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;modToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modToolStripMenuItem1.Name" xml:space="preserve">
+    <value>modToolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;modToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;versionToolStripMenuItem.Name" xml:space="preserve">
+    <value>versionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;versionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;createdAtToolStripMenuItem.Name" xml:space="preserve">
+    <value>createdAtToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;createdAtToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;updatedAtToolStripMenuItem.Name" xml:space="preserve">
+    <value>updatedAtToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;updatedAtToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;showISOAfterSavingToolStripMenuItem.Name" xml:space="preserve">
