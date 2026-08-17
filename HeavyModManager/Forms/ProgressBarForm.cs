@@ -15,6 +15,11 @@ namespace HeavyModManager.Forms
             InitializeComponent();
         }
 
+        public void SetDetails(string details)
+        {
+            labelDetails.Text = details;
+        }
+
         public void SetProgress(int percent)
         {
             if (InvokeRequired)
@@ -27,6 +32,7 @@ namespace HeavyModManager.Forms
                 progressBar1.Style = ProgressBarStyle.Continuous;
 
             progressBar1.Value = Math.Clamp(percent, 0, 100);
+            labelPercentage.Text = $"{percent}%";
         }
 
         public void SetIndeterminate(bool indeterminate)
@@ -40,6 +46,8 @@ namespace HeavyModManager.Forms
             progressBar1.Style = indeterminate
                 ? ProgressBarStyle.Marquee
                 : ProgressBarStyle.Continuous;
+
+            labelPercentage.Text = "Processing...";
         }
     }
 }

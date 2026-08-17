@@ -18,6 +18,13 @@ public partial class CreateMod : Form
         foreach (Game game in ModManager.EvilEngineGames)
             comboBoxGame.Items.Add(new ComboBoxGameItem(game));
 
+        foreach (GamePlatform value in System.Enum.GetValues(typeof(GamePlatform)))
+        {
+            if (value != GamePlatform.Unknown)
+                comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(value));
+        }
+        comboBoxPlatform.SelectedIndex = 0;
+
         dateTimePickerCreatedAt.Value = DateTime.Now;
         dateTimePickerUpdatedAt.Value = DateTime.Now;
 
@@ -35,6 +42,12 @@ public partial class CreateMod : Form
         toolTip = new ToolTip();
 
         defaultBackgroundColor = textBoxGameId.BackColor;
+
+        foreach (GamePlatform value in System.Enum.GetValues(typeof(GamePlatform)))
+        {
+            comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(value));
+        }
+        comboBoxPlatform.SelectedIndex = comboBoxPlatform.Items.Cast<ComboBoxPlatformItem>().ToList().FindIndex(i => i.Platform == mod.Platform);
 
         prevGame = mod.Game;
         textBoxModName.Text = mod.ModName;
@@ -90,6 +103,29 @@ public partial class CreateMod : Form
         SetDefaultGameID(((ComboBoxGameItem)comboBoxGame.SelectedItem).Game);
         if (!isEditing)
             ResetModId();
+        // Update platforms - only show platforms that are compatible with the selected game
+        var selectedGameItem = (ComboBoxGameItem)comboBoxGame.SelectedItem;
+
+        var prevPlatform = comboBoxPlatform.SelectedItem != null ? ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform : GamePlatform.Unknown;
+
+        if (selectedGameItem != null)
+        {
+            var compatiblePlatforms = ModManager.SupportedPlatformsForGame(selectedGameItem.Game);
+            comboBoxPlatform.Items.Clear();
+            foreach (var platform in compatiblePlatforms)
+            {
+                comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(platform));
+            }
+            // Re-select the platform, or select the first valid platform.
+            if (prevPlatform != GamePlatform.Unknown && compatiblePlatforms.Contains(prevPlatform))
+            {
+                comboBoxPlatform.SelectedItem = comboBoxPlatform.Items.Cast<ComboBoxPlatformItem>().FirstOrDefault(i => i.Platform == prevPlatform);
+            }
+            else if (comboBoxPlatform.Items.Count > 0)
+            {
+                comboBoxPlatform.SelectedIndex = 0;
+            }
+        }
     }
 
     private void textBoxModName_TextChanged(object sender, EventArgs e)
@@ -123,6 +159,7 @@ public partial class CreateMod : Form
     private void SetCreateModEnabled()
     {
         buttonCreateMod.Enabled = (isEditing || comboBoxGame.SelectedIndex > -1) &&
+            comboBoxPlatform.SelectedIndex > -1 &&
             TreatString(textBoxAuthor.Text).Length > 0 &&
             TreatString(textBoxModName.Text).Length > 0 &&
             textBoxModId.Text.Length > 0 &&
@@ -137,7 +174,19 @@ public partial class CreateMod : Form
     {
         var selectedGameItem = (ComboBoxGameItem)comboBoxGame.SelectedItem;
         var gameName = selectedGameItem == null ? "" : ModManager.GameToString(selectedGameItem.Game);
-        string modId = $"{gameName}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}";
+        var platformText = "";
+        if (comboBoxPlatform.SelectedItem != null)
+        {
+            platformText = ModManager.PlatformToShortString(((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform);
+        }
+        else
+        {
+            platformText = "";
+        }
+
+        var version = TreatString(textBoxVersion.Text.Replace('.', '_'));
+
+        string modId = $"{gameName}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}-{platformText}-{version}";
 
         textBoxModId.Text = modId;
     }
@@ -154,6 +203,12 @@ public partial class CreateMod : Form
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        var platform = GamePlatform.Unknown;
+        if (comboBoxGame.SelectedItem != null)
+        {
+            platform = ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform;
         }
 
         var mod = new Mod()
@@ -173,6 +228,8 @@ public partial class CreateMod : Form
             CreatedAt = dateTimePickerCreatedAt.Value,
             UpdatedAt = dateTimePickerUpdatedAt.Value,
             IpsPatchBase64 = textBoxIpsPatch.Text,
+            Version = textBoxVersion.Text,
+            Platform = platform,
         };
 
         string modPath = mod.SaveModJson(isEditing);
@@ -180,6 +237,21 @@ public partial class CreateMod : Form
         MessageBox.Show(GlobalResources.modCreatedAt + " " + modPath,
             GlobalResources.modCreated,
             MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        // Copy image to mod folder if it exists
+        if (!string.IsNullOrWhiteSpace(textBoxImagePath.Text) && File.Exists(textBoxImagePath.Text))
+        {
+            try
+            {
+                string imageExtension = Path.GetExtension(textBoxImagePath.Text);
+                string destImagePath = Path.Combine(modPath, "mod" + imageExtension);
+                File.Copy(textBoxImagePath.Text, destImagePath, true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error copying thumbnail image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         System.Diagnostics.Process.Start("explorer.exe", modPath);
 
@@ -436,91 +508,91 @@ public partial class CreateMod : Form
 
     private void buttonIniImport_Click(object sender, EventArgs e)
     {
-        if (!ModManager.GameBackupExists)
-        {
-            MessageBox.Show(GlobalResources.iniErrorGameBackupNotFound,
-                GlobalResources.gameBackupNotFoundTitle,
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        var modIniPath = Path.Combine(ModManager.GetModFilesPath(textBoxModId.Text), ModManager.GameIniFileName(prevGame));
-
-        if (!File.Exists(modIniPath))
-        {
-            MessageBox.Show(
-                string.Format(GlobalResources.iniNotFound, modIniPath),
-                GlobalResources.iniNotFoundTitle,
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        var iniFile = INIFile.FromPath(modIniPath);
-        var ogIniFile = INIFile.FromPath(Path.Combine(ModManager.GameBackupFilesPath, ModManager.GameIniFileName(prevGame)));
-        var result = new List<string>();
-
-        if (!string.IsNullOrWhiteSpace(richTextBoxINIValues.Text))
-            result.Add(richTextBoxINIValues.Text);
-
-        foreach ((string key, string value) in iniFile.Properties)
-            if (!ogIniFile.Properties.ContainsKey(key) || ogIniFile.Properties[key] != value)
-                result.Add($"{key}={value}");
-
-        foreach ((string key, string value) in iniFile.ScenePlayerMapping)
-            if (!ogIniFile.ScenePlayerMapping.ContainsKey(key) || ogIniFile.ScenePlayerMapping[key] != value)
-                result.Add($"ScenePlayerMapping={key} {value}");
-
-        foreach ((string key, string value) in iniFile.ThresholdPointsRange)
-            if (!ogIniFile.ThresholdPointsRange.ContainsKey(key) || ogIniFile.ThresholdPointsRange[key] != value)
-                result.Add($"ThresholdPointsRange={key} {value}");
-
-        foreach ((string key, string value) in iniFile.AlternateCostumeMapping)
-            if (!ogIniFile.AlternateCostumeMapping.ContainsKey(key) || ogIniFile.AlternateCostumeMapping[key] != value)
-                result.Add($"AlternateCostumeMapping={key} {value}");
-
-        bool shouldAddTaskStatus = false;
-        if (iniFile.TaskStatus.Count != ogIniFile.TaskStatus.Count)
-        {
-            shouldAddTaskStatus = true;
-        }
-        else
-        {
-            for (int i = 0; i < iniFile.TaskStatus.Count; i++)
-            {
-                if (iniFile.TaskStatus[i] != ogIniFile.TaskStatus[i])
-                {
-                    shouldAddTaskStatus = true;
-                    break;
-                }
-            }
-        }
-        if (shouldAddTaskStatus)
-            foreach (string value in iniFile.TaskStatus)
-                result.Add($"TaskStatus={value}");
-
-        bool shouldAddExtra = false;
-        if (iniFile.Extra.Count != ogIniFile.Extra.Count)
-        {
-            shouldAddExtra = true;
-        }
-        else
-        {
-            for (int i = 0; i < iniFile.Extra.Count; i++)
-            {
-                if (iniFile.Extra[i] != ogIniFile.Extra[i])
-                {
-                    shouldAddExtra = true;
-                    break;
-                }
-            }
-        }
-        if (shouldAddExtra)
-            foreach (string value in iniFile.Extra)
-                result.Add($"Extra={value}");
-
-        richTextBoxINIValues.Text = string.Join("\n", result);
-
-        File.Delete(modIniPath);
+        // if (!ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform))
+        // {
+        //     MessageBox.Show(GlobalResources.iniErrorGameBackupNotFound,
+        //         GlobalResources.gameBackupNotFoundTitle,
+        //         MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //     return;
+        // }
+        //
+        // var modIniPath = Path.Combine(ModManager.GetModFilesPath(textBoxModId.Text), ModManager.GameIniFileName(prevGame));
+        //
+        // if (!File.Exists(modIniPath))
+        // {
+        //     MessageBox.Show(
+        //         string.Format(GlobalResources.iniNotFound, modIniPath),
+        //         GlobalResources.iniNotFoundTitle,
+        //         MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //     return;
+        // }
+        //
+        // var iniFile = INIFile.FromPath(modIniPath);
+        // var ogIniFile = INIFile.FromPath(Path.Combine(ModManager.GameBackupFilesPath, ModManager.GameIniFileName(prevGame)));
+        // var result = new List<string>();
+        //
+        // if (!string.IsNullOrWhiteSpace(richTextBoxINIValues.Text))
+        //     result.Add(richTextBoxINIValues.Text);
+        //
+        // foreach ((string key, string value) in iniFile.Properties)
+        //     if (!ogIniFile.Properties.ContainsKey(key) || ogIniFile.Properties[key] != value)
+        //         result.Add($"{key}={value}");
+        //
+        // foreach ((string key, string value) in iniFile.ScenePlayerMapping)
+        //     if (!ogIniFile.ScenePlayerMapping.ContainsKey(key) || ogIniFile.ScenePlayerMapping[key] != value)
+        //         result.Add($"ScenePlayerMapping={key} {value}");
+        //
+        // foreach ((string key, string value) in iniFile.ThresholdPointsRange)
+        //     if (!ogIniFile.ThresholdPointsRange.ContainsKey(key) || ogIniFile.ThresholdPointsRange[key] != value)
+        //         result.Add($"ThresholdPointsRange={key} {value}");
+        //
+        // foreach ((string key, string value) in iniFile.AlternateCostumeMapping)
+        //     if (!ogIniFile.AlternateCostumeMapping.ContainsKey(key) || ogIniFile.AlternateCostumeMapping[key] != value)
+        //         result.Add($"AlternateCostumeMapping={key} {value}");
+        //
+        // bool shouldAddTaskStatus = false;
+        // if (iniFile.TaskStatus.Count != ogIniFile.TaskStatus.Count)
+        // {
+        //     shouldAddTaskStatus = true;
+        // }
+        // else
+        // {
+        //     for (int i = 0; i < iniFile.TaskStatus.Count; i++)
+        //     {
+        //         if (iniFile.TaskStatus[i] != ogIniFile.TaskStatus[i])
+        //         {
+        //             shouldAddTaskStatus = true;
+        //             break;
+        //         }
+        //     }
+        // }
+        // if (shouldAddTaskStatus)
+        //     foreach (string value in iniFile.TaskStatus)
+        //         result.Add($"TaskStatus={value}");
+        //
+        // bool shouldAddExtra = false;
+        // if (iniFile.Extra.Count != ogIniFile.Extra.Count)
+        // {
+        //     shouldAddExtra = true;
+        // }
+        // else
+        // {
+        //     for (int i = 0; i < iniFile.Extra.Count; i++)
+        //     {
+        //         if (iniFile.Extra[i] != ogIniFile.Extra[i])
+        //         {
+        //             shouldAddExtra = true;
+        //             break;
+        //         }
+        //     }
+        // }
+        // if (shouldAddExtra)
+        //     foreach (string value in iniFile.Extra)
+        //         result.Add($"Extra={value}");
+        //
+        // richTextBoxINIValues.Text = string.Join("\n", result);
+        //
+        // File.Delete(modIniPath);
     }
 
     private void buttonOpenIpsFile_Click(object sender, EventArgs e)
@@ -535,5 +607,43 @@ public partial class CreateMod : Form
         {
             textBoxIpsPatch.Text = openFileDialog.FileName;
         }
+    }
+
+    private void comboBoxPlatform_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        SetCreateModEnabled();
+        ResetModId();
+    }
+
+    private void textBoxVersion_TextChanged(object sender, EventArgs e)
+    {
+        ResetModId();
+    }
+
+    private void buttonPickImage_Click(object sender, EventArgs e)
+    {
+        // Select an image file for the mod's thumbnail
+
+        OpenFileDialog openFileDialog = new OpenFileDialog()
+        {
+            Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tiff;*.tif|All Files (*.*)|*.*",
+            Title = "Select a mod thumbnail image"
+        };
+
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            // Load the selected image into the picture box
+            try
+            {
+                pictureBoxThumbnail.Image = Image.FromFile(openFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Update the path textbox
+        textBoxImagePath.Text = openFileDialog.FileName;
     }
 }

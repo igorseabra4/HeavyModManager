@@ -23,13 +23,37 @@ public class ModManagerSettings
     public Game CurrentGame { get; set; }
 
     /// <summary>
+    /// The currently selected platform.
+    /// </summary>
+    [JsonInclude]
+    public GamePlatform CurrentPlatform { get; set; }
+
+    /// <summary>
     /// The path to the Dolphin executable.
     /// </summary>
     [JsonInclude]
     public string DolphinPath { get; set; }
 
     [JsonInclude]
+    public string XemuPath { get; set; }
+
+    [JsonInclude]
+    public string PCSX2Path { get; set; }
+
+    [JsonInclude]
     public string DolphinFolderPath { get; set; }
+
+    [JsonInclude]
+    public string DolphinCommandLineArgs { get; set; }
+
+    [JsonInclude]
+    public string XemuCommandLineArgs { get; set; }
+
+    [JsonInclude]
+    public string PCSX2CommandLineArgs { get; set; }
+
+    [JsonInclude]
+    public bool OpenIsoAfterExport { get; set; }
 
     /// <summary>
     /// Whether the application checks for updates on startup.
@@ -71,16 +95,26 @@ public class ModManagerSettings
     public ModManagerSettings()
     {
         Version = 3;
-        CurrentGame = Game.Null;
+        CurrentGame = Game.BFBB;
+        CurrentPlatform = GamePlatform.GameCube;
+
         DolphinPath = "";
         DolphinFolderPath = "";
+        XemuPath = "";
+        PCSX2Path = "";
+
+        DolphinCommandLineArgs = "";
+        XemuCommandLineArgs = "";
+        PCSX2CommandLineArgs = "";
+
+        OpenIsoAfterExport = true;
         CheckForUpdatesOnStartup = true;
         DeveloperMode = false;
         Icon = HeavyModManagerIcon.Rainbow;
         ColumnIndices = new List<int>();
         ColumnSizes = new List<int>();
-        MainFormWidth = 738;
-        MainFormHeight = 474;
+        MainFormWidth = 1024;
+        MainFormHeight = 576;
         Theme = SystemColorMode.System;
     }
 }

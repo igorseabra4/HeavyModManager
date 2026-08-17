@@ -40,12 +40,21 @@ partial class CreateMod
         textBoxModName = new TextBox();
         groupBoxAuthor = new GroupBox();
         textBoxAuthor = new TextBox();
+        groupBoxPlatform = new GroupBox();
+        comboBoxPlatform = new ComboBox();
+        groupBoxModImage = new GroupBox();
+        pictureBoxThumbnail = new PictureBox();
+        buttonPickImage = new Button();
+        labelResolution = new Label();
+        textBoxImagePath = new TextBox();
         groupBoxDescription = new GroupBox();
         richTextBoxDescription = new RichTextBox();
         groupBoxCreatedAt = new GroupBox();
         dateTimePickerCreatedAt = new DateTimePicker();
         groupBoxUpdatedAt = new GroupBox();
         dateTimePickerUpdatedAt = new DateTimePicker();
+        groupBoxVersion = new GroupBox();
+        textBoxVersion = new TextBox();
         groupBoxModId = new GroupBox();
         buttonModIdInfo = new Button();
         textBoxModId = new TextBox();
@@ -68,24 +77,28 @@ partial class CreateMod
         groupBoxDolPatches = new GroupBox();
         buttonDolPatchesInfo = new Button();
         richTextBoxDolPatches = new RichTextBox();
+        groupBoxIpsPatch = new GroupBox();
+        buttonOpenIpsFile = new Button();
+        textBoxIpsPatch = new TextBox();
         groupBoxArCodes = new GroupBox();
         buttonArCodesInfo = new Button();
         richTextBoxArCodes = new RichTextBox();
         groupBoxGeckoCodes = new GroupBox();
         buttonGeckoCodesInfo = new Button();
         richTextBoxGeckoCodes = new RichTextBox();
-        groupBoxIpsPatch = new GroupBox();
-        textBoxIpsPatch = new TextBox();
-        buttonOpenIpsFile = new Button();
         tabControl1.SuspendLayout();
         tabPageModData.SuspendLayout();
         flowLayoutPanelPage1.SuspendLayout();
         groupBoxGame.SuspendLayout();
         groupBoxModName.SuspendLayout();
         groupBoxAuthor.SuspendLayout();
+        groupBoxPlatform.SuspendLayout();
+        groupBoxModImage.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)pictureBoxThumbnail).BeginInit();
         groupBoxDescription.SuspendLayout();
         groupBoxCreatedAt.SuspendLayout();
         groupBoxUpdatedAt.SuspendLayout();
+        groupBoxVersion.SuspendLayout();
         groupBoxModId.SuspendLayout();
         tabPageSettings.SuspendLayout();
         flowLayoutPanelPage2.SuspendLayout();
@@ -94,9 +107,9 @@ partial class CreateMod
         groupBoxMergeHips.SuspendLayout();
         groupBoxRemoveFiles.SuspendLayout();
         groupBoxDolPatches.SuspendLayout();
+        groupBoxIpsPatch.SuspendLayout();
         groupBoxArCodes.SuspendLayout();
         groupBoxGeckoCodes.SuspendLayout();
-        groupBoxIpsPatch.SuspendLayout();
         SuspendLayout();
         // 
         // buttonCreateMod
@@ -135,9 +148,12 @@ partial class CreateMod
         flowLayoutPanelPage1.Controls.Add(groupBoxGame);
         flowLayoutPanelPage1.Controls.Add(groupBoxModName);
         flowLayoutPanelPage1.Controls.Add(groupBoxAuthor);
+        flowLayoutPanelPage1.Controls.Add(groupBoxPlatform);
+        flowLayoutPanelPage1.Controls.Add(groupBoxModImage);
         flowLayoutPanelPage1.Controls.Add(groupBoxDescription);
         flowLayoutPanelPage1.Controls.Add(groupBoxCreatedAt);
         flowLayoutPanelPage1.Controls.Add(groupBoxUpdatedAt);
+        flowLayoutPanelPage1.Controls.Add(groupBoxVersion);
         flowLayoutPanelPage1.Controls.Add(groupBoxModId);
         flowLayoutPanelPage1.Name = "flowLayoutPanelPage1";
         flowLayoutPanelPage1.Resize += flowLayoutPanelPage1_Resize;
@@ -151,6 +167,8 @@ partial class CreateMod
         // 
         // comboBoxGame
         // 
+        comboBoxGame.AutoCompleteMode = AutoCompleteMode.Append;
+        comboBoxGame.AutoCompleteSource = AutoCompleteSource.ListItems;
         resources.ApplyResources(comboBoxGame, "comboBoxGame");
         comboBoxGame.FormattingEnabled = true;
         comboBoxGame.Name = "comboBoxGame";
@@ -181,6 +199,57 @@ partial class CreateMod
         resources.ApplyResources(textBoxAuthor, "textBoxAuthor");
         textBoxAuthor.Name = "textBoxAuthor";
         textBoxAuthor.TextChanged += textBoxAuthor_TextChanged;
+        // 
+        // groupBoxPlatform
+        // 
+        groupBoxPlatform.Controls.Add(comboBoxPlatform);
+        resources.ApplyResources(groupBoxPlatform, "groupBoxPlatform");
+        groupBoxPlatform.Name = "groupBoxPlatform";
+        groupBoxPlatform.TabStop = false;
+        // 
+        // comboBoxPlatform
+        // 
+        comboBoxPlatform.AutoCompleteMode = AutoCompleteMode.Append;
+        comboBoxPlatform.AutoCompleteSource = AutoCompleteSource.ListItems;
+        resources.ApplyResources(comboBoxPlatform, "comboBoxPlatform");
+        comboBoxPlatform.FormattingEnabled = true;
+        comboBoxPlatform.Name = "comboBoxPlatform";
+        comboBoxPlatform.SelectedIndexChanged += comboBoxPlatform_SelectedIndexChanged;
+        // 
+        // groupBoxModImage
+        // 
+        groupBoxModImage.Controls.Add(pictureBoxThumbnail);
+        groupBoxModImage.Controls.Add(buttonPickImage);
+        groupBoxModImage.Controls.Add(labelResolution);
+        groupBoxModImage.Controls.Add(textBoxImagePath);
+        resources.ApplyResources(groupBoxModImage, "groupBoxModImage");
+        groupBoxModImage.Name = "groupBoxModImage";
+        groupBoxModImage.TabStop = false;
+        // 
+        // pictureBoxThumbnail
+        // 
+        pictureBoxThumbnail.BackColor = SystemColors.Control;
+        resources.ApplyResources(pictureBoxThumbnail, "pictureBoxThumbnail");
+        pictureBoxThumbnail.InitialImage = Properties.Resources.image_placeholder;
+        pictureBoxThumbnail.Name = "pictureBoxThumbnail";
+        pictureBoxThumbnail.TabStop = false;
+        // 
+        // buttonPickImage
+        // 
+        resources.ApplyResources(buttonPickImage, "buttonPickImage");
+        buttonPickImage.Name = "buttonPickImage";
+        buttonPickImage.UseVisualStyleBackColor = true;
+        buttonPickImage.Click += buttonPickImage_Click;
+        // 
+        // labelResolution
+        // 
+        resources.ApplyResources(labelResolution, "labelResolution");
+        labelResolution.Name = "labelResolution";
+        // 
+        // textBoxImagePath
+        // 
+        resources.ApplyResources(textBoxImagePath, "textBoxImagePath");
+        textBoxImagePath.Name = "textBoxImagePath";
         // 
         // groupBoxDescription
         // 
@@ -217,6 +286,19 @@ partial class CreateMod
         // 
         resources.ApplyResources(dateTimePickerUpdatedAt, "dateTimePickerUpdatedAt");
         dateTimePickerUpdatedAt.Name = "dateTimePickerUpdatedAt";
+        // 
+        // groupBoxVersion
+        // 
+        groupBoxVersion.Controls.Add(textBoxVersion);
+        resources.ApplyResources(groupBoxVersion, "groupBoxVersion");
+        groupBoxVersion.Name = "groupBoxVersion";
+        groupBoxVersion.TabStop = false;
+        // 
+        // textBoxVersion
+        // 
+        resources.ApplyResources(textBoxVersion, "textBoxVersion");
+        textBoxVersion.Name = "textBoxVersion";
+        textBoxVersion.TextChanged += textBoxVersion_TextChanged;
         // 
         // groupBoxModId
         // 
@@ -377,6 +459,26 @@ partial class CreateMod
         richTextBoxDolPatches.Name = "richTextBoxDolPatches";
         richTextBoxDolPatches.TextChanged += richTextBoxDolPatches_TextChanged;
         // 
+        // groupBoxIpsPatch
+        // 
+        groupBoxIpsPatch.Controls.Add(buttonOpenIpsFile);
+        groupBoxIpsPatch.Controls.Add(textBoxIpsPatch);
+        resources.ApplyResources(groupBoxIpsPatch, "groupBoxIpsPatch");
+        groupBoxIpsPatch.Name = "groupBoxIpsPatch";
+        groupBoxIpsPatch.TabStop = false;
+        // 
+        // buttonOpenIpsFile
+        // 
+        resources.ApplyResources(buttonOpenIpsFile, "buttonOpenIpsFile");
+        buttonOpenIpsFile.Name = "buttonOpenIpsFile";
+        buttonOpenIpsFile.UseVisualStyleBackColor = true;
+        buttonOpenIpsFile.Click += buttonOpenIpsFile_Click;
+        // 
+        // textBoxIpsPatch
+        // 
+        resources.ApplyResources(textBoxIpsPatch, "textBoxIpsPatch");
+        textBoxIpsPatch.Name = "textBoxIpsPatch";
+        // 
         // groupBoxArCodes
         // 
         groupBoxArCodes.Controls.Add(buttonArCodesInfo);
@@ -419,26 +521,6 @@ partial class CreateMod
         richTextBoxGeckoCodes.Name = "richTextBoxGeckoCodes";
         richTextBoxGeckoCodes.TextChanged += richTextBoxGeckoCodes_TextChanged;
         // 
-        // groupBoxIpsPatch
-        // 
-        groupBoxIpsPatch.Controls.Add(buttonOpenIpsFile);
-        groupBoxIpsPatch.Controls.Add(textBoxIpsPatch);
-        resources.ApplyResources(groupBoxIpsPatch, "groupBoxIpsPatch");
-        groupBoxIpsPatch.Name = "groupBoxIpsPatch";
-        groupBoxIpsPatch.TabStop = false;
-        // 
-        // textBoxIpsPatch
-        // 
-        resources.ApplyResources(textBoxIpsPatch, "textBoxIpsPatch");
-        textBoxIpsPatch.Name = "textBoxIpsPatch";
-        // 
-        // buttonOpenIpsFile
-        // 
-        resources.ApplyResources(buttonOpenIpsFile, "buttonOpenIpsFile");
-        buttonOpenIpsFile.Name = "buttonOpenIpsFile";
-        buttonOpenIpsFile.UseVisualStyleBackColor = true;
-        buttonOpenIpsFile.Click += buttonOpenIpsFile_Click;
-        // 
         // CreateMod
         // 
         resources.ApplyResources(this, "$this");
@@ -447,6 +529,7 @@ partial class CreateMod
         Controls.Add(tabControl1);
         Controls.Add(buttonCancel);
         Controls.Add(buttonCreateMod);
+        MaximizeBox = false;
         Name = "CreateMod";
         ShowIcon = false;
         tabControl1.ResumeLayout(false);
@@ -457,9 +540,15 @@ partial class CreateMod
         groupBoxModName.PerformLayout();
         groupBoxAuthor.ResumeLayout(false);
         groupBoxAuthor.PerformLayout();
+        groupBoxPlatform.ResumeLayout(false);
+        groupBoxModImage.ResumeLayout(false);
+        groupBoxModImage.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)pictureBoxThumbnail).EndInit();
         groupBoxDescription.ResumeLayout(false);
         groupBoxCreatedAt.ResumeLayout(false);
         groupBoxUpdatedAt.ResumeLayout(false);
+        groupBoxVersion.ResumeLayout(false);
+        groupBoxVersion.PerformLayout();
         groupBoxModId.ResumeLayout(false);
         groupBoxModId.PerformLayout();
         tabPageSettings.ResumeLayout(false);
@@ -470,10 +559,10 @@ partial class CreateMod
         groupBoxMergeHips.ResumeLayout(false);
         groupBoxRemoveFiles.ResumeLayout(false);
         groupBoxDolPatches.ResumeLayout(false);
-        groupBoxArCodes.ResumeLayout(false);
-        groupBoxGeckoCodes.ResumeLayout(false);
         groupBoxIpsPatch.ResumeLayout(false);
         groupBoxIpsPatch.PerformLayout();
+        groupBoxArCodes.ResumeLayout(false);
+        groupBoxGeckoCodes.ResumeLayout(false);
         ResumeLayout(false);
         PerformLayout();
     }
@@ -527,4 +616,13 @@ partial class CreateMod
     private GroupBox groupBoxIpsPatch;
     private Button buttonOpenIpsFile;
     private TextBox textBoxIpsPatch;
+    private GroupBox groupBoxPlatform;
+    private ComboBox comboBoxPlatform;
+    private GroupBox groupBoxVersion;
+    private TextBox textBoxVersion;
+    private GroupBox groupBoxModImage;
+    private TextBox textBoxImagePath;
+    private Label labelResolution;
+    private Button buttonPickImage;
+    private PictureBox pictureBoxThumbnail;
 }
