@@ -284,12 +284,14 @@ partial class MainForm
         // 
         // downloadXdvdfsToolStripMenuItem
         // 
+        downloadXdvdfsToolStripMenuItem.Image = Properties.Resources.xbox;
         downloadXdvdfsToolStripMenuItem.Name = "downloadXdvdfsToolStripMenuItem";
         resources.ApplyResources(downloadXdvdfsToolStripMenuItem, "downloadXdvdfsToolStripMenuItem");
         downloadXdvdfsToolStripMenuItem.Click += downloadXdvdfsToolStripMenuItem_Click;
         // 
         // downloadMkisofsToolStripMenuItem
         // 
+        downloadMkisofsToolStripMenuItem.Image = Properties.Resources.ps2;
         downloadMkisofsToolStripMenuItem.Name = "downloadMkisofsToolStripMenuItem";
         resources.ApplyResources(downloadMkisofsToolStripMenuItem, "downloadMkisofsToolStripMenuItem");
         downloadMkisofsToolStripMenuItem.Click += downloadMkisofsToolStripMenuItem_Click;
@@ -496,6 +498,7 @@ partial class MainForm
         // 
         // statusStrip1
         // 
+        statusStrip1.ImageScalingSize = new Size(20, 20);
         statusStrip1.Items.AddRange(new ToolStripItem[] { labelStatus });
         resources.ApplyResources(statusStrip1, "statusStrip1");
         statusStrip1.Name = "statusStrip1";
