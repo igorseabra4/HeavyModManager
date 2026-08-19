@@ -105,4 +105,16 @@ public static class ZipManager
                 zip.CreateEntryFromFile(e, Path.GetRelativePath(modPath, e));
         }
     }
+
+    public static string CreateModZipName(Mod mod)
+    {
+        string name = $"{ModManager.GameToStringAbbreviated(mod.Game)}-{mod.ModName}-{mod.Author}";
+        if (mod.Platform != GamePlatform.Unknown)
+            name += $" ({ModManager.PlatformToShortString(mod.Platform).ToUpper()})";
+        if (!string.IsNullOrWhiteSpace(mod.Version))
+            name += $" v{mod.Version}";
+        foreach (var c in "*\"/\\<>:|?")
+            name = name.Replace($"{c}", "");
+        return name;
+    }
 }

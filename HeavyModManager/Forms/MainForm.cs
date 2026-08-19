@@ -432,7 +432,7 @@ public partial class MainForm : Form
     {
         var mod = GetSelectedMod();
         if (mod != null)
-            System.Diagnostics.Process.Start("explorer.exe", ModManager.GetModPath(mod.ModId));
+            Process.Start("explorer.exe", ModManager.GetModPath(mod.ModId));
     }
 
     private void deleteModToolStripMenuItem_Click(object sender, EventArgs e)
@@ -464,25 +464,7 @@ public partial class MainForm : Form
         {
             try
             {
-                string TreatToFilename(string s)
-                {
-                    foreach (var c in "*\"/\\<>:|?")
-                        s = s.Replace($"{c}", "");
-                    return s;
-                }
-                string name = $"{ModManager.GameToStringFull(mod.Game)} - {mod.Author} - {mod.ModName}";
-
-                if (mod.Platform != GamePlatform.Unknown)
-                {
-                    name += $" ({ModManager.PlatformToShortString(mod.Platform).ToUpper()})";
-                }
-
-                if (mod.Version != null && mod.Version != String.Empty)
-                {
-                    name += $" v{mod.Version}";
-                }
-
-                ZipManager.ZipMod(mod.ModId, TreatToFilename(name));
+                ZipManager.ZipMod(mod.ModId, ZipManager.CreateModZipName(mod));
             }
             catch (Exception ex)
             {
