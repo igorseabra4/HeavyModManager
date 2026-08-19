@@ -53,8 +53,51 @@ public partial class MainForm : Form
 
         UpdateDeveloperMode();
         UpdateDolphinLabel();
+        EnableFileDragDrop(this);
     }
 
+    private void EnableFileDragDrop(Control control)
+    {
+        control.AllowDrop = true;
+
+        control.DragEnter += FileDragEnter;
+        control.DragDrop += FileDragDrop;
+
+        foreach (Control child in control.Controls)
+            EnableFileDragDrop(child);
+    }
+
+    private void FileDragEnter(object? sender, DragEventArgs e)
+    {
+        if (!e.Data.GetDataPresent(DataFormats.FileDrop))
+        {
+            e.Effect = DragDropEffects.None;
+            return;
+        }
+
+        var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+        e.Effect = files.All(IsValidFile)
+            ? DragDropEffects.Copy
+            : DragDropEffects.None;
+    }
+
+    private void FileDragDrop(object? sender, DragEventArgs e)
+    {
+        var files = (string[]?)e?.Data?.GetData(DataFormats.FileDrop);
+        if (files == null || files.Length == 0)
+            return;
+
+        foreach (var file in files)
+            if (IsValidFile(file))
+                ZipManager.InstallMod(file);
+
+        ModManager.RefreshModList();
+        PopulateModList();
+    }
+
+    private static bool IsValidFile(string file) => Path.GetExtension(file).Equals(".zip", StringComparison.OrdinalIgnoreCase);
+    
     private ToolStripMenuItem createModToolStripMenuItem;
     private ToolStripMenuItem editModToolStripMenuItem;
     private ToolStripMenuItem openModFolderToolStripMenuItem;
