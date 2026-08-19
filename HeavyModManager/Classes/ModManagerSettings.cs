@@ -59,6 +59,9 @@ public class ModManagerSettings
     public int MainFormHeight { get; set; }
 
     [JsonInclude]
+    public int MainFormSplitterDistance { get; set; }
+
+    [JsonInclude]
     public string Language { get; set; }
 
     [JsonInclude]

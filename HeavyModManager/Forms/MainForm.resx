@@ -199,121 +199,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxGame.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="groupBoxMods.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Name" xml:space="preserve">
-    <value>listViewMods</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;buttonRefreshModList.Name" xml:space="preserve">
-    <value>buttonRefreshModList</value>
-  </data>
-  <data name="&gt;&gt;buttonRefreshModList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonRefreshModList.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonRefreshModList.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveDown.Name" xml:space="preserve">
-    <value>buttonMoveDown</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveDown.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveDown.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveUp.Name" xml:space="preserve">
-    <value>buttonMoveUp</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveUp.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveUp.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;buttonAddMod.Name" xml:space="preserve">
-    <value>buttonAddMod</value>
-  </data>
-  <data name="&gt;&gt;buttonAddMod.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonAddMod.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonAddMod.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="groupBoxMods.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="groupBoxMods.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 84</value>
-  </data>
-  <data name="groupBoxMods.Size" type="System.Drawing.Size, System.Drawing">
-    <value>452, 294</value>
-  </data>
-  <data name="groupBoxMods.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="groupBoxMods.Text" xml:space="preserve">
-    <value>Mods</value>
-  </data>
-  <data name="&gt;&gt;groupBoxMods.Name" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;groupBoxMods.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBoxMods.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBoxMods.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="listViewMods.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="listViewMods.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 22</value>
-  </data>
-  <data name="listViewMods.Size" type="System.Drawing.Size, System.Drawing">
-    <value>440, 238</value>
-  </data>
-  <data name="listViewMods.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Name" xml:space="preserve">
-    <value>listViewMods</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="columnName.Text" xml:space="preserve">
     <value>Mod</value>
@@ -338,6 +227,27 @@
   </data>
   <data name="columnUpdatedDate.Width" type="System.Int32, mscorlib">
     <value>70</value>
+  </data>
+  <data name="listViewMods.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="listViewMods.Size" type="System.Drawing.Size, System.Drawing">
+    <value>468, 238</value>
+  </data>
+  <data name="listViewMods.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;listViewMods.Name" xml:space="preserve">
+    <value>listViewMods</value>
+  </data>
+  <data name="&gt;&gt;listViewMods.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listViewMods.Parent" xml:space="preserve">
+    <value>groupBoxMods</value>
+  </data>
+  <data name="&gt;&gt;listViewMods.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="buttonRefreshModList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -424,7 +334,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="buttonAddMod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>346, 264</value>
+    <value>374, 264</value>
   </data>
   <data name="buttonAddMod.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -447,6 +357,36 @@
   <data name="&gt;&gt;buttonAddMod.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="groupBoxMods.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="groupBoxMods.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="groupBoxMods.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="groupBoxMods.Size" type="System.Drawing.Size, System.Drawing">
+    <value>480, 294</value>
+  </data>
+  <data name="groupBoxMods.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="groupBoxMods.Text" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMods.Name" xml:space="preserve">
+    <value>groupBoxMods</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMods.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMods.Parent" xml:space="preserve">
+    <value>splitContainerMods.Panel1</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMods.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="buttonRunGameDev.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -454,7 +394,7 @@
     <value>False</value>
   </data>
   <data name="buttonRunGameDev.Location" type="System.Drawing.Point, System.Drawing">
-    <value>593, 348</value>
+    <value>587, 384</value>
   </data>
   <data name="buttonRunGameDev.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 23</value>
@@ -475,7 +415,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonRunGameDev.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="buttonRestoreBackupDev.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -484,7 +424,7 @@
     <value>False</value>
   </data>
   <data name="buttonRestoreBackupDev.Location" type="System.Drawing.Point, System.Drawing">
-    <value>470, 348</value>
+    <value>464, 384</value>
   </data>
   <data name="buttonRestoreBackupDev.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 23</value>
@@ -505,7 +445,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonRestoreBackupDev.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -564,54 +504,6 @@
   <data name="changeIconToolStripMenuItem.Text" xml:space="preserve">
     <value>Change &amp;Icon</value>
   </data>
-  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>257, 22</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Language</value>
-  </data>
-  <data name="themeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>257, 22</value>
-  </data>
-  <data name="themeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Theme</value>
-  </data>
-  <data name="openSettingsjsonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>257, 22</value>
-  </data>
-  <data name="openSettingsjsonToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Open settings.json</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Settings</value>
-  </data>
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>251, 24</value>
-  </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 22</value>
   </data>
@@ -656,29 +548,80 @@
   <data name="portugueseToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Portuguese</value>
   </data>
+  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 22</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Language</value>
+  </data>
   <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>161, 22</value>
   </data>
   <data name="systemToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;System (Default)</value>
   </data>
   <data name="lightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>161, 22</value>
   </data>
   <data name="lightToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Classic</value>
   </data>
   <data name="darkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>161, 22</value>
   </data>
   <data name="darkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Dark</value>
   </data>
-  <data name="labelModInfo.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="themeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 22</value>
+  </data>
+  <data name="themeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Theme</value>
+  </data>
+  <data name="openSettingsjsonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 22</value>
+  </data>
+  <data name="openSettingsjsonToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Open settings.json</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Settings</value>
+  </data>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 24</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="labelModInfo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="labelModInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
   <data name="labelModInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 168</value>
+    <value>208, 272</value>
   </data>
   <data name="labelModInfo.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -693,46 +636,19 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelModInfo.Parent" xml:space="preserve">
-    <value>panelLabelModInfo</value>
+    <value>groupBoxModInfo</value>
   </data>
   <data name="&gt;&gt;labelModInfo.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="panelLabelModInfo.AutoScroll" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="panelLabelModInfo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="groupBoxModInfo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="panelLabelModInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 19</value>
-  </data>
-  <data name="panelLabelModInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 236</value>
-  </data>
-  <data name="panelLabelModInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;panelLabelModInfo.Name" xml:space="preserve">
-    <value>panelLabelModInfo</value>
-  </data>
-  <data name="&gt;&gt;panelLabelModInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelLabelModInfo.Parent" xml:space="preserve">
-    <value>groupBoxModInfo</value>
-  </data>
-  <data name="&gt;&gt;panelLabelModInfo.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="groupBoxModInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
   <data name="groupBoxModInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>470, 84</value>
+    <value>0, 0</value>
   </data>
   <data name="groupBoxModInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 258</value>
+    <value>214, 294</value>
   </data>
   <data name="groupBoxModInfo.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -747,10 +663,10 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBoxModInfo.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>splitContainerMods.Panel2</value>
   </data>
   <data name="&gt;&gt;groupBoxModInfo.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>0</value>
   </data>
   <data name="labelDolphin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -759,7 +675,7 @@
     <value>True</value>
   </data>
   <data name="labelDolphin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 381</value>
+    <value>12, 393</value>
   </data>
   <data name="labelDolphin.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 45</value>
@@ -794,7 +710,7 @@ Dolphin Label</value>
     <value>NoControl</value>
   </data>
   <data name="buttonRunGame.Location" type="System.Drawing.Point, System.Drawing">
-    <value>470, 348</value>
+    <value>464, 384</value>
   </data>
   <data name="buttonRunGame.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 23</value>
@@ -818,7 +734,7 @@ Dolphin Label</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonRunGame.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
   </data>
   <data name="buttonSaveIso.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -830,7 +746,7 @@ Dolphin Label</value>
     <value>NoControl</value>
   </data>
   <data name="buttonSaveIso.Location" type="System.Drawing.Point, System.Drawing">
-    <value>470, 377</value>
+    <value>464, 413</value>
   </data>
   <data name="buttonSaveIso.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 23</value>
@@ -853,6 +769,63 @@ Dolphin Label</value>
   <data name="&gt;&gt;buttonSaveIso.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="splitContainerMods.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="splitContainerMods.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 84</value>
+  </data>
+  <data name="&gt;&gt;splitContainerMods.Panel1.Name" xml:space="preserve">
+    <value>splitContainerMods.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splitContainerMods.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitContainerMods.Panel1.Parent" xml:space="preserve">
+    <value>splitContainerMods</value>
+  </data>
+  <data name="&gt;&gt;splitContainerMods.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splitContainerMods.Panel1MinSize" type="System.Int32, mscorlib">
+    <value>200</value>
+  </data>
+  <data name="&gt;&gt;splitContainerMods.Panel2.Name" xml:space="preserve">
+    <value>splitContainerMods.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splitContainerMods.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitContainerMods.Panel2.Parent" xml:space="preserve">
+    <value>splitContainerMods</value>
+  </data>
+  <data name="&gt;&gt;splitContainerMods.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splitContainerMods.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="splitContainerMods.Size" type="System.Drawing.Size, System.Drawing">
+    <value>698, 294</value>
+  </data>
+  <data name="splitContainerMods.SplitterDistance" type="System.Int32, mscorlib">
+    <value>480</value>
+  </data>
+  <data name="splitContainerMods.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;splitContainerMods.Name" xml:space="preserve">
+    <value>splitContainerMods</value>
+  </data>
+  <data name="&gt;&gt;splitContainerMods.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitContainerMods.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;splitContainerMods.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -860,7 +833,7 @@ Dolphin Label</value>
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>722, 435</value>
+    <value>722, 447</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>540, 248</value>

@@ -13,7 +13,7 @@ public partial class MainForm : Form
 {
     public MainForm()
     {
-        var settings = LoadSettings();
+        var settings = ModManager.LoadSettings();
         // Set theme e.g. Classic/Dark
         Application.SetColorMode(settings.Theme);
 
@@ -49,8 +49,6 @@ public partial class MainForm : Form
                     break;
                 }
 
-        labelModInfo.AutoSize = true;
-        labelModInfo.MaximumSize = new Size(panelLabelModInfo.Width - SystemInformation.VerticalScrollBarWidth, 0);
         labelModInfo.Text = "";
 
         UpdateDeveloperMode();
@@ -185,7 +183,8 @@ public partial class MainForm : Form
         var settings = new ModManagerSettings
         {
             MainFormWidth = Width,
-            MainFormHeight = Height
+            MainFormHeight = Height,
+            MainFormSplitterDistance = splitContainerMods.SplitterDistance
         };
 
         foreach (ColumnHeader c in listViewMods.Columns)
@@ -197,11 +196,6 @@ public partial class MainForm : Form
         settings.Theme = Application.ColorMode;
 
         ModManager.SaveSettings(settings);
-    }
-
-    private ModManagerSettings LoadSettings()
-    {
-        return ModManager.LoadSettings();
     }
 
     private void UpdateFormSize(ModManagerSettings settings)
@@ -218,6 +212,9 @@ public partial class MainForm : Form
                 listViewMods.Columns[i].DisplayIndex = settings.ColumnIndices[i];
                 listViewMods.Columns[i].Width = Math.Max(settings.ColumnSizes[i], 32);
             }
+
+        if (settings.MainFormSplitterDistance > 0 && settings.MainFormSplitterDistance < splitContainerMods.Width)
+            splitContainerMods.SplitterDistance = settings.MainFormSplitterDistance;
     }
 
     private AboutBox aboutBox;
@@ -360,6 +357,14 @@ public partial class MainForm : Form
     }
 
     private bool programChangingData = false;
+    
+    private void splitContainerMods_SplitterMoved(object sender, SplitterEventArgs e)
+    {
+        labelModInfo.AutoSize = false;
+        labelModInfo.MaximumSize = new Size(splitContainerMods.Panel2.Width - SystemInformation.VerticalScrollBarWidth, 0);
+        labelModInfo.Width = splitContainerMods.Panel2.Width - SystemInformation.VerticalScrollBarWidth;
+        labelModInfo.Invalidate();
+    }
 
     private void PopulateModList(string selectedModId = "")
     {

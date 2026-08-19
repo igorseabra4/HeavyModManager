@@ -63,18 +63,21 @@ partial class MainForm
         systemToolStripMenuItem = new ToolStripMenuItem();
         lightToolStripMenuItem = new ToolStripMenuItem();
         darkToolStripMenuItem = new ToolStripMenuItem();
+        openSettingsjsonToolStripMenuItem = new ToolStripMenuItem();
         labelModInfo = new Label();
-        panelLabelModInfo = new Panel();
         groupBoxModInfo = new GroupBox();
         labelDolphin = new Label();
         buttonRunGame = new Button();
         buttonSaveIso = new Button();
-        openSettingsjsonToolStripMenuItem = new ToolStripMenuItem();
+        splitContainerMods = new SplitContainer();
         groupBoxGame.SuspendLayout();
         groupBoxMods.SuspendLayout();
         menuStrip1.SuspendLayout();
-        panelLabelModInfo.SuspendLayout();
         groupBoxModInfo.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)splitContainerMods).BeginInit();
+        splitContainerMods.Panel1.SuspendLayout();
+        splitContainerMods.Panel2.SuspendLayout();
+        splitContainerMods.SuspendLayout();
         SuspendLayout();
         // 
         // groupBoxGame
@@ -101,12 +104,12 @@ partial class MainForm
         // 
         // groupBoxMods
         // 
-        resources.ApplyResources(groupBoxMods, "groupBoxMods");
         groupBoxMods.Controls.Add(listViewMods);
         groupBoxMods.Controls.Add(buttonRefreshModList);
         groupBoxMods.Controls.Add(buttonMoveDown);
         groupBoxMods.Controls.Add(buttonMoveUp);
         groupBoxMods.Controls.Add(buttonAddMod);
+        resources.ApplyResources(groupBoxMods, "groupBoxMods");
         groupBoxMods.Name = "groupBoxMods";
         groupBoxMods.TabStop = false;
         // 
@@ -301,21 +304,21 @@ partial class MainForm
         resources.ApplyResources(darkToolStripMenuItem, "darkToolStripMenuItem");
         darkToolStripMenuItem.Click += themeItemToolStripMenuItem_Click;
         // 
+        // openSettingsjsonToolStripMenuItem
+        // 
+        openSettingsjsonToolStripMenuItem.Name = "openSettingsjsonToolStripMenuItem";
+        resources.ApplyResources(openSettingsjsonToolStripMenuItem, "openSettingsjsonToolStripMenuItem");
+        openSettingsjsonToolStripMenuItem.Click += openSettingsjsonToolStripMenuItem_Click;
+        // 
         // labelModInfo
         // 
         resources.ApplyResources(labelModInfo, "labelModInfo");
         labelModInfo.Name = "labelModInfo";
         // 
-        // panelLabelModInfo
-        // 
-        resources.ApplyResources(panelLabelModInfo, "panelLabelModInfo");
-        panelLabelModInfo.Controls.Add(labelModInfo);
-        panelLabelModInfo.Name = "panelLabelModInfo";
-        // 
         // groupBoxModInfo
         // 
+        groupBoxModInfo.Controls.Add(labelModInfo);
         resources.ApplyResources(groupBoxModInfo, "groupBoxModInfo");
-        groupBoxModInfo.Controls.Add(panelLabelModInfo);
         groupBoxModInfo.Name = "groupBoxModInfo";
         groupBoxModInfo.TabStop = false;
         // 
@@ -338,11 +341,19 @@ partial class MainForm
         buttonSaveIso.UseVisualStyleBackColor = true;
         buttonSaveIso.Click += buttonSaveIso_Click;
         // 
-        // openSettingsjsonToolStripMenuItem
+        // splitContainerMods
         // 
-        openSettingsjsonToolStripMenuItem.Name = "openSettingsjsonToolStripMenuItem";
-        resources.ApplyResources(openSettingsjsonToolStripMenuItem, "openSettingsjsonToolStripMenuItem");
-        openSettingsjsonToolStripMenuItem.Click += openSettingsjsonToolStripMenuItem_Click;
+        resources.ApplyResources(splitContainerMods, "splitContainerMods");
+        splitContainerMods.Name = "splitContainerMods";
+        // 
+        // splitContainerMods.Panel1
+        // 
+        splitContainerMods.Panel1.Controls.Add(groupBoxMods);
+        // 
+        // splitContainerMods.Panel2
+        // 
+        splitContainerMods.Panel2.Controls.Add(groupBoxModInfo);
+        splitContainerMods.SplitterMoved += splitContainerMods_SplitterMoved;
         // 
         // MainForm
         // 
@@ -350,13 +361,12 @@ partial class MainForm
         AutoScaleMode = AutoScaleMode.Font;
         Controls.Add(buttonSaveIso);
         Controls.Add(labelDolphin);
-        Controls.Add(groupBoxModInfo);
         Controls.Add(buttonRestoreBackupDev);
         Controls.Add(buttonRunGameDev);
-        Controls.Add(groupBoxMods);
         Controls.Add(groupBoxGame);
         Controls.Add(menuStrip1);
         Controls.Add(buttonRunGame);
+        Controls.Add(splitContainerMods);
         MainMenuStrip = menuStrip1;
         Name = "MainForm";
         FormClosing += MainForm_FormClosing;
@@ -365,8 +375,11 @@ partial class MainForm
         groupBoxMods.ResumeLayout(false);
         menuStrip1.ResumeLayout(false);
         menuStrip1.PerformLayout();
-        panelLabelModInfo.ResumeLayout(false);
         groupBoxModInfo.ResumeLayout(false);
+        splitContainerMods.Panel1.ResumeLayout(false);
+        splitContainerMods.Panel2.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)splitContainerMods).EndInit();
+        splitContainerMods.ResumeLayout(false);
         ResumeLayout(false);
         PerformLayout();
     }
@@ -384,7 +397,6 @@ partial class MainForm
     private Button buttonMoveDown;
     private Button buttonMoveUp;
     private Label labelModInfo;
-    private Panel panelLabelModInfo;
     private Button buttonCreateBackup;
     private GroupBox groupBoxModInfo;
     private Label labelDolphin;
@@ -414,4 +426,5 @@ partial class MainForm
     private ToolStripMenuItem darkToolStripMenuItem;
     private Button buttonSaveIso;
     private ToolStripMenuItem openSettingsjsonToolStripMenuItem;
+    private SplitContainer splitContainerMods;
 }
