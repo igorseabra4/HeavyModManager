@@ -346,7 +346,7 @@ public partial class MainForm : Form
                         s = s.Replace($"{c}", "");
                     return s;
                 }
-                ZipManager.ZipMod(mod.ModId, TreatToFilename($"{ModManager.GameToStringFull(mod.Game)} - {mod.Author} - {mod.ModName}"));
+                ZipManager.ZipMod(mod.ModId, TreatToFilename($"{ModManager.GameToStringAbbreviated(mod.Game)}-{mod.ModName}-{mod.Author}"));
             }
             catch (Exception ex)
             {

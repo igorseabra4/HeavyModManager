@@ -42,6 +42,33 @@ public static class ModManager
     }
 
     /// <summary>
+    /// Returns the abbreviated name of a Heavy Iron game.
+    /// </summary>
+    /// <param name="game">The Heavy Iron game</param>
+    /// <returns>The abbreviated name</returns>
+    /// <exception cref="ArgumentException">If the game specified is not a valid Heavy Iron game</exception>
+    public static string GameToStringAbbreviated(Game game)
+    {
+        return game switch
+        {
+            Game.Scooby => "ScoobyN100F",
+            Game.BFBB => "BFBB",
+            Game.Movie => "TSSM",
+            Game.Incredibles => "Incredibles",
+            Game.Underminer => "ROTU",
+            Game.RatProto => "RatProto",
+            Game.Ratatouille => "Ratatouille",
+            Game.WallE => "WALLE",
+            Game.Up => "Up",
+            Game.TruthOrSquare => "TOS",
+            Game.UFC => "UFCPT",
+            Game.FamilyGuy => "FamilyGuy",
+            Game.HollywoodWorkout => "HollywoodWorkout",
+            _ => throw new ArgumentException("Invalid game.", nameof(game)),
+        };
+    }
+
+    /// <summary>
     /// Returns the long name of a Heavy Iron game.
     /// </summary>
     /// <param name="game">The Heavy Iron game</param>
