@@ -362,11 +362,11 @@ partial class MainForm
         Controls.Add(buttonSaveIso);
         Controls.Add(labelDolphin);
         Controls.Add(buttonRestoreBackupDev);
-        Controls.Add(buttonRunGameDev);
         Controls.Add(groupBoxGame);
         Controls.Add(menuStrip1);
-        Controls.Add(buttonRunGame);
         Controls.Add(splitContainerMods);
+        Controls.Add(buttonRunGameDev);
+        Controls.Add(buttonRunGame);
         MainMenuStrip = menuStrip1;
         Name = "MainForm";
         FormClosing += MainForm_FormClosing;

@@ -97,7 +97,7 @@ public partial class MainForm : Form
     }
 
     private static bool IsValidFile(string file) => Path.GetExtension(file).Equals(".zip", StringComparison.OrdinalIgnoreCase);
-    
+
     private ToolStripMenuItem createModToolStripMenuItem;
     private ToolStripMenuItem editModToolStripMenuItem;
     private ToolStripMenuItem openModFolderToolStripMenuItem;
@@ -400,7 +400,7 @@ public partial class MainForm : Form
     }
 
     private bool programChangingData = false;
-    
+
     private void splitContainerMods_SplitterMoved(object sender, SplitterEventArgs e)
     {
         labelModInfo.AutoSize = false;

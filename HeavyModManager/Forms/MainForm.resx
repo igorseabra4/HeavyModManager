@@ -199,7 +199,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxGame.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="listViewMods.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -393,11 +393,14 @@
   <data name="buttonRunGameDev.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="buttonRunGameDev.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="buttonRunGameDev.Location" type="System.Drawing.Point, System.Drawing">
-    <value>587, 384</value>
+    <value>554, 384</value>
   </data>
   <data name="buttonRunGameDev.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 23</value>
+    <value>150, 23</value>
   </data>
   <data name="buttonRunGameDev.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -415,7 +418,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonRunGameDev.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="buttonRestoreBackupDev.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -423,11 +426,14 @@
   <data name="buttonRestoreBackupDev.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="buttonRestoreBackupDev.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="buttonRestoreBackupDev.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 384</value>
+    <value>398, 384</value>
   </data>
   <data name="buttonRestoreBackupDev.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 23</value>
+    <value>150, 23</value>
   </data>
   <data name="buttonRestoreBackupDev.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -612,16 +618,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
-  <data name="labelModInfo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="labelModInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="labelModInfo.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 19</value>
   </data>
   <data name="labelModInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 272</value>
+    <value>208, 207</value>
   </data>
   <data name="labelModInfo.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -710,10 +716,10 @@ Dolphin Label</value>
     <value>NoControl</value>
   </data>
   <data name="buttonRunGame.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 384</value>
+    <value>554, 384</value>
   </data>
   <data name="buttonRunGame.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 23</value>
+    <value>150, 23</value>
   </data>
   <data name="buttonRunGame.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -734,7 +740,7 @@ Dolphin Label</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonRunGame.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="buttonSaveIso.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -746,10 +752,10 @@ Dolphin Label</value>
     <value>NoControl</value>
   </data>
   <data name="buttonSaveIso.Location" type="System.Drawing.Point, System.Drawing">
-    <value>464, 413</value>
+    <value>554, 413</value>
   </data>
   <data name="buttonSaveIso.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 23</value>
+    <value>150, 23</value>
   </data>
   <data name="buttonSaveIso.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -824,7 +830,7 @@ Dolphin Label</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;splitContainerMods.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
