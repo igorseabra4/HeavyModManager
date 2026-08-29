@@ -210,10 +210,9 @@ public static class ModManager
 
     public static string XdvdfsPath => Path.Combine(Application.StartupPath, "External", "xdvdfs", "xdvdfs.exe");
 
-    public static string MkisofsPath => Path.Combine(Application.StartupPath, "External", "mkisofs", "mkisofs.exe");
     public static bool XdvdfsIsDownloaded => File.Exists(XdvdfsPath);
 
-    public static bool MkisofsIsDownloaded => File.Exists(MkisofsPath);
+
 
     /// <summary>
     /// Path to game folder path for a given platform
@@ -281,6 +280,8 @@ public static class ModManager
     public static string XemuPath { get; set; }
 
     public static string PCSX2Path { get; set; }
+
+    public static string ImgBurnPath { get; set; }
 
     public static string DolphinCommandLineArgs { get; set; }
 
@@ -366,6 +367,7 @@ public static class ModManager
         DolphinPath = (string.IsNullOrWhiteSpace(settings.DolphinPath) && File.Exists(defaultDolphinPath)) ? defaultDolphinPath : settings.DolphinPath;
         XemuPath = settings.XemuPath;
         PCSX2Path = settings.PCSX2Path;
+        ImgBurnPath = settings.ImgBurnPath;
 
         DolphinCommandLineArgs = settings.DolphinCommandLineArgs;
         XemuCommandLineArgs = settings.XemuCommandLineArgs;
@@ -935,8 +937,8 @@ public static class ModManager
             if (result == Result.MissingXdvdfs)
                 return Result.MissingXdvdfs;
 
-            if (result == Result.MissingMkisofs)
-                return Result.MissingMkisofs;
+            if (result == Result.MissingImgBurn)
+                return Result.MissingImgBurn;
         }
         
         string extraArgs = GetCommandLineArguments(platform); // may be empty
@@ -996,7 +998,7 @@ public static class ModManager
     {
         Success,
         MissingXdvdfs,
-        MissingMkisofs,
+        MissingImgBurn,
         EmulatorNotFound,
         Error
     }
@@ -1010,22 +1012,38 @@ public static class ModManager
                 break;
             case GamePlatform.PlayStation2:
                 {
-                    if (!MkisofsIsDownloaded)
-                        return Result.MissingMkisofs;
+                    if (ImgBurnPath == "" || !File.Exists(ImgBurnPath))
+                        return Result.MissingImgBurn;
 
                     var psiPs2 = new ProcessStartInfo
                     {
-                        FileName = MkisofsPath,
+                        FileName = ImgBurnPath,
                         UseShellExecute = false,
                         RedirectStandardOutput = true,
                         RedirectStandardError = true,
                         CreateNoWindow = true
                     };
 
-                    psiPs2.ArgumentList.Add("-udf");
-                    psiPs2.ArgumentList.Add("-o");
-                    psiPs2.ArgumentList.Add(path);
+                    string label = "HEAVYIRON_" + ModManager.GameToString(game).ToUpper() + "_HMM";
+
+                    psiPs2.ArgumentList.Add("/MODE");
+                    psiPs2.ArgumentList.Add("BUILD");
+                    psiPs2.ArgumentList.Add("/BUILDOUTPUTMODE");
+                    psiPs2.ArgumentList.Add("IMAGEFILE");
+                    psiPs2.ArgumentList.Add("/SRC");
                     psiPs2.ArgumentList.Add(GameGamePath(game, platform));
+                    psiPs2.ArgumentList.Add("/DEST");
+                    psiPs2.ArgumentList.Add(path);
+                    psiPs2.ArgumentList.Add("/FILESYSTEM");
+                    psiPs2.ArgumentList.Add("ISO9660 + UDF");
+                    psiPs2.ArgumentList.Add("/VOLUMELABEL");
+                    psiPs2.ArgumentList.Add(label);
+                    psiPs2.ArgumentList.Add("/ROOTFOLDER");
+                    psiPs2.ArgumentList.Add("YES");
+                    psiPs2.ArgumentList.Add("/RECURSESUBDIRECTORIES");
+                    psiPs2.ArgumentList.Add("YES");
+                    psiPs2.ArgumentList.Add("/START");
+                    psiPs2.ArgumentList.Add("/CLOSE");
 
                     using var processPs2 = Process.Start(psiPs2)!;
 
@@ -1145,84 +1163,84 @@ public static class ModManager
             file.Attributes = FileAttributes.Normal;
     }
 
-    public static async Task DownloadAndExtractMkisofs()
-    {
-        string baseDir = Path.Combine(Application.StartupPath, "External", "mkisofs");
-        Directory.CreateDirectory(baseDir);
+    //public static async Task DownloadAndExtractMkisofs()
+    //{
+    //    string baseDir = Path.Combine(Application.StartupPath, "External", "mkisofs");
+    //    Directory.CreateDirectory(baseDir);
 
-        string rarPath = Path.Combine(baseDir, "cdrtools.rar");
+    //    string rarPath = Path.Combine(baseDir, "cdrtools.rar");
 
-        string url = "https://sourceforge.net/projects/cdrtfe/files/tools/binaries/cdrtools/cdrtools-3.02a10-bin-win32-patched.rar/download";
+    //    string url = "https://sourceforge.net/projects/cdrtfe/files/tools/binaries/cdrtools/cdrtools-3.02a10-bin-win32-patched.rar/download";
 
-        // 1. Download with manual redirect handling (like curl -L)
-        while (true)
-        {
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "GET";
-            request.AllowAutoRedirect = false; // IMPORTANT
-            request.Accept = "*/*";
-            request.KeepAlive = true;
+    //    // 1. Download with manual redirect handling (like curl -L)
+    //    while (true)
+    //    {
+    //        var request = (HttpWebRequest)WebRequest.Create(url);
+    //        request.Method = "GET";
+    //        request.AllowAutoRedirect = false; // IMPORTANT
+    //        request.Accept = "*/*";
+    //        request.KeepAlive = true;
 
-            using var response = (HttpWebResponse)await request.GetResponseAsync();
+    //        using var response = (HttpWebResponse)await request.GetResponseAsync();
 
-            // Handle redirect manually
-            if ((int)response.StatusCode >= 300 && (int)response.StatusCode < 400)
-            {
-                string? location = response.Headers["Location"];
-                if (string.IsNullOrEmpty(location))
-                    throw new Exception("Redirect with no location");
+    //        // Handle redirect manually
+    //        if ((int)response.StatusCode >= 300 && (int)response.StatusCode < 400)
+    //        {
+    //            string? location = response.Headers["Location"];
+    //            if (string.IsNullOrEmpty(location))
+    //                throw new Exception("Redirect with no location");
 
-                // Handle relative redirects
-                if (!location.StartsWith("http"))
-                {
-                    var baseUri = new Uri(url);
-                    location = new Uri(baseUri, location).ToString();
-                }
+    //            // Handle relative redirects
+    //            if (!location.StartsWith("http"))
+    //            {
+    //                var baseUri = new Uri(url);
+    //                location = new Uri(baseUri, location).ToString();
+    //            }
 
-                url = location;
-                continue;
-            }
+    //            url = location;
+    //            continue;
+    //        }
 
-            // Final response → save file
-            using (var responseStream = response.GetResponseStream())
-            using (var fileStream = new FileStream(rarPath, FileMode.Create, FileAccess.Write, FileShare.None))
-            {
-                await responseStream.CopyToAsync(fileStream);
-            }
+    //        // Final response → save file
+    //        using (var responseStream = response.GetResponseStream())
+    //        using (var fileStream = new FileStream(rarPath, FileMode.Create, FileAccess.Write, FileShare.None))
+    //        {
+    //            await responseStream.CopyToAsync(fileStream);
+    //        }
 
-            break;
-        }
+    //        break;
+    //    }
 
-        // 2. Extract
-        SevenZipLib.SevenZip.ExtractToDir(rarPath, Path.GetDirectoryName(MkisofsPath));
+    //    // 2. Extract
+    //    SevenZipLib.SevenZip.ExtractToDir(rarPath, Path.GetDirectoryName(MkisofsPath));
 
-        if (File.Exists(MkisofsPath))
-        {
-            // Delete other files except mkisofs.exe
-            foreach (var file in Directory.GetFiles(Path.GetDirectoryName(MkisofsPath)))
-            {
-                if (!file.EndsWith("mkisofs.exe", StringComparison.OrdinalIgnoreCase))
-                {
-                    File.Delete(file);
-                }
-            }
-            // Delete folders
-            foreach (var dir in Directory.GetDirectories(Path.GetDirectoryName(MkisofsPath)))
-            {
-                ForceDeleteDirectory(dir);
-            }
-        }
+    //    if (File.Exists(MkisofsPath))
+    //    {
+    //        // Delete other files except mkisofs.exe
+    //        foreach (var file in Directory.GetFiles(Path.GetDirectoryName(MkisofsPath)))
+    //        {
+    //            if (!file.EndsWith("mkisofs.exe", StringComparison.OrdinalIgnoreCase))
+    //            {
+    //                File.Delete(file);
+    //            }
+    //        }
+    //        // Delete folders
+    //        foreach (var dir in Directory.GetDirectories(Path.GetDirectoryName(MkisofsPath)))
+    //        {
+    //            ForceDeleteDirectory(dir);
+    //        }
+    //    }
 
-        // Download cygwin1.dll
-        var cygwinDllUrl = "https://raw.githubusercontent.com/FormLink/cygwin-files/master/cygwin1.dll";
-        // Download and put in same folder as mkisofs
+    //    // Download cygwin1.dll
+    //    var cygwinDllUrl = "https://raw.githubusercontent.com/FormLink/cygwin-files/master/cygwin1.dll";
+    //    // Download and put in same folder as mkisofs
 
-        string outputPath = Path.Combine(Path.GetDirectoryName(MkisofsPath), "cygwin1.dll");
+    //    string outputPath = Path.Combine(Path.GetDirectoryName(MkisofsPath), "cygwin1.dll");
 
-        using HttpClient client = new HttpClient();
-        byte[] fileBytes = await client.GetByteArrayAsync(cygwinDllUrl);
-        await File.WriteAllBytesAsync(outputPath, fileBytes);
-    }
+    //    using HttpClient client = new HttpClient();
+    //    byte[] fileBytes = await client.GetByteArrayAsync(cygwinDllUrl);
+    //    await File.WriteAllBytesAsync(outputPath, fileBytes);
+    //}
 
     public static async Task DownloadLatestXdvdfsAsync()
     {

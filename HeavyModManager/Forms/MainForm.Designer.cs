@@ -56,7 +56,6 @@ partial class MainForm
         checkForUpdatesOnStartupToolStripMenuItem = new ToolStripMenuItem();
         checkForUpdatesNowToolStripMenuItem = new ToolStripMenuItem();
         downloadXdvdfsToolStripMenuItem = new ToolStripMenuItem();
-        downloadMkisofsToolStripMenuItem = new ToolStripMenuItem();
         toolStripSeparator2 = new ToolStripSeparator();
         changeIconToolStripMenuItem = new ToolStripMenuItem();
         languageToolStripMenuItem = new ToolStripMenuItem();
@@ -254,7 +253,7 @@ partial class MainForm
         // 
         // settingsToolStripMenuItem
         // 
-        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { emulatorSettingsToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, downloadXdvdfsToolStripMenuItem, downloadMkisofsToolStripMenuItem, toolStripSeparator2, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, listColumnsToolStripMenuItem, showISOAfterSavingToolStripMenuItem, openSettingsjsonToolStripMenuItem });
+        settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { emulatorSettingsToolStripMenuItem, developerModeToolStripMenuItem, checkForUpdatesOnStartupToolStripMenuItem, checkForUpdatesNowToolStripMenuItem, downloadXdvdfsToolStripMenuItem, toolStripSeparator2, changeIconToolStripMenuItem, languageToolStripMenuItem, themeToolStripMenuItem, listColumnsToolStripMenuItem, showISOAfterSavingToolStripMenuItem, openSettingsjsonToolStripMenuItem });
         settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
         resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
         // 
@@ -288,13 +287,6 @@ partial class MainForm
         downloadXdvdfsToolStripMenuItem.Name = "downloadXdvdfsToolStripMenuItem";
         resources.ApplyResources(downloadXdvdfsToolStripMenuItem, "downloadXdvdfsToolStripMenuItem");
         downloadXdvdfsToolStripMenuItem.Click += downloadXdvdfsToolStripMenuItem_Click;
-        // 
-        // downloadMkisofsToolStripMenuItem
-        // 
-        downloadMkisofsToolStripMenuItem.Image = Properties.Resources.ps2;
-        downloadMkisofsToolStripMenuItem.Name = "downloadMkisofsToolStripMenuItem";
-        resources.ApplyResources(downloadMkisofsToolStripMenuItem, "downloadMkisofsToolStripMenuItem");
-        downloadMkisofsToolStripMenuItem.Click += downloadMkisofsToolStripMenuItem_Click;
         // 
         // toolStripSeparator2
         // 
@@ -593,7 +585,6 @@ partial class MainForm
     private PictureBox pictureBoxPlatform;
     private ToolStripMenuItem helpToolStripMenuItem;
     private ToolStripMenuItem aboutToolStripMenuItem;
-    private ToolStripMenuItem downloadMkisofsToolStripMenuItem;
     private Button buttonBrowseMods;
     private ToolStripMenuItem listColumnsToolStripMenuItem;
     private ToolStripMenuItem modToolStripMenuItem;

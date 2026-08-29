@@ -53,6 +53,9 @@ public class ModManagerSettings
     public string PCSX2CommandLineArgs { get; set; }
 
     [JsonInclude]
+    public string ImgBurnPath { get; set; }
+
+    [JsonInclude]
     public bool OpenIsoAfterExport { get; set; }
 
     /// <summary>
@@ -88,6 +91,9 @@ public class ModManagerSettings
     [JsonInclude]
     public SystemColorMode Theme { get; set; }
 
+    public static string DefaultImgBurnPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "ImgBurn", "ImgBurn.exe");
+
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ModManagerSettings"/> class.
     /// </summary>
@@ -102,6 +108,7 @@ public class ModManagerSettings
         DolphinFolderPath = "";
         XemuPath = "";
         PCSX2Path = "";
+        ImgBurnPath = DefaultImgBurnPath;
 
         DolphinCommandLineArgs = "";
         XemuCommandLineArgs = "";

@@ -894,15 +894,9 @@ public partial class MainForm : Form
                     RunGame();
                 }
             }
-            else if (result == ModManager.Result.MissingMkisofs)
+            else if (result == ModManager.Result.MissingImgBurn)
             {
-                bool downloaded = await PromptToDownloadMkisofs();
-
-                if (downloaded)
-                {
-                    // Try running the game again
-                    RunGame();
-                }
+                PromptToDownloadImgBurn();
             }
         }
         catch (Exception e)
@@ -1342,36 +1336,30 @@ public partial class MainForm : Form
         return false;
     }
 
-    private async Task<bool> PromptToDownloadMkisofs()
+    private void PromptToDownloadImgBurn()
     {
         var result = MessageBox.Show(
-            "This will download the mkisofs tool and cygwin, which is required to build Playstation 2 ISOs.\nEstimated size on disk: 4.64MB.\n\nDo you want to proceed?",
-            "Download mkisofs",
+            "ImgBurn is required to create PlayStation 2 ISOs. Please download and install it, and locate ImgBurn.exe under Emulator Settings.\n\nOpen the download page now?",
+            "Download ImgBurn",
             MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question);
+            MessageBoxIcon.Information);
 
         if (result == DialogResult.Yes)
         {
+            string url = "https://www.softpedia.com/get/CD-DVD-Tools/Data-CD-DVD-Burning/ImgBurn.shtml";
             try
             {
-                await ModManager.DownloadAndExtractMkisofs();
-                TaskbarFlasher.Flash(this.Handle);
-                MessageBox.Show("mkisofs downloaded successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TaskbarFlasher.Stop(this.Handle);
-                return true;
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to download mkisofs:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Failed to open browser:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        return false;
-    }
-
-    private void downloadMkisofsToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        PromptToDownloadMkisofs();
     }
 
     private void buttonBrowseMods_Click(object sender, EventArgs e)

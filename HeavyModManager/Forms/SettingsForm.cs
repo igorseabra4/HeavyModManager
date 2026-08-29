@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
 
 namespace HeavyModManager.Forms
 {
@@ -32,6 +33,7 @@ namespace HeavyModManager.Forms
             textBoxPCSX2Args.Text = ModManager.PCSX2CommandLineArgs;
 
             textBoxDolphinUserFolderPath.Text = ModManager.DolphinFolderPath;
+            imgBurnPathTextBox.Text = ModManager.ImgBurnPath;
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -56,6 +58,7 @@ namespace HeavyModManager.Forms
             ModManager.PCSX2CommandLineArgs = textBoxPCSX2Args.Text;
 
             ModManager.DolphinFolderPath = textBoxDolphinUserFolderPath.Text;
+            ModManager.ImgBurnPath = imgBurnPathTextBox.Text;
         }
 
         private void linkLabelDolphinArgsRef_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -123,6 +126,25 @@ namespace HeavyModManager.Forms
                     textBoxDolphinUserFolderPath.Text = fbd.SelectedPath;
                 }
             }
+        }
+
+        private void buttonPickImgBurnPath_Click(object sender, EventArgs e)
+        {
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.Title = "Pick ImgBurn Executable";
+                ofd.Filter = "ImgBurn Executable|imgburn.exe|All Executables|*.exe|All Files|*.*";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    imgBurnPathTextBox.Text = ofd.FileName;
+                }
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string website = "https://www.softpedia.com/get/CD-DVD-Tools/Data-CD-DVD-Burning/ImgBurn.shtml";
+            OpenReferenceLink(website);
         }
     }
 }

@@ -48,6 +48,10 @@
             textBoxDolphinPath = new TextBox();
             label4 = new Label();
             groupBox3 = new GroupBox();
+            linkLabel1 = new LinkLabel();
+            buttonPickImgBurnPath = new Button();
+            imgBurnPathTextBox = new TextBox();
+            label8 = new Label();
             linkLabelPCSX2ArgsRef = new LinkLabel();
             buttonPickPCSX2Path = new Button();
             textBoxPCSX2Args = new TextBox();
@@ -61,7 +65,7 @@
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(297, 298);
+            buttonSave.Location = new Point(297, 333);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(114, 23);
             buttonSave.TabIndex = 0;
@@ -71,7 +75,7 @@
             // 
             // buttonCancel
             // 
-            buttonCancel.Location = new Point(417, 298);
+            buttonCancel.Location = new Point(417, 333);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(106, 23);
             buttonCancel.TabIndex = 1;
@@ -256,6 +260,10 @@
             // groupBox3
             // 
             groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox3.Controls.Add(linkLabel1);
+            groupBox3.Controls.Add(buttonPickImgBurnPath);
+            groupBox3.Controls.Add(imgBurnPathTextBox);
+            groupBox3.Controls.Add(label8);
             groupBox3.Controls.Add(linkLabelPCSX2ArgsRef);
             groupBox3.Controls.Add(buttonPickPCSX2Path);
             groupBox3.Controls.Add(textBoxPCSX2Args);
@@ -264,10 +272,50 @@
             groupBox3.Controls.Add(label6);
             groupBox3.Location = new Point(12, 215);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(511, 77);
+            groupBox3.Size = new Size(511, 112);
             groupBox3.TabIndex = 6;
             groupBox3.TabStop = false;
             groupBox3.Text = "Sony PlayStation 2";
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.LinkColor = Color.FromArgb(0, 122, 245);
+            linkLabel1.Location = new Point(106, 76);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(61, 15);
+            linkLabel1.TabIndex = 11;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Download";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
+            // buttonPickImgBurnPath
+            // 
+            buttonPickImgBurnPath.Location = new Point(465, 76);
+            buttonPickImgBurnPath.Name = "buttonPickImgBurnPath";
+            buttonPickImgBurnPath.Size = new Size(40, 23);
+            buttonPickImgBurnPath.TabIndex = 10;
+            buttonPickImgBurnPath.Text = "...";
+            buttonPickImgBurnPath.UseVisualStyleBackColor = true;
+            buttonPickImgBurnPath.Click += buttonPickImgBurnPath_Click;
+            // 
+            // imgBurnPathTextBox
+            // 
+            imgBurnPathTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            imgBurnPathTextBox.Location = new Point(171, 76);
+            imgBurnPathTextBox.Name = "imgBurnPathTextBox";
+            imgBurnPathTextBox.Size = new Size(289, 23);
+            imgBurnPathTextBox.TabIndex = 9;
+            imgBurnPathTextBox.Text = " ";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(6, 76);
+            label8.Name = "label8";
+            label8.Size = new Size(80, 15);
+            label8.TabIndex = 7;
+            label8.Text = "ImgBurn Path";
             // 
             // linkLabelPCSX2ArgsRef
             // 
@@ -331,7 +379,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = buttonCancel;
-            ClientSize = new Size(535, 333);
+            ClientSize = new Size(535, 368);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -379,5 +427,9 @@
         private Label label7;
         private TextBox textBoxDolphinUserFolderPath;
         private Button buttonPickDolphinUserFolderPath;
+        private Label label8;
+        private TextBox imgBurnPathTextBox;
+        private Button buttonPickImgBurnPath;
+        private LinkLabel linkLabel1;
     }
 }
