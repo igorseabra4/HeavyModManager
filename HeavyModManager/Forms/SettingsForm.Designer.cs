@@ -58,14 +58,18 @@
             label5 = new Label();
             textBoxPCSX2Path = new TextBox();
             label6 = new Label();
+            groupBox4 = new GroupBox();
+            textBoxModAuthor = new TextBox();
+            label11 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(297, 333);
+            buttonSave.Location = new Point(297, 392);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(114, 23);
             buttonSave.TabIndex = 0;
@@ -75,7 +79,7 @@
             // 
             // buttonCancel
             // 
-            buttonCancel.Location = new Point(417, 333);
+            buttonCancel.Location = new Point(417, 392);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(106, 23);
             buttonCancel.TabIndex = 1;
@@ -92,7 +96,7 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(textBoxXemuPath);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(12, 132);
+            groupBox1.Location = new Point(12, 191);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(511, 77);
             groupBox1.TabIndex = 4;
@@ -167,7 +171,7 @@
             groupBox2.Controls.Add(label2);
             groupBox2.Controls.Add(textBoxDolphinPath);
             groupBox2.Controls.Add(label4);
-            groupBox2.Location = new Point(12, 12);
+            groupBox2.Location = new Point(12, 71);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(511, 114);
             groupBox2.TabIndex = 5;
@@ -251,7 +255,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 19);
+            label4.Location = new Point(6, 20);
             label4.Name = "label4";
             label4.Size = new Size(135, 15);
             label4.TabIndex = 2;
@@ -270,7 +274,7 @@
             groupBox3.Controls.Add(label5);
             groupBox3.Controls.Add(textBoxPCSX2Path);
             groupBox3.Controls.Add(label6);
-            groupBox3.Location = new Point(12, 215);
+            groupBox3.Location = new Point(12, 274);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(511, 112);
             groupBox3.TabIndex = 6;
@@ -373,13 +377,43 @@
             label6.TabIndex = 2;
             label6.Text = "PCSX2 Executable Path";
             // 
+            // groupBox4
+            // 
+            groupBox4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox4.Controls.Add(textBoxModAuthor);
+            groupBox4.Controls.Add(label11);
+            groupBox4.Location = new Point(12, 12);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(511, 53);
+            groupBox4.TabIndex = 7;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "General";
+            // 
+            // textBoxModAuthor
+            // 
+            textBoxModAuthor.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxModAuthor.Location = new Point(171, 16);
+            textBoxModAuthor.Name = "textBoxModAuthor";
+            textBoxModAuthor.Size = new Size(334, 23);
+            textBoxModAuthor.TabIndex = 3;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(6, 20);
+            label11.Name = "label11";
+            label11.Size = new Size(113, 15);
+            label11.TabIndex = 2;
+            label11.Text = "Default Mod Author";
+            // 
             // SettingsForm
             // 
             AcceptButton = buttonSave;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = buttonCancel;
-            ClientSize = new Size(535, 368);
+            ClientSize = new Size(535, 428);
+            Controls.Add(groupBox4);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -389,13 +423,15 @@
             MaximizeBox = false;
             Name = "SettingsForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Emulator Settings";
+            Text = "Settings";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -431,5 +467,8 @@
         private TextBox imgBurnPathTextBox;
         private Button buttonPickImgBurnPath;
         private LinkLabel linkLabel1;
+        private GroupBox groupBox4;
+        private TextBox textBoxModAuthor;
+        private Label label11;
     }
 }

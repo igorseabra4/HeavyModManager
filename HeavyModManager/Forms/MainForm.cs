@@ -1339,7 +1339,7 @@ public partial class MainForm : Form
     private void PromptToDownloadImgBurn()
     {
         var result = MessageBox.Show(
-            "ImgBurn is required to create PlayStation 2 ISOs. Please download and install it, and locate ImgBurn.exe under Emulator Settings.\n\nOpen the download page now?",
+            "ImgBurn is required to create PlayStation 2 ISOs. Please download and install it, and locate ImgBurn.exe under Settings.\n\nOpen the download page now?",
             "Download ImgBurn",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Information);

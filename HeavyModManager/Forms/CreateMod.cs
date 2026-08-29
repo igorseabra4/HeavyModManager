@@ -30,6 +30,7 @@ public partial class CreateMod : Form
         dateTimePickerUpdatedAt.Value = DateTime.Now;
 
         buttonIniImport.Enabled = false;
+        textBoxAuthor.Text = ModManager.DefaultModAuthor;
     }
 
     private bool isEditing;

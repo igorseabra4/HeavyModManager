@@ -34,6 +34,7 @@ namespace HeavyModManager.Forms
 
             textBoxDolphinUserFolderPath.Text = ModManager.DolphinFolderPath;
             imgBurnPathTextBox.Text = ModManager.ImgBurnPath;
+            textBoxModAuthor.Text = ModManager.DefaultModAuthor;
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -59,6 +60,7 @@ namespace HeavyModManager.Forms
 
             ModManager.DolphinFolderPath = textBoxDolphinUserFolderPath.Text;
             ModManager.ImgBurnPath = imgBurnPathTextBox.Text;
+            ModManager.DefaultModAuthor = textBoxModAuthor.Text;
         }
 
         private void linkLabelDolphinArgsRef_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -56,6 +56,9 @@ public class ModManagerSettings
     public string ImgBurnPath { get; set; }
 
     [JsonInclude]
+    public string DefaultModAuthor { get; set; }
+
+    [JsonInclude]
     public bool OpenIsoAfterExport { get; set; }
 
     /// <summary>
@@ -113,6 +116,7 @@ public class ModManagerSettings
         DolphinCommandLineArgs = "";
         XemuCommandLineArgs = "";
         PCSX2CommandLineArgs = "";
+        DefaultModAuthor = "";
 
         OpenIsoAfterExport = true;
         CheckForUpdatesOnStartup = true;

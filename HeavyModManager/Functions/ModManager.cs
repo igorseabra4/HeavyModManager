@@ -291,6 +291,8 @@ public static class ModManager
 
     public static bool OpenIsoAfterExport { get; set; }
 
+    public static string DefaultModAuthor {  get; set; }
+
     public static Game CurrentGame { get; set; }
     public static GameSettings? CurrentGameSettings { get; private set; } = null;
 
@@ -379,6 +381,7 @@ public static class ModManager
         DolphinFolderPath = (string.IsNullOrWhiteSpace(settings.DolphinFolderPath) && Directory.Exists(defaultDolphinFolderPath)) ? defaultDolphinFolderPath : settings.DolphinFolderPath;
 
         CheckForUpdatesOnStartup = settings.CheckForUpdatesOnStartup;
+        DefaultModAuthor = settings.DefaultModAuthor;
 
         if (settings.Version >= 2)
         {

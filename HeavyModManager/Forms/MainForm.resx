@@ -611,7 +611,7 @@
     <value>235, 26</value>
   </data>
   <data name="emulatorSettingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Emulator Settings...</value>
+    <value>&amp;Settings...</value>
   </data>
   <data name="developerModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 26</value>
