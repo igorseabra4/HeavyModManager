@@ -1,6 +1,7 @@
 ﻿using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Functions;
+using HeavyModManager.Properties;
 
 namespace HeavyModManager.Forms;
 
@@ -613,6 +614,31 @@ public partial class CreateMod : Form
     {
         SetCreateModEnabled();
         ResetModId();
+        UpdatePlatformIcon();
+    }
+
+    private void UpdatePlatformIcon()
+    {
+        // Get selected value from comboBoxPlatform
+        var currentPlatform = comboBoxPlatform.SelectedItem != null ? 
+            ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform : 
+            GamePlatform.Unknown;
+
+        switch (currentPlatform)
+        {
+            case GamePlatform.GameCube:
+                pictureBoxPlatform.Image = Resources.gamecube;
+                break;
+            case GamePlatform.PlayStation2:
+                pictureBoxPlatform.Image = Resources.ps2;
+                break;
+            case GamePlatform.Xbox:
+                pictureBoxPlatform.Image = Resources.xbox;
+                break;
+            default:
+                pictureBoxPlatform.Image = null;
+                break;
+        }
     }
 
     private void textBoxVersion_TextChanged(object sender, EventArgs e)

@@ -41,6 +41,7 @@ partial class CreateMod
         groupBoxAuthor = new GroupBox();
         textBoxAuthor = new TextBox();
         groupBoxPlatform = new GroupBox();
+        pictureBoxPlatform = new PictureBox();
         comboBoxPlatform = new ComboBox();
         groupBoxModImage = new GroupBox();
         pictureBoxThumbnail = new PictureBox();
@@ -93,6 +94,7 @@ partial class CreateMod
         groupBoxModName.SuspendLayout();
         groupBoxAuthor.SuspendLayout();
         groupBoxPlatform.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)pictureBoxPlatform).BeginInit();
         groupBoxModImage.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBoxThumbnail).BeginInit();
         groupBoxDescription.SuspendLayout();
@@ -202,16 +204,25 @@ partial class CreateMod
         // 
         // groupBoxPlatform
         // 
+        groupBoxPlatform.Controls.Add(pictureBoxPlatform);
         groupBoxPlatform.Controls.Add(comboBoxPlatform);
         resources.ApplyResources(groupBoxPlatform, "groupBoxPlatform");
         groupBoxPlatform.Name = "groupBoxPlatform";
         groupBoxPlatform.TabStop = false;
         // 
+        // pictureBoxPlatform
+        // 
+        pictureBoxPlatform.BackColor = Color.Transparent;
+        resources.ApplyResources(pictureBoxPlatform, "pictureBoxPlatform");
+        pictureBoxPlatform.InitialImage = Properties.Resources.image_placeholder;
+        pictureBoxPlatform.Name = "pictureBoxPlatform";
+        pictureBoxPlatform.TabStop = false;
+        // 
         // comboBoxPlatform
         // 
+        resources.ApplyResources(comboBoxPlatform, "comboBoxPlatform");
         comboBoxPlatform.AutoCompleteMode = AutoCompleteMode.Append;
         comboBoxPlatform.AutoCompleteSource = AutoCompleteSource.ListItems;
-        resources.ApplyResources(comboBoxPlatform, "comboBoxPlatform");
         comboBoxPlatform.FormattingEnabled = true;
         comboBoxPlatform.Name = "comboBoxPlatform";
         comboBoxPlatform.SelectedIndexChanged += comboBoxPlatform_SelectedIndexChanged;
@@ -541,6 +552,7 @@ partial class CreateMod
         groupBoxAuthor.ResumeLayout(false);
         groupBoxAuthor.PerformLayout();
         groupBoxPlatform.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)pictureBoxPlatform).EndInit();
         groupBoxModImage.ResumeLayout(false);
         groupBoxModImage.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)pictureBoxThumbnail).EndInit();
@@ -625,4 +637,5 @@ partial class CreateMod
     private Label labelResolution;
     private Button buttonPickImage;
     private PictureBox pictureBoxThumbnail;
+    private PictureBox pictureBoxPlatform;
 }
