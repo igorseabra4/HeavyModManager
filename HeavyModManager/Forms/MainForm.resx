@@ -235,105 +235,6 @@
   <data name="groupBoxMods.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="&gt;&gt;buttonBrowseMods.Name" xml:space="preserve">
-    <value>buttonBrowseMods</value>
-  </data>
-  <data name="&gt;&gt;buttonBrowseMods.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonBrowseMods.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonBrowseMods.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Name" xml:space="preserve">
-    <value>listViewMods</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;listViewMods.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;buttonRefreshModList.Name" xml:space="preserve">
-    <value>buttonRefreshModList</value>
-  </data>
-  <data name="&gt;&gt;buttonRefreshModList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonRefreshModList.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonRefreshModList.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveDown.Name" xml:space="preserve">
-    <value>buttonMoveDown</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveDown.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveDown.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveUp.Name" xml:space="preserve">
-    <value>buttonMoveUp</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveUp.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonMoveUp.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;buttonAddMod.Name" xml:space="preserve">
-    <value>buttonAddMod</value>
-  </data>
-  <data name="&gt;&gt;buttonAddMod.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonAddMod.Parent" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;buttonAddMod.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="groupBoxMods.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="groupBoxMods.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 84</value>
-  </data>
-  <data name="groupBoxMods.Size" type="System.Drawing.Size, System.Drawing">
-    <value>732, 610</value>
-  </data>
-  <data name="groupBoxMods.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="groupBoxMods.Text" xml:space="preserve">
-    <value>Mods</value>
-  </data>
-  <data name="&gt;&gt;groupBoxMods.Name" xml:space="preserve">
-    <value>groupBoxMods</value>
-  </data>
-  <data name="&gt;&gt;groupBoxMods.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBoxMods.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBoxMods.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="buttonBrowseMods.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -341,10 +242,10 @@
     <value>NoControl</value>
   </data>
   <data name="buttonBrowseMods.Location" type="System.Drawing.Point, System.Drawing">
-    <value>455, 580</value>
+    <value>464, 580</value>
   </data>
   <data name="buttonBrowseMods.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 23</value>
+    <value>149, 23</value>
   </data>
   <data name="buttonBrowseMods.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -387,39 +288,6 @@
   </data>
   <data name="&gt;&gt;listViewMods.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="columnName.Text" xml:space="preserve">
-    <value>Mod</value>
-  </data>
-  <data name="columnName.Width" type="System.Int32, mscorlib">
-    <value>200</value>
-  </data>
-  <data name="columnAuthor.Text" xml:space="preserve">
-    <value>Author</value>
-  </data>
-  <data name="columnAuthor.Width" type="System.Int32, mscorlib">
-    <value>120</value>
-  </data>
-  <data name="columnPlatform.Text" xml:space="preserve">
-    <value>Platform</value>
-  </data>
-  <data name="columnPlatform.Width" type="System.Int32, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="columnVersion.Text" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="columnCreatedDate.Text" xml:space="preserve">
-    <value>Created At</value>
-  </data>
-  <data name="columnCreatedDate.Width" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="columnUpdatedDate.Text" xml:space="preserve">
-    <value>Updated At</value>
-  </data>
-  <data name="columnUpdatedDate.Width" type="System.Int32, mscorlib">
-    <value>90</value>
   </data>
   <data name="buttonRefreshModList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -511,11 +379,14 @@
   <data name="buttonAddMod.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="buttonAddMod.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="buttonAddMod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>617, 580</value>
+    <value>619, 580</value>
   </data>
   <data name="buttonAddMod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 23</value>
+    <value>107, 23</value>
   </data>
   <data name="buttonAddMod.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -534,6 +405,66 @@
   </data>
   <data name="&gt;&gt;buttonAddMod.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="groupBoxMods.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="groupBoxMods.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 84</value>
+  </data>
+  <data name="groupBoxMods.Size" type="System.Drawing.Size, System.Drawing">
+    <value>732, 610</value>
+  </data>
+  <data name="groupBoxMods.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="groupBoxMods.Text" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMods.Name" xml:space="preserve">
+    <value>groupBoxMods</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMods.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMods.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBoxMods.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="columnName.Text" xml:space="preserve">
+    <value>Mod</value>
+  </data>
+  <data name="columnName.Width" type="System.Int32, mscorlib">
+    <value>200</value>
+  </data>
+  <data name="columnAuthor.Text" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="columnAuthor.Width" type="System.Int32, mscorlib">
+    <value>120</value>
+  </data>
+  <data name="columnPlatform.Text" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="columnPlatform.Width" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="columnVersion.Text" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="columnCreatedDate.Text" xml:space="preserve">
+    <value>Created At</value>
+  </data>
+  <data name="columnCreatedDate.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="columnUpdatedDate.Text" xml:space="preserve">
+    <value>Updated At</value>
+  </data>
+  <data name="columnUpdatedDate.Width" type="System.Int32, mscorlib">
+    <value>90</value>
   </data>
   <data name="buttonRunGameDev.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -601,98 +532,11 @@
   <data name="menuStrip1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="manageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 20</value>
-  </data>
-  <data name="manageToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Manage</value>
-  </data>
-  <data name="emulatorSettingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 26</value>
-  </data>
-  <data name="emulatorSettingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Settings...</value>
-  </data>
-  <data name="developerModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 26</value>
-  </data>
-  <data name="developerModeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Developer &amp;Mode</value>
-  </data>
-  <data name="checkForUpdatesOnStartupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 26</value>
-  </data>
-  <data name="checkForUpdatesOnStartupToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Check For Updates on Startup</value>
-  </data>
-  <data name="checkForUpdatesNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 26</value>
-  </data>
-  <data name="checkForUpdatesNowToolStripMenuItem.Text" xml:space="preserve">
-    <value>Check For Updates &amp;Now</value>
-  </data>
-  <data name="downloadXdvdfsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 26</value>
-  </data>
-  <data name="downloadXdvdfsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Download xdvdfs</value>
-  </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 6</value>
-  </data>
-  <data name="changeIconToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 26</value>
-  </data>
-  <data name="changeIconToolStripMenuItem.Text" xml:space="preserve">
-    <value>Change &amp;Icon</value>
-  </data>
-  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 26</value>
-  </data>
-  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Language</value>
-  </data>
-  <data name="themeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 26</value>
-  </data>
-  <data name="themeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Theme</value>
-  </data>
-  <data name="listColumnsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 26</value>
-  </data>
-  <data name="listColumnsToolStripMenuItem.Text" xml:space="preserve">
-    <value>L&amp;ist Columns</value>
-  </data>
-  <data name="showISOAfterSavingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 26</value>
-  </data>
-  <data name="showISOAfterSavingToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Show ISO After Saving</value>
-  </data>
-  <data name="openSettingsjsonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 26</value>
-  </data>
-  <data name="openSettingsjsonToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Open settings.json</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Settings</value>
-  </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
   <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>295, 24</value>
+    <value>175, 24</value>
   </data>
   <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -711,6 +555,63 @@
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="manageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
+  </data>
+  <data name="manageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Manage</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Settings</value>
+  </data>
+  <data name="emulatorSettingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="emulatorSettingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Settings...</value>
+  </data>
+  <data name="developerModeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="developerModeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Developer &amp;Mode</value>
+  </data>
+  <data name="checkForUpdatesOnStartupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="checkForUpdatesOnStartupToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Check For Updates on Startup</value>
+  </data>
+  <data name="checkForUpdatesNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="checkForUpdatesNowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Check For Updates &amp;Now</value>
+  </data>
+  <data name="downloadXdvdfsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="downloadXdvdfsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Download xdvdfs</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 6</value>
+  </data>
+  <data name="changeIconToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="changeIconToolStripMenuItem.Text" xml:space="preserve">
+    <value>Change &amp;Icon</value>
+  </data>
+  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Language</value>
   </data>
   <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 22</value>
@@ -756,6 +657,12 @@
   <data name="portugueseToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Portuguese</value>
   </data>
+  <data name="themeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="themeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Theme</value>
+  </data>
   <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
@@ -773,6 +680,12 @@
   </data>
   <data name="darkToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Dark</value>
+  </data>
+  <data name="listColumnsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="listColumnsToolStripMenuItem.Text" xml:space="preserve">
+    <value>L&amp;ist Columns</value>
   </data>
   <data name="modToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 22</value>
@@ -803,6 +716,24 @@
   </data>
   <data name="updatedAtToolStripMenuItem.Text" xml:space="preserve">
     <value>Updated At</value>
+  </data>
+  <data name="showISOAfterSavingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="showISOAfterSavingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Show ISO &amp;After Saving</value>
+  </data>
+  <data name="openSettingsjsonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 22</value>
+  </data>
+  <data name="openSettingsjsonToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Open settings.json</value>
+  </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Help</value>
   </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 22</value>
