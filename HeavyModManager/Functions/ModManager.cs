@@ -276,9 +276,12 @@ public static class ModManager
 
     public static void SetCurrentGame(Game game)
     {
-        SaveGameSettings();
+        if (CurrentGame != game)
+            SaveGameSettings();
         CurrentGame = game;
-        RefreshGameSettings();
+        CurrentGameSettings = File.Exists(GameSettingsPath) ?
+            JsonSerializer.Deserialize<GameSettings>(File.ReadAllText(GameSettingsPath)) :
+            new GameSettings();
     }
 
     public static void SaveGameSettings()
@@ -290,15 +293,6 @@ public static class ModManager
 
             File.WriteAllText(GameSettingsPath, JsonSerializer.Serialize(CurrentGameSettings));
         }
-    }
-
-    public static void RefreshGameSettings()
-    {
-        CurrentGameSettings = File.Exists(GameSettingsPath) ?
-            JsonSerializer.Deserialize<GameSettings>(File.ReadAllText(GameSettingsPath)) :
-            new GameSettings();
-
-        RefreshModList();
     }
 
     public static void RefreshModList()
@@ -451,10 +445,7 @@ public static class ModManager
 
     public static void Invalidate()
     {
-        // FIXME: Crashes when a game is not selected.
-
-        CurrentGameSettings.Invalidated = true;
-        SaveGameSettings();
+        CurrentGameSettings?.Invalidated = true;
     }
 
     public static bool ResetGameFromBackup()

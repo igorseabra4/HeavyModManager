@@ -399,7 +399,7 @@ public partial class MainForm : Form
         }
     }
 
-    private bool programChangingData = false;
+    private int programaticCheckChanges = 0;
 
     private void splitContainerMods_SplitterMoved(object sender, SplitterEventArgs e)
     {
@@ -411,8 +411,6 @@ public partial class MainForm : Form
 
     private void PopulateModList(string selectedModId = "")
     {
-        programChangingData = true;
-
         labelModInfo.Text = "";
         listViewMods.Items.Clear();
 
@@ -430,12 +428,11 @@ public partial class MainForm : Form
         {
             var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(ModManager.GetModJsonPath(modId)));
             bool active = ModManager.CurrentGameSettings.ActiveMods.Contains(mod.ModId);
+            programaticCheckChanges++;
             listViewMods.Items.Add(ListViewItemFromMod(mod, active, selectedModId == mod.ModId));
         }
 
         UpdateDolphinLabel();
-
-        programChangingData = false;
     }
 
     private static ListViewItem ListViewItemFromMod(Mod mod, bool active, bool selected)
@@ -449,9 +446,9 @@ public partial class MainForm : Form
 
         item.SubItems.AddRange(new ListViewItem.ListViewSubItem[]
         {
-            new ListViewItem.ListViewSubItem(item, mod.Author),
-            new ListViewItem.ListViewSubItem(item, mod.CreatedAt.ToShortDateString()),
-            new ListViewItem.ListViewSubItem(item, mod.UpdatedAt.ToShortDateString()),
+            new(item, mod.Author),
+            new(item, mod.CreatedAt.ToShortDateString()),
+            new(item, mod.UpdatedAt.ToShortDateString()),
         });
 
         return item;
@@ -466,7 +463,12 @@ public partial class MainForm : Form
 
     private void listViewMods_ItemCheck(object sender, ItemCheckEventArgs e)
     {
-        if (programChangingData)
+        if (programaticCheckChanges > 0)
+        {
+            programaticCheckChanges--;
+            return;
+        }
+        if (e.NewValue == e.CurrentValue)
             return;
 
         var mod = (Mod)listViewMods.Items[e.Index].Tag;
