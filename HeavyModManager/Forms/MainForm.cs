@@ -428,7 +428,8 @@ public partial class MainForm : Form
         {
             var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(ModManager.GetModJsonPath(modId)));
             bool active = ModManager.CurrentGameSettings.ActiveMods.Contains(mod.ModId);
-            programaticCheckChanges++;
+            if (active)
+                programaticCheckChanges++;
             listViewMods.Items.Add(ListViewItemFromMod(mod, active, selectedModId == mod.ModId));
         }
 
