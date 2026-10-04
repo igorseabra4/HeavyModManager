@@ -136,12 +136,6 @@
     <value>Atualizar mods</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="buttonAddMod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>339, 264</value>
-  </data>
-  <data name="buttonAddMod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 23</value>
-  </data>
   <data name="buttonAddMod.Text" xml:space="preserve">
     <value>Adicionar mods</value>
   </data>
