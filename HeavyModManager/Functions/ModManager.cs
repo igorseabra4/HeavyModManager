@@ -1047,6 +1047,7 @@ public static class ModManager
                     psiPs2.ArgumentList.Add("YES");
                     psiPs2.ArgumentList.Add("/RECURSESUBDIRECTORIES");
                     psiPs2.ArgumentList.Add("YES");
+                    psiPs2.ArgumentList.Add("/NOIMAGEDETAILS");
                     psiPs2.ArgumentList.Add("/START");
                     psiPs2.ArgumentList.Add("/CLOSE");
 
@@ -1062,6 +1063,10 @@ public static class ModManager
 
                     if (processPs2.ExitCode != 0)
                         throw new Exception($"Error creating PS2 ISO (exit code {processPs2.ExitCode}): {errorPs2}");
+
+                    string mdsPath = Path.ChangeExtension(path, ".mds");
+                    if (File.Exists(mdsPath))
+                        File.Delete(mdsPath);
 
                     break;
                 }
