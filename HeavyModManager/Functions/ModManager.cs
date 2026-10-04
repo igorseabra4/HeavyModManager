@@ -339,6 +339,7 @@ public static class ModManager
         settings.DolphinFolderPath = DolphinFolderPath;
         settings.XemuPath = XemuPath;
         settings.PCSX2Path = PCSX2Path;
+        settings.ImgBurnPath = ImgBurnPath;
 
         settings.DolphinCommandLineArgs = DolphinCommandLineArgs;
         settings.XemuCommandLineArgs = XemuCommandLineArgs;
@@ -349,6 +350,7 @@ public static class ModManager
         settings.Icon = IconManager.CurrentIcon;
         settings.Language = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
         settings.OpenIsoAfterExport = OpenIsoAfterExport;
+        settings.DefaultModAuthor = DefaultModAuthor;
 
         File.WriteAllText(ModManagerSettingsPath, JsonSerializer.Serialize(settings));
     }
