@@ -36,6 +36,20 @@ public partial class CreateMod : Form
     private bool isEditing;
     private Game prevGame;
 
+    private void ToggleGameCubeSpecificOptions(bool show)
+    {
+        groupBoxGameId.Visible = show;
+        groupBoxArCodes.Visible = show;
+        groupBoxGeckoCodes.Visible = show;
+        groupBoxDolPatches.Visible = show;
+    }
+
+    private bool IsGameCubeSelected()
+    {
+        return comboBoxPlatform.SelectedItem != null &&
+            ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform == GamePlatform.GameCube;
+    }
+
     public CreateMod(Mod mod)
     {
         isEditing = true;
@@ -165,11 +179,12 @@ public partial class CreateMod : Form
             TreatString(textBoxAuthor.Text).Length > 0 &&
             TreatString(textBoxModName.Text).Length > 0 &&
             textBoxModId.Text.Length > 0 &&
-            (textBoxGameId.Text.Length == 0 || textBoxGameId.Text.Length == 6) &&
-            DolPatchesValid() &&
             IniPatchesValid() &&
-            ArCodesValid() &&
-            GeckoCodesValid();
+            (!IsGameCubeSelected() || (
+                (textBoxGameId.Text.Length == 0 || textBoxGameId.Text.Length == 6) &&
+                DolPatchesValid() &&
+                ArCodesValid() &&
+                GeckoCodesValid()));
     }
 
     private void ResetModId()
@@ -213,6 +228,9 @@ public partial class CreateMod : Form
             platform = ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform;
         }
 
+        // GameCube-specific options are ignored for other platforms
+        bool isGameCube = platform == GamePlatform.GameCube;
+
         var mod = new Mod()
         {
             Game = isEditing ? prevGame : ((ComboBoxGameItem)comboBoxGame.SelectedItem).Game,
@@ -220,13 +238,13 @@ public partial class CreateMod : Form
             Author = textBoxAuthor.Text,
             Description = richTextBoxDescription.Text,
             ModId = textBoxModId.Text,
-            GameId = textBoxGameId.Text,
+            GameId = isGameCube ? textBoxGameId.Text : "",
             INIReplacements = richTextBoxINIValues.Text,
             MergeFiles = richTextBoxMergeHips.Text,
             RemoveFiles = richTextBoxRemoveFiles.Text,
-            DOLPatches = richTextBoxDolPatches.Text,
-            ArCodes = richTextBoxArCodes.Text,
-            GeckoCodes = richTextBoxGeckoCodes.Text,
+            DOLPatches = isGameCube ? richTextBoxDolPatches.Text : "",
+            ArCodes = isGameCube ? richTextBoxArCodes.Text : "",
+            GeckoCodes = isGameCube ? richTextBoxGeckoCodes.Text : "",
             CreatedAt = dateTimePickerCreatedAt.Value,
             UpdatedAt = dateTimePickerUpdatedAt.Value,
             IpsPatchBase64 = textBoxIpsPatch.Text,
@@ -505,7 +523,8 @@ public partial class CreateMod : Form
 
     private void flowLayoutPanelPage2_Resize(object sender, EventArgs e)
     {
-        groupBoxGameId.Size = new Size(flowLayoutPanelPage2.Width - 23, groupBoxGameId.Size.Height);
+        foreach (Control c in flowLayoutPanelPage2.Controls)
+            c.Width = flowLayoutPanelPage2.Width - 23;
     }
 
     private void buttonIniImport_Click(object sender, EventArgs e)
@@ -616,6 +635,9 @@ public partial class CreateMod : Form
         SetCreateModEnabled();
         ResetModId();
         UpdatePlatformIcon();
+
+        // If the platform is GameCube, show the GameCube-specific options, otherwise hide them.
+        ToggleGameCubeSpecificOptions(IsGameCubeSelected());
     }
 
     private void UpdatePlatformIcon()
