@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipHopFile", "HipHopTool\Hi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeavyModManager", "HeavyModManager\HeavyModManager.csproj", "{312A6CC4-CA2F-426C-9F79-E48FC2A495DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeavyModManager.Core", "HeavyModManager.Core\HeavyModManager.Core.csproj", "{97479173-0BB3-4D60-92FB-993EC9BC907F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeavyModManager.Core.Tests", "HeavyModManager.Core.Tests\HeavyModManager.Core.Tests.csproj", "{AE2EEA7A-9C00-44FF-B963-F29BF4A992E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeavyModManager.Desktop", "HeavyModManager.Desktop\HeavyModManager.Desktop.csproj", "{617344FA-9BCA-4F56-9AAE-612CEDAA5DB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,18 @@ Global
 		{312A6CC4-CA2F-426C-9F79-E48FC2A495DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{312A6CC4-CA2F-426C-9F79-E48FC2A495DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{312A6CC4-CA2F-426C-9F79-E48FC2A495DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97479173-0BB3-4D60-92FB-993EC9BC907F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97479173-0BB3-4D60-92FB-993EC9BC907F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97479173-0BB3-4D60-92FB-993EC9BC907F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97479173-0BB3-4D60-92FB-993EC9BC907F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE2EEA7A-9C00-44FF-B963-F29BF4A992E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE2EEA7A-9C00-44FF-B963-F29BF4A992E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE2EEA7A-9C00-44FF-B963-F29BF4A992E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE2EEA7A-9C00-44FF-B963-F29BF4A992E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{617344FA-9BCA-4F56-9AAE-612CEDAA5DB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{617344FA-9BCA-4F56-9AAE-612CEDAA5DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{617344FA-9BCA-4F56-9AAE-612CEDAA5DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{617344FA-9BCA-4F56-9AAE-612CEDAA5DB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows8.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -10,11 +10,22 @@
     <StartupObject>HeavyModManager.Program</StartupObject>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\HipHopTool\HipHopFile\HipHopFile.csproj" />
+  <PropertyGroup Condition="!$([MSBuild]::IsOSPlatform('Windows'))">
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup Condition="!$([MSBuild]::IsOSPlatform('Windows'))">
+    <Compile Remove="**/*.cs" />
+    <EmbeddedResource Remove="**/*.resx" />
+    <None Include="**/*" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+    <ProjectReference Include="..\HipHopTool\HipHopFile\HipHopFile.csproj" />
+    <ProjectReference Include="..\HeavyModManager.Core\HeavyModManager.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
     <Compile Update="Forms\GlobalResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -27,7 +38,7 @@
     </Compile>
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
     <EmbeddedResource Update="Forms\GlobalResources.pt.resx">
       <SubType>Designer</SubType>
       <LastGenOutput>GlobalResources - Copy.de.Designer.cs</LastGenOutput>
@@ -53,7 +64,7 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
     <PackageReference Include="GCNTools" Version="1.0.2" />
   </ItemGroup>
 

@@ -11,12 +11,54 @@ It is intended for use on the following games:
 - The Incredibles: Rise of the Underminer
 - Ratatouille (January 18th, 2006 Prototype)
 
-## Installation
-> [!IMPORTANT]
-> Heavy Mod Manager is compatible with **Windows** only (Windows 10 version 1607 or later), and requires [.NET 10.0](https://dotnet.microsoft.com/en-us/download/dotnet/10.0).
+## Platforms & Installation
 
-1. Download the [latest version](https://github.com/igorseabra4/HeavyModManager/releases/latest) from releases.
-2. Extract the .zip somewhere and launch HeavyModManager.exe.
+Heavy Mod Manager runs on **macOS** (Apple Silicon & Intel) and **Windows** (requires [.NET 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or later).
+
+### macOS
+1. Download `Heavy Mod Manager.app` from Releases or build it from source.
+2. Drag `Heavy Mod Manager.app` to your `/Applications` folder (or run it from anywhere).
+3. If Dolphin is installed in `/Applications/Dolphin.app`, Heavy Mod Manager automatically detects it along with your emulator settings in `~/Library/Application Support/Dolphin/`.
+
+### Windows
+1. Download the latest release `.zip`.
+2. Extract and launch `HeavyModManager.exe` (or `HeavyModManager.Desktop.exe`).
+
+---
+
+## Building from Source
+
+Make sure to clone recursively to pull in the `HipHopTool` submodule:
+
+```bash
+git clone --recurse-submodules https://github.com/DarthMDev/HeavyModManager.git
+cd HeavyModManager
+```
+
+If you already cloned without submodules, initialize them:
+```bash
+git submodule update --init --recursive
+```
+
+### Build & Run Desktop App
+```bash
+dotnet run --project HeavyModManager.Desktop
+```
+
+### Build macOS App Bundle (.app)
+For Apple Silicon (M1/M2/M3/M4):
+```bash
+./scripts/build-macos.sh Release osx-arm64
+```
+
+For Intel Macs:
+```bash
+./scripts/build-macos.sh Release osx-x64
+```
+
+The resulting standalone, ad-hoc signed app bundle will be placed in `publish/Heavy Mod Manager.app`.
+
+---
 
 ## How to Use
-Read the application's page on the [Heavy Iron Modding Wiki](https://heavyironmodding.org/wiki/Heavy_Mod_Manager) or watch the video tutorial to get started (https://www.youtube.com/watch?v=ndK9nN9i-rw).
+Check out the [Heavy Iron Modding Wiki](https://heavyironmodding.org/wiki/Heavy_Mod_Manager) or watch the [video tutorial](https://www.youtube.com/watch?v=ndK9nN9i-rw) to get started.

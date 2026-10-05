@@ -1,0 +1,149 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="HeavyModManager.Desktop.Views.CreateModWindow"
+        Title="Create Mod"
+        Width="640"
+        Height="580"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True">
+    <Grid Margin="15" RowDefinitions="*,Auto">
+        <TabControl Grid.Row="0">
+            <!-- TAB 1: Mod Data -->
+            <TabItem Header="Mod Data">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Spacing="12" Margin="10">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Target Game:" FontWeight="SemiBold" />
+                            <ComboBox Name="ComboBoxTargetGame" HorizontalAlignment="Stretch" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Mod Name:" FontWeight="SemiBold" />
+                            <TextBox Name="TextBoxModName" Watermark="Enter mod name..." />
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Author:" FontWeight="SemiBold" />
+                            <TextBox Name="TextBoxAuthor" Watermark="Enter author name..." />
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Description:" FontWeight="SemiBold" />
+                            <TextBox Name="TextBoxDescription"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     Height="90"
+                                     Watermark="Describe your mod..." />
+                        </StackPanel>
+
+                        <Grid ColumnDefinitions="*,Auto" Margin="0,4,0,0">
+                            <StackPanel Grid.Column="0" Spacing="4">
+                                <TextBlock Text="Mod ID:" FontWeight="SemiBold" />
+                                <TextBox Name="TextBoxModId" Watermark="Unique ID for this mod (e.g. bfbb_mymod)" />
+                            </StackPanel>
+                            <Button Grid.Column="1"
+                                    Name="ButtonGenerateModId"
+                                    Content="Generate ID"
+                                    VerticalAlignment="Bottom"
+                                    Margin="8,0,0,0" />
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- TAB 2: Settings & Codes -->
+            <TabItem Header="Settings &amp; Codes">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Spacing="12" Margin="10">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Custom Game ID (e.g. for unique save game):" FontWeight="SemiBold" />
+                            <TextBox Name="TextBoxGameId" Watermark="6-character Game ID (e.g. GQPE78)" MaxLength="6" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="INI Replacements:" FontWeight="SemiBold" />
+                            <TextBox Name="TextBoxIniReplacements"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     Height="70"
+                                     FontFamily="Courier New, monospace"
+                                     Watermark="key=value&#x0a;ScenePlayerMapping=HB01 PT" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Merge HIP/HOP Files (relative paths, one per line):" FontWeight="SemiBold" />
+                            <TextBox Name="TextBoxMergeFiles"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     Height="60"
+                                     FontFamily="Courier New, monospace"
+                                     Watermark="boot.hip&#x0a;hb01.hip" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Files to Remove on Install (relative paths, one per line):" FontWeight="SemiBold" />
+                            <TextBox Name="TextBoxRemoveFiles"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     Height="60"
+                                     FontFamily="Courier New, monospace"
+                                     Watermark="unused_file.hip" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="DOL Patches (Address Value, one per line):" FontWeight="SemiBold" />
+                            <TextBox Name="TextBoxDolPatches"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     Height="60"
+                                     FontFamily="Courier New, monospace"
+                                     Watermark="0x80001234 0x60000000" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Action Replay Codes:" FontWeight="SemiBold" />
+                            <TextBox Name="TextBoxArCodes"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     Height="60"
+                                     FontFamily="Courier New, monospace"
+                                     Watermark="$Code Name&#x0a;04000000 00000000" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Gecko Codes:" FontWeight="SemiBold" />
+                            <TextBox Name="TextBoxGeckoCodes"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     Height="60"
+                                     FontFamily="Courier New, monospace"
+                                     Watermark="$Code Name&#x0a;04000000 00000000" />
+                        </StackPanel>
+
+                        <Grid ColumnDefinitions="*,Auto" Margin="0,4,0,0">
+                            <StackPanel Grid.Column="0" Spacing="4">
+                                <TextBlock Text="IPS Patch File:" FontWeight="SemiBold" />
+                                <TextBox Name="TextBoxIpsFile" IsReadOnly="True" Watermark="Select an .ips patch file..." />
+                            </StackPanel>
+                            <Button Grid.Column="1"
+                                    Name="ButtonBrowseIps"
+                                    Content="Browse..."
+                                    VerticalAlignment="Bottom"
+                                    Margin="8,0,0,0" />
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+        <!-- BOTTOM BUTTONS -->
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Spacing="10"
+                    Margin="0,15,0,0">
+            <Button Name="ButtonCancel" Content="Cancel" Width="90" HorizontalContentAlignment="Center" />
+            <Button Name="ButtonSave" Content="Save Mod" Width="100" HorizontalContentAlignment="Center" Classes="accent" />
+        </StackPanel>
+    </Grid>
+</Window>

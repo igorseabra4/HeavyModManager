@@ -7,7 +7,8 @@ on:
     branches: [master, main]
     
 jobs:
-  build:
+  build-windows:
+    name: Build Windows
     runs-on: windows-latest
     
     steps:
@@ -15,6 +16,11 @@ jobs:
         with:
           submodules: recursive
         
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
@@ -26,3 +32,40 @@ jobs:
 
       - name: Build solution
         run: msbuild HeavyModManager.sln -t:rebuild -property:Configuration=Release -property:platform="Any CPU"
+
+      - name: Run Tests
+        run: dotnet test HeavyModManager.Core.Tests/HeavyModManager.Core.Tests.csproj -c Release --no-build
+
+  build-macos:
+    name: Build macOS
+    runs-on: macos-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Run Tests
+        run: dotnet test HeavyModManager.Core.Tests/HeavyModManager.Core.Tests.csproj -c Release
+
+      - name: Build macOS Application Bundle (Apple Silicon)
+        run: |
+          chmod +x ./scripts/build-macos.sh
+          ./scripts/build-macos.sh Release osx-arm64
+
+      - name: Build macOS Application Bundle (Intel)
+        run: |
+          ./scripts/build-macos.sh Release osx-x64
+
+      - name: Upload macOS App Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: HeavyModManager-macOS
+          path: |
+            publish/HeavyModManager-macOS-arm64.zip
+            publish/HeavyModManager-macOS-x64.zip

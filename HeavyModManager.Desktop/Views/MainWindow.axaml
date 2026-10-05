@@ -1,0 +1,247 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="HeavyModManager.Desktop.Views.MainWindow"
+        Title="Heavy Mod Manager"
+        Width="920"
+        Height="620"
+        MinWidth="740"
+        MinHeight="480"
+        WindowStartupLocation="CenterScreen"
+        DragDrop.AllowDrop="True">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
+        <!-- Menu Bar -->
+        <Menu Grid.Row="0" Name="InWindowMenu">
+            <MenuItem Header="_File">
+                <MenuItem Header="Set Game _ISO (Backup)..." Name="MenuSetIso" InputGesture="Ctrl+O" />
+                <MenuItem Header="Set Game _Folder (Backup)..." Name="MenuSetFolder" />
+                <Separator />
+                <MenuItem Header="Set Dolphin _Executable..." Name="MenuSetDolphinExe" />
+                <MenuItem Header="Set Dolphin _User Folder..." Name="MenuSetDolphinFolder" />
+                <Separator />
+                <MenuItem Header="_Exit" Name="MenuExit" InputGesture="Alt+F4" />
+            </MenuItem>
+            <MenuItem Header="_Mods">
+                <MenuItem Header="_Add Mod (.zip)..." Name="MenuAddMod" />
+                <MenuItem Header="_Create Mod..." Name="MenuCreateMod" InputGesture="Ctrl+N" />
+                <MenuItem Header="_Open Mods Folder" Name="MenuOpenModsFolder" />
+                <MenuItem Header="_Refresh Mod List" Name="MenuRefreshMods" InputGesture="F5" />
+            </MenuItem>
+            <MenuItem Header="_Manage">
+                <MenuItem Header="Open _Game Folder" Name="MenuOpenGameFolder" />
+                <MenuItem Header="Open Game _INI" Name="MenuOpenGameIni" />
+                <MenuItem Header="_Delete Game Backup" Name="MenuDeleteBackup" />
+            </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="_Save ISO..." Name="MenuSaveIso" InputGesture="Ctrl+S" />
+                <MenuItem Header="Open _Dolphin" Name="MenuOpenDolphin" />
+                <MenuItem Header="_Launch Game" Name="MenuLaunchGame" InputGesture="F5" />
+            </MenuItem>
+            <MenuItem Header="_Options">
+                <MenuItem Header="_Theme">
+                    <MenuItem Header="_System Default" Name="MenuThemeSystem" />
+                    <MenuItem Header="_Light" Name="MenuThemeLight" />
+                    <MenuItem Header="_Dark" Name="MenuThemeDark" />
+                </MenuItem>
+                <MenuItem Header="_Developer Mode" Name="MenuDevMode" />
+                <MenuItem Header="Open _settings.json" Name="MenuOpenSettings" />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" Name="MenuAbout" />
+                <MenuItem Header="_Wiki" Name="MenuWiki" />
+                <MenuItem Header="_Discord" Name="MenuDiscord" />
+            </MenuItem>
+        </Menu>
+
+        <!-- TOOLBAR / TOP ROW -->
+        <Border Grid.Row="1"
+                Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
+                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
+                BorderThickness="0,0,0,1"
+                Padding="12,8">
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto,Auto">
+                <TextBlock Grid.Column="0"
+                           Text="Game:"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"
+                           Margin="0,0,8,0" />
+                <ComboBox Grid.Column="1"
+                          Name="ComboBoxGame"
+                          HorizontalAlignment="Stretch"
+                          MaxWidth="420"
+                          VerticalAlignment="Center" />
+
+                <Button Grid.Column="2"
+                        Name="ButtonAddMod"
+                        Content="Add Mod (.zip)"
+                        Margin="12,0,4,0"
+                        VerticalAlignment="Center" />
+                <Button Grid.Column="3"
+                        Name="ButtonRefreshMods"
+                        Content="Refresh"
+                        Margin="4,0,4,0"
+                        VerticalAlignment="Center" />
+                <Button Grid.Column="4"
+                        Name="ButtonMoveUp"
+                        Content="▲ Up"
+                        Margin="4,0,4,0"
+                        VerticalAlignment="Center" />
+                <Button Grid.Column="5"
+                        Name="ButtonMoveDown"
+                        Content="▼ Down"
+                        Margin="4,0,0,0"
+                        VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+
+        <!-- MAIN SPLIT CONTENT -->
+        <Grid Grid.Row="2" ColumnDefinitions="*,4,340">
+            <!-- LEFT PANE: MODS LIST -->
+            <Grid Grid.Column="0" RowDefinitions="Auto,*">
+                <Border Grid.Row="0"
+                        Background="{DynamicResource SystemControlBackgroundChromeLowBrush}"
+                        Padding="12,6"
+                        BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
+                        BorderThickness="0,0,0,1">
+                    <Grid ColumnDefinitions="40,*,140,110">
+                        <TextBlock Grid.Column="0" Text="Active" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                        <TextBlock Grid.Column="1" Text="Mod Name" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                        <TextBlock Grid.Column="2" Text="Author" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                        <TextBlock Grid.Column="3" Text="Updated" FontSize="11" FontWeight="Bold" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                    </Grid>
+                </Border>
+
+                <ListBox Grid.Row="1"
+                         Name="ListBoxMods"
+                         SelectionMode="Single"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="40,*,140,110" VerticalAlignment="Center">
+                                <CheckBox Grid.Column="0"
+                                          IsChecked="{Binding IsActive}"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Left" />
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Mod.ModName}"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center"
+                                           TextTrimming="CharacterEllipsis" />
+                                <TextBlock Grid.Column="2"
+                                           Text="{Binding Mod.Author}"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                                           TextTrimming="CharacterEllipsis" />
+                                <TextBlock Grid.Column="3"
+                                           Text="{Binding UpdatedText}"
+                                           FontSize="11"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+            <!-- SPLITTER -->
+            <GridSplitter Grid.Column="1" Background="{DynamicResource SystemControlForegroundBaseLowBrush}" ResizeDirection="Columns" />
+
+            <!-- RIGHT PANE: MOD DETAILS -->
+            <Border Grid.Column="2"
+                    Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+                    BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
+                    BorderThickness="1,0,0,0"
+                    Padding="14">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Spacing="10" Name="PanelModDetails">
+                        <TextBlock Name="TextDetailModName"
+                                   Text="No Mod Selected"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   TextWrapping="Wrap" />
+
+                        <TextBlock Name="TextDetailAuthor"
+                                   Text=""
+                                   FontSize="13"
+                                   Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+
+                        <WrapPanel Name="PanelBadges" Margin="0,4,0,4">
+                            <!-- Dynamic badges: custom save, hip/hop merge, dol patches, codes -->
+                        </WrapPanel>
+
+                        <Separator Margin="0,4" />
+
+                        <TextBlock Text="Description:" FontWeight="SemiBold" FontSize="12" />
+                        <TextBlock Name="TextDetailDescription"
+                                   Text="Select a mod from the list to view its details, or drag &amp; drop a .zip file anywhere into this window to install a mod."
+                                   TextWrapping="Wrap"
+                                   FontSize="13"
+                                   LineHeight="18" />
+
+                        <Separator Margin="0,4" />
+
+                        <TextBlock Text="Mod ID:" FontWeight="SemiBold" FontSize="12" />
+                        <SelectableTextBlock Name="TextDetailModId"
+                                             Text=""
+                                             FontFamily="Courier New, monospace"
+                                             FontSize="11"
+                                             Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+
+                        <!-- Action Buttons for Selected Mod -->
+                        <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,10,0,0">
+                            <Button Name="ButtonEditMod" Content="Edit Mod" Width="85" HorizontalContentAlignment="Center" />
+                            <Button Name="ButtonOpenFolder" Content="Open Folder" Width="95" HorizontalContentAlignment="Center" />
+                            <Button Name="ButtonDeleteMod" Content="Delete" Width="75" HorizontalContentAlignment="Center" />
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <!-- BOTTOM STATUS & ACTION BAR -->
+        <Border Grid.Row="3"
+                Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
+                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
+                BorderThickness="0,1,0,0"
+                Padding="14,10">
+            <Grid ColumnDefinitions="*,Auto,Auto">
+                <!-- DOLPHIN STATUS -->
+                <StackPanel Grid.Column="0" VerticalAlignment="Center" Spacing="2">
+                    <TextBlock Name="TextDolphinPathStatus"
+                               Text="Dolphin: Not set"
+                               FontSize="11"
+                               Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                               TextTrimming="CharacterEllipsis" />
+                    <TextBlock Name="TextDolphinFolderStatus"
+                               Text="User Folder: Not set"
+                               FontSize="11"
+                               Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                               TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+
+                <!-- SAVE ISO BUTTON -->
+                <Button Grid.Column="1"
+                        Name="ButtonSaveIso"
+                        Content="Save ISO..."
+                        Height="36"
+                        MinWidth="120"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontWeight="SemiBold"
+                        Margin="0,0,10,0" />
+
+                <!-- LAUNCH GAME BUTTON -->
+                <Button Grid.Column="2"
+                        Name="ButtonLaunchGame"
+                        Content="▶ Launch Game"
+                        Height="36"
+                        MinWidth="140"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Classes="accent"
+                        FontWeight="Bold" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

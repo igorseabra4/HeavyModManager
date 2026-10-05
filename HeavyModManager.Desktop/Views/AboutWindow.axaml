@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="HeavyModManager.Desktop.Views.AboutWindow"
+        Title="About Heavy Mod Manager"
+        Width="460"
+        Height="280"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+    <Grid Margin="25" RowDefinitions="Auto,*,Auto">
+        <StackPanel Grid.Row="0" Spacing="6" HorizontalAlignment="Center">
+            <TextBlock Name="TextBlockTitle"
+                       Text="Heavy Mod Manager"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" />
+            <TextBlock Text="A mod manager for GameCube and Wii games emulated on Dolphin."
+                       FontSize="13"
+                       Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                       HorizontalAlignment="Center"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       MaxWidth="400" />
+            <TextBlock Text="macOS Port powered by .NET 8 &amp; Avalonia UI"
+                       FontSize="11"
+                       FontStyle="Italic"
+                       Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                       HorizontalAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="15">
+            <Button Name="ButtonGithub" Content="GitHub" Width="100" HorizontalContentAlignment="Center" />
+            <Button Name="ButtonDiscord" Content="Discord" Width="100" HorizontalContentAlignment="Center" />
+            <Button Name="ButtonWiki" Content="Wiki" Width="100" HorizontalContentAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Right">
+            <Button Name="ButtonClose" Content="Close" Width="90" HorizontalContentAlignment="Center" Classes="accent" />
+        </StackPanel>
+    </Grid>
+</Window>

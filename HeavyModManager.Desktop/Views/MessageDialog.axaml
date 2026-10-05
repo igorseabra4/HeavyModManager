@@ -1,0 +1,34 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="HeavyModManager.Desktop.Views.MessageDialog"
+        Title="Notice"
+        Width="440"
+        Height="190"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        SystemDecorations="Full">
+    <Grid RowDefinitions="*,Auto" Margin="20">
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <TextBlock Name="TextBlockMessage"
+                       TextWrapping="Wrap"
+                       FontSize="13"
+                       VerticalAlignment="Center"/>
+        </ScrollViewer>
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Spacing="10"
+                    Margin="0,15,0,0">
+            <Button Name="ButtonCancel"
+                    Content="Cancel"
+                    Width="80"
+                    HorizontalContentAlignment="Center"
+                    IsVisible="False"/>
+            <Button Name="ButtonOk"
+                    Content="OK"
+                    Width="80"
+                    HorizontalContentAlignment="Center"
+                    Classes="accent"/>
+        </StackPanel>
+    </Grid>
+</Window>

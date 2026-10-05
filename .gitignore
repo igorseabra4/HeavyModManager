@@ -17,6 +17,7 @@
 mono_crash.*
 
 # Build results
+publish/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -397,3 +398,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
+.DS_Store
