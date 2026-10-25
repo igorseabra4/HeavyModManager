@@ -360,13 +360,13 @@ partial class MainForm
         resources.ApplyResources(this, "$this");
         AutoScaleMode = AutoScaleMode.Font;
         Controls.Add(buttonSaveIso);
-        Controls.Add(labelDolphin);
         Controls.Add(buttonRestoreBackupDev);
         Controls.Add(groupBoxGame);
         Controls.Add(menuStrip1);
         Controls.Add(splitContainerMods);
         Controls.Add(buttonRunGameDev);
         Controls.Add(buttonRunGame);
+        Controls.Add(labelDolphin);
         MainMenuStrip = menuStrip1;
         Name = "MainForm";
         FormClosing += MainForm_FormClosing;

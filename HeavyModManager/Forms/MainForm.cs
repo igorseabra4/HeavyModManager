@@ -744,7 +744,11 @@ public partial class MainForm : Form
         labelDolphin.Text = $"{GlobalResources.dolphin}: {ModManager.DolphinPath}\n{GlobalResources.dolphinUserFolder} {ModManager.DolphinFolderPath}";
 
         if (ModManager.DeveloperMode)
+        {
             labelDolphin.Text += "\n" + GlobalResources.developerMode;
+            if (MessageReceived != null)
+                labelDolphin.Text += " | Latest Message: " + MessageReceived;
+        }
     }
 
     private void changeIconToolStripMenuItem_Click(object sender, EventArgs e)

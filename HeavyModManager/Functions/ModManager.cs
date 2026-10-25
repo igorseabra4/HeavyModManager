@@ -251,7 +251,7 @@ public static class ModManager
         var openFile = new OpenFileDialog()
         {
             Filter = "Executables|*.exe",
-            Title = "Please select your Dolphin executable"
+            Title = "Please select your Dolphin executable or a shortcut"
         };
 
         if (openFile.ShowDialog() == DialogResult.OK)
