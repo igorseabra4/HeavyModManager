@@ -15,13 +15,13 @@ public static class HipManager
         var hipSource = HipFile.FromPath(source);
         var hipDestination = HipFile.FromPath(destination);
 
-        Game = hipDestination.Item2;
-        Platform = hipDestination.Item3;
+        Game = hipDestination.game;
+        Platform = hipDestination.platform;
         Endianness = Platform == Platform.GameCube ? Endianness.Big : Endianness.Little;
 
-        MergeInto(hipSource.Item1, hipDestination.Item1);
+        MergeInto(hipSource, hipDestination);
 
-        File.WriteAllBytes(destination, hipDestination.Item1.ToBytes(hipDestination.Item2, hipDestination.Item3));
+        File.WriteAllBytes(destination, hipDestination.ToBytes());
     }
 
     private static void MergeInto(HipFile source, HipFile destination)
