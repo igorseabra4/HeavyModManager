@@ -424,9 +424,15 @@ public partial class MainForm : Form
         zipModToolStripMenuItemContext.Enabled = false;
         openModFolderToolStripMenuItemContext.Enabled = false;
 
-        foreach (var modId in ModManager.CurrentGameSettings.Mods)
+        foreach (var modId in ModManager.CurrentGameSettings.Mods.ToList())
         {
-            var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(ModManager.GetModJsonPath(modId)));
+            var modJsonPath = ModManager.GetModJsonPath(modId);
+            if (!File.Exists(modJsonPath))
+            {
+                ModManager.CurrentGameSettings.RemoveMod(modId);
+                continue;
+            }
+            var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
             bool active = ModManager.CurrentGameSettings.ActiveMods.Contains(mod.ModId);
             if (active)
                 programaticCheckChanges++;
