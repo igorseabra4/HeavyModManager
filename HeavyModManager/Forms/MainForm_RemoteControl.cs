@@ -40,7 +40,7 @@ public partial class MainForm
 
     private bool _remoteMessageDisplayed = false;
 
-    private void RemoteControlMessageReceived(string message)
+    private async void RemoteControlMessageReceived(string message)
     {
         var parse = message.Split(' ');
         if (parse.Length > 0)
@@ -127,7 +127,7 @@ public partial class MainForm
             ModManager.Invalidate();
             Enabled = false;
             ModManager.CloseEmulator();
-            ModManager.ApplyMods();
+            await ApplyMods();
 
             var tempIniMod = new Mod() { INIReplacements = $"BOOT={scene}" };
             tempIniMod.ApplyIniPatches();

@@ -864,13 +864,13 @@ public partial class MainForm : Form
         Enabled = true;
     }
 
-    private void buttonRunGameDev_Click(object sender, EventArgs e)
+    private async void buttonRunGameDev_Click(object sender, EventArgs e)
     {
         Enabled = false;
         ModManager.CloseEmulator();
-        ModManager.ApplyMods();
+        if (await ApplyMods())
+            RunGame();
         Enabled = true;
-        RunGame();
     }
 
     private async void buttonRunGame_Click(object sender, EventArgs e)
@@ -884,18 +884,33 @@ public partial class MainForm : Form
         progressBar.SetDetails("Applying mods...");
         progressBar.Show(this);
 
+        bool run = true;
         if (ModManager.CurrentGameSettings.Invalidated)
         {
-            await Task.Run(() =>
+            run = await Task.Run(() =>
             {
                 ModManager.ResetGameFromBackup();
-                ModManager.ApplyMods();
+                return ApplyMods();
             });
         }
 
         progressBar.Close();
         Enabled = true;
-        RunGame();
+        if (run)
+            RunGame();
+    }
+
+    private async Task<bool> ApplyMods(bool createIso = true)
+    {
+        var result = await ModManager.ApplyMods(createIso);
+
+        if (result == ModManager.Result.MissingXdvdfs)
+            return await PromptToDownloadXdvdfs();
+
+        if (result == ModManager.Result.MissingImgBurn)
+            PromptToDownloadImgBurn();
+
+        return result == ModManager.Result.Success;
     }
 
     private async void RunGame()
@@ -912,20 +927,6 @@ public partial class MainForm : Form
                     "Emulator not found",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-            }
-            else if (result == ModManager.Result.MissingXdvdfs)
-            {
-                bool downloaded = await PromptToDownloadXdvdfs();
-
-                if (downloaded)
-                {
-                    // Try running the game again
-                    RunGame();
-                }
-            }
-            else if (result == ModManager.Result.MissingImgBurn)
-            {
-                PromptToDownloadImgBurn();
             }
         }
         catch (Exception e)
@@ -1121,11 +1122,15 @@ public partial class MainForm : Form
 
         if (ModManager.DeveloperMode || ModManager.CurrentGameSettings.Invalidated)
         {
-            await Task.Run(() =>
+            var run = await Task.Run(async () =>
             {
                 ModManager.ResetGameFromBackup();
-                ModManager.ApplyMods();
+
+                return await ApplyMods(false);
+
             });
+            if (!run)
+                return;
         }
 
         progressBar.SetDetails("Saving to file...");
@@ -1138,7 +1143,7 @@ public partial class MainForm : Form
 
                 var creationTask = Task.Run(() =>
                 {
-                    return ModManager.SaveISOAsync(dialog.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
+                    return ModManager.BuildIso(ModManager.CurrentGame, ModManager.CurrentPlatform, dialog.FileName);
                 });
 
                 while (!creationTask.IsCompleted)

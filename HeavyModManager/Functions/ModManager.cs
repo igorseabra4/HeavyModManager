@@ -274,14 +274,19 @@ public static class ModManager
     {
         return Path.Combine(GameGamePath(game, platform), platform == GamePlatform.GameCube ? "files" : "");
     }
-    
+
     public static string GameBuildPath(Game game, GamePlatform platform) =>
         Path.Combine(GameFolderPath(game, platform), "iso");
 
-    public static string GameGameINIPath(Game game, GamePlatform platform)
-    {
-        return Path.Combine(GameGamePath(game, platform), GameIniFileName(game));
-    }
+    public static string GameIsoPath(Game game, GamePlatform platform) =>
+        Path.Combine(GameBuildPath(game, platform), "game.iso");
+
+    public static string GameGameINIPath(Game game, GamePlatform platform) =>
+        Path.Combine(GameGamePath(game, platform), GameIniFileName(game));
+
+    public static string GameGameSysPath(Game game, GamePlatform platform) => Path.Combine(GameGamePath(game, platform), "sys");
+    
+    public static string GameDolPath(Game game, GamePlatform platform) => Path.Combine(GameGameSysPath(game, platform), "main.dol");
 
     public static bool EmulatorPathIsSet(GamePlatform platform)
     {
@@ -298,8 +303,6 @@ public static class ModManager
         }
     }
 
-    public static string GameGameSysPath(Game game, GamePlatform platform) => Path.Combine(GameGamePath(game, platform), "sys");
-    public static string GameDolPath(Game game, GamePlatform platform) => Path.Combine(GameGameSysPath(game, platform), "main.dol");
 
     public static bool CheckForUpdatesOnStartup { get; set; }
     public static bool DeveloperMode { get; set; }
@@ -709,16 +712,16 @@ public static class ModManager
         return true;
     }
 
-    public static void ApplyMods()
+    public static async Task<Result> ApplyMods(bool createIso)
     {
         Game game = CurrentGame;
         GamePlatform platform = CurrentPlatform;
 
         if (!Directory.Exists(GameGamePath(game, platform)) && !ResetGameFromBackup())
-            return;
+            return Result.Error;
 
         if (!DeveloperMode && !CurrentGameSettings.Invalidated)
-            return;
+            return Result.Success;
 
         byte[] executable = platform == GamePlatform.GameCube ? File.ReadAllBytes(GameDolPath(game, platform)) : [];
         var patchesExecutable = false;
@@ -784,11 +787,21 @@ public static class ModManager
                 File.WriteAllBytes(GameDolPath(game, platform), executable);
         }
 
+        if (platform != GamePlatform.GameCube && createIso) // need to build iso
+        {
+            var isoPath = GameIsoPath(game, platform);
+            Result result = await BuildIso(game, platform, isoPath);
+            if (result != Result.Success)
+                return result;
+        }
+
         CurrentGameSettings.Invalidated = false;
         SaveGameSettings(game, platform);
 
         if (modsUsingCustomGameId > 1)
             MessageBox.Show(GlobalResources.multipleModsSaveFiles, GlobalResources.multipleModsSaveFilesTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+        return Result.Success;
     }
 
     private static void AddOrReplaceCodes(ref List<DolphinCode> codeList, List<DolphinCode> toAdd)
@@ -961,34 +974,16 @@ public static class ModManager
                 break;
         }
 
-        if (String.IsNullOrEmpty(emulatorPath))
-        {
+        if (string.IsNullOrEmpty(emulatorPath))
             return Result.EmulatorNotFound;
-        }
-        
-        string runPath = GameGamePath(game, platform);
 
-        if (platform != GamePlatform.GameCube)
-        {
-            // Need to build iso
-            if (!Path.Exists(GameBuildPath(game, platform)))
-                Directory.CreateDirectory(GameBuildPath(game, platform));
-            
-            runPath = Path.Combine(GameBuildPath(game, platform), "game.iso");
-            
-            // If iso exists already, delete it
-            if (File.Exists(runPath))
-                File.Delete(runPath);
-            
-            var result = await SaveISOAsync(runPath, game, platform);
+        string runPath = platform == GamePlatform.GameCube ?
+            GameDolPath(game, platform) :
+            GameIsoPath(game, platform);
 
-            if (result == Result.MissingXdvdfs)
-                return Result.MissingXdvdfs;
+        if (!File.Exists(runPath))
+            return Result.MissingGameFile;
 
-            if (result == Result.MissingImgBurn)
-                return Result.MissingImgBurn;
-        }
-        
         string extraArgs = GetCommandLineArguments(platform); // may be empty
 
         var startInfo = new ProcessStartInfo
@@ -997,32 +992,35 @@ public static class ModManager
             UseShellExecute = false // required if you want to redirect output or avoid shell quoting issues
         };
 
-        // Add extra arguments if any
         if (!string.IsNullOrWhiteSpace(extraArgs))
-        {
             foreach (var arg in extraArgs.Split(' ', StringSplitOptions.RemoveEmptyEntries))
                 startInfo.ArgumentList.Add(arg);
-        }
 
-        // Always add the game path last
-        // Add platform-specific arguments
         if (platform == GamePlatform.Xbox)
-        {
             startInfo.ArgumentList.Add("-dvd_path");
-            startInfo.ArgumentList.Add(runPath);
-        }
-        else if (platform == GamePlatform.GameCube)
-        {
-            // Add path to main.dol
-            runPath = Path.Combine(runPath, "sys", "main.dol");
-            startInfo.ArgumentList.Add(runPath);
-        } else
-        {
-            startInfo.ArgumentList.Add(runPath);
-        }
 
-        // Start the emulator
+        startInfo.ArgumentList.Add(runPath);
+
         Process.Start(startInfo);
+
+        return Result.Success;
+    }
+
+    public static async Task<Result> BuildIso(Game game, GamePlatform platform, string runPath)
+    {
+        if (!Path.Exists(GameBuildPath(game, platform)))
+            Directory.CreateDirectory(GameBuildPath(game, platform));
+
+        if (File.Exists(runPath))
+            File.Delete(runPath);
+
+        var result = await SaveISOAsync(runPath, game, platform);
+
+        if (result == Result.MissingXdvdfs)
+            return Result.MissingXdvdfs;
+
+        if (result == Result.MissingImgBurn)
+            return Result.MissingImgBurn;
 
         return Result.Success;
     }
@@ -1048,7 +1046,8 @@ public static class ModManager
         MissingXdvdfs,
         MissingImgBurn,
         EmulatorNotFound,
-        Error
+        Error,
+        MissingGameFile
     }
 
     public static async Task<Result> SaveISOAsync(string path, Game game, GamePlatform platform)
