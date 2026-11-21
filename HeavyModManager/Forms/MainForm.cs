@@ -361,62 +361,27 @@ public partial class MainForm : Form
         buttonRunGame.Enabled = CanApplyMods;
         buttonCreateBackup.Enabled = comboBoxGame.SelectedIndex != -1;
 
-        // Update platforms
         var platforms = ModManager.SupportedPlatformsForGame(ModManager.CurrentGame);
-        // Update comboBoxPlatform with supported platforms
 
-        // Get selected platform if one is selected
-        int selected = comboBoxPlatform.SelectedIndex;
+        GamePlatform selectPlatform = comboBoxPlatform.SelectedIndex != -1 ? ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform : GamePlatform.GameCube;
+        if (!platforms.Contains(selectPlatform))
+            selectPlatform = platforms.First();
 
         comboBoxPlatform.Items.Clear();
-
         foreach (var plat in platforms)
         {
-            bool exists = false;
-            foreach (ComboBoxPlatformItem item in comboBoxPlatform.Items)
-            {
-                if (item.Platform == plat)
-                {
-                    exists = true;
-                    break;
-                }
-            }
-            if (!exists)
-                comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(plat));
-        }
-
-        // If the previously selected platform is still valid, keep it selected. Otherwise select the first one.
-        if (selected != -1 && selected < comboBoxPlatform.Items.Count)
-        {
-            comboBoxPlatform.SelectedIndex = selected;
-        }
-        else
-        {
-            int savedIndex = -1;
-            for (int i = 0; i < comboBoxPlatform.Items.Count; i++)
-            {
-                if (((ComboBoxPlatformItem)comboBoxPlatform.Items[i]).Platform == ModManager.CurrentPlatform)
-                {
-                    savedIndex = i;
-                    break;
-                }
-            }
-
-            if (savedIndex != -1)
-                comboBoxPlatform.SelectedIndex = savedIndex;
-            else if (comboBoxPlatform.Items.Count > 0)
-                comboBoxPlatform.SelectedIndex = 0;
+            comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(plat));
+            if (plat == selectPlatform)
+                comboBoxPlatform.SelectedIndex = comboBoxPlatform.Items.Count - 1;
         }
 
         ShowToolTip();
-
         SaveSettings();
     }
 
     private bool CanApplyMods => comboBoxGame.SelectedIndex != -1 &&
-                                 ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform) &&
-                                 ModManager.EmulatorPathIsSet(ModManager.CurrentPlatform);
-
+        ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform) &&
+        ModManager.EmulatorPathIsSet(ModManager.CurrentPlatform);
 
     private bool CanSaveIso => comboBoxGame.SelectedIndex != -1 &&
         ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform);
@@ -521,13 +486,12 @@ public partial class MainForm : Form
         }
     }
 
-    private bool programChangingData = false;
+    private int programaticCheckChanges = 0;
     private int _sortColumn = -1;
     private bool _sortAscending = true;
 
     private void PopulateModList(string selectedModId = "")
     {
-        programChangingData = true;
         pictureBoxMod.Image = Resources.image_placeholder;
 
         labelModInfo.Text = "";
@@ -549,14 +513,15 @@ public partial class MainForm : Form
         {
             var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(ModManager.GetModJsonPath(modId)));
             bool active = ModManager.CurrentGameSettings.ActiveMods.Contains(mod.ModId);
-
             if (mod.Platform == activePlatform || mod.Platform == GamePlatform.Unknown)
+            {
+                if (active)
+                    programaticCheckChanges++;
                 listViewMods.Items.Add(ListViewItemFromMod(mod, active, selectedModId == mod.ModId));
+            }
         }
 
         UpdateStatusLabel();
-
-        programChangingData = false;
     }
 
     private static ListViewItem ListViewItemFromMod(Mod mod, bool active, bool selected)
@@ -570,11 +535,11 @@ public partial class MainForm : Form
 
         item.SubItems.AddRange(new ListViewItem.ListViewSubItem[]
         {
-            new ListViewItem.ListViewSubItem(item, mod.Author),
-            new ListViewItem.ListViewSubItem(item, ModManager.PlatformToStringFull(mod.Platform)),
-            new ListViewItem.ListViewSubItem(item, mod.Version),
-            new ListViewItem.ListViewSubItem(item, mod.CreatedAt.ToShortDateString()),
-            new ListViewItem.ListViewSubItem(item, mod.UpdatedAt.ToShortDateString()),
+            new(item, mod.Author),
+            new(item, ModManager.PlatformToStringFull(mod.Platform)),
+            new(item, mod.Version),
+            new(item, mod.CreatedAt.ToShortDateString()),
+            new(item, mod.UpdatedAt.ToShortDateString()),
         });
 
         return item;
@@ -589,7 +554,12 @@ public partial class MainForm : Form
 
     private void listViewMods_ItemCheck(object sender, ItemCheckEventArgs e)
     {
-        if (programChangingData)
+        if (programaticCheckChanges > 0)
+        {
+            programaticCheckChanges--;
+            return;
+        }
+        if (e.NewValue == e.CurrentValue)
             return;
 
         var mod = (Mod)listViewMods.Items[e.Index].Tag;
@@ -797,7 +767,7 @@ public partial class MainForm : Form
         PopulateModList();
     }
 
-    private async void buttonRestoreBackup_Click(object sender, EventArgs e)
+    private async void buttonCreateBackup_Click(object sender, EventArgs e)
     {
         string platform = ModManager.PlatformToStringFull(ModManager.CurrentPlatform);
         string executableType = ModManager.PlatformToExecutable(ModManager.CurrentPlatform);
@@ -897,6 +867,31 @@ public partial class MainForm : Form
         RunGame();
     }
 
+    private async void buttonRunGame_Click(object sender, EventArgs e)
+    {
+        Enabled = false;
+        ModManager.CloseEmulator();
+        var progressBar = new ProgressBarForm()
+        {
+            Text = "Running game..."
+        };
+        progressBar.SetDetails("Applying mods...");
+        progressBar.Show(this);
+
+        if (ModManager.CurrentGameSettings.Invalidated)
+        {
+            await Task.Run(() =>
+            {
+                ModManager.ResetGameFromBackup(ModManager.CurrentGame, ModManager.CurrentPlatform);
+                ModManager.ApplyMods(ModManager.CurrentGame, ModManager.CurrentPlatform);
+            });
+        }
+
+        progressBar.Close();
+        Enabled = true;
+        RunGame();
+    }
+
     private async void RunGame()
     {
         try
@@ -936,31 +931,6 @@ public partial class MainForm : Form
                 MessageBoxIcon.Error
                 );
         }
-    }
-
-    private async void buttonRunGame_Click(object sender, EventArgs e)
-    {
-        Enabled = false;
-        ModManager.CloseEmulator();
-        var progressBar = new ProgressBarForm()
-        {
-            Text = "Running game..."
-        };
-        progressBar.SetDetails("Applying mods...");
-        progressBar.Show(this);
-
-        if (ModManager.CurrentGameSettings.Invalidated)
-        {
-            await Task.Run(() =>
-            {
-                ModManager.ResetGameFromBackup(ModManager.CurrentGame, ModManager.CurrentPlatform);
-                ModManager.ApplyMods(ModManager.CurrentGame, ModManager.CurrentPlatform);
-            });
-        }
-
-        progressBar.Close();
-        Enabled = true;
-        RunGame();
     }
 
     private void buttonAddMod_Click(object sender, EventArgs e)

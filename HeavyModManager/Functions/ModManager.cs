@@ -3,11 +3,11 @@ using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Forms;
 using HeavyModManager.Forms.Other;
+using SevenZipLib;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO.Compression;
 using System.Text.Json;
-using SevenZipLib;
 
 namespace HeavyModManager.Functions;
 
@@ -235,7 +235,7 @@ public static class ModManager
     public static string GetModFilesPath(string modId) => Path.Combine(GetModPath(modId), "files");
 
     public static string XdvdfsPath => Path.Combine(Application.StartupPath, "External", "xdvdfs", "xdvdfs.exe");
-
+   
     public static bool XdvdfsIsDownloaded => File.Exists(XdvdfsPath);
 
 
@@ -297,6 +297,9 @@ public static class ModManager
                 return false;
         }
     }
+
+    public static string GameGameSysPath(Game game, GamePlatform platform) => Path.Combine(GameGamePath(game, platform), "sys");
+    public static string GameDolPath(Game game, GamePlatform platform) => Path.Combine(GameGameSysPath(game, platform), "main.dol");
 
     public static bool CheckForUpdatesOnStartup { get; set; }
     public static bool DeveloperMode { get; set; }
@@ -454,7 +457,8 @@ public static class ModManager
 
     public static void SetCurrentGame(Game game)
     {
-        SaveGameSettings(CurrentGame, CurrentPlatform);
+        if (CurrentGame != game)
+            SaveGameSettings(CurrentGame, CurrentPlatform);
         CurrentGame = game;
         RefreshGameSettings(CurrentGame, CurrentPlatform);
     }
@@ -476,8 +480,6 @@ public static class ModManager
         CurrentGameSettings = File.Exists(GameSettingsPath(game, platform)) ?
             JsonSerializer.Deserialize<GameSettings>(File.ReadAllText(GameSettingsPath(game, platform))) :
             new GameSettings();
-
-        RefreshModList();
     }
 
     public static void RefreshModList()
@@ -681,10 +683,7 @@ public static class ModManager
 
     public static void Invalidate()
     {
-        // FIXME: Crashes when a game is not selected.
-
-        CurrentGameSettings.Invalidated = true;
-        SaveGameSettings(CurrentGame, CurrentPlatform);
+        CurrentGameSettings?.Invalidated = true;
     }
 
     public static bool ResetGameFromBackup(Game game, GamePlatform platform)
@@ -716,16 +715,16 @@ public static class ModManager
         if (!DeveloperMode && !CurrentGameSettings.Invalidated)
             return;
 
-        // var dol = File.ReadAllBytes(GameDolPath);
-        var hasDolPatches = false;
+        byte[] executable = platform == GamePlatform.GameCube ? File.ReadAllBytes(GameDolPath(game, platform)) : [];
+        var patchesExecutable = false;
 
         var arCodes = new List<DolphinCode>();
         var geckoCodes = new List<DolphinCode>();
 
         var modsUsingCustomGameId = 0;
-        string? gameId = null;
+        string? gcGameId = null;
 
-        foreach (var modId in CurrentGameSettings.Mods)
+        foreach (var modId in CurrentGameSettings.Mods) // Loop in this order to maintain priority of latest
             if (CurrentGameSettings.ActiveMods.Contains(modId))
             {
                 var modJsonPath = GetModJsonPath(modId);
@@ -735,38 +734,50 @@ public static class ModManager
                 mod.CopyFiles();
                 mod.ApplyIniPatches();
 
-                // if (mod.ApplyIPSPatch(ref dol) | mod.ApplyDolPatches(ref dol))
-                //     hasDolPatches = true;
-
-                if (!string.IsNullOrEmpty(mod.ArCodes))
-                    AddOrReplaceCodes(ref arCodes, mod.GetArCodes());
-
-                if (!string.IsNullOrEmpty(mod.GeckoCodes))
-                    AddOrReplaceCodes(ref geckoCodes, mod.GetGeckoCodes());
-
-                if (!string.IsNullOrWhiteSpace(mod.GameId))
+                if (platform == GamePlatform.GameCube)
                 {
-                    gameId = mod.GameId;
-                    modsUsingCustomGameId++;
+                    if (mod.ApplyIPSPatch(ref executable) | mod.ApplyDolPatches(ref executable))
+                        patchesExecutable = true;
+
+                    if (!string.IsNullOrEmpty(mod.ArCodes))
+                        AddOrReplaceCodes(ref arCodes, mod.GetArCodes());
+
+                    if (!string.IsNullOrEmpty(mod.GeckoCodes))
+                        AddOrReplaceCodes(ref geckoCodes, mod.GetGeckoCodes());
+
+                    // todo: codes for other platforms
+
+                    if (!string.IsNullOrWhiteSpace(mod.GameId))
+                    {
+                        gcGameId = mod.GameId;
+                        modsUsingCustomGameId++;
+                    }
                 }
+
+                // Todo: executable patching for other platforms
             }
 
-        if (gameId == null && (arCodes.Any() || geckoCodes.Any()))
-            gameId = GetDefaultCodesGameId();
-
-        if (gameId != null)
+        if (platform == GamePlatform.GameCube)
         {
-            CreateCustomDolphinSettings(gameId, arCodes, geckoCodes);
-            CopyDolphinSysSettings(gameId);
+            if (gcGameId == null && (arCodes.Any() || geckoCodes.Any()))
+                gcGameId = GetDefaultCodesGameId();
 
-            hasDolPatches = true;
+            if (gcGameId != null)
+            {
+                CreateCustomDolphinSettings(gcGameId, arCodes, geckoCodes);
+                CopyDolphinSysSettings(gcGameId);
 
-            // ApplyGameIdOnDol(gameId, ref dol);
-            //ApplyGameIdOnBootBin(gameId);
+                patchesExecutable = true;
+
+                ApplyGameIdOnDol(gcGameId, ref executable);
+                ApplyGameIdOnBootBin(game, platform, gcGameId);
+
+                // Todo: game ID patching for other platforms
+            }
+
+            if (patchesExecutable)
+                File.WriteAllBytes(GameDolPath(game, platform), executable);
         }
-
-        if (hasDolPatches)
-            // File.WriteAllBytes(GameDolPath, dol);
 
         CurrentGameSettings.Invalidated = false;
         SaveGameSettings(game, platform);
@@ -881,20 +892,20 @@ public static class ModManager
             dol[startOffset + i] = (byte)gameId[i];
     }
 
-    // private static void ApplyGameIdOnBootBin(string gameId)
-    // {
-    //     var bootBinPath = Path.Combine(GameGameSysPath, "boot.bin");
-    //     var bootBin = File.ReadAllBytes(bootBinPath);
-    //
-    //     bootBin[0] = (byte)gameId[0];
-    //     bootBin[1] = (byte)gameId[1];
-    //     bootBin[2] = (byte)gameId[2];
-    //     bootBin[3] = (byte)gameId[3];
-    //     bootBin[4] = (byte)gameId[4];
-    //     bootBin[5] = (byte)gameId[5];
-    //
-    //     File.WriteAllBytes(bootBinPath, bootBin);
-    // }
+    private static void ApplyGameIdOnBootBin(Game game, GamePlatform platform, string gameId)
+    {
+        var bootBinPath = Path.Combine(GameGameSysPath(game, platform), "boot.bin");
+        var bootBin = File.ReadAllBytes(bootBinPath);
+
+        bootBin[0] = (byte)gameId[0];
+        bootBin[1] = (byte)gameId[1];
+        bootBin[2] = (byte)gameId[2];
+        bootBin[3] = (byte)gameId[3];
+        bootBin[4] = (byte)gameId[4];
+        bootBin[5] = (byte)gameId[5];
+
+        File.WriteAllBytes(bootBinPath, bootBin);
+    }
 
     public static bool GameBackupExists(Game game, GamePlatform platform)
     {
@@ -954,7 +965,7 @@ public static class ModManager
             // Need to build iso
             if (!Path.Exists(GameBuildPath(game, platform)))
                 Directory.CreateDirectory(GameBuildPath(game, platform));
-                
+            
             runPath = Path.Combine(GameBuildPath(game, platform), "game.iso");
             
             // If iso exists already, delete it

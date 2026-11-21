@@ -110,7 +110,7 @@ partial class MainForm
         resources.ApplyResources(buttonCreateBackup, "buttonCreateBackup");
         buttonCreateBackup.Name = "buttonCreateBackup";
         buttonCreateBackup.UseVisualStyleBackColor = true;
-        buttonCreateBackup.Click += buttonRestoreBackup_Click;
+        buttonCreateBackup.Click += buttonCreateBackup_Click;
         // 
         // comboBoxGame
         // 
