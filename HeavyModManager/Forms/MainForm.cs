@@ -854,7 +854,7 @@ public partial class MainForm : Form
     private void buttonRestoreBackupDev_Click(object sender, EventArgs e)
     {
         Enabled = false;
-        ModManager.ResetGameFromBackup(ModManager.CurrentGame, ModManager.CurrentPlatform);
+        ModManager.ResetGameFromBackup();
         Enabled = true;
     }
 
@@ -862,7 +862,7 @@ public partial class MainForm : Form
     {
         Enabled = false;
         ModManager.CloseEmulator();
-        ModManager.ApplyMods(ModManager.CurrentGame, ModManager.CurrentPlatform);
+        ModManager.ApplyMods();
         Enabled = true;
         RunGame();
     }
@@ -882,8 +882,8 @@ public partial class MainForm : Form
         {
             await Task.Run(() =>
             {
-                ModManager.ResetGameFromBackup(ModManager.CurrentGame, ModManager.CurrentPlatform);
-                ModManager.ApplyMods(ModManager.CurrentGame, ModManager.CurrentPlatform);
+                ModManager.ResetGameFromBackup();
+                ModManager.ApplyMods();
             });
         }
 
@@ -896,7 +896,7 @@ public partial class MainForm : Form
     {
         try
         {
-            var result = await ModManager.RunGameAsync(ModManager.CurrentGame, ModManager.CurrentPlatform);
+            var result = await ModManager.RunGameAsync();
 
             if (result == ModManager.Result.EmulatorNotFound)
             {
@@ -1016,7 +1016,11 @@ public partial class MainForm : Form
             string text = $"{numModsSelected} mod{(addPluralS ? "s" : "")} selected";
 
             if (ModManager.DeveloperMode)
+            {
                 text += " - " + GlobalResources.developerMode;
+                if (MessageReceived != null)
+                    text += " | Latest Message: " + MessageReceived;
+            }
 
             labelStatus.Text = text;
         }
@@ -1113,8 +1117,8 @@ public partial class MainForm : Form
         {
             await Task.Run(() =>
             {
-                ModManager.ResetGameFromBackup(ModManager.CurrentGame, ModManager.CurrentPlatform);
-                ModManager.ApplyMods(ModManager.CurrentGame, ModManager.CurrentPlatform);
+                ModManager.ResetGameFromBackup();
+                ModManager.ApplyMods();
             });
         }
 

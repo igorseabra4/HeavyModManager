@@ -686,8 +686,10 @@ public static class ModManager
         CurrentGameSettings?.Invalidated = true;
     }
 
-    public static bool ResetGameFromBackup(Game game, GamePlatform platform)
+    public static bool ResetGameFromBackup()
     {
+        Game game = CurrentGame;
+        GamePlatform platform = CurrentPlatform;
         if (!GameBackupExists(game, platform))
         {
             // TODO: Localize!
@@ -707,9 +709,12 @@ public static class ModManager
         return true;
     }
 
-    public static void ApplyMods(Game game, GamePlatform platform)
+    public static void ApplyMods()
     {
-        if (!Directory.Exists(GameGamePath(game, platform)) && !ResetGameFromBackup(game, platform))
+        Game game = CurrentGame;
+        GamePlatform platform = CurrentPlatform;
+
+        if (!Directory.Exists(GameGamePath(game, platform)) && !ResetGameFromBackup())
             return;
 
         if (!DeveloperMode && !CurrentGameSettings.Invalidated)
@@ -936,8 +941,11 @@ public static class ModManager
     /// <summary>
     /// Runs the current patched game with the emulator
     /// </summary>
-    public static async Task<Result> RunGameAsync(Game game, GamePlatform platform)
+    public static async Task<Result> RunGameAsync()
     {
+        Game game = CurrentGame;
+        GamePlatform platform = CurrentPlatform;
+
         string emulatorPath = "";
         
         switch (platform)
