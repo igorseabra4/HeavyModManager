@@ -149,7 +149,7 @@ public class Mod
                 if (string.IsNullOrWhiteSpace(path))
                     continue;
 
-                var file = Path.Combine(ModManager.GameGameFilesPath(ModManager.CurrentGame, ModManager.CurrentPlatform), path);
+                var file = Path.Combine(ModManager.GameGameFilesPath, path);
                 if (Directory.Exists(file))
                     Directory.Delete(file, true);
                 else if (File.Exists(file))
@@ -172,10 +172,7 @@ public class Mod
                 foreach (var file in Directory.GetFiles(path))
                 {
                     var relativePath = Path.GetRelativePath(root, file);
-                    var destinationFilePath = Path.Combine(
-                        ModManager.GameGameFilesPath(ModManager.CurrentGame, ModManager.CurrentPlatform),
-                        relativePath
-                        );
+                    var destinationFilePath = Path.Combine(ModManager.GameGameFilesPath, relativePath);
                     var destinationFolder = Path.GetDirectoryName(destinationFilePath);
 
                     if (!Directory.Exists(destinationFolder))
@@ -201,9 +198,9 @@ public class Mod
         if (string.IsNullOrWhiteSpace(INIReplacements))
             return;
 
-        var ini = INIFile.FromPath(ModManager.GameGameINIPath(ModManager.CurrentGame, ModManager.CurrentPlatform));
+        var ini = INIFile.FromPath(ModManager.GameGameINIPath);
         ini.ReplaceWith(INIFile.FromContents(INIReplacements));
-        ini.SaveTo(ModManager.GameGameINIPath(ModManager.CurrentGame, ModManager.CurrentPlatform));
+        ini.SaveTo(ModManager.GameGameINIPath);
     }
 
     public bool ApplyIPSPatch(ref byte[] dol)

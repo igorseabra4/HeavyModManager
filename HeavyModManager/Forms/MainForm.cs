@@ -349,7 +349,7 @@ public partial class MainForm : Form
 
     private void comboBoxGame_SelectedIndexChanged(object sender, EventArgs e)
     {
-        ModManager.SetCurrentGame(comboBoxGame.SelectedIndex == -1 ? Game.Null : ((ComboBoxGameItem)comboBoxGame.SelectedItem).Game);
+        ModManager.SetCurrentGamePlatform(comboBoxGame.SelectedIndex == -1 ? Game.Null : ((ComboBoxGameItem)comboBoxGame.SelectedItem).Game, ModManager.CurrentPlatform);
 
         PopulateModList();
 
@@ -379,12 +379,31 @@ public partial class MainForm : Form
         SaveSettings();
     }
 
+    private void comboBoxPlatform_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        ModManager.SetCurrentGamePlatform(ModManager.CurrentGame,
+            comboBoxPlatform.SelectedIndex == -1 ?
+            GamePlatform.Unknown :
+            ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform);
+
+        buttonRunGame.Text = GetPlayButtonText(ModManager.CurrentPlatform);
+        PopulateModList();
+        ShowToolTip();
+
+        buttonRunGame.Enabled = CanApplyMods;
+        buttonRestoreBackupDev.Enabled = CanApplyMods;
+        buttonRunGameDev.Enabled = CanApplyMods;
+        buttonSaveIso.Enabled = CanSaveIso;
+
+        UpdatePlatformIcon();
+    }
+
     private bool CanApplyMods => comboBoxGame.SelectedIndex != -1 &&
-        ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform) &&
+        ModManager.GameBackupExists() &&
         ModManager.EmulatorPathIsSet(ModManager.CurrentPlatform);
 
     private bool CanSaveIso => comboBoxGame.SelectedIndex != -1 &&
-        ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform);
+        ModManager.GameBackupExists();
 
     private readonly ToolTip toolTip;
 
@@ -410,7 +429,7 @@ public partial class MainForm : Form
 
         if (comboBoxGame.SelectedIndex != -1)
         {
-            if (!ModManager.GameBackupExists(ModManager.CurrentGame, ModManager.CurrentPlatform))
+            if (!ModManager.GameBackupExists())
                 toolTip.Show(GlobalResources.noBackupTooltip, comboBoxGame, tooltipX, tooltipY, tooltipDurationMs);
             //toolTip.Show("You do not have a backup for this game.\nPlease click on \"Create Backup\" and select the game's ISO file.", comboBoxGame, 0, 24, 8 * 1000);
             else if (listViewMods.Items.Count == 0)
@@ -585,7 +604,7 @@ public partial class MainForm : Form
                 ModManager.CurrentGameSettings.DeactivateMod(m.ModId);
         }
 
-        ModManager.SaveGameSettings(ModManager.CurrentGame, ModManager.CurrentPlatform);
+        ModManager.SaveGameSettings();
         UpdateStatusLabel();
     }
 
@@ -804,7 +823,7 @@ public partial class MainForm : Form
                 {
                     try
                     {
-                        result = ModManager.RestoreBackupIso(openFile.FileName, ModManager.CurrentGame, ModManager.CurrentPlatform);
+                        result = ModManager.RestoreBackupIso(openFile.FileName);
                     }
                     catch (Exception ex)
                     {
@@ -813,11 +832,7 @@ public partial class MainForm : Form
                 }
                 else
                 {
-                    result = ModManager.RestoreBackupFromFolder(
-                        Path.GetDirectoryName(openFile.FileName),
-                        ModManager.CurrentGame,
-                        ModManager.CurrentPlatform
-                        );
+                    result = ModManager.RestoreBackupFromFolder(Path.GetDirectoryName(openFile.FileName));
                 }
 
                 if (result == ModManager.Result.Success)
@@ -1138,12 +1153,10 @@ public partial class MainForm : Form
         {
             while (true)
             {
-                long expectedSize = ModManager.GetDirectorySize(
-                    ModManager.GameGamePath(ModManager.CurrentGame, ModManager.CurrentPlatform));
-
+                long expectedSize = ModManager.GetDirectorySize(ModManager.GameGamePath);
                 var creationTask = Task.Run(() =>
                 {
-                    return ModManager.BuildIso(ModManager.CurrentGame, ModManager.CurrentPlatform, dialog.FileName);
+                    return ModManager.BuildIso(dialog.FileName);
                 });
 
                 while (!creationTask.IsCompleted)
@@ -1228,27 +1241,6 @@ public partial class MainForm : Form
             MessageBox.Show($"Failed to open settings file:\n{ex.Message}",
                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-    }
-
-    private void comboBoxPlatform_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        ModManager.CurrentPlatform = comboBoxPlatform.SelectedIndex == -1 ?
-            GamePlatform.Unknown :
-            ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform;
-
-        if (comboBoxGame.SelectedIndex != -1 && ModManager.CurrentPlatform != GamePlatform.Unknown)
-            ModManager.RefreshGameSettings(ModManager.CurrentGame, ModManager.CurrentPlatform);
-
-        buttonRunGame.Text = GetPlayButtonText(ModManager.CurrentPlatform);
-        PopulateModList();
-        ShowToolTip();
-
-        buttonRunGame.Enabled = CanApplyMods;
-        buttonRestoreBackupDev.Enabled = CanApplyMods;
-        buttonRunGameDev.Enabled = CanApplyMods;
-        buttonSaveIso.Enabled = CanSaveIso;
-
-        UpdatePlatformIcon();
     }
 
     private void UpdatePlatformIcon()
