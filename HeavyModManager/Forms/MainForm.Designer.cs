@@ -117,6 +117,7 @@ partial class MainForm
         resources.ApplyResources(comboBoxGame, "comboBoxGame");
         comboBoxGame.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
         comboBoxGame.AutoCompleteSource = AutoCompleteSource.ListItems;
+        comboBoxGame.DropDownStyle = ComboBoxStyle.DropDownList;
         comboBoxGame.FormattingEnabled = true;
         comboBoxGame.Name = "comboBoxGame";
         comboBoxGame.SelectedIndexChanged += comboBoxGame_SelectedIndexChanged;
@@ -483,6 +484,7 @@ partial class MainForm
         resources.ApplyResources(comboBoxPlatform, "comboBoxPlatform");
         comboBoxPlatform.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
         comboBoxPlatform.AutoCompleteSource = AutoCompleteSource.ListItems;
+        comboBoxPlatform.DropDownStyle = ComboBoxStyle.DropDownList;
         comboBoxPlatform.FormattingEnabled = true;
         comboBoxPlatform.Name = "comboBoxPlatform";
         comboBoxPlatform.SelectedIndexChanged += comboBoxPlatform_SelectedIndexChanged;

@@ -320,6 +320,7 @@ public static class ModManager
         settings.DolphinFolderPath = DolphinFolderPath;
         settings.XemuPath = XemuPath;
         settings.PCSX2Path = PCSX2Path;
+        settings.ImgBurnPath = ImgBurnPath;
 
         settings.DolphinCommandLineArgs = DolphinCommandLineArgs;
         settings.XemuCommandLineArgs = XemuCommandLineArgs;
@@ -330,6 +331,7 @@ public static class ModManager
         settings.Icon = IconManager.CurrentIcon;
         settings.Language = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
         settings.OpenIsoAfterExport = OpenIsoAfterExport;
+        settings.DefaultModAuthor = DefaultModAuthor;
 
         File.WriteAllText(ModManagerSettingsPath, JsonSerializer.Serialize(settings));
     }
@@ -983,6 +985,7 @@ public static class ModManager
                     psiPs2.ArgumentList.Add("YES");
                     psiPs2.ArgumentList.Add("/RECURSESUBDIRECTORIES");
                     psiPs2.ArgumentList.Add("YES");
+                    psiPs2.ArgumentList.Add("/NOIMAGEDETAILS");
                     psiPs2.ArgumentList.Add("/START");
                     psiPs2.ArgumentList.Add("/CLOSE");
 
@@ -998,6 +1001,10 @@ public static class ModManager
 
                     if (processPs2.ExitCode != 0)
                         throw new Exception($"Error creating PS2 ISO (exit code {processPs2.ExitCode}): {errorPs2}");
+
+                    string mdsPath = Path.ChangeExtension(path, ".mds");
+                    if (File.Exists(mdsPath))
+                        File.Delete(mdsPath);
 
                     break;
                 }

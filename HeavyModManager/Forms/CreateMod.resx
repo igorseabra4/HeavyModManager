@@ -1086,9 +1086,6 @@
   <data name="&gt;&gt;richTextBoxINIValues.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="groupBoxIniValues.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
   <data name="groupBoxIniValues.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 78</value>
   </data>
@@ -1166,9 +1163,6 @@
   </data>
   <data name="&gt;&gt;richTextBoxMergeHips.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="groupBoxMergeHips.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
   </data>
   <data name="groupBoxMergeHips.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 256</value>
@@ -1248,9 +1242,6 @@
   <data name="&gt;&gt;richTextBoxRemoveFiles.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="groupBoxRemoveFiles.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
   <data name="groupBoxRemoveFiles.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 434</value>
   </data>
@@ -1329,9 +1320,6 @@
   <data name="&gt;&gt;richTextBoxDolPatches.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="groupBoxDolPatches.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
   <data name="groupBoxDolPatches.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 612</value>
   </data>
@@ -1400,9 +1388,6 @@
   </data>
   <data name="&gt;&gt;textBoxIpsPatch.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="groupBoxIpsPatch.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
   </data>
   <data name="groupBoxIpsPatch.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 790</value>
@@ -1482,9 +1467,6 @@
   <data name="&gt;&gt;richTextBoxArCodes.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="groupBoxArCodes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
   <data name="groupBoxArCodes.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 852</value>
   </data>
@@ -1562,9 +1544,6 @@
   </data>
   <data name="&gt;&gt;richTextBoxGeckoCodes.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="groupBoxGeckoCodes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
   </data>
   <data name="groupBoxGeckoCodes.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 1030</value>
