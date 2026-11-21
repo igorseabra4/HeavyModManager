@@ -236,26 +236,29 @@ public partial class CreateMod : Form
 
         string modPath = mod.SaveModJson(isEditing);
 
-        MessageBox.Show(GlobalResources.modCreatedAt + " " + modPath,
-            GlobalResources.modCreated,
-            MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        // Copy image to mod folder if it exists
-        if (!string.IsNullOrWhiteSpace(textBoxImagePath.Text) && File.Exists(textBoxImagePath.Text))
+        if (!isEditing)
         {
-            try
-            {
-                string imageExtension = Path.GetExtension(textBoxImagePath.Text);
-                string destImagePath = Path.Combine(modPath, "mod" + imageExtension);
-                File.Copy(textBoxImagePath.Text, destImagePath, true);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error copying thumbnail image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+            MessageBox.Show(GlobalResources.modCreatedAt + " " + modPath,
+                GlobalResources.modCreated,
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-        System.Diagnostics.Process.Start("explorer.exe", modPath);
+            // Copy image to mod folder if it exists
+            if (!string.IsNullOrWhiteSpace(textBoxImagePath.Text) && File.Exists(textBoxImagePath.Text))
+            {
+                try
+                {
+                    string imageExtension = Path.GetExtension(textBoxImagePath.Text);
+                    string destImagePath = Path.Combine(modPath, "mod" + imageExtension);
+                    File.Copy(textBoxImagePath.Text, destImagePath, true);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error copying thumbnail image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            System.Diagnostics.Process.Start("explorer.exe", modPath);
+        }
 
         Close();
     }
