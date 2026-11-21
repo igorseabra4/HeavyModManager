@@ -742,6 +742,8 @@ public partial class MainForm : Form
 
     private void listViewMods_ColumnClick(object sender, ColumnClickEventArgs e)
     {
+        return;
+
         if (_sortColumn == e.Column)
             _sortAscending = !_sortAscending;
         else
