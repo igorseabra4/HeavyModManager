@@ -840,7 +840,7 @@ public partial class MainForm : Form
                     done = true;
                     TaskbarFlasher.Flash(this.Handle);
                     MessageBox.Show(
-                        $"Game backup for {ModManager.GameToStringFull(ModManager.CurrentGame)} succesfully created. You can apply mods now.",
+                        $"Game backup for {ModManager.GameToStringFull(ModManager.CurrentGame)} ({ModManager.PlatformToStringFull(ModManager.CurrentPlatform)}) succesfully created. You can apply mods now.",
                         "Backup successful",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information
@@ -1134,6 +1134,8 @@ public partial class MainForm : Form
         };
         progressBar.SetDetails("Applying mods...");
         progressBar.Show(this);
+
+        // TODO: warn user if any enabled mods contain AR or Gecko codes, as those are not applied whenbuilding ISO
 
         if (ModManager.DeveloperMode || ModManager.CurrentGameSettings.Invalidated)
         {

@@ -199,7 +199,7 @@ public partial class CreateMod : Form
 
         var version = TreatString(textBoxVersion.Text.Replace('.', '_'));
 
-        string modId = $"{gameName}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}-{platformText}-{version}";
+        string modId = $"{gameName}-{platformText}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}-{version}";
 
         textBoxModId.Text = modId;
     }
@@ -277,7 +277,8 @@ public partial class CreateMod : Form
         Close();
     }
 
-    private static readonly string validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+    private static readonly HashSet<char> validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".ToHashSet();
+
     private static string TreatString(string text)
     {
         var result = "";
