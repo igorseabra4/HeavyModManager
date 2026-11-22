@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressBarForm));
-            progressBar1 = new System.Windows.Forms.ProgressBar();
+            progressBar1 = new ProgressBar();
+            labelPercentage = new Label();
+            labelDetails = new Label();
             SuspendLayout();
             // 
             // progressBar1
@@ -39,22 +41,37 @@
             progressBar1.Step = 1;
             progressBar1.Style = ProgressBarStyle.Marquee;
             // 
-            // ProgressBar
+            // labelPercentage
+            // 
+            resources.ApplyResources(labelPercentage, "labelPercentage");
+            labelPercentage.Name = "labelPercentage";
+            // 
+            // labelDetails
+            // 
+            resources.ApplyResources(labelDetails, "labelDetails");
+            labelDetails.Name = "labelDetails";
+            // 
+            // ProgressBarForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Dpi;
+            Controls.Add(labelDetails);
+            Controls.Add(labelPercentage);
             Controls.Add(progressBar1);
             Cursor = Cursors.WaitCursor;
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "ProgressBar";
+            Name = "ProgressBarForm";
             TopMost = true;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.ProgressBar progressBar1;
+        private Label labelPercentage;
+        private Label labelDetails;
     }
 }

@@ -21,7 +21,7 @@ public static class HipManager
 
         MergeInto(hipSource, hipDestination);
 
-        File.WriteAllBytes(destination, hipDestination.ToBytes());
+        hipDestination.ToFile(destination);
     }
 
     private static void MergeInto(HipFile source, HipFile destination)
@@ -122,7 +122,7 @@ public static class HipManager
 
                         if (Platform == Platform.GameCube)
                         {
-                            if (Game == Game.Incredibles)
+                            if (Game >= Game.Incredibles)
                             {
                                 var destAsset = new AssetSNDI_GCN_V2(destinationAHDR);
                                 destAsset.Merge(new AssetSNDI_GCN_V2(sourceAHDR));

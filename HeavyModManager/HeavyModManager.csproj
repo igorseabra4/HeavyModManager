@@ -55,6 +55,8 @@
 
   <ItemGroup>
     <PackageReference Include="GCNTools" Version="1.0.2" />
+    <PackageReference Include="SevenZipLib" Version="1.4.0" />
+    <PackageReference Include="SharpCompress" Version="0.49.1" />
   </ItemGroup>
 
 </Project>

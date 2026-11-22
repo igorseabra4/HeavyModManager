@@ -1,6 +1,7 @@
 ﻿using HeavyModManager.Classes;
 using HeavyModManager.Enum;
 using HeavyModManager.Functions;
+using HeavyModManager.Properties;
 
 namespace HeavyModManager.Forms;
 
@@ -18,14 +19,36 @@ public partial class CreateMod : Form
         foreach (Game game in ModManager.EvilEngineGames)
             comboBoxGame.Items.Add(new ComboBoxGameItem(game));
 
+        foreach (GamePlatform value in System.Enum.GetValues(typeof(GamePlatform)))
+        {
+            if (value != GamePlatform.Unknown)
+                comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(value));
+        }
+        comboBoxPlatform.SelectedIndex = 0;
+
         dateTimePickerCreatedAt.Value = DateTime.Now;
         dateTimePickerUpdatedAt.Value = DateTime.Now;
 
         buttonIniImport.Enabled = false;
+        textBoxAuthor.Text = ModManager.DefaultModAuthor;
     }
 
     private bool isEditing;
     private Game prevGame;
+
+    private void ToggleGameCubeSpecificOptions(bool show)
+    {
+        groupBoxGameId.Visible = show;
+        groupBoxArCodes.Visible = show;
+        groupBoxGeckoCodes.Visible = show;
+        groupBoxDolPatches.Visible = show;
+    }
+
+    private bool IsGameCubeSelected()
+    {
+        return comboBoxPlatform.SelectedItem != null &&
+            ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform == GamePlatform.GameCube;
+    }
 
     public CreateMod(Mod mod)
     {
@@ -35,6 +58,12 @@ public partial class CreateMod : Form
         toolTip = new ToolTip();
 
         defaultBackgroundColor = textBoxGameId.BackColor;
+
+        foreach (GamePlatform value in System.Enum.GetValues(typeof(GamePlatform)))
+        {
+            comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(value));
+        }
+        comboBoxPlatform.SelectedIndex = comboBoxPlatform.Items.Cast<ComboBoxPlatformItem>().ToList().FindIndex(i => i.Platform == mod.Platform);
 
         prevGame = mod.Game;
         textBoxModName.Text = mod.ModName;
@@ -56,6 +85,7 @@ public partial class CreateMod : Form
         comboBoxGame.Enabled = false;
         groupBoxGame.Enabled = false;
         groupBoxModId.Enabled = false;
+        comboBoxPlatform.Enabled = false;
 
         try
         {
@@ -88,22 +118,43 @@ public partial class CreateMod : Form
     {
         SetCreateModEnabled();
         SetDefaultGameID(((ComboBoxGameItem)comboBoxGame.SelectedItem).Game);
-        if (!isEditing)
-            ResetModId();
+        ResetModId();
+
+        // Update platforms - only show platforms that are compatible with the selected game
+        var selectedGameItem = (ComboBoxGameItem)comboBoxGame.SelectedItem;
+
+        var prevPlatform = comboBoxPlatform.SelectedItem != null ? ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform : GamePlatform.Unknown;
+
+        if (selectedGameItem != null)
+        {
+            var compatiblePlatforms = ModManager.SupportedPlatformsForGame(selectedGameItem.Game);
+            comboBoxPlatform.Items.Clear();
+            foreach (var platform in compatiblePlatforms)
+            {
+                comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(platform));
+            }
+            // Re-select the platform, or select the first valid platform.
+            if (prevPlatform != GamePlatform.Unknown && compatiblePlatforms.Contains(prevPlatform))
+            {
+                comboBoxPlatform.SelectedItem = comboBoxPlatform.Items.Cast<ComboBoxPlatformItem>().FirstOrDefault(i => i.Platform == prevPlatform);
+            }
+            else if (comboBoxPlatform.Items.Count > 0)
+            {
+                comboBoxPlatform.SelectedIndex = 0;
+            }
+        }
     }
 
     private void textBoxModName_TextChanged(object sender, EventArgs e)
     {
         SetCreateModEnabled();
-        if (!isEditing)
-            ResetModId();
+        ResetModId();
     }
 
     private void textBoxAuthor_TextChanged(object sender, EventArgs e)
     {
         SetCreateModEnabled();
-        if (!isEditing)
-            ResetModId();
+        ResetModId();
     }
 
     private bool programChangingData = false;
@@ -123,21 +174,32 @@ public partial class CreateMod : Form
     private void SetCreateModEnabled()
     {
         buttonCreateMod.Enabled = (isEditing || comboBoxGame.SelectedIndex > -1) &&
+            comboBoxPlatform.SelectedIndex > -1 &&
             TreatString(textBoxAuthor.Text).Length > 0 &&
             TreatString(textBoxModName.Text).Length > 0 &&
             textBoxModId.Text.Length > 0 &&
-            (textBoxGameId.Text.Length == 0 || textBoxGameId.Text.Length == 6) &&
-            DolPatchesValid() &&
             IniPatchesValid() &&
-            ArCodesValid() &&
-            GeckoCodesValid();
+            (!IsGameCubeSelected() || (
+                (textBoxGameId.Text.Length == 0 || textBoxGameId.Text.Length == 6) &&
+                DolPatchesValid() &&
+                ArCodesValid() &&
+                GeckoCodesValid()));
     }
 
     private void ResetModId()
     {
+        if (isEditing)
+            return;
+
         var selectedGameItem = (ComboBoxGameItem)comboBoxGame.SelectedItem;
         var gameName = selectedGameItem == null ? "" : ModManager.GameToString(selectedGameItem.Game);
-        string modId = $"{gameName}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}";
+        var platformText = "";
+        if (comboBoxPlatform.SelectedItem != null)
+            platformText = ModManager.PlatformToShortString(((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform);
+
+        var version = TreatString(textBoxVersion.Text.Replace('.', '_'));
+
+        string modId = $"{gameName}-{platformText}-{TreatString(textBoxAuthor.Text)}-{TreatString(textBoxModName.Text)}-{version}";
 
         textBoxModId.Text = modId;
     }
@@ -156,6 +218,15 @@ public partial class CreateMod : Form
             }
         }
 
+        var platform = GamePlatform.Unknown;
+        if (comboBoxGame.SelectedItem != null)
+        {
+            platform = ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform;
+        }
+
+        // GameCube-specific options are ignored for other platforms
+        bool isGameCube = platform == GamePlatform.GameCube;
+
         var mod = new Mod()
         {
             Game = isEditing ? prevGame : ((ComboBoxGameItem)comboBoxGame.SelectedItem).Game,
@@ -163,16 +234,18 @@ public partial class CreateMod : Form
             Author = textBoxAuthor.Text,
             Description = richTextBoxDescription.Text,
             ModId = textBoxModId.Text,
-            GameId = textBoxGameId.Text,
+            GameId = isGameCube ? textBoxGameId.Text : "",
             INIReplacements = richTextBoxINIValues.Text,
             MergeFiles = richTextBoxMergeHips.Text,
             RemoveFiles = richTextBoxRemoveFiles.Text,
-            DOLPatches = richTextBoxDolPatches.Text,
-            ArCodes = richTextBoxArCodes.Text,
-            GeckoCodes = richTextBoxGeckoCodes.Text,
+            DOLPatches = isGameCube ? richTextBoxDolPatches.Text : "",
+            ArCodes = isGameCube ? richTextBoxArCodes.Text : "",
+            GeckoCodes = isGameCube ? richTextBoxGeckoCodes.Text : "",
             CreatedAt = dateTimePickerCreatedAt.Value,
             UpdatedAt = dateTimePickerUpdatedAt.Value,
             IpsPatchBase64 = textBoxIpsPatch.Text,
+            Version = textBoxVersion.Text,
+            Platform = platform,
         };
 
         string modPath = mod.SaveModJson(isEditing);
@@ -183,13 +256,29 @@ public partial class CreateMod : Form
                 GlobalResources.modCreated,
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            // Copy image to mod folder if it exists
+            if (!string.IsNullOrWhiteSpace(textBoxImagePath.Text) && File.Exists(textBoxImagePath.Text))
+            {
+                try
+                {
+                    string imageExtension = Path.GetExtension(textBoxImagePath.Text);
+                    string destImagePath = Path.Combine(modPath, "mod" + imageExtension);
+                    File.Copy(textBoxImagePath.Text, destImagePath, true);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error copying thumbnail image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
             System.Diagnostics.Process.Start("explorer.exe", modPath);
         }
 
         Close();
     }
 
-    private static readonly string validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+    private static readonly HashSet<char> validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".ToHashSet();
+
     private static string TreatString(string text)
     {
         var result = "";
@@ -434,12 +523,13 @@ public partial class CreateMod : Form
 
     private void flowLayoutPanelPage2_Resize(object sender, EventArgs e)
     {
-        groupBoxGameId.Size = new Size(flowLayoutPanelPage2.Width - 23, groupBoxGameId.Size.Height);
+        foreach (Control c in flowLayoutPanelPage2.Controls)
+            c.Width = flowLayoutPanelPage2.Width - 23;
     }
 
     private void buttonIniImport_Click(object sender, EventArgs e)
     {
-        if (!ModManager.GameBackupExists)
+        if (!ModManager.GameBackupExists())
         {
             MessageBox.Show(GlobalResources.iniErrorGameBackupNotFound,
                 GlobalResources.gameBackupNotFoundTitle,
@@ -459,7 +549,7 @@ public partial class CreateMod : Form
         }
 
         var iniFile = INIFile.FromPath(modIniPath);
-        var ogIniFile = INIFile.FromPath(Path.Combine(ModManager.GameBackupFilesPath, ModManager.GameIniFileName(prevGame)));
+        var ogIniFile = INIFile.FromPath(Path.Combine(ModManager.GameBackupINIPath, ModManager.GameIniFileName(prevGame)));
         var result = new List<string>();
 
         if (!string.IsNullOrWhiteSpace(richTextBoxINIValues.Text))
@@ -538,5 +628,84 @@ public partial class CreateMod : Form
         {
             textBoxIpsPatch.Text = openFileDialog.FileName;
         }
+    }
+
+    private void comboBoxPlatform_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var isGamecube = comboBoxPlatform.SelectedItem != null && ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform == GamePlatform.GameCube;
+
+        groupBoxGameId.Enabled = groupBoxDolPatches.Enabled = groupBoxIpsPatch.Enabled = groupBoxGeckoCodes.Enabled = groupBoxArCodes.Enabled = isGamecube;
+
+        if (!isGamecube)
+        {
+            textBoxGameId.Text = "";
+            richTextBoxDolPatches.Text = "";
+            textBoxIpsPatch.Text = "";
+            richTextBoxGeckoCodes.Text = "";
+            richTextBoxArCodes.Text = "";
+        }
+
+        SetCreateModEnabled();
+        ResetModId();
+        UpdatePlatformIcon();
+
+        // If the platform is GameCube, show the GameCube-specific options, otherwise hide them.
+        ToggleGameCubeSpecificOptions(IsGameCubeSelected());
+    }
+
+    private void UpdatePlatformIcon()
+    {
+        // Get selected value from comboBoxPlatform
+        var currentPlatform = comboBoxPlatform.SelectedItem != null ? 
+            ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform : 
+            GamePlatform.Unknown;
+
+        switch (currentPlatform)
+        {
+            case GamePlatform.GameCube:
+                pictureBoxPlatform.Image = Resources.gamecube;
+                break;
+            case GamePlatform.PlayStation2:
+                pictureBoxPlatform.Image = Resources.ps2;
+                break;
+            case GamePlatform.Xbox:
+                pictureBoxPlatform.Image = Resources.xbox;
+                break;
+            default:
+                pictureBoxPlatform.Image = null;
+                break;
+        }
+    }
+
+    private void textBoxVersion_TextChanged(object sender, EventArgs e)
+    {
+        ResetModId();
+    }
+
+    private void buttonPickImage_Click(object sender, EventArgs e)
+    {
+        // Select an image file for the mod's thumbnail
+
+        OpenFileDialog openFileDialog = new OpenFileDialog()
+        {
+            Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tiff;*.tif|All Files (*.*)|*.*",
+            Title = "Select a mod thumbnail image"
+        };
+
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            // Load the selected image into the picture box
+            try
+            {
+                pictureBoxThumbnail.Image = Image.FromFile(openFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Update the path textbox
+        textBoxImagePath.Text = openFileDialog.FileName;
     }
 }

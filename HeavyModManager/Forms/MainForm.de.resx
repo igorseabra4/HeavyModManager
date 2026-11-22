@@ -194,7 +194,7 @@
     <value>Erstellt am</value>
   </data>
   <data name="buttonRefreshModList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 262</value>
+    <value>66, 578</value>
   </data>
   <data name="lightToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 22</value>
@@ -203,7 +203,7 @@
     <value>282, 22</value>
   </data>
   <data name="buttonAddMod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 263</value>
+    <value>616, 578</value>
   </data>
   <data name="checkForUpdatesOnStartupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>282, 22</value>
