@@ -1187,6 +1187,15 @@ public partial class MainForm : Form
                         return; // user cancelled or failed
                     }
                 }
+                if (result != ModManager.Result.Success)
+                {
+                    MessageBox.Show(
+                        "ISO creation failed.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
 
                 progressBar.SetProgress(100);
                 break;

@@ -907,8 +907,17 @@ public static class ModManager
         if (!Path.Exists(GameBuildPath))
             Directory.CreateDirectory(GameBuildPath);
 
-        if (File.Exists(runPath))
-            File.Delete(runPath);
+        try
+        {
+            if (File.Exists(runPath))
+                File.Delete(runPath);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Unable to delete existing ISO: {ex.Message}", "Error deleting ISO",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return Result.Error;
+        }
 
         var result = await SaveISOAsync(runPath);
 
