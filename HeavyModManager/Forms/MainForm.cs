@@ -349,38 +349,47 @@ public partial class MainForm : Form
 
     private void comboBoxGame_SelectedIndexChanged(object sender, EventArgs e)
     {
-        ModManager.SetCurrentGamePlatform(comboBoxGame.SelectedIndex == -1 ? Game.Null : ((ComboBoxGameItem)comboBoxGame.SelectedItem).Game, ModManager.CurrentPlatform);
+        var newGame = ((ComboBoxGameItem)comboBoxGame.SelectedItem).Game;
+        var platforms = ModManager.SupportedPlatformsForGame(newGame);
+        GamePlatform newPlatform = comboBoxPlatform.SelectedIndex != -1 ? ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform : GamePlatform.Unknown;
+        if (!platforms.Contains(newPlatform))
+            newPlatform = platforms.First();
+
+        ModManager.SetCurrentGamePlatform(newGame, newPlatform);
 
         PopulateModList();
 
-        groupBoxMods.Enabled = comboBoxGame.SelectedIndex != -1;
-        createModToolStripMenuItem.Enabled = true;
         buttonRestoreBackupDev.Enabled = CanApplyMods;
         buttonRunGameDev.Enabled = CanApplyMods;
         buttonSaveIso.Enabled = CanSaveIso;
         buttonRunGame.Enabled = CanApplyMods;
-        buttonCreateBackup.Enabled = comboBoxGame.SelectedIndex != -1;
 
-        var platforms = ModManager.SupportedPlatformsForGame(ModManager.CurrentGame);
+        buttonRunGame.Text = GetPlayButtonText(ModManager.CurrentPlatform);
 
-        GamePlatform selectPlatform = comboBoxPlatform.SelectedIndex != -1 ? ((ComboBoxPlatformItem)comboBoxPlatform.SelectedItem).Platform : GamePlatform.GameCube;
-        if (!platforms.Contains(selectPlatform))
-            selectPlatform = platforms.First();
+        programaticPlatformChange = true;
 
         comboBoxPlatform.Items.Clear();
         foreach (var plat in platforms)
         {
             comboBoxPlatform.Items.Add(new ComboBoxPlatformItem(plat));
-            if (plat == selectPlatform)
+            if (plat == newPlatform)
                 comboBoxPlatform.SelectedIndex = comboBoxPlatform.Items.Count - 1;
         }
 
+        programaticPlatformChange = false;
+
         ShowToolTip();
         SaveSettings();
+        UpdatePlatformIcon();
     }
+
+    private bool programaticPlatformChange = false;
 
     private void comboBoxPlatform_SelectedIndexChanged(object sender, EventArgs e)
     {
+        if (programaticPlatformChange)
+            return;
+
         ModManager.SetCurrentGamePlatform(ModManager.CurrentGame,
             comboBoxPlatform.SelectedIndex == -1 ?
             GamePlatform.Unknown :
@@ -395,6 +404,7 @@ public partial class MainForm : Form
         buttonRunGameDev.Enabled = CanApplyMods;
         buttonSaveIso.Enabled = CanSaveIso;
 
+        SaveSettings();
         UpdatePlatformIcon();
     }
 
@@ -686,7 +696,8 @@ public partial class MainForm : Form
     private void buttonMoveUp_Click(object sender, EventArgs e)
     {
         var mod = GetSelectedMod();
-        if (mod == null) return;
+        if (mod == null)
+            return;
 
         int visualIndex = listViewMods.SelectedIndices[0];
         if (visualIndex > 0)
@@ -703,7 +714,8 @@ public partial class MainForm : Form
     private void buttonMoveDown_Click(object sender, EventArgs e)
     {
         var mod = GetSelectedMod();
-        if (mod == null) return;
+        if (mod == null)
+            return;
 
         int visualIndex = listViewMods.SelectedIndices[0];
         var displayedIndices = GetDisplayedModIndices();
@@ -726,7 +738,8 @@ public partial class MainForm : Form
         for (int i = 0; i < allMods.Count; i++)
         {
             var modJsonPath = ModManager.GetModJsonPath(allMods[i]);
-            if (!File.Exists(modJsonPath)) continue;
+            if (!File.Exists(modJsonPath))
+                continue;
             var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
             if (mod.Platform == activePlatform || mod.Platform == GamePlatform.Unknown)
                 indices.Add(i);
@@ -761,7 +774,8 @@ public partial class MainForm : Form
         for (int i = 0; i < allMods.Count; i++)
         {
             var modJsonPath = ModManager.GetModJsonPath(allMods[i]);
-            if (!File.Exists(modJsonPath)) continue;
+            if (!File.Exists(modJsonPath))
+                continue;
             var mod = JsonSerializer.Deserialize<Mod>(File.ReadAllText(modJsonPath));
             if (mod.Platform == activePlatform || mod.Platform == GamePlatform.Unknown)
             {

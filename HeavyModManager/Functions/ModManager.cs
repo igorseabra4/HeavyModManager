@@ -338,9 +338,17 @@ public static class ModManager
 
     public static ModManagerSettings LoadSettings()
     {
-        ModManagerSettings? settings = File.Exists(ModManagerSettingsPath) ?
-             JsonSerializer.Deserialize<ModManagerSettings>(File.ReadAllText(ModManagerSettingsPath)) :
-             new ModManagerSettings();
+        ModManagerSettings? settings;
+        try
+        {
+            settings = File.Exists(ModManagerSettingsPath) ?
+                 JsonSerializer.Deserialize<ModManagerSettings>(File.ReadAllText(ModManagerSettingsPath)) :
+                 new ModManagerSettings();
+        }
+        catch
+        {
+            settings = new ModManagerSettings();
+        }
 
         settings ??= new ModManagerSettings();
 

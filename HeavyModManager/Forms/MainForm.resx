@@ -125,9 +125,6 @@
     <value>Bottom, Right</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="buttonCreateBackup.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonCreateBackup.Location" type="System.Drawing.Point, System.Drawing">
     <value>594, 22</value>
@@ -471,9 +468,6 @@
   </data>
   <data name="&gt;&gt;buttonAddMod.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="groupBoxMods.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="groupBoxMods.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 84</value>
