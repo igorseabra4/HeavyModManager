@@ -199,7 +199,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxGame.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="pictureBoxMod.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -235,6 +235,39 @@
   <data name="groupBoxMods.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="buttonOpenGameFolderDev.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="buttonOpenGameFolderDev.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonOpenGameFolderDev.Location" type="System.Drawing.Point, System.Drawing">
+    <value>298, 580</value>
+  </data>
+  <data name="buttonOpenGameFolderDev.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 23</value>
+  </data>
+  <data name="buttonOpenGameFolderDev.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="buttonOpenGameFolderDev.Text" xml:space="preserve">
+    <value>Open HMM Game Folder</value>
+  </data>
+  <data name="buttonOpenGameFolderDev.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;buttonOpenGameFolderDev.Name" xml:space="preserve">
+    <value>buttonOpenGameFolderDev</value>
+  </data>
+  <data name="&gt;&gt;buttonOpenGameFolderDev.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonOpenGameFolderDev.Parent" xml:space="preserve">
+    <value>groupBoxMods</value>
+  </data>
+  <data name="&gt;&gt;buttonOpenGameFolderDev.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="buttonBrowseMods.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -248,7 +281,7 @@
     <value>149, 23</value>
   </data>
   <data name="buttonBrowseMods.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>11</value>
   </data>
   <data name="buttonBrowseMods.Text" xml:space="preserve">
     <value>Browse Mods on Wiki</value>
@@ -263,7 +296,7 @@
     <value>groupBoxMods</value>
   </data>
   <data name="&gt;&gt;buttonBrowseMods.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="listViewMods.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -308,7 +341,7 @@
     <value>720, 554</value>
   </data>
   <data name="listViewMods.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;listViewMods.Name" xml:space="preserve">
     <value>listViewMods</value>
@@ -320,7 +353,7 @@
     <value>groupBoxMods</value>
   </data>
   <data name="&gt;&gt;listViewMods.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="buttonRefreshModList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -332,7 +365,7 @@
     <value>115, 23</value>
   </data>
   <data name="buttonRefreshModList.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="buttonRefreshModList.Text" xml:space="preserve">
     <value>Refresh Mods</value>
@@ -347,7 +380,7 @@
     <value>groupBoxMods</value>
   </data>
   <data name="&gt;&gt;buttonRefreshModList.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="buttonMoveDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -362,7 +395,7 @@
     <value>24, 24</value>
   </data>
   <data name="buttonMoveDown.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="buttonMoveDown.Text" xml:space="preserve">
     <value></value>
@@ -377,7 +410,7 @@
     <value>groupBoxMods</value>
   </data>
   <data name="&gt;&gt;buttonMoveDown.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="buttonMoveUp.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -392,7 +425,7 @@
     <value>24, 24</value>
   </data>
   <data name="buttonMoveUp.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="buttonMoveUp.Text" xml:space="preserve">
     <value></value>
@@ -407,7 +440,7 @@
     <value>groupBoxMods</value>
   </data>
   <data name="&gt;&gt;buttonMoveUp.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="buttonAddMod.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -422,7 +455,7 @@
     <value>107, 23</value>
   </data>
   <data name="buttonAddMod.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="buttonAddMod.Text" xml:space="preserve">
     <value>Add Mods...</value>
@@ -437,7 +470,7 @@
     <value>groupBoxMods</value>
   </data>
   <data name="&gt;&gt;buttonAddMod.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="groupBoxMods.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -464,7 +497,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxMods.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="buttonRunGameDev.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -494,7 +527,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonRunGameDev.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="buttonRestoreBackupDev.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -739,7 +772,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="labelModInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -751,7 +784,7 @@
     <value>233, 183</value>
   </data>
   <data name="labelModInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>6</value>
   </data>
   <data name="labelModInfo.Text" xml:space="preserve">
     <value>Mod Info</value>
@@ -838,7 +871,7 @@
     <value>240, 23</value>
   </data>
   <data name="buttonRunGame.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>15</value>
   </data>
   <data name="buttonRunGame.Text" xml:space="preserve">
     <value>Launch Game</value>
@@ -874,7 +907,7 @@
     <value>240, 23</value>
   </data>
   <data name="buttonSaveIso.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>16</value>
   </data>
   <data name="buttonSaveIso.Text" xml:space="preserve">
     <value>Save ISO...</value>
@@ -931,7 +964,7 @@
     <value>203, 23</value>
   </data>
   <data name="comboBoxPlatform.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;comboBoxPlatform.Name" xml:space="preserve">
     <value>comboBoxPlatform</value>

@@ -34,6 +34,7 @@ partial class MainForm
         comboBoxGame = new ComboBox();
         pictureBoxMod = new PictureBox();
         groupBoxMods = new GroupBox();
+        buttonOpenGameFolderDev = new Button();
         buttonBrowseMods = new Button();
         listViewMods = new ListView();
         columnName = new ColumnHeader();
@@ -136,6 +137,7 @@ partial class MainForm
         // groupBoxMods
         // 
         resources.ApplyResources(groupBoxMods, "groupBoxMods");
+        groupBoxMods.Controls.Add(buttonOpenGameFolderDev);
         groupBoxMods.Controls.Add(buttonBrowseMods);
         groupBoxMods.Controls.Add(listViewMods);
         groupBoxMods.Controls.Add(buttonRefreshModList);
@@ -144,6 +146,13 @@ partial class MainForm
         groupBoxMods.Controls.Add(buttonAddMod);
         groupBoxMods.Name = "groupBoxMods";
         groupBoxMods.TabStop = false;
+        // 
+        // buttonOpenGameFolderDev
+        // 
+        resources.ApplyResources(buttonOpenGameFolderDev, "buttonOpenGameFolderDev");
+        buttonOpenGameFolderDev.Name = "buttonOpenGameFolderDev";
+        buttonOpenGameFolderDev.UseVisualStyleBackColor = true;
+        buttonOpenGameFolderDev.Click += buttonOpenGameFolderDev_Click;
         // 
         // buttonBrowseMods
         // 
@@ -511,10 +520,10 @@ partial class MainForm
         Controls.Add(buttonSaveIso);
         Controls.Add(groupBoxModInfo);
         Controls.Add(buttonRestoreBackupDev);
-        Controls.Add(buttonRunGameDev);
         Controls.Add(groupBoxMods);
         Controls.Add(groupBoxGame);
         Controls.Add(menuStrip1);
+        Controls.Add(buttonRunGameDev);
         Controls.Add(buttonRunGame);
         MainMenuStrip = menuStrip1;
         Name = "MainForm";
@@ -594,4 +603,5 @@ partial class MainForm
     private ToolStripMenuItem versionToolStripMenuItem;
     private ToolStripMenuItem createdAtToolStripMenuItem;
     private ToolStripMenuItem updatedAtToolStripMenuItem;
+    private Button buttonOpenGameFolderDev;
 }

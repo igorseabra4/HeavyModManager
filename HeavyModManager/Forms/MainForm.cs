@@ -1009,12 +1009,14 @@ public partial class MainForm : Form
             buttonRestoreBackupDev.Visible = true;
             buttonRunGameDev.Visible = true;
             buttonRunGame.Visible = false;
+            buttonOpenGameFolderDev.Visible = true;
         }
         else
         {
             buttonRestoreBackupDev.Visible = false;
             buttonRunGameDev.Visible = false;
             buttonRunGame.Visible = true;
+            buttonOpenGameFolderDev.Visible = false;
         }
     }
 
@@ -1395,6 +1397,11 @@ public partial class MainForm : Form
         {
             MessageBox.Show($"Failed to open browser:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+    }
+
+    private void buttonOpenGameFolderDev_Click(object sender, EventArgs e)
+    {
+        Process.Start("explorer.exe", ModManager.GameFolderPath);
     }
 
     private void toggleColumnStripMenuItem_Click(object sender, EventArgs e)
